@@ -1,0 +1,79 @@
+[
+  {
+    "id": "REC-001",
+    "name": "Receiving Dock A",
+    "departmentId": "DEPT-RECEIVING",
+    "kind": "RECEIVING",
+    "palletCapacity": 6
+  },
+  {
+    "id": "REC-002",
+    "name": "Receiving Dock B",
+    "departmentId": "DEPT-RECEIVING",
+    "kind": "RECEIVING",
+    "palletCapacity": 6
+  },
+  {
+    "id": "INV-001",
+    "name": "Raw Materials Rack A",
+    "departmentId": "DEPT-RAW-INVENTORY",
+    "kind": "RAW_STORAGE",
+    "palletCapacity": 24
+  },
+  {
+    "id": "INV-002",
+    "name": "Raw Materials Rack B",
+    "departmentId": "DEPT-RAW-INVENTORY",
+    "kind": "RAW_STORAGE",
+    "palletCapacity": 24
+  },
+  {
+    "id": "ASM-001",
+    "name": "Assembly Line A",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+  },
+  {
+    "id": "ASM-002",
+    "name": "Assembly Line B",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+  },
+  {
+    "id": "ASM-003",
+    "name": "Assembly Line C",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+  },
+  {
+    "id": "QC-001",
+    "name": "Inspection Cell A",
+    "departmentId": "DEPT-QUALITY",
+    "kind": "QUALITY",
+    "palletCapacity": 4
+  },
+  {
+    "id": "QC-002",
+    "name": "Inspection Cell B",
+    "departmentId": "DEPT-QUALITY",
+    "kind": "QUALITY",
+    "palletCapacity": 4
+  },
+  {
+    "id": "SHP-001",
+    "name": "Shipping Bay A",
+    "departmentId": "DEPT-SHIPPING",
+    "kind": "SHIPPING",
+    "palletCapacity": 16
+  },
+  {
+    "id": "SHP-002",
+    "name": "Shipping Bay B",
+    "departmentId": "DEPT-SHIPPING",
+    "kind": "SHIPPING",
+    "palletCapacity": 16
+  }
+]

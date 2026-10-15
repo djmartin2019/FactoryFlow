@@ -1,0 +1,27 @@
+[
+  {
+    "id": "DEPT-RECEIVING",
+    "name": "Receiving",
+    "kind": "RECEIVING"
+  },
+  {
+    "id": "DEPT-RAW-INVENTORY",
+    "name": "Raw Inventory",
+    "kind": "RAW_STORAGE"
+  },
+  {
+    "id": "DEPT-ASSEMBLY",
+    "name": "Assembly",
+    "kind": "ASSEMBLY"
+  },
+  {
+    "id": "DEPT-QUALITY",
+    "name": "Quality Control",
+    "kind": "QUALITY"
+  },
+  {
+    "id": "DEPT-SHIPPING",
+    "name": "Shipping",
+    "kind": "SHIPPING"
+  }
+]

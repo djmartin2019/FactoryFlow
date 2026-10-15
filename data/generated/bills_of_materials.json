@@ -1,0 +1,135 @@
+[
+  {
+    "id": "BOM-NCP-100",
+    "productId": "NCP-100",
+    "version": "A",
+    "lines": [
+      {
+        "materialId": "MAT-ENC-S",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-BRK-1P",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-BRK-3P",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-TB-25",
+        "quantityPer": 12
+      },
+      {
+        "materialId": "MAT-DIN-35",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-WIRE-KIT",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-RLY-24",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-PSU-24",
+        "quantityPer": 1
+      }
+    ]
+  },
+  {
+    "id": "BOM-NCP-200",
+    "productId": "NCP-200",
+    "version": "A",
+    "lines": [
+      {
+        "materialId": "MAT-ENC-M",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-BRK-3P",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-BRK-1P",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-TB-25",
+        "quantityPer": 18
+      },
+      {
+        "materialId": "MAT-DIN-35",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-WIRE-KIT",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-RLY-24",
+        "quantityPer": 3
+      },
+      {
+        "materialId": "MAT-CTR-25",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-PSU-24",
+        "quantityPer": 1
+      }
+    ]
+  },
+  {
+    "id": "BOM-NCP-300",
+    "productId": "NCP-300",
+    "version": "A",
+    "lines": [
+      {
+        "materialId": "MAT-ENC-L",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-BRK-3P",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-BRK-1P",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-TB-25",
+        "quantityPer": 30
+      },
+      {
+        "materialId": "MAT-DIN-35",
+        "quantityPer": 3
+      },
+      {
+        "materialId": "MAT-WIRE-KIT",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-RLY-24",
+        "quantityPer": 4
+      },
+      {
+        "materialId": "MAT-CTR-25",
+        "quantityPer": 2
+      },
+      {
+        "materialId": "MAT-PLC-CPU",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-HMI-7",
+        "quantityPer": 1
+      },
+      {
+        "materialId": "MAT-PSU-24",
+        "quantityPer": 2
+      }
+    ]
+  }
+]

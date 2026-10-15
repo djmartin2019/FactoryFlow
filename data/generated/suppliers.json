@@ -1,0 +1,42 @@
+[
+  {
+    "id": "SUP-001",
+    "name": "Ironbridge Metalworks",
+    "leadTimeDays": 5,
+    "onTimeRate": 0.9,
+    "paymentTermsDays": 30,
+    "receivingLocationId": "REC-001"
+  },
+  {
+    "id": "SUP-002",
+    "name": "Voltaic Switchgear Ltd",
+    "leadTimeDays": 7,
+    "onTimeRate": 0.85,
+    "paymentTermsDays": 45,
+    "receivingLocationId": "REC-001"
+  },
+  {
+    "id": "SUP-003",
+    "name": "Clearline Connectors",
+    "leadTimeDays": 4,
+    "onTimeRate": 0.92,
+    "paymentTermsDays": 30,
+    "receivingLocationId": "REC-002"
+  },
+  {
+    "id": "SUP-004",
+    "name": "Meridian Automation Supply",
+    "leadTimeDays": 12,
+    "onTimeRate": 0.65,
+    "paymentTermsDays": 60,
+    "receivingLocationId": "REC-002"
+  },
+  {
+    "id": "SUP-005",
+    "name": "Brightwater Power Systems",
+    "leadTimeDays": 8,
+    "onTimeRate": 0.8,
+    "paymentTermsDays": 45,
+    "receivingLocationId": "REC-001"
+  }
+]

@@ -1,0 +1,234 @@
+[
+  {
+    "locationId": "INV-001",
+    "itemId": "MAT-ENC-S",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 46,
+    "reserved": 0,
+    "available": 46
+  },
+  {
+    "locationId": "INV-001",
+    "itemId": "MAT-ENC-M",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 17,
+    "reserved": 0,
+    "available": 17
+  },
+  {
+    "locationId": "INV-001",
+    "itemId": "MAT-ENC-L",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 14,
+    "reserved": 0,
+    "available": 14
+  },
+  {
+    "locationId": "INV-001",
+    "itemId": "MAT-DIN-35",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 102,
+    "reserved": 0,
+    "available": 102
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-BRK-1P",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 127,
+    "reserved": 0,
+    "available": 127
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-BRK-3P",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 88,
+    "reserved": 0,
+    "available": 88
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-RLY-24",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 169,
+    "reserved": 0,
+    "available": 169
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-CTR-25",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 22,
+    "reserved": 0,
+    "available": 22
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-TB-25",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 1198,
+    "reserved": 0,
+    "available": 1198
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-WIRE-KIT",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 71,
+    "reserved": 0,
+    "available": 71
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-PLC-CPU",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 24,
+    "reserved": 0,
+    "available": 24
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-HMI-7",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 24,
+    "reserved": 0,
+    "available": 24
+  },
+  {
+    "locationId": "INV-002",
+    "itemId": "MAT-PSU-24",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 61,
+    "reserved": 0,
+    "available": 61
+  },
+  {
+    "locationId": "SHP-001",
+    "itemId": "NCP-100",
+    "itemKind": "FINISHED_GOOD",
+    "onHand": 1,
+    "reserved": 0,
+    "available": 1
+  },
+  {
+    "locationId": "SHP-001",
+    "itemId": "NCP-200",
+    "itemKind": "FINISHED_GOOD",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "SHP-002",
+    "itemId": "NCP-300",
+    "itemKind": "FINISHED_GOOD",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-ENC-S",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-ENC-M",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-ENC-L",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-002",
+    "itemId": "MAT-TB-25",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-002",
+    "itemId": "MAT-WIRE-KIT",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-DIN-35",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-PSU-24",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-BRK-1P",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-BRK-3P",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-RLY-24",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-001",
+    "itemId": "MAT-CTR-25",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-002",
+    "itemId": "MAT-PLC-CPU",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-002",
+    "itemId": "MAT-HMI-7",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  }
+]

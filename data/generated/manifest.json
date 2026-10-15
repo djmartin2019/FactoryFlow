@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0.0",
+  "seed": "northstar-2026",
+  "config": {
+    "seed": "northstar-2026",
+    "startDate": "2026-09-01T00:00:00.000Z",
+    "days": 30,
+    "customerOrders": 75,
+    "purchaseOrders": 50,
+    "customerCount": 10,
+    "assemblyWorkstations": 3,
+    "inspectionWorkstations": 2,
+    "openingFinishedGoodsUnits": 3,
+    "minProductionLot": 2,
+    "machineFailuresPerWorkstation": 2,
+    "demandSurge": {
+      "startDay": 12,
+      "endDay": 16,
+      "multiplier": 2.5
+    }
+  },
+  "simulatedRange": {
+    "start": "2026-09-01T00:00:00.000Z",
+    "end": "2026-10-01T00:00:00.000Z"
+  },
+  "eventCount": 1834,
+  "eventTypeCounts": {
+    "PURCHASE_ORDER_CREATED": 48,
+    "CUSTOMER_ORDER_CREATED": 75,
+    "FINISHED_GOODS_ALLOCATED": 144,
+    "SHIPMENT_DISPATCHED": 75,
+    "PRODUCTION_ORDER_CREATED": 100,
+    "PRODUCTION_ORDER_RELEASED": 98,
+    "MATERIAL_CONSUMED": 98,
+    "PRODUCTION_STARTED": 98,
+    "OPERATION_STARTED": 289,
+    "OPERATION_COMPLETED": 289,
+    "PRODUCTION_COMPLETED": 98,
+    "QUALITY_INSPECTION_COMPLETED": 114,
+    "FINISHED_GOODS_RECEIVED": 98,
+    "REWORK_REQUESTED": 16,
+    "MACHINE_FAILED": 6,
+    "MATERIAL_RECEIVED": 39,
+    "INVENTORY_TRANSFERRED": 89,
+    "MACHINE_RESTORED": 6,
+    "PRODUCTION_BLOCKED": 49,
+    "CUSTOMER_ORDER_CANCELLED": 1,
+    "PRODUCTION_ORDER_CANCELLED": 2,
+    "PRODUCTION_RESUMED": 2
+  },
+  "eventLogHash": "ffbde8b9",
+  "recordCounts": {
+    "materials": 13,
+    "purchaseOrders": 48,
+    "receipts": 39,
+    "inventoryTransactions": 2339,
+    "productionOrders": 100,
+    "productionOperations": 295,
+    "qualityInspections": 114,
+    "customerOrders": 75,
+    "shipments": 75,
+    "downtimes": 6
+  }
+}

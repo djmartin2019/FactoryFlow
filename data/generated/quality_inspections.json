@@ -1,0 +1,1772 @@
+[
+  {
+    "id": "QI-0001",
+    "productionOrderId": "WO-0001",
+    "operationId": "OP-WO-0001-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-02T06:33:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0002",
+    "productionOrderId": "WO-0002",
+    "operationId": "OP-WO-0002-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-02T06:59:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0003",
+    "productionOrderId": "WO-0003",
+    "operationId": "OP-WO-0003-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-02T11:22:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0004",
+    "productionOrderId": "WO-0004",
+    "operationId": "OP-WO-0004-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-02T18:40:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0005",
+    "productionOrderId": "WO-0006",
+    "operationId": "OP-WO-0006-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-03T06:55:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0006",
+    "productionOrderId": "WO-0005",
+    "operationId": "OP-WO-0005-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-03T07:10:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0007",
+    "productionOrderId": "WO-0007",
+    "operationId": "OP-WO-0007-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-03T08:41:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0008",
+    "productionOrderId": "WO-0008",
+    "operationId": "OP-WO-0008-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-04T06:31:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0009",
+    "productionOrderId": "WO-0009",
+    "operationId": "OP-WO-0009-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-04T13:51:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0010",
+    "productionOrderId": "WO-0010",
+    "operationId": "OP-WO-0010-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-04T13:58:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0011",
+    "productionOrderId": "WO-0012",
+    "operationId": "OP-WO-0012-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-04T15:09:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0012",
+    "productionOrderId": "WO-0011",
+    "operationId": "OP-WO-0011-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-04T18:00:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 5,
+    "failedQuantity": 2,
+    "reworkQuantity": 2,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "LOOSE_TERMINATION",
+        "quantity": 1
+      },
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0013",
+    "productionOrderId": "WO-0013",
+    "operationId": "OP-WO-0013-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-07T07:10:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0014",
+    "productionOrderId": "WO-0011",
+    "operationId": "OP-WO-0011-50",
+    "workstationId": "QC-002",
+    "round": 2,
+    "inspectedAt": "2026-09-07T07:38:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0015",
+    "productionOrderId": "WO-0014",
+    "operationId": "OP-WO-0014-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-07T13:40:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0016",
+    "productionOrderId": "WO-0016",
+    "operationId": "OP-WO-0016-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-07T14:55:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0017",
+    "productionOrderId": "WO-0015",
+    "operationId": "OP-WO-0015-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-07T18:00:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0018",
+    "productionOrderId": "WO-0017",
+    "operationId": "OP-WO-0017-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-08T06:46:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0019",
+    "productionOrderId": "WO-0019",
+    "operationId": "OP-WO-0019-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-08T17:40:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0020",
+    "productionOrderId": "WO-0020",
+    "operationId": "OP-WO-0020-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-09T13:52:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0021",
+    "productionOrderId": "WO-0021",
+    "operationId": "OP-WO-0021-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-09T14:16:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0022",
+    "productionOrderId": "WO-0022",
+    "operationId": "OP-WO-0022-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-09T15:20:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0023",
+    "productionOrderId": "WO-0023",
+    "operationId": "OP-WO-0023-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-09T16:24:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0024",
+    "productionOrderId": "WO-0024",
+    "operationId": "OP-WO-0024-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-10T06:56:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0025",
+    "productionOrderId": "WO-0025",
+    "operationId": "OP-WO-0025-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-10T07:06:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0026",
+    "productionOrderId": "WO-0026",
+    "operationId": "OP-WO-0026-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-10T08:26:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0027",
+    "productionOrderId": "WO-0027",
+    "operationId": "OP-WO-0027-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-10T08:53:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0028",
+    "productionOrderId": "WO-0028",
+    "operationId": "OP-WO-0028-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-10T16:34:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0029",
+    "productionOrderId": "WO-0030",
+    "operationId": "OP-WO-0030-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-10T17:04:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0030",
+    "productionOrderId": "WO-0029",
+    "operationId": "OP-WO-0029-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-10T17:22:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0031",
+    "productionOrderId": "WO-0032",
+    "operationId": "OP-WO-0032-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-11T06:39:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0032",
+    "productionOrderId": "WO-0031",
+    "operationId": "OP-WO-0031-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-11T07:03:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0033",
+    "productionOrderId": "WO-0033",
+    "operationId": "OP-WO-0033-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-11T07:42:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0034",
+    "productionOrderId": "WO-0034",
+    "operationId": "OP-WO-0034-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-11T08:57:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0035",
+    "productionOrderId": "WO-0035",
+    "operationId": "OP-WO-0035-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-14T16:58:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 2,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0036",
+    "productionOrderId": "WO-0037",
+    "operationId": "OP-WO-0037-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-14T18:06:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0037",
+    "productionOrderId": "WO-0018",
+    "operationId": "OP-WO-0018-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-14T19:16:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 3,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0038",
+    "productionOrderId": "WO-0035",
+    "operationId": "OP-WO-0035-40",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-15T06:20:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0039",
+    "productionOrderId": "WO-0038",
+    "operationId": "OP-WO-0038-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-15T07:06:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0040",
+    "productionOrderId": "WO-0036",
+    "operationId": "OP-WO-0036-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-15T07:13:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0041",
+    "productionOrderId": "WO-0018",
+    "operationId": "OP-WO-0018-50",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-15T07:43:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0042",
+    "productionOrderId": "WO-0041",
+    "operationId": "OP-WO-0041-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-15T07:52:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0043",
+    "productionOrderId": "WO-0040",
+    "operationId": "OP-WO-0040-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-15T08:45:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0044",
+    "productionOrderId": "WO-0044",
+    "operationId": "OP-WO-0044-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-15T10:58:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0045",
+    "productionOrderId": "WO-0050",
+    "operationId": "OP-WO-0050-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-15T13:38:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0046",
+    "productionOrderId": "WO-0051",
+    "operationId": "OP-WO-0051-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-16T07:56:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0047",
+    "productionOrderId": "WO-0062",
+    "operationId": "OP-WO-0062-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-17T11:01:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0048",
+    "productionOrderId": "WO-0071",
+    "operationId": "OP-WO-0071-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-21T06:56:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0049",
+    "productionOrderId": "WO-0039",
+    "operationId": "OP-WO-0039-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-21T16:17:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0050",
+    "productionOrderId": "WO-0042",
+    "operationId": "OP-WO-0042-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-22T07:31:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0051",
+    "productionOrderId": "WO-0043",
+    "operationId": "OP-WO-0043-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-22T08:14:00.000Z",
+    "inspectedQuantity": 10,
+    "passedQuantity": 8,
+    "failedQuantity": 2,
+    "reworkQuantity": 0,
+    "scrapQuantity": 2,
+    "defects": [
+      {
+        "code": "ENCLOSURE_DAMAGE",
+        "quantity": 2
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0052",
+    "productionOrderId": "WO-0045",
+    "operationId": "OP-WO-0045-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-22T08:21:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0053",
+    "productionOrderId": "WO-0048",
+    "operationId": "OP-WO-0048-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-22T12:13:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 4,
+    "failedQuantity": 1,
+    "reworkQuantity": 0,
+    "scrapQuantity": 1,
+    "defects": [
+      {
+        "code": "ENCLOSURE_DAMAGE",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0054",
+    "productionOrderId": "WO-0046",
+    "operationId": "OP-WO-0046-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-22T16:25:00.000Z",
+    "inspectedQuantity": 9,
+    "passedQuantity": 8,
+    "failedQuantity": 1,
+    "reworkQuantity": 0,
+    "scrapQuantity": 1,
+    "defects": [
+      {
+        "code": "ENCLOSURE_DAMAGE",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0055",
+    "productionOrderId": "WO-0049",
+    "operationId": "OP-WO-0049-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-22T17:21:00.000Z",
+    "inspectedQuantity": 8,
+    "passedQuantity": 7,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "LOOSE_TERMINATION",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0056",
+    "productionOrderId": "WO-0053",
+    "operationId": "OP-WO-0053-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-23T07:15:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 4,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "LOOSE_TERMINATION",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0057",
+    "productionOrderId": "WO-0049",
+    "operationId": "OP-WO-0049-50",
+    "workstationId": "QC-002",
+    "round": 2,
+    "inspectedAt": "2026-09-23T07:37:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0058",
+    "productionOrderId": "WO-0052",
+    "operationId": "OP-WO-0052-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-23T08:23:00.000Z",
+    "inspectedQuantity": 10,
+    "passedQuantity": 8,
+    "failedQuantity": 2,
+    "reworkQuantity": 1,
+    "scrapQuantity": 1,
+    "defects": [
+      {
+        "code": "ENCLOSURE_DAMAGE",
+        "quantity": 1
+      },
+      {
+        "code": "FUNCTIONAL_TEST_FAIL",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0059",
+    "productionOrderId": "WO-0054",
+    "operationId": "OP-WO-0054-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-23T08:51:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0060",
+    "productionOrderId": "WO-0057",
+    "operationId": "OP-WO-0057-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-23T09:53:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0061",
+    "productionOrderId": "WO-0053",
+    "operationId": "OP-WO-0053-50",
+    "workstationId": "QC-002",
+    "round": 2,
+    "inspectedAt": "2026-09-23T10:00:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0062",
+    "productionOrderId": "WO-0066",
+    "operationId": "OP-WO-0066-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-23T10:58:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 4,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "FUNCTIONAL_TEST_FAIL",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0063",
+    "productionOrderId": "WO-0058",
+    "operationId": "OP-WO-0058-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-23T11:12:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0064",
+    "productionOrderId": "WO-0067",
+    "operationId": "OP-WO-0067-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-23T11:24:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0065",
+    "productionOrderId": "WO-0052",
+    "operationId": "OP-WO-0052-50",
+    "workstationId": "QC-002",
+    "round": 2,
+    "inspectedAt": "2026-09-23T11:33:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0066",
+    "productionOrderId": "WO-0068",
+    "operationId": "OP-WO-0068-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-23T14:38:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0067",
+    "productionOrderId": "WO-0066",
+    "operationId": "OP-WO-0066-40",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-23T14:55:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0068",
+    "productionOrderId": "WO-0070",
+    "operationId": "OP-WO-0070-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-23T15:00:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0069",
+    "productionOrderId": "WO-0073",
+    "operationId": "OP-WO-0073-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-23T16:04:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0070",
+    "productionOrderId": "WO-0055",
+    "operationId": "OP-WO-0055-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-24T07:55:00.000Z",
+    "inspectedQuantity": 9,
+    "passedQuantity": 9,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0071",
+    "productionOrderId": "WO-0056",
+    "operationId": "OP-WO-0056-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-24T07:55:00.000Z",
+    "inspectedQuantity": 8,
+    "passedQuantity": 5,
+    "failedQuantity": 3,
+    "reworkQuantity": 3,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 2
+      },
+      {
+        "code": "LOOSE_TERMINATION",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0072",
+    "productionOrderId": "WO-0059",
+    "operationId": "OP-WO-0059-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-24T10:04:00.000Z",
+    "inspectedQuantity": 10,
+    "passedQuantity": 10,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0073",
+    "productionOrderId": "WO-0069",
+    "operationId": "OP-WO-0069-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-24T10:56:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0074",
+    "productionOrderId": "WO-0056",
+    "operationId": "OP-WO-0056-50",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-24T12:47:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0075",
+    "productionOrderId": "WO-0063",
+    "operationId": "OP-WO-0063-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-24T18:11:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 6,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "FUNCTIONAL_TEST_FAIL",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "MACHINE_FAILURE",
+      "downtimeId": "DT-0004"
+    }
+  },
+  {
+    "id": "QI-0076",
+    "productionOrderId": "WO-0065",
+    "operationId": "OP-WO-0065-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-24T18:30:00.000Z",
+    "inspectedQuantity": 10,
+    "passedQuantity": 9,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0077",
+    "productionOrderId": "WO-0074",
+    "operationId": "OP-WO-0074-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-25T06:55:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0078",
+    "productionOrderId": "WO-0072",
+    "operationId": "OP-WO-0072-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-25T06:56:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0079",
+    "productionOrderId": "WO-0065",
+    "operationId": "OP-WO-0065-50",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-25T07:17:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0080",
+    "productionOrderId": "WO-0063",
+    "operationId": "OP-WO-0063-50",
+    "workstationId": "QC-002",
+    "round": 2,
+    "inspectedAt": "2026-09-25T07:18:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0081",
+    "productionOrderId": "WO-0078",
+    "operationId": "OP-WO-0078-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-25T07:53:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0082",
+    "productionOrderId": "WO-0075",
+    "operationId": "OP-WO-0075-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-25T08:30:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 3,
+    "failedQuantity": 2,
+    "reworkQuantity": 2,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "LOOSE_TERMINATION",
+        "quantity": 1
+      },
+      {
+        "code": "FUNCTIONAL_TEST_FAIL",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0083",
+    "productionOrderId": "WO-0080",
+    "operationId": "OP-WO-0080-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-25T09:29:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0084",
+    "productionOrderId": "WO-0076",
+    "operationId": "OP-WO-0076-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-25T09:35:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0085",
+    "productionOrderId": "WO-0079",
+    "operationId": "OP-WO-0079-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-25T10:01:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0086",
+    "productionOrderId": "WO-0075",
+    "operationId": "OP-WO-0075-50",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-25T10:24:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0087",
+    "productionOrderId": "WO-0081",
+    "operationId": "OP-WO-0081-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-25T11:06:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0088",
+    "productionOrderId": "WO-0077",
+    "operationId": "OP-WO-0077-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-25T13:51:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0089",
+    "productionOrderId": "WO-0061",
+    "operationId": "OP-WO-0061-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-25T14:26:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0090",
+    "productionOrderId": "WO-0087",
+    "operationId": "OP-WO-0087-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-25T16:08:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0091",
+    "productionOrderId": "WO-0089",
+    "operationId": "OP-WO-0089-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-25T16:45:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0092",
+    "productionOrderId": "WO-0084",
+    "operationId": "OP-WO-0084-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-25T18:31:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 2,
+    "failedQuantity": 2,
+    "reworkQuantity": 2,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 1
+      },
+      {
+        "code": "LOOSE_TERMINATION",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "MACHINE_FAILURE",
+      "downtimeId": "DT-0005"
+    }
+  },
+  {
+    "id": "QI-0093",
+    "productionOrderId": "WO-0084",
+    "operationId": "OP-WO-0084-40",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-28T07:51:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0094",
+    "productionOrderId": "WO-0083",
+    "operationId": "OP-WO-0083-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-28T11:09:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 1,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0095",
+    "productionOrderId": "WO-0047",
+    "operationId": "OP-WO-0047-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-28T12:49:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0096",
+    "productionOrderId": "WO-0082",
+    "operationId": "OP-WO-0082-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-28T13:09:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0097",
+    "productionOrderId": "WO-0085",
+    "operationId": "OP-WO-0085-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-28T13:40:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0098",
+    "productionOrderId": "WO-0083",
+    "operationId": "OP-WO-0083-50",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-28T14:09:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0099",
+    "productionOrderId": "WO-0088",
+    "operationId": "OP-WO-0088-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-28T18:01:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0100",
+    "productionOrderId": "WO-0086",
+    "operationId": "OP-WO-0086-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-28T18:10:00.000Z",
+    "inspectedQuantity": 4,
+    "passedQuantity": 4,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0101",
+    "productionOrderId": "WO-0091",
+    "operationId": "OP-WO-0091-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-29T06:48:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0102",
+    "productionOrderId": "WO-0092",
+    "operationId": "OP-WO-0092-20",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-29T07:05:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0103",
+    "productionOrderId": "WO-0090",
+    "operationId": "OP-WO-0090-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-29T09:31:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 5,
+    "failedQuantity": 2,
+    "reworkQuantity": 2,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 2
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0104",
+    "productionOrderId": "WO-0095",
+    "operationId": "OP-WO-0095-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-29T14:06:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 3,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0105",
+    "productionOrderId": "WO-0093",
+    "operationId": "OP-WO-0093-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-29T14:42:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0106",
+    "productionOrderId": "WO-0096",
+    "operationId": "OP-WO-0096-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-29T15:18:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0107",
+    "productionOrderId": "WO-0098",
+    "operationId": "OP-WO-0098-20",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-29T16:33:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0108",
+    "productionOrderId": "WO-0094",
+    "operationId": "OP-WO-0094-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-29T17:38:00.000Z",
+    "inspectedQuantity": 7,
+    "passedQuantity": 7,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0109",
+    "productionOrderId": "WO-0090",
+    "operationId": "OP-WO-0090-50",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-29T18:14:00.000Z",
+    "inspectedQuantity": 2,
+    "passedQuantity": 2,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0110",
+    "productionOrderId": "WO-0097",
+    "operationId": "OP-WO-0097-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-29T18:34:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 2,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "WIRING_ERROR",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0111",
+    "productionOrderId": "WO-0099",
+    "operationId": "OP-WO-0099-30",
+    "workstationId": "QC-002",
+    "round": 1,
+    "inspectedAt": "2026-09-30T07:11:00.000Z",
+    "inspectedQuantity": 3,
+    "passedQuantity": 2,
+    "failedQuantity": 1,
+    "reworkQuantity": 1,
+    "scrapQuantity": 0,
+    "defects": [
+      {
+        "code": "LOOSE_TERMINATION",
+        "quantity": 1
+      }
+    ],
+    "cause": {
+      "kind": "PROCESS_VARIATION"
+    }
+  },
+  {
+    "id": "QI-0112",
+    "productionOrderId": "WO-0100",
+    "operationId": "OP-WO-0100-30",
+    "workstationId": "QC-001",
+    "round": 1,
+    "inspectedAt": "2026-09-30T07:17:00.000Z",
+    "inspectedQuantity": 5,
+    "passedQuantity": 5,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0113",
+    "productionOrderId": "WO-0097",
+    "operationId": "OP-WO-0097-50",
+    "workstationId": "QC-002",
+    "round": 2,
+    "inspectedAt": "2026-09-30T07:35:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  },
+  {
+    "id": "QI-0114",
+    "productionOrderId": "WO-0099",
+    "operationId": "OP-WO-0099-50",
+    "workstationId": "QC-001",
+    "round": 2,
+    "inspectedAt": "2026-09-30T08:24:00.000Z",
+    "inspectedQuantity": 1,
+    "passedQuantity": 1,
+    "failedQuantity": 0,
+    "reworkQuantity": 0,
+    "scrapQuantity": 0,
+    "defects": []
+  }
+]

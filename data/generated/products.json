@@ -1,0 +1,41 @@
+[
+  {
+    "id": "NCP-100",
+    "sku": "NCP-100",
+    "name": "Basic Control Panel",
+    "description": "Entry-level relay-logic control panel",
+    "bomId": "BOM-NCP-100",
+    "routingId": "RTG-NCP-100",
+    "standardCostCents": 38315,
+    "listPriceCents": 95000,
+    "finishedGoodsLocationId": "SHP-001",
+    "unitsPerPallet": 6,
+    "baseDefectRate": 0.02
+  },
+  {
+    "id": "NCP-200",
+    "sku": "NCP-200",
+    "name": "Motor Control Panel",
+    "description": "Contactor-based motor starter panel",
+    "bomId": "BOM-NCP-200",
+    "routingId": "RTG-NCP-200",
+    "standardCostCents": 63140,
+    "listPriceCents": 189000,
+    "finishedGoodsLocationId": "SHP-001",
+    "unitsPerPallet": 4,
+    "baseDefectRate": 0.04
+  },
+  {
+    "id": "NCP-300",
+    "sku": "NCP-300",
+    "name": "Advanced Automation Panel",
+    "description": "PLC and HMI based automation panel",
+    "bomId": "BOM-NCP-300",
+    "routingId": "RTG-NCP-300",
+    "standardCostCents": 163405,
+    "listPriceCents": 465000,
+    "finishedGoodsLocationId": "SHP-002",
+    "unitsPerPallet": 2,
+    "baseDefectRate": 0.07
+  }
+]

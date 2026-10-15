@@ -1,0 +1,1426 @@
+[
+  {
+    "id": "PO-0001",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-01T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-07T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0001-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-S",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 8535
+      },
+      {
+        "id": "POL-0001-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 15198
+      },
+      {
+        "id": "POL-0001-3",
+        "lineNumber": 3,
+        "materialId": "MAT-ENC-L",
+        "orderedQuantity": 5,
+        "receivedQuantity": 5,
+        "unitCostCents": 26264
+      }
+    ],
+    "totalCents": 368650
+  },
+  {
+    "id": "PO-0002",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-01T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-09T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0002-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 60,
+        "receivedQuantity": 60,
+        "unitCostCents": 7600
+      }
+    ],
+    "totalCents": 456000
+  },
+  {
+    "id": "PO-0003",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-02T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-09T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0003-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 1869
+      },
+      {
+        "id": "POL-0003-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 75,
+        "receivedQuantity": 75,
+        "unitCostCents": 6528
+      },
+      {
+        "id": "POL-0003-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1667
+      },
+      {
+        "id": "POL-0003-4",
+        "lineNumber": 4,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 60,
+        "receivedQuantity": 60,
+        "unitCostCents": 5198
+      }
+    ],
+    "totalCents": 1061630
+  },
+  {
+    "id": "PO-0004",
+    "supplierId": "SUP-004",
+    "createdAt": "2026-09-02T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-14T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0004-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PLC-CPU",
+        "orderedQuantity": 25,
+        "receivedQuantity": 25,
+        "unitCostCents": 38885
+      },
+      {
+        "id": "POL-0004-2",
+        "lineNumber": 2,
+        "materialId": "MAT-HMI-7",
+        "orderedQuantity": 25,
+        "receivedQuantity": 25,
+        "unitCostCents": 29601
+      }
+    ],
+    "totalCents": 1712150
+  },
+  {
+    "id": "PO-0005",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-03T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-08T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0005-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 14751
+      },
+      {
+        "id": "POL-0005-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-L",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 27068
+      },
+      {
+        "id": "POL-0005-3",
+        "lineNumber": 3,
+        "materialId": "MAT-DIN-35",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 385
+      }
+    ],
+    "totalCents": 456690
+  },
+  {
+    "id": "PO-0006",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-03T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-07T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0006-1",
+        "lineNumber": 1,
+        "materialId": "MAT-TB-25",
+        "orderedQuantity": 500,
+        "receivedQuantity": 500,
+        "unitCostCents": 219
+      },
+      {
+        "id": "POL-0006-2",
+        "lineNumber": 2,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 6018
+      }
+    ],
+    "totalCents": 350220
+  },
+  {
+    "id": "PO-0007",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-03T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-11T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0007-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 30,
+        "receivedQuantity": 30,
+        "unitCostCents": 7828
+      }
+    ],
+    "totalCents": 234840
+  },
+  {
+    "id": "PO-0008",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-04T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-11T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0008-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 1795
+      },
+      {
+        "id": "POL-0008-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 6208
+      },
+      {
+        "id": "POL-0008-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1634
+      },
+      {
+        "id": "POL-0008-4",
+        "lineNumber": 4,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 5408
+      }
+    ],
+    "totalCents": 779870
+  },
+  {
+    "id": "PO-0009",
+    "supplierId": "SUP-004",
+    "createdAt": "2026-09-04T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-16T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0009-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PLC-CPU",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 39655
+      },
+      {
+        "id": "POL-0009-2",
+        "lineNumber": 2,
+        "materialId": "MAT-HMI-7",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 30797
+      }
+    ],
+    "totalCents": 704520
+  },
+  {
+    "id": "PO-0010",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-07T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-14T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0010-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-S",
+        "orderedQuantity": 20,
+        "receivedQuantity": 20,
+        "unitCostCents": 8450
+      },
+      {
+        "id": "POL-0010-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 15049
+      }
+    ],
+    "totalCents": 319490
+  },
+  {
+    "id": "PO-0011",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-07T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-11T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0011-1",
+        "lineNumber": 1,
+        "materialId": "MAT-TB-25",
+        "orderedQuantity": 500,
+        "receivedQuantity": 500,
+        "unitCostCents": 213
+      }
+    ],
+    "totalCents": 106500
+  },
+  {
+    "id": "PO-0012",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-07T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-15T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0012-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 30,
+        "receivedQuantity": 30,
+        "unitCostCents": 7372
+      }
+    ],
+    "totalCents": 221160
+  },
+  {
+    "id": "PO-0013",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-08T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-15T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0013-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1869
+      },
+      {
+        "id": "POL-0013-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 6208
+      },
+      {
+        "id": "POL-0013-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1601
+      },
+      {
+        "id": "POL-0013-4",
+        "lineNumber": 4,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 5250
+      }
+    ],
+    "totalCents": 867400
+  },
+  {
+    "id": "PO-0014",
+    "supplierId": "SUP-004",
+    "createdAt": "2026-09-08T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-21T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0014-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PLC-CPU",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 38885
+      },
+      {
+        "id": "POL-0014-2",
+        "lineNumber": 2,
+        "materialId": "MAT-HMI-7",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 29601
+      }
+    ],
+    "totalCents": 684860
+  },
+  {
+    "id": "PO-0015",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-09T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-14T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0015-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-L",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 26264
+      },
+      {
+        "id": "POL-0015-2",
+        "lineNumber": 2,
+        "materialId": "MAT-DIN-35",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 385
+      }
+    ],
+    "totalCents": 281890
+  },
+  {
+    "id": "PO-0016",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-09T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-14T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0016-1",
+        "lineNumber": 1,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 5959
+      }
+    ],
+    "totalCents": 238360
+  },
+  {
+    "id": "PO-0017",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-09T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-17T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0017-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 30,
+        "receivedQuantity": 30,
+        "unitCostCents": 7752
+      }
+    ],
+    "totalCents": 232560
+  },
+  {
+    "id": "PO-0018",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-10T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-17T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0018-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 75,
+        "receivedQuantity": 75,
+        "unitCostCents": 6592
+      },
+      {
+        "id": "POL-0018-2",
+        "lineNumber": 2,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1700
+      },
+      {
+        "id": "POL-0018-3",
+        "lineNumber": 3,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 5250
+      }
+    ],
+    "totalCents": 874400
+  },
+  {
+    "id": "PO-0019",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-11T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-16T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0019-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-S",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 8450
+      },
+      {
+        "id": "POL-0019-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 30,
+        "receivedQuantity": 30,
+        "unitCostCents": 14602
+      },
+      {
+        "id": "POL-0019-3",
+        "lineNumber": 3,
+        "materialId": "MAT-DIN-35",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 373
+      }
+    ],
+    "totalCents": 813360
+  },
+  {
+    "id": "PO-0020",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-11T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-15T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0020-1",
+        "lineNumber": 1,
+        "materialId": "MAT-TB-25",
+        "orderedQuantity": 1500,
+        "receivedQuantity": 1500,
+        "unitCostCents": 213
+      },
+      {
+        "id": "POL-0020-2",
+        "lineNumber": 2,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 60,
+        "receivedQuantity": 60,
+        "unitCostCents": 5723
+      }
+    ],
+    "totalCents": 662880
+  },
+  {
+    "id": "PO-0021",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-11T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-21T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0021-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 60,
+        "receivedQuantity": 60,
+        "unitCostCents": 7524
+      }
+    ],
+    "totalCents": 451440
+  },
+  {
+    "id": "PO-0022",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-14T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-21T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0022-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1813
+      },
+      {
+        "id": "POL-0022-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 6208
+      },
+      {
+        "id": "POL-0022-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1683
+      },
+      {
+        "id": "POL-0022-4",
+        "lineNumber": 4,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 5303
+      }
+    ],
+    "totalCents": 872120
+  },
+  {
+    "id": "PO-0023",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-21T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0023-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-S",
+        "orderedQuantity": 20,
+        "receivedQuantity": 20,
+        "unitCostCents": 8197
+      },
+      {
+        "id": "POL-0023-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 14602
+      },
+      {
+        "id": "POL-0023-3",
+        "lineNumber": 3,
+        "materialId": "MAT-DIN-35",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 389
+      }
+    ],
+    "totalCents": 786920
+  },
+  {
+    "id": "PO-0024",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-21T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0024-1",
+        "lineNumber": 1,
+        "materialId": "MAT-TB-25",
+        "orderedQuantity": 500,
+        "receivedQuantity": 500,
+        "unitCostCents": 219
+      },
+      {
+        "id": "POL-0024-2",
+        "lineNumber": 2,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 60,
+        "receivedQuantity": 60,
+        "unitCostCents": 6018
+      }
+    ],
+    "totalCents": 470580
+  },
+  {
+    "id": "PO-0025",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-23T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0025-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 60,
+        "receivedQuantity": 60,
+        "unitCostCents": 7676
+      }
+    ],
+    "totalCents": 460560
+  },
+  {
+    "id": "PO-0026",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-16T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-23T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0026-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1869
+      },
+      {
+        "id": "POL-0026-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 175,
+        "receivedQuantity": 175,
+        "unitCostCents": 6336
+      },
+      {
+        "id": "POL-0026-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 250,
+        "receivedQuantity": 250,
+        "unitCostCents": 1601
+      },
+      {
+        "id": "POL-0026-4",
+        "lineNumber": 4,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 160,
+        "receivedQuantity": 160,
+        "unitCostCents": 5198
+      }
+    ],
+    "totalCents": 2527630
+  },
+  {
+    "id": "PO-0027",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-17T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-22T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0027-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 70,
+        "receivedQuantity": 70,
+        "unitCostCents": 14602
+      },
+      {
+        "id": "POL-0027-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-L",
+        "orderedQuantity": 5,
+        "receivedQuantity": 5,
+        "unitCostCents": 27068
+      },
+      {
+        "id": "POL-0027-3",
+        "lineNumber": 3,
+        "materialId": "MAT-DIN-35",
+        "orderedQuantity": 150,
+        "receivedQuantity": 150,
+        "unitCostCents": 397
+      }
+    ],
+    "totalCents": 1217030
+  },
+  {
+    "id": "PO-0028",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-17T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-21T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0028-1",
+        "lineNumber": 1,
+        "materialId": "MAT-TB-25",
+        "orderedQuantity": 1500,
+        "receivedQuantity": 1500,
+        "unitCostCents": 215
+      },
+      {
+        "id": "POL-0028-2",
+        "lineNumber": 2,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 80,
+        "receivedQuantity": 80,
+        "unitCostCents": 5782
+      }
+    ],
+    "totalCents": 785060
+  },
+  {
+    "id": "PO-0029",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-17T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-25T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0029-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 80,
+        "receivedQuantity": 80,
+        "unitCostCents": 7828
+      }
+    ],
+    "totalCents": 626240
+  },
+  {
+    "id": "PO-0030",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-18T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-25T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0030-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1813
+      },
+      {
+        "id": "POL-0030-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 125,
+        "receivedQuantity": 125,
+        "unitCostCents": 6208
+      },
+      {
+        "id": "POL-0030-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 200,
+        "receivedQuantity": 200,
+        "unitCostCents": 1617
+      },
+      {
+        "id": "POL-0030-4",
+        "lineNumber": 4,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 5408
+      }
+    ],
+    "totalCents": 1821500
+  },
+  {
+    "id": "PO-0031",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-21T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-28T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0031-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-S",
+        "orderedQuantity": 30,
+        "receivedQuantity": 30,
+        "unitCostCents": 8281
+      },
+      {
+        "id": "POL-0031-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 20,
+        "receivedQuantity": 20,
+        "unitCostCents": 15049
+      },
+      {
+        "id": "POL-0031-3",
+        "lineNumber": 3,
+        "materialId": "MAT-DIN-35",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 385
+      }
+    ],
+    "totalCents": 587910
+  },
+  {
+    "id": "PO-0032",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-21T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-25T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0032-1",
+        "lineNumber": 1,
+        "materialId": "MAT-TB-25",
+        "orderedQuantity": 1000,
+        "receivedQuantity": 1000,
+        "unitCostCents": 215
+      },
+      {
+        "id": "POL-0032-2",
+        "lineNumber": 2,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 60,
+        "receivedQuantity": 60,
+        "unitCostCents": 5959
+      }
+    ],
+    "totalCents": 572540
+  },
+  {
+    "id": "PO-0033",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-21T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-29T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0033-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 7448
+      }
+    ],
+    "totalCents": 372400
+  },
+  {
+    "id": "PO-0034",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-22T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-29T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0034-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 1887
+      },
+      {
+        "id": "POL-0034-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 6208
+      },
+      {
+        "id": "POL-0034-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 100,
+        "receivedQuantity": 100,
+        "unitCostCents": 1650
+      }
+    ],
+    "totalCents": 569750
+  },
+  {
+    "id": "PO-0035",
+    "supplierId": "SUP-004",
+    "createdAt": "2026-09-22T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-05T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0035-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PLC-CPU",
+        "orderedQuantity": 5,
+        "receivedQuantity": 0,
+        "unitCostCents": 39270
+      },
+      {
+        "id": "POL-0035-2",
+        "lineNumber": 2,
+        "materialId": "MAT-HMI-7",
+        "orderedQuantity": 5,
+        "receivedQuantity": 0,
+        "unitCostCents": 29900
+      }
+    ],
+    "totalCents": 345850
+  },
+  {
+    "id": "PO-0036",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-23T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-28T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0036-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-S",
+        "orderedQuantity": 20,
+        "receivedQuantity": 20,
+        "unitCostCents": 8535
+      },
+      {
+        "id": "POL-0036-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 30,
+        "receivedQuantity": 30,
+        "unitCostCents": 14453
+      },
+      {
+        "id": "POL-0036-3",
+        "lineNumber": 3,
+        "materialId": "MAT-DIN-35",
+        "orderedQuantity": 50,
+        "receivedQuantity": 50,
+        "unitCostCents": 393
+      }
+    ],
+    "totalCents": 623940
+  },
+  {
+    "id": "PO-0037",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-23T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-28T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0037-1",
+        "lineNumber": 1,
+        "materialId": "MAT-TB-25",
+        "orderedQuantity": 500,
+        "receivedQuantity": 500,
+        "unitCostCents": 213
+      },
+      {
+        "id": "POL-0037-2",
+        "lineNumber": 2,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 40,
+        "receivedQuantity": 40,
+        "unitCostCents": 6018
+      }
+    ],
+    "totalCents": 347220
+  },
+  {
+    "id": "PO-0038",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-23T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-01T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0038-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 50,
+        "receivedQuantity": 0,
+        "unitCostCents": 7448
+      }
+    ],
+    "totalCents": 372400
+  },
+  {
+    "id": "PO-0039",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-24T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-01T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0039-1",
+        "lineNumber": 1,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 40,
+        "receivedQuantity": 0,
+        "unitCostCents": 5093
+      }
+    ],
+    "totalCents": 203720
+  },
+  {
+    "id": "PO-0040",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-25T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-30T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0040-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-S",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 8197
+      },
+      {
+        "id": "POL-0040-2",
+        "lineNumber": 2,
+        "materialId": "MAT-ENC-M",
+        "orderedQuantity": 10,
+        "receivedQuantity": 10,
+        "unitCostCents": 14453
+      }
+    ],
+    "totalCents": 226500
+  },
+  {
+    "id": "PO-0041",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-25T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-09-29T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "RECEIVED",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0041-1",
+        "lineNumber": 1,
+        "materialId": "MAT-TB-25",
+        "orderedQuantity": 500,
+        "receivedQuantity": 500,
+        "unitCostCents": 209
+      },
+      {
+        "id": "POL-0041-2",
+        "lineNumber": 2,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 20,
+        "receivedQuantity": 20,
+        "unitCostCents": 5959
+      }
+    ],
+    "totalCents": 223680
+  },
+  {
+    "id": "PO-0042",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-25T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-05T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0042-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 20,
+        "receivedQuantity": 0,
+        "unitCostCents": 7600
+      }
+    ],
+    "totalCents": 152000
+  },
+  {
+    "id": "PO-0043",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-28T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-05T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0043-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 0,
+        "unitCostCents": 1832
+      },
+      {
+        "id": "POL-0043-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 50,
+        "receivedQuantity": 0,
+        "unitCostCents": 6464
+      },
+      {
+        "id": "POL-0043-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 100,
+        "receivedQuantity": 0,
+        "unitCostCents": 1601
+      },
+      {
+        "id": "POL-0043-4",
+        "lineNumber": 4,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 20,
+        "receivedQuantity": 0,
+        "unitCostCents": 5145
+      }
+    ],
+    "totalCents": 677800
+  },
+  {
+    "id": "PO-0044",
+    "supplierId": "SUP-001",
+    "createdAt": "2026-09-29T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-05T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0044-1",
+        "lineNumber": 1,
+        "materialId": "MAT-ENC-L",
+        "orderedQuantity": 10,
+        "receivedQuantity": 0,
+        "unitCostCents": 25996
+      },
+      {
+        "id": "POL-0044-2",
+        "lineNumber": 2,
+        "materialId": "MAT-DIN-35",
+        "orderedQuantity": 50,
+        "receivedQuantity": 0,
+        "unitCostCents": 377
+      }
+    ],
+    "totalCents": 278810
+  },
+  {
+    "id": "PO-0045",
+    "supplierId": "SUP-003",
+    "createdAt": "2026-09-29T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-05T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0045-1",
+        "lineNumber": 1,
+        "materialId": "MAT-WIRE-KIT",
+        "orderedQuantity": 40,
+        "receivedQuantity": 0,
+        "unitCostCents": 5959
+      }
+    ],
+    "totalCents": 238360
+  },
+  {
+    "id": "PO-0046",
+    "supplierId": "SUP-005",
+    "createdAt": "2026-09-29T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-07T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0046-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PSU-24",
+        "orderedQuantity": 20,
+        "receivedQuantity": 0,
+        "unitCostCents": 7448
+      }
+    ],
+    "totalCents": 148960
+  },
+  {
+    "id": "PO-0047",
+    "supplierId": "SUP-002",
+    "createdAt": "2026-09-30T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-07T10:00:00.000Z",
+    "receivingLocationId": "REC-001",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0047-1",
+        "lineNumber": 1,
+        "materialId": "MAT-BRK-1P",
+        "orderedQuantity": 100,
+        "receivedQuantity": 0,
+        "unitCostCents": 1887
+      },
+      {
+        "id": "POL-0047-2",
+        "lineNumber": 2,
+        "materialId": "MAT-BRK-3P",
+        "orderedQuantity": 75,
+        "receivedQuantity": 0,
+        "unitCostCents": 6464
+      },
+      {
+        "id": "POL-0047-3",
+        "lineNumber": 3,
+        "materialId": "MAT-RLY-24",
+        "orderedQuantity": 150,
+        "receivedQuantity": 0,
+        "unitCostCents": 1700
+      },
+      {
+        "id": "POL-0047-4",
+        "lineNumber": 4,
+        "materialId": "MAT-CTR-25",
+        "orderedQuantity": 60,
+        "receivedQuantity": 0,
+        "unitCostCents": 5093
+      }
+    ],
+    "totalCents": 1234080
+  },
+  {
+    "id": "PO-0048",
+    "supplierId": "SUP-004",
+    "createdAt": "2026-09-30T06:00:00.000Z",
+    "promisedDeliveryAt": "2026-10-12T10:00:00.000Z",
+    "receivingLocationId": "REC-002",
+    "status": "OPEN",
+    "reason": "REORDER_POINT",
+    "lines": [
+      {
+        "id": "POL-0048-1",
+        "lineNumber": 1,
+        "materialId": "MAT-PLC-CPU",
+        "orderedQuantity": 10,
+        "receivedQuantity": 0,
+        "unitCostCents": 38115
+      },
+      {
+        "id": "POL-0048-2",
+        "lineNumber": 2,
+        "materialId": "MAT-HMI-7",
+        "orderedQuantity": 10,
+        "receivedQuantity": 0,
+        "unitCostCents": 30199
+      }
+    ],
+    "totalCents": 683140
+  }
+]

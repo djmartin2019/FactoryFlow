@@ -1,0 +1,62 @@
+[
+  {
+    "id": "CUS-001",
+    "name": "Alder Valley Packaging",
+    "region": "Midwest",
+    "paymentTermsDays": 30
+  },
+  {
+    "id": "CUS-002",
+    "name": "Birchwood Water Utilities",
+    "region": "Northeast",
+    "paymentTermsDays": 45
+  },
+  {
+    "id": "CUS-003",
+    "name": "Cobalt Ridge Mining",
+    "region": "Mountain West",
+    "paymentTermsDays": 30
+  },
+  {
+    "id": "CUS-004",
+    "name": "Dunmore Food Processing",
+    "region": "Southeast",
+    "paymentTermsDays": 30
+  },
+  {
+    "id": "CUS-005",
+    "name": "Eastgate Logistics",
+    "region": "Mid-Atlantic",
+    "paymentTermsDays": 15
+  },
+  {
+    "id": "CUS-006",
+    "name": "Fernhill HVAC Systems",
+    "region": "Southwest",
+    "paymentTermsDays": 30
+  },
+  {
+    "id": "CUS-007",
+    "name": "Granite Peak Plastics",
+    "region": "Midwest",
+    "paymentTermsDays": 45
+  },
+  {
+    "id": "CUS-008",
+    "name": "Harborline Cold Storage",
+    "region": "Pacific",
+    "paymentTermsDays": 30
+  },
+  {
+    "id": "CUS-009",
+    "name": "Ironwood Textile Mills",
+    "region": "Southeast",
+    "paymentTermsDays": 60
+  },
+  {
+    "id": "CUS-010",
+    "name": "Juniper Bay Pumps",
+    "region": "Gulf Coast",
+    "paymentTermsDays": 30
+  }
+]

@@ -1,0 +1,1661 @@
+[
+  {
+    "id": "CO-0001",
+    "customerId": "CUS-007",
+    "createdAt": "2026-09-01T12:57:00.000Z",
+    "dueDate": "2026-09-09T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0001-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0002",
+    "customerId": "CUS-006",
+    "createdAt": "2026-09-01T15:38:00.000Z",
+    "dueDate": "2026-09-11T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0002-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      },
+      {
+        "id": "CO-0002-L2",
+        "lineNumber": 2,
+        "productId": "NCP-300",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 441750
+      }
+    ]
+  },
+  {
+    "id": "CO-0003",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-02T08:09:00.000Z",
+    "dueDate": "2026-09-09T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0003-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0004",
+    "customerId": "CUS-009",
+    "createdAt": "2026-09-02T12:43:00.000Z",
+    "dueDate": "2026-09-11T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0004-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0005",
+    "customerId": "CUS-004",
+    "createdAt": "2026-09-02T14:24:00.000Z",
+    "dueDate": "2026-09-11T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0005-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      },
+      {
+        "id": "CO-0005-L2",
+        "lineNumber": 2,
+        "productId": "NCP-300",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 465000
+      }
+    ]
+  },
+  {
+    "id": "CO-0006",
+    "customerId": "CUS-009",
+    "createdAt": "2026-09-02T16:56:00.000Z",
+    "dueDate": "2026-09-14T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0006-L1",
+        "lineNumber": 1,
+        "productId": "NCP-300",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 441750
+      }
+    ]
+  },
+  {
+    "id": "CO-0007",
+    "customerId": "CUS-003",
+    "createdAt": "2026-09-03T16:30:00.000Z",
+    "dueDate": "2026-09-11T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0007-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0008",
+    "customerId": "CUS-007",
+    "createdAt": "2026-09-04T08:55:00.000Z",
+    "dueDate": "2026-09-15T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0008-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0009",
+    "customerId": "CUS-007",
+    "createdAt": "2026-09-04T09:49:00.000Z",
+    "dueDate": "2026-09-16T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0009-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 179550
+      },
+      {
+        "id": "CO-0009-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0010",
+    "customerId": "CUS-001",
+    "createdAt": "2026-09-04T12:36:00.000Z",
+    "dueDate": "2026-09-14T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0010-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 95000
+      },
+      {
+        "id": "CO-0010-L2",
+        "lineNumber": 2,
+        "productId": "NCP-300",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 465000
+      }
+    ]
+  },
+  {
+    "id": "CO-0011",
+    "customerId": "CUS-007",
+    "createdAt": "2026-09-07T11:37:00.000Z",
+    "dueDate": "2026-09-14T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0011-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 95000
+      },
+      {
+        "id": "CO-0011-L2",
+        "lineNumber": 2,
+        "productId": "NCP-300",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 465000
+      }
+    ]
+  },
+  {
+    "id": "CO-0012",
+    "customerId": "CUS-009",
+    "createdAt": "2026-09-07T13:18:00.000Z",
+    "dueDate": "2026-09-17T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0012-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0013",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-07T16:30:00.000Z",
+    "dueDate": "2026-09-17T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0013-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 95000
+      },
+      {
+        "id": "CO-0013-L2",
+        "lineNumber": 2,
+        "productId": "NCP-300",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 465000
+      }
+    ]
+  },
+  {
+    "id": "CO-0014",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-08T12:54:00.000Z",
+    "dueDate": "2026-09-16T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0014-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0015",
+    "customerId": "CUS-007",
+    "createdAt": "2026-09-09T11:03:00.000Z",
+    "dueDate": "2026-09-21T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0015-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0016",
+    "customerId": "CUS-004",
+    "createdAt": "2026-09-09T12:10:00.000Z",
+    "dueDate": "2026-09-22T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0016-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 1,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 1,
+        "unitPriceCents": 189000
+      },
+      {
+        "id": "CO-0016-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0017",
+    "customerId": "CUS-001",
+    "createdAt": "2026-09-09T13:53:00.000Z",
+    "dueDate": "2026-09-21T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0017-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 95000
+      },
+      {
+        "id": "CO-0017-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0018",
+    "customerId": "CUS-004",
+    "createdAt": "2026-09-09T15:08:00.000Z",
+    "dueDate": "2026-09-21T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0018-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 90250
+      },
+      {
+        "id": "CO-0018-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0019",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-09T15:47:00.000Z",
+    "dueDate": "2026-09-22T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0019-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0020",
+    "customerId": "CUS-005",
+    "createdAt": "2026-09-10T14:16:00.000Z",
+    "dueDate": "2026-09-21T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0020-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 95000
+      },
+      {
+        "id": "CO-0020-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0021",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-10T14:30:00.000Z",
+    "dueDate": "2026-09-24T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0021-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      },
+      {
+        "id": "CO-0021-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0022",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-10T15:22:00.000Z",
+    "dueDate": "2026-09-21T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0022-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0023",
+    "customerId": "CUS-006",
+    "createdAt": "2026-09-10T16:25:00.000Z",
+    "dueDate": "2026-09-23T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0023-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 90250
+      },
+      {
+        "id": "CO-0023-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0024",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-11T09:47:00.000Z",
+    "dueDate": "2026-09-21T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0024-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      },
+      {
+        "id": "CO-0024-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0025",
+    "customerId": "CUS-003",
+    "createdAt": "2026-09-11T11:06:00.000Z",
+    "dueDate": "2026-09-23T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0025-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 95000
+      },
+      {
+        "id": "CO-0025-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0026",
+    "customerId": "CUS-009",
+    "createdAt": "2026-09-11T12:18:00.000Z",
+    "dueDate": "2026-09-24T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0026-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0027",
+    "customerId": "CUS-008",
+    "createdAt": "2026-09-11T13:12:00.000Z",
+    "dueDate": "2026-09-24T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0027-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0028",
+    "customerId": "CUS-001",
+    "createdAt": "2026-09-11T16:27:00.000Z",
+    "dueDate": "2026-09-21T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0028-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0029",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-14T08:16:00.000Z",
+    "dueDate": "2026-09-25T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0029-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0030",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-14T08:48:00.000Z",
+    "dueDate": "2026-09-24T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0030-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 10,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 10,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0031",
+    "customerId": "CUS-005",
+    "createdAt": "2026-09-14T14:06:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0031-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 90250
+      },
+      {
+        "id": "CO-0031-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0032",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-14T15:52:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0032-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 8,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 8,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0033",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-15T08:29:00.000Z",
+    "dueDate": "2026-09-25T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0033-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0034",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-15T09:39:00.000Z",
+    "dueDate": "2026-09-22T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0034-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      },
+      {
+        "id": "CO-0034-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 1,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 1,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0035",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-15T10:15:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "CANCELLED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0035-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 7,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 0,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0036",
+    "customerId": "CUS-005",
+    "createdAt": "2026-09-15T10:55:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0036-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0037",
+    "customerId": "CUS-001",
+    "createdAt": "2026-09-15T10:59:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0037-L1",
+        "lineNumber": 1,
+        "productId": "NCP-300",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 441750
+      }
+    ]
+  },
+  {
+    "id": "CO-0038",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-15T11:34:00.000Z",
+    "dueDate": "2026-09-30T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0038-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 9,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 9,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0039",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-15T13:09:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0039-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0040",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-15T14:27:00.000Z",
+    "dueDate": "2026-09-25T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0040-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0041",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-15T15:27:00.000Z",
+    "dueDate": "2026-10-01T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0041-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 8,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 8,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0042",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-16T08:13:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0042-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 8,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 8,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0043",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-16T11:57:00.000Z",
+    "dueDate": "2026-10-01T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0043-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0044",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-16T13:52:00.000Z",
+    "dueDate": "2026-10-02T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0044-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0045",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-16T14:50:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0045-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 9,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 9,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0046",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-17T08:04:00.000Z",
+    "dueDate": "2026-09-30T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0046-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0047",
+    "customerId": "CUS-001",
+    "createdAt": "2026-09-17T08:32:00.000Z",
+    "dueDate": "2026-09-25T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0047-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0048",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-17T08:57:00.000Z",
+    "dueDate": "2026-10-01T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0048-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 179550
+      },
+      {
+        "id": "CO-0048-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0049",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-17T10:40:00.000Z",
+    "dueDate": "2026-09-30T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0049-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0050",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-17T12:26:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "SURGE_CAMPAIGN",
+    "lines": [
+      {
+        "id": "CO-0050-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 9,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 9,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0051",
+    "customerId": "CUS-003",
+    "createdAt": "2026-09-17T14:47:00.000Z",
+    "dueDate": "2026-09-24T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0051-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0052",
+    "customerId": "CUS-007",
+    "createdAt": "2026-09-18T09:31:00.000Z",
+    "dueDate": "2026-09-25T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0052-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0053",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-18T16:09:00.000Z",
+    "dueDate": "2026-09-30T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0053-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 90250
+      },
+      {
+        "id": "CO-0053-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0054",
+    "customerId": "CUS-008",
+    "createdAt": "2026-09-18T16:37:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0054-L1",
+        "lineNumber": 1,
+        "productId": "NCP-300",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 465000
+      },
+      {
+        "id": "CO-0054-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0055",
+    "customerId": "CUS-001",
+    "createdAt": "2026-09-21T08:02:00.000Z",
+    "dueDate": "2026-09-28T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0055-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 1,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 1,
+        "unitPriceCents": 95000
+      },
+      {
+        "id": "CO-0055-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0056",
+    "customerId": "CUS-001",
+    "createdAt": "2026-09-21T08:09:00.000Z",
+    "dueDate": "2026-09-29T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0056-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 90250
+      },
+      {
+        "id": "CO-0056-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0057",
+    "customerId": "CUS-008",
+    "createdAt": "2026-09-21T10:19:00.000Z",
+    "dueDate": "2026-09-30T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0057-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0058",
+    "customerId": "CUS-009",
+    "createdAt": "2026-09-21T13:33:00.000Z",
+    "dueDate": "2026-10-01T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0058-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0059",
+    "customerId": "CUS-005",
+    "createdAt": "2026-09-21T16:12:00.000Z",
+    "dueDate": "2026-10-05T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0059-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0060",
+    "customerId": "CUS-007",
+    "createdAt": "2026-09-22T13:11:00.000Z",
+    "dueDate": "2026-09-30T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0060-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0061",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-22T14:47:00.000Z",
+    "dueDate": "2026-10-05T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0061-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      },
+      {
+        "id": "CO-0061-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0062",
+    "customerId": "CUS-004",
+    "createdAt": "2026-09-23T15:02:00.000Z",
+    "dueDate": "2026-10-02T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0062-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 1,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 1,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0063",
+    "customerId": "CUS-004",
+    "createdAt": "2026-09-23T16:13:00.000Z",
+    "dueDate": "2026-09-30T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0063-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 1,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 1,
+        "unitPriceCents": 189000
+      },
+      {
+        "id": "CO-0063-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0064",
+    "customerId": "CUS-004",
+    "createdAt": "2026-09-24T09:04:00.000Z",
+    "dueDate": "2026-10-06T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0064-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0065",
+    "customerId": "CUS-009",
+    "createdAt": "2026-09-24T09:51:00.000Z",
+    "dueDate": "2026-10-07T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0065-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 90250
+      },
+      {
+        "id": "CO-0065-L2",
+        "lineNumber": 2,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0066",
+    "customerId": "CUS-003",
+    "createdAt": "2026-09-24T16:35:00.000Z",
+    "dueDate": "2026-10-02T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0066-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0067",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-28T08:59:00.000Z",
+    "dueDate": "2026-10-09T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0067-L1",
+        "lineNumber": 1,
+        "productId": "NCP-300",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 441750
+      }
+    ]
+  },
+  {
+    "id": "CO-0068",
+    "customerId": "CUS-009",
+    "createdAt": "2026-09-28T15:27:00.000Z",
+    "dueDate": "2026-10-12T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0068-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 3,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 3,
+        "unitPriceCents": 189000
+      }
+    ]
+  },
+  {
+    "id": "CO-0069",
+    "customerId": "CUS-005",
+    "createdAt": "2026-09-28T16:33:00.000Z",
+    "dueDate": "2026-10-07T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0069-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 90250
+      }
+    ]
+  },
+  {
+    "id": "CO-0070",
+    "customerId": "CUS-001",
+    "createdAt": "2026-09-29T08:49:00.000Z",
+    "dueDate": "2026-10-13T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0070-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0071",
+    "customerId": "CUS-005",
+    "createdAt": "2026-09-29T09:24:00.000Z",
+    "dueDate": "2026-10-06T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0071-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 6,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 6,
+        "unitPriceCents": 179550
+      }
+    ]
+  },
+  {
+    "id": "CO-0072",
+    "customerId": "CUS-002",
+    "createdAt": "2026-09-29T11:09:00.000Z",
+    "dueDate": "2026-10-09T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0072-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0073",
+    "customerId": "CUS-010",
+    "createdAt": "2026-09-29T12:56:00.000Z",
+    "dueDate": "2026-10-12T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0073-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 189000
+      },
+      {
+        "id": "CO-0073-L2",
+        "lineNumber": 2,
+        "productId": "NCP-100",
+        "quantity": 2,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 2,
+        "unitPriceCents": 95000
+      }
+    ]
+  },
+  {
+    "id": "CO-0074",
+    "customerId": "CUS-004",
+    "createdAt": "2026-09-29T14:29:00.000Z",
+    "dueDate": "2026-10-09T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0074-L1",
+        "lineNumber": 1,
+        "productId": "NCP-100",
+        "quantity": 1,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 1,
+        "unitPriceCents": 95000
+      },
+      {
+        "id": "CO-0074-L2",
+        "lineNumber": 2,
+        "productId": "NCP-300",
+        "quantity": 4,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 4,
+        "unitPriceCents": 465000
+      }
+    ]
+  },
+  {
+    "id": "CO-0075",
+    "customerId": "CUS-005",
+    "createdAt": "2026-09-29T15:22:00.000Z",
+    "dueDate": "2026-10-08T17:00:00.000Z",
+    "status": "SHIPPED",
+    "demandDriver": "BASELINE",
+    "lines": [
+      {
+        "id": "CO-0075-L1",
+        "lineNumber": 1,
+        "productId": "NCP-200",
+        "quantity": 5,
+        "allocatedQuantity": 0,
+        "shippedQuantity": 5,
+        "unitPriceCents": 179550
+      }
+    ]
+  }
+]

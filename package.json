@@ -1,0 +1,27 @@
+{
+  "name": "factoryflow",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "generate:data": "node scripts/generate.ts",
+    "validate:data": "node scripts/validate.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.node.json --noEmit",
+    "example:replay": "node examples/replay-example.ts",
+    "typecheck:app": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/three": "^0.186.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.4"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
+  }
+}

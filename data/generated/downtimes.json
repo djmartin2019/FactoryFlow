@@ -1,0 +1,50 @@
+[
+  {
+    "id": "DT-0001",
+    "workstationId": "ASM-001",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-07T07:38:00.000Z",
+    "expectedRepairMinutes": 147,
+    "restoredAt": "2026-09-07T10:05:00.000Z"
+  },
+  {
+    "id": "DT-0002",
+    "workstationId": "ASM-003",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-07T11:05:00.000Z",
+    "expectedRepairMinutes": 124,
+    "restoredAt": "2026-09-07T13:09:00.000Z"
+  },
+  {
+    "id": "DT-0003",
+    "workstationId": "ASM-002",
+    "failureCode": "POWER_SUPPLY_TRIP",
+    "failedAt": "2026-09-08T08:47:00.000Z",
+    "expectedRepairMinutes": 268,
+    "restoredAt": "2026-09-08T13:15:00.000Z"
+  },
+  {
+    "id": "DT-0004",
+    "workstationId": "ASM-001",
+    "failureCode": "POWER_SUPPLY_TRIP",
+    "failedAt": "2026-09-24T12:32:00.000Z",
+    "expectedRepairMinutes": 221,
+    "restoredAt": "2026-09-24T16:13:00.000Z"
+  },
+  {
+    "id": "DT-0005",
+    "workstationId": "ASM-003",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-25T12:10:00.000Z",
+    "expectedRepairMinutes": 269,
+    "restoredAt": "2026-09-25T16:39:00.000Z"
+  },
+  {
+    "id": "DT-0006",
+    "workstationId": "ASM-002",
+    "failureCode": "SERVO_FAULT",
+    "failedAt": "2026-09-25T15:42:00.000Z",
+    "expectedRepairMinutes": 94,
+    "restoredAt": "2026-09-25T17:16:00.000Z"
+  }
+]
