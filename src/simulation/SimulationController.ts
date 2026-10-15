@@ -15,6 +15,7 @@ export class SimulationController {
   private readonly startMs: number;
   private readonly endMs: number;
   private resetEpoch = 0;
+  private seekMs: number | null = null;
 
   constructor(initialState: InitialStateFile, events: FactoryEvent[]) {
     this.replay = new FactoryReplay(initialState, events);
@@ -66,7 +67,9 @@ export class SimulationController {
   public seekTo(timeMs: number): void {
     const target = Math.min(this.endMs, Math.max(this.startMs, timeMs));
 
+    const t0 = performance.now();
     this.replay.seekTo(new Date(target).toISOString());
+    this.seekMs = performance.now() - t0;
     this.currentTimeMs = target;
     this.resetEpoch++;
 
@@ -76,6 +79,16 @@ export class SimulationController {
   /** Increments whenever history was discarded (reset/seek); consumers drop cached events. */
   public get epoch(): number {
     return this.resetEpoch;
+  }
+
+  /** Duration of the most recent seek (ms), for the optional perf overlay. */
+  public get lastSeekMs(): number | null {
+    return this.seekMs;
+  }
+
+  /** Number of events applied so far. */
+  public get eventsApplied(): number {
+    return this.replay.position;
   }
 
   public get speedMultiplier(): number {

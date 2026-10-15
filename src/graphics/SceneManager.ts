@@ -5,6 +5,7 @@ import { InteractionManager } from "./InteractionManager";
 import type { SimulationController } from "../simulation/SimulationController";
 import { FactoryVisualizer } from "./FactoryVisualizer";
 import StationDetails from "../ui/StationDetails";
+import { PerfOverlay } from "../ui/PerfOverlay";
 
 export class SceneManager {
   private readonly scene: THREE.Scene;
@@ -16,6 +17,7 @@ export class SceneManager {
   private readonly clock = new THREE.Clock();
   private readonly factory: Factory;
   private readonly visualizer: FactoryVisualizer;
+  private readonly perf: PerfOverlay;
   private lastVisualizedSequence = -1;
   private readonly resizeObserver: ResizeObserver;
   private readonly onSelectionChange?: (id: string | null) => void;
@@ -56,6 +58,7 @@ export class SceneManager {
     this.syncVisuals();
 
     this.stationDetails = new StationDetails(container);
+    this.perf = new PerfOverlay(container, () => this.countMeshes());
 
     this.interactionManager = new InteractionManager(
       this.cameraController.camera,
@@ -92,7 +95,7 @@ export class SceneManager {
     const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
 
     // Off to the south-east, above the building, so benches and racks get
-    // clear top/side shading across the whole 56 x 32 m floor.
+    // clear top/side shading across the whole 80 x 44 m floor.
     directionalLight.position.set(20, 40, 25);
 
     this.scene.add(directionalLight);
@@ -113,7 +116,27 @@ export class SceneManager {
     );
 
     this.renderer.render(this.scene, this.cameraController.camera);
+
+    if (this.perf.isEnabled) {
+      const info = this.renderer.info.render;
+      this.perf.frame(
+        deltaSeconds * 1000,
+        info.calls,
+        info.triangles,
+        this.simulation.eventsApplied,
+        this.simulation.epoch,
+        this.simulation.lastSeekMs,
+      );
+    }
   };
+
+  private countMeshes(): number {
+    let meshes = 0;
+    this.scene.traverse((o) => {
+      if (o instanceof THREE.Mesh) meshes++;
+    });
+    return meshes;
+  }
 
   /** Only re-derive visuals when an event has actually been applied. */
   private syncVisuals(): void {
