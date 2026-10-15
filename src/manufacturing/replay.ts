@@ -45,6 +45,11 @@ export class FactoryReplay {
     return this.cursor;
   }
 
+  /** Events applied so far (chronological). A copy; callers should cache by `position`. */
+  appliedEvents(): FactoryEvent[] {
+    return this.events.slice(0, this.cursor);
+  }
+
   get done(): boolean {
     return this.cursor >= this.events.length;
   }
