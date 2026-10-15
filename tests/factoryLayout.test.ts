@@ -9,9 +9,11 @@ import {
 import type { FloorRect } from "../src/data/layoutTypes.ts";
 import { buildStationParts } from "../src/graphics/stationModels.ts";
 
+const ids = (prefix: string, n: number) =>
+  Array.from({ length: n }, (_, i) => `${prefix}-${String(i + 1).padStart(3, "0")}`);
+
 const EXPECTED_IDS = [
-  "REC-001", "REC-002", "INV-001", "INV-002", "ASM-001", "ASM-002",
-  "ASM-003", "QC-001", "QC-002", "SHP-001", "SHP-002",
+  ...ids("REC", 3), ...ids("INV", 4), ...ids("ASM", 6), ...ids("QC", 3), ...ids("SHP", 3),
 ];
 
 const footprint = (o: (typeof factoryLayout)[number]): FloorRect => ({

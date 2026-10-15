@@ -18,11 +18,14 @@ export const DEFAULT_CONFIG: GeneratorConfig = {
   seed: "northstar-2026",
   startDate: "2026-09-01T00:00:00.000Z",
   days: 30,
-  customerOrders: 75,
-  purchaseOrders: 50,
+  // Calibrated for the 6-assembly / 3-QC facility: 180 orders lifts average
+  // assembly utilization from ~54% (75 orders on 3 stations) to ~60% with
+  // every station working. 75 purchasing reviews = a daily review cycle.
+  customerOrders: 180,
+  purchaseOrders: 75,
   customerCount: 10,
-  assemblyWorkstations: 2,
-  inspectionWorkstations: 1,
+  assemblyWorkstations: 6,
+  inspectionWorkstations: 3,
   openingFinishedGoodsUnits: 3,
   minProductionLot: 2,
   machineFailuresPerWorkstation: 2,
@@ -37,8 +40,8 @@ export function resolveConfig(overrides: Partial<GeneratorConfig> = {}): Generat
   check(Number.isInteger(config.days) && config.days >= 7, "days must be an integer >= 7");
   check(Number.isInteger(config.customerOrders) && config.customerOrders >= 1, "customerOrders must be >= 1");
   check(config.customerCount >= 1 && config.customerCount <= 10, "customerCount must be 1..10");
-  check(config.assemblyWorkstations >= 1 && config.assemblyWorkstations <= 3, "assemblyWorkstations must be 1..3");
-  check(config.inspectionWorkstations >= 1 && config.inspectionWorkstations <= 2, "inspectionWorkstations must be 1..2");
+  check(Number.isInteger(config.assemblyWorkstations) && config.assemblyWorkstations >= 1 && config.assemblyWorkstations <= ASSEMBLY_CAPACITY, `assemblyWorkstations must be 1..${ASSEMBLY_CAPACITY}`);
+  check(Number.isInteger(config.inspectionWorkstations) && config.inspectionWorkstations >= 1 && config.inspectionWorkstations <= INSPECTION_CAPACITY, `inspectionWorkstations must be 1..${INSPECTION_CAPACITY}`);
   check(config.purchaseOrders >= 1, "purchaseOrders must be >= 1");
   check(!Number.isNaN(Date.parse(config.startDate)), "startDate must be an ISO timestamp");
   return config;
@@ -75,12 +78,17 @@ function kindFromObjectId(id: string): LocationKind {
   }
 }
 
+/** Workstation counts are bounded by the stations the factory layout provides. */
+const layoutCount = (kind: LocationKind) => factoryLayout.filter((o) => kindFromObjectId(o.id) === kind).length;
+const ASSEMBLY_CAPACITY = layoutCount("ASSEMBLY");
+const INSPECTION_CAPACITY = layoutCount("QUALITY");
+
 const SUPPLIERS: Supplier[] = [
   { id: "SUP-001", name: "Ironbridge Metalworks", leadTimeDays: 5, onTimeRate: 0.9, paymentTermsDays: 30, receivingLocationId: "REC-001" },
-  { id: "SUP-002", name: "Voltaic Switchgear Ltd", leadTimeDays: 7, onTimeRate: 0.85, paymentTermsDays: 45, receivingLocationId: "REC-001" },
-  { id: "SUP-003", name: "Clearline Connectors", leadTimeDays: 4, onTimeRate: 0.92, paymentTermsDays: 30, receivingLocationId: "REC-002" },
+  { id: "SUP-002", name: "Voltaic Switchgear Ltd", leadTimeDays: 7, onTimeRate: 0.85, paymentTermsDays: 45, receivingLocationId: "REC-002" },
+  { id: "SUP-003", name: "Clearline Connectors", leadTimeDays: 4, onTimeRate: 0.92, paymentTermsDays: 30, receivingLocationId: "REC-003" },
   { id: "SUP-004", name: "Meridian Automation Supply", leadTimeDays: 12, onTimeRate: 0.65, paymentTermsDays: 60, receivingLocationId: "REC-002" },
-  { id: "SUP-005", name: "Brightwater Power Systems", leadTimeDays: 8, onTimeRate: 0.8, paymentTermsDays: 45, receivingLocationId: "REC-001" },
+  { id: "SUP-005", name: "Brightwater Power Systems", leadTimeDays: 8, onTimeRate: 0.8, paymentTermsDays: 45, receivingLocationId: "REC-003" },
 ];
 
 const CUSTOMERS: Customer[] = [
@@ -107,11 +115,11 @@ const MATERIALS: MaterialSeed[] = [
   { id: "MAT-BRK-3P", description: "Circuit breaker 3-pole 32 A", uom: "EA", standardCostCents: 6400, supplierId: "SUP-002", partNumber: "VS-B332", storageLocationId: "INV-002", unitsPerPallet: 200, orderMultiple: 25, initialCoverDays: 8, safetyDays: 3 },
   { id: "MAT-RLY-24", description: "Control relay 24 VDC, 4-pole", uom: "EA", standardCostCents: 1650, supplierId: "SUP-002", partNumber: "VS-R424", storageLocationId: "INV-002", unitsPerPallet: 500, orderMultiple: 50, initialCoverDays: 8, safetyDays: 3 },
   { id: "MAT-CTR-25", description: "Contactor 25 A, 24 VDC coil", uom: "EA", standardCostCents: 5250, supplierId: "SUP-002", partNumber: "VS-C25", storageLocationId: "INV-002", unitsPerPallet: 150, orderMultiple: 20, initialCoverDays: 8, safetyDays: 3 },
-  { id: "MAT-TB-25", description: "Terminal block 2.5 mm2, DIN mount", uom: "EA", standardCostCents: 215, supplierId: "SUP-003", partNumber: "CL-T25", storageLocationId: "INV-002", unitsPerPallet: 5000, orderMultiple: 500, initialCoverDays: 9, safetyDays: 3 },
-  { id: "MAT-WIRE-KIT", description: "Panel wiring kit (cable, ferrules, duct)", uom: "KIT", standardCostCents: 5900, supplierId: "SUP-003", partNumber: "CL-WK1", storageLocationId: "INV-002", unitsPerPallet: 100, orderMultiple: 20, initialCoverDays: 9, safetyDays: 3 },
-  { id: "MAT-PLC-CPU", description: "PLC CPU module, 16 DI / 16 DO", uom: "EA", standardCostCents: 38500, supplierId: "SUP-004", partNumber: "MA-PLC16", storageLocationId: "INV-002", unitsPerPallet: 60, orderMultiple: 5, initialCoverDays: 6, safetyDays: 2 },
-  { id: "MAT-HMI-7", description: "7-inch touchscreen HMI display", uom: "EA", standardCostCents: 29900, supplierId: "SUP-004", partNumber: "MA-HMI7", storageLocationId: "INV-002", unitsPerPallet: 40, orderMultiple: 5, initialCoverDays: 6, safetyDays: 2 },
-  { id: "MAT-PSU-24", description: "Power supply 24 VDC 10 A", uom: "EA", standardCostCents: 7600, supplierId: "SUP-005", partNumber: "BW-P2410", storageLocationId: "INV-002", unitsPerPallet: 120, orderMultiple: 10, initialCoverDays: 9, safetyDays: 3 },
+  { id: "MAT-TB-25", description: "Terminal block 2.5 mm2, DIN mount", uom: "EA", standardCostCents: 215, supplierId: "SUP-003", partNumber: "CL-T25", storageLocationId: "INV-003", unitsPerPallet: 5000, orderMultiple: 500, initialCoverDays: 9, safetyDays: 3 },
+  { id: "MAT-WIRE-KIT", description: "Panel wiring kit (cable, ferrules, duct)", uom: "KIT", standardCostCents: 5900, supplierId: "SUP-003", partNumber: "CL-WK1", storageLocationId: "INV-003", unitsPerPallet: 100, orderMultiple: 20, initialCoverDays: 9, safetyDays: 3 },
+  { id: "MAT-PLC-CPU", description: "PLC CPU module, 16 DI / 16 DO", uom: "EA", standardCostCents: 38500, supplierId: "SUP-004", partNumber: "MA-PLC16", storageLocationId: "INV-004", unitsPerPallet: 60, orderMultiple: 5, initialCoverDays: 6, safetyDays: 2 },
+  { id: "MAT-HMI-7", description: "7-inch touchscreen HMI display", uom: "EA", standardCostCents: 29900, supplierId: "SUP-004", partNumber: "MA-HMI7", storageLocationId: "INV-004", unitsPerPallet: 40, orderMultiple: 5, initialCoverDays: 6, safetyDays: 2 },
+  { id: "MAT-PSU-24", description: "Power supply 24 VDC 10 A", uom: "EA", standardCostCents: 7600, supplierId: "SUP-005", partNumber: "BW-P2410", storageLocationId: "INV-003", unitsPerPallet: 120, orderMultiple: 10, initialCoverDays: 9, safetyDays: 3 },
 ];
 
 const BOMS: Record<string, Array<[string, number]>> = {
@@ -132,8 +140,8 @@ const BOMS: Record<string, Array<[string, number]>> = {
 
 const PRODUCT_SEEDS = [
   { id: "NCP-100", name: "Basic Control Panel", description: "Entry-level relay-logic control panel", listPriceCents: 95000, fgLocation: "SHP-001", unitsPerPallet: 6, baseDefectRate: 0.02 },
-  { id: "NCP-200", name: "Motor Control Panel", description: "Contactor-based motor starter panel", listPriceCents: 189000, fgLocation: "SHP-001", unitsPerPallet: 4, baseDefectRate: 0.04 },
-  { id: "NCP-300", name: "Advanced Automation Panel", description: "PLC and HMI based automation panel", listPriceCents: 465000, fgLocation: "SHP-002", unitsPerPallet: 2, baseDefectRate: 0.07 },
+  { id: "NCP-200", name: "Motor Control Panel", description: "Contactor-based motor starter panel", listPriceCents: 189000, fgLocation: "SHP-002", unitsPerPallet: 4, baseDefectRate: 0.04 },
+  { id: "NCP-300", name: "Advanced Automation Panel", description: "PLC and HMI based automation panel", listPriceCents: 465000, fgLocation: "SHP-003", unitsPerPallet: 2, baseDefectRate: 0.07 },
 ];
 
 /** Product mix used by demand generation and cover planning. */

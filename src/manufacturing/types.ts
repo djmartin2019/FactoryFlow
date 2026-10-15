@@ -596,9 +596,9 @@ export interface GeneratorConfig {
   purchaseOrders: number;
   /** Customers drawn from the pool of 10. */
   customerCount: number;
-  /** 1..3 (ASM-001..ASM-003). */
+  /** 1..N, N = assembly stations in the factory layout (ASM-001..). */
   assemblyWorkstations: number;
-  /** 1..2 (QC-001..QC-002). */
+  /** 1..N, N = inspection cells in the factory layout (QC-001..). */
   inspectionWorkstations: number;
   /** Opening finished-goods units per product. */
   openingFinishedGoodsUnits: number;

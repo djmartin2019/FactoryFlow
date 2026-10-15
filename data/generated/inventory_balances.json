@@ -3,117 +3,109 @@
     "locationId": "INV-001",
     "itemId": "MAT-ENC-S",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 46,
+    "onHand": 89,
     "reserved": 0,
-    "available": 46
+    "available": 89
   },
   {
     "locationId": "INV-001",
     "itemId": "MAT-ENC-M",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 17,
+    "onHand": 36,
     "reserved": 0,
-    "available": 17
+    "available": 36
   },
   {
     "locationId": "INV-001",
     "itemId": "MAT-ENC-L",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 14,
+    "onHand": 39,
     "reserved": 0,
-    "available": 14
+    "available": 39
   },
   {
     "locationId": "INV-001",
     "itemId": "MAT-DIN-35",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 102,
+    "onHand": 303,
     "reserved": 0,
-    "available": 102
+    "available": 303
   },
   {
     "locationId": "INV-002",
     "itemId": "MAT-BRK-1P",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 127,
+    "onHand": 362,
     "reserved": 0,
-    "available": 127
+    "available": 362
   },
   {
     "locationId": "INV-002",
     "itemId": "MAT-BRK-3P",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 88,
+    "onHand": 244,
     "reserved": 0,
-    "available": 88
+    "available": 244
   },
   {
     "locationId": "INV-002",
     "itemId": "MAT-RLY-24",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 169,
+    "onHand": 552,
     "reserved": 0,
-    "available": 169
+    "available": 552
   },
   {
     "locationId": "INV-002",
     "itemId": "MAT-CTR-25",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 22,
+    "onHand": 180,
     "reserved": 0,
-    "available": 22
+    "available": 180
   },
   {
-    "locationId": "INV-002",
+    "locationId": "INV-003",
     "itemId": "MAT-TB-25",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 1198,
+    "onHand": 2916,
     "reserved": 0,
-    "available": 1198
+    "available": 2916
   },
   {
-    "locationId": "INV-002",
+    "locationId": "INV-003",
     "itemId": "MAT-WIRE-KIT",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 71,
+    "onHand": 173,
     "reserved": 0,
-    "available": 71
+    "available": 173
   },
   {
-    "locationId": "INV-002",
+    "locationId": "INV-004",
     "itemId": "MAT-PLC-CPU",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 24,
+    "onHand": 44,
     "reserved": 0,
-    "available": 24
+    "available": 44
   },
   {
-    "locationId": "INV-002",
+    "locationId": "INV-004",
     "itemId": "MAT-HMI-7",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 24,
+    "onHand": 44,
     "reserved": 0,
-    "available": 24
+    "available": 44
   },
   {
-    "locationId": "INV-002",
+    "locationId": "INV-003",
     "itemId": "MAT-PSU-24",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 61,
+    "onHand": 213,
     "reserved": 0,
-    "available": 61
+    "available": 213
   },
   {
     "locationId": "SHP-001",
     "itemId": "NCP-100",
-    "itemKind": "FINISHED_GOOD",
-    "onHand": 1,
-    "reserved": 0,
-    "available": 1
-  },
-  {
-    "locationId": "SHP-001",
-    "itemId": "NCP-200",
     "itemKind": "FINISHED_GOOD",
     "onHand": 0,
     "reserved": 0,
@@ -121,6 +113,14 @@
   },
   {
     "locationId": "SHP-002",
+    "itemId": "NCP-200",
+    "itemKind": "FINISHED_GOOD",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "SHP-003",
     "itemId": "NCP-300",
     "itemKind": "FINISHED_GOOD",
     "onHand": 0,
@@ -152,7 +152,7 @@
     "available": 0
   },
   {
-    "locationId": "REC-002",
+    "locationId": "REC-003",
     "itemId": "MAT-TB-25",
     "itemKind": "RAW_MATERIAL",
     "onHand": 0,
@@ -160,8 +160,40 @@
     "available": 0
   },
   {
-    "locationId": "REC-002",
+    "locationId": "REC-003",
     "itemId": "MAT-WIRE-KIT",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-002",
+    "itemId": "MAT-BRK-1P",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-002",
+    "itemId": "MAT-BRK-3P",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-002",
+    "itemId": "MAT-RLY-24",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 0,
+    "reserved": 0,
+    "available": 0
+  },
+  {
+    "locationId": "REC-002",
+    "itemId": "MAT-CTR-25",
     "itemKind": "RAW_MATERIAL",
     "onHand": 0,
     "reserved": 0,
@@ -176,40 +208,8 @@
     "available": 0
   },
   {
-    "locationId": "REC-001",
+    "locationId": "REC-003",
     "itemId": "MAT-PSU-24",
-    "itemKind": "RAW_MATERIAL",
-    "onHand": 0,
-    "reserved": 0,
-    "available": 0
-  },
-  {
-    "locationId": "REC-001",
-    "itemId": "MAT-BRK-1P",
-    "itemKind": "RAW_MATERIAL",
-    "onHand": 0,
-    "reserved": 0,
-    "available": 0
-  },
-  {
-    "locationId": "REC-001",
-    "itemId": "MAT-BRK-3P",
-    "itemKind": "RAW_MATERIAL",
-    "onHand": 0,
-    "reserved": 0,
-    "available": 0
-  },
-  {
-    "locationId": "REC-001",
-    "itemId": "MAT-RLY-24",
-    "itemKind": "RAW_MATERIAL",
-    "onHand": 0,
-    "reserved": 0,
-    "available": 0
-  },
-  {
-    "locationId": "REC-001",
-    "itemId": "MAT-CTR-25",
     "itemKind": "RAW_MATERIAL",
     "onHand": 0,
     "reserved": 0,

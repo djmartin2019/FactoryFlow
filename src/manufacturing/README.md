@@ -104,7 +104,7 @@ transitions throw `InvariantViolation` and `applyEvent` leaves its input untouch
 | Supplier delay | PO's supplier misses `onTimeRate` → receipt with `daysLate` + `delayReason` (possibly split via `shortShipment`) → material shortage blocks |
 | Material shortage | `PRODUCTION_BLOCKED{MATERIAL_SHORTAGE, shortages[{required, available, expectedPurchaseOrderIds}]}` → released after the putaway that closes the gap |
 | Machine downtime | `MACHINE_FAILED` → op `PAUSED` → `PRODUCTION_BLOCKED{MACHINE_DOWN, downtimeId}` → `MACHINE_RESTORED` → `PRODUCTION_RESUMED` |
-| Bottleneck | Orders pile up WAITING behind two assembly stations after a shortage clears; ASM-002 is slower (`durationFactor` from layout capacity) |
+| Bottleneck | Orders pile up WAITING for the six assembly stations after a shortage clears; ASM-002 is slower (`durationFactor` from layout capacity) |
 | Quality failure | Base rate per product; ×3 for units whose assembly was interrupted by a failure (`cause: MACHINE_FAILURE, downtimeId`) |
 | Demand fluctuation | Surge window (days 12–16 by default) produces `SURGE_CAMPAIGN` orders for NCP-200, which the (average-usage) purchase planner did not forecast |
 
@@ -152,8 +152,8 @@ See `examples/replay-example.ts` for a runnable version.
 
 ## Assumptions
 
-- The layout has no dedicated finished-goods store, so FG lives at the shipping bays (SHP-001 for NCP-100/200, SHP-002 for NCP-300).
-- Only ASM-001/002 are active by default (spec: 2 assembly workstations); ASM-003 and QC-002 are available via config.
+- The layout has no dedicated finished-goods store, so FG lives at the shipping bays (SHP-001 for NCP-100, SHP-002 for NCP-200, SHP-003 for NCP-300).
+- All 6 assembly stations and 3 inspection cells in the layout are active by default; `assemblyWorkstations` / `inspectionWorkstations` activate the first N of each (bounded by the layout).
 - `palletCapacity` is a domain value (not the mock `capacity`/`utilization` in `factoryLayout.ts`); the layout's numbers are used only to derive relative station speed.
 - Operations start only in shift (Mon–Fri 06:00–18:00 UTC) but run to completion, so some work finishes after 18:00.
 - Failures are modelled on assembly stations only; QC is reliable.

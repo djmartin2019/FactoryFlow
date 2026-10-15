@@ -27,6 +27,33 @@
     "durationFactor": 1.33
   },
   {
+    "id": "ASM-004",
+    "name": "Assembly Line D",
+    "kind": "ASSEMBLY",
+    "departmentId": "DEPT-ASSEMBLY",
+    "locationId": "ASM-004",
+    "concurrentJobs": 1,
+    "durationFactor": 1.04
+  },
+  {
+    "id": "ASM-005",
+    "name": "Assembly Line E",
+    "kind": "ASSEMBLY",
+    "departmentId": "DEPT-ASSEMBLY",
+    "locationId": "ASM-005",
+    "concurrentJobs": 1,
+    "durationFactor": 1.2
+  },
+  {
+    "id": "ASM-006",
+    "name": "Assembly Line F",
+    "kind": "ASSEMBLY",
+    "departmentId": "DEPT-ASSEMBLY",
+    "locationId": "ASM-006",
+    "concurrentJobs": 1,
+    "durationFactor": 1.26
+  },
+  {
     "id": "QC-001",
     "name": "Inspection Cell A",
     "kind": "INSPECTION",
@@ -41,6 +68,15 @@
     "kind": "INSPECTION",
     "departmentId": "DEPT-QUALITY",
     "locationId": "QC-002",
+    "concurrentJobs": 1,
+    "durationFactor": 1
+  },
+  {
+    "id": "QC-003",
+    "name": "Inspection Cell C",
+    "kind": "INSPECTION",
+    "departmentId": "DEPT-QUALITY",
+    "locationId": "QC-003",
     "concurrentJobs": 1,
     "durationFactor": 1
   }

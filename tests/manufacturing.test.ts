@@ -42,12 +42,13 @@ describe("generation", () => {
     expect(data.master.suppliers).toHaveLength(5);
     expect(data.master.customers).toHaveLength(10);
     expect(data.master.departments).toHaveLength(5);
-    expect(data.master.workstations.filter((w) => w.kind === "ASSEMBLY")).toHaveLength(2);
-    expect(Object.keys(data.finalState.customerOrders)).toHaveLength(75);
-    expect(Object.keys(data.finalState.productionOrders).length).toBeGreaterThan(80);
-    expect(Object.keys(data.finalState.productionOrders).length).toBeLessThan(120);
-    expect(Object.keys(data.finalState.purchaseOrders).length).toBeGreaterThan(35);
-    expect(Object.keys(data.finalState.purchaseOrders).length).toBeLessThan(65);
+    expect(data.master.workstations.filter((w) => w.kind === "ASSEMBLY")).toHaveLength(6);
+    expect(data.master.workstations.filter((w) => w.kind === "INSPECTION")).toHaveLength(3);
+    expect(Object.keys(data.finalState.customerOrders)).toHaveLength(180);
+    expect(Object.keys(data.finalState.productionOrders).length).toBeGreaterThan(180);
+    expect(Object.keys(data.finalState.productionOrders).length).toBeLessThan(260);
+    expect(Object.keys(data.finalState.purchaseOrders).length).toBeGreaterThan(70);
+    expect(Object.keys(data.finalState.purchaseOrders).length).toBeLessThan(120);
   });
 
   it("exercises the interesting scenarios with traceable causes", () => {

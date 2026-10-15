@@ -44,6 +44,13 @@
         "palletCapacity": 6
       },
       {
+        "id": "REC-003",
+        "name": "Receiving Dock C",
+        "departmentId": "DEPT-RECEIVING",
+        "kind": "RECEIVING",
+        "palletCapacity": 6
+      },
+      {
         "id": "INV-001",
         "name": "Raw Materials Rack A",
         "departmentId": "DEPT-RAW-INVENTORY",
@@ -53,6 +60,20 @@
       {
         "id": "INV-002",
         "name": "Raw Materials Rack B",
+        "departmentId": "DEPT-RAW-INVENTORY",
+        "kind": "RAW_STORAGE",
+        "palletCapacity": 24
+      },
+      {
+        "id": "INV-003",
+        "name": "Raw Materials Rack C",
+        "departmentId": "DEPT-RAW-INVENTORY",
+        "kind": "RAW_STORAGE",
+        "palletCapacity": 24
+      },
+      {
+        "id": "INV-004",
+        "name": "Raw Materials Rack D",
         "departmentId": "DEPT-RAW-INVENTORY",
         "kind": "RAW_STORAGE",
         "palletCapacity": 24
@@ -79,6 +100,27 @@
         "palletCapacity": 4
       },
       {
+        "id": "ASM-004",
+        "name": "Assembly Line D",
+        "departmentId": "DEPT-ASSEMBLY",
+        "kind": "ASSEMBLY",
+        "palletCapacity": 4
+      },
+      {
+        "id": "ASM-005",
+        "name": "Assembly Line E",
+        "departmentId": "DEPT-ASSEMBLY",
+        "kind": "ASSEMBLY",
+        "palletCapacity": 4
+      },
+      {
+        "id": "ASM-006",
+        "name": "Assembly Line F",
+        "departmentId": "DEPT-ASSEMBLY",
+        "kind": "ASSEMBLY",
+        "palletCapacity": 4
+      },
+      {
         "id": "QC-001",
         "name": "Inspection Cell A",
         "departmentId": "DEPT-QUALITY",
@@ -93,6 +135,13 @@
         "palletCapacity": 4
       },
       {
+        "id": "QC-003",
+        "name": "Inspection Cell C",
+        "departmentId": "DEPT-QUALITY",
+        "kind": "QUALITY",
+        "palletCapacity": 4
+      },
+      {
         "id": "SHP-001",
         "name": "Shipping Bay A",
         "departmentId": "DEPT-SHIPPING",
@@ -102,6 +151,13 @@
       {
         "id": "SHP-002",
         "name": "Shipping Bay B",
+        "departmentId": "DEPT-SHIPPING",
+        "kind": "SHIPPING",
+        "palletCapacity": 16
+      },
+      {
+        "id": "SHP-003",
+        "name": "Shipping Bay C",
         "departmentId": "DEPT-SHIPPING",
         "kind": "SHIPPING",
         "palletCapacity": 16
@@ -122,7 +178,7 @@
         "leadTimeDays": 7,
         "onTimeRate": 0.85,
         "paymentTermsDays": 45,
-        "receivingLocationId": "REC-001"
+        "receivingLocationId": "REC-002"
       },
       {
         "id": "SUP-003",
@@ -130,7 +186,7 @@
         "leadTimeDays": 4,
         "onTimeRate": 0.92,
         "paymentTermsDays": 30,
-        "receivingLocationId": "REC-002"
+        "receivingLocationId": "REC-003"
       },
       {
         "id": "SUP-004",
@@ -146,7 +202,7 @@
         "leadTimeDays": 8,
         "onTimeRate": 0.8,
         "paymentTermsDays": 45,
-        "receivingLocationId": "REC-001"
+        "receivingLocationId": "REC-003"
       }
     ],
     "customers": [
@@ -338,7 +394,7 @@
         "uom": "EA",
         "standardCostCents": 215,
         "supplierId": "SUP-003",
-        "storageLocationId": "INV-002",
+        "storageLocationId": "INV-003",
         "unitsPerPallet": 5000,
         "orderMultiple": 500,
         "initialCoverDays": 9,
@@ -353,7 +409,7 @@
         "uom": "KIT",
         "standardCostCents": 5900,
         "supplierId": "SUP-003",
-        "storageLocationId": "INV-002",
+        "storageLocationId": "INV-003",
         "unitsPerPallet": 100,
         "orderMultiple": 20,
         "initialCoverDays": 9,
@@ -368,7 +424,7 @@
         "uom": "EA",
         "standardCostCents": 38500,
         "supplierId": "SUP-004",
-        "storageLocationId": "INV-002",
+        "storageLocationId": "INV-004",
         "unitsPerPallet": 60,
         "orderMultiple": 5,
         "initialCoverDays": 6,
@@ -383,7 +439,7 @@
         "uom": "EA",
         "standardCostCents": 29900,
         "supplierId": "SUP-004",
-        "storageLocationId": "INV-002",
+        "storageLocationId": "INV-004",
         "unitsPerPallet": 40,
         "orderMultiple": 5,
         "initialCoverDays": 6,
@@ -398,7 +454,7 @@
         "uom": "EA",
         "standardCostCents": 7600,
         "supplierId": "SUP-005",
-        "storageLocationId": "INV-002",
+        "storageLocationId": "INV-003",
         "unitsPerPallet": 120,
         "orderMultiple": 10,
         "initialCoverDays": 9,
@@ -431,7 +487,7 @@
         "routingId": "RTG-NCP-200",
         "standardCostCents": 63140,
         "listPriceCents": 189000,
-        "finishedGoodsLocationId": "SHP-001",
+        "finishedGoodsLocationId": "SHP-002",
         "unitsPerPallet": 4,
         "baseDefectRate": 0.04
       },
@@ -444,7 +500,7 @@
         "routingId": "RTG-NCP-300",
         "standardCostCents": 163405,
         "listPriceCents": 465000,
-        "finishedGoodsLocationId": "SHP-002",
+        "finishedGoodsLocationId": "SHP-003",
         "unitsPerPallet": 2,
         "baseDefectRate": 0.07
       }
@@ -689,6 +745,33 @@
         "durationFactor": 1.33
       },
       {
+        "id": "ASM-004",
+        "name": "Assembly Line D",
+        "kind": "ASSEMBLY",
+        "departmentId": "DEPT-ASSEMBLY",
+        "locationId": "ASM-004",
+        "concurrentJobs": 1,
+        "durationFactor": 1.04
+      },
+      {
+        "id": "ASM-005",
+        "name": "Assembly Line E",
+        "kind": "ASSEMBLY",
+        "departmentId": "DEPT-ASSEMBLY",
+        "locationId": "ASM-005",
+        "concurrentJobs": 1,
+        "durationFactor": 1.2
+      },
+      {
+        "id": "ASM-006",
+        "name": "Assembly Line F",
+        "kind": "ASSEMBLY",
+        "departmentId": "DEPT-ASSEMBLY",
+        "locationId": "ASM-006",
+        "concurrentJobs": 1,
+        "durationFactor": 1.26
+      },
+      {
         "id": "QC-001",
         "name": "Inspection Cell A",
         "kind": "INSPECTION",
@@ -705,6 +788,15 @@
         "locationId": "QC-002",
         "concurrentJobs": 1,
         "durationFactor": 1
+      },
+      {
+        "id": "QC-003",
+        "name": "Inspection Cell C",
+        "kind": "INSPECTION",
+        "departmentId": "DEPT-QUALITY",
+        "locationId": "QC-003",
+        "concurrentJobs": 1,
+        "durationFactor": 1
       }
     ]
   },
@@ -716,91 +808,91 @@
         "locationId": "INV-001",
         "itemId": "MAT-ENC-S",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 50,
+        "onHand": 120,
         "reserved": 0
       },
       "INV-001::MAT-ENC-M": {
         "locationId": "INV-001",
         "itemId": "MAT-ENC-M",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 30,
+        "onHand": 70,
         "reserved": 0
       },
       "INV-001::MAT-ENC-L": {
         "locationId": "INV-001",
         "itemId": "MAT-ENC-L",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 20,
+        "onHand": 50,
         "reserved": 0
       },
       "INV-001::MAT-DIN-35": {
         "locationId": "INV-001",
         "itemId": "MAT-DIN-35",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 200,
+        "onHand": 500,
         "reserved": 0
       },
       "INV-002::MAT-BRK-1P": {
         "locationId": "INV-002",
         "itemId": "MAT-BRK-1P",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 200,
+        "onHand": 400,
         "reserved": 0
       },
       "INV-002::MAT-BRK-3P": {
         "locationId": "INV-002",
         "itemId": "MAT-BRK-3P",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 150,
+        "onHand": 350,
         "reserved": 0
       },
       "INV-002::MAT-RLY-24": {
         "locationId": "INV-002",
         "itemId": "MAT-RLY-24",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 300,
+        "onHand": 650,
         "reserved": 0
       },
       "INV-002::MAT-CTR-25": {
         "locationId": "INV-002",
         "itemId": "MAT-CTR-25",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 100,
+        "onHand": 240,
         "reserved": 0
       },
-      "INV-002::MAT-TB-25": {
-        "locationId": "INV-002",
+      "INV-003::MAT-TB-25": {
+        "locationId": "INV-003",
         "itemId": "MAT-TB-25",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 2000,
+        "onHand": 4500,
         "reserved": 0
       },
-      "INV-002::MAT-WIRE-KIT": {
-        "locationId": "INV-002",
+      "INV-003::MAT-WIRE-KIT": {
+        "locationId": "INV-003",
         "itemId": "MAT-WIRE-KIT",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 140,
+        "onHand": 320,
         "reserved": 0
       },
-      "INV-002::MAT-PLC-CPU": {
-        "locationId": "INV-002",
+      "INV-004::MAT-PLC-CPU": {
+        "locationId": "INV-004",
         "itemId": "MAT-PLC-CPU",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 15,
+        "onHand": 35,
         "reserved": 0
       },
-      "INV-002::MAT-HMI-7": {
-        "locationId": "INV-002",
+      "INV-004::MAT-HMI-7": {
+        "locationId": "INV-004",
         "itemId": "MAT-HMI-7",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 15,
+        "onHand": 35,
         "reserved": 0
       },
-      "INV-002::MAT-PSU-24": {
-        "locationId": "INV-002",
+      "INV-003::MAT-PSU-24": {
+        "locationId": "INV-003",
         "itemId": "MAT-PSU-24",
         "itemKind": "RAW_MATERIAL",
-        "onHand": 130,
+        "onHand": 310,
         "reserved": 0
       },
       "SHP-001::NCP-100": {
@@ -810,15 +902,15 @@
         "onHand": 3,
         "reserved": 0
       },
-      "SHP-001::NCP-200": {
-        "locationId": "SHP-001",
+      "SHP-002::NCP-200": {
+        "locationId": "SHP-002",
         "itemId": "NCP-200",
         "itemKind": "FINISHED_GOOD",
         "onHand": 3,
         "reserved": 0
       },
-      "SHP-002::NCP-300": {
-        "locationId": "SHP-002",
+      "SHP-003::NCP-300": {
+        "locationId": "SHP-003",
         "itemId": "NCP-300",
         "itemKind": "FINISHED_GOOD",
         "onHand": 3,
@@ -849,6 +941,21 @@
         "status": "IDLE",
         "since": "2026-09-01T00:00:00.000Z"
       },
+      "ASM-004": {
+        "workstationId": "ASM-004",
+        "status": "IDLE",
+        "since": "2026-09-01T00:00:00.000Z"
+      },
+      "ASM-005": {
+        "workstationId": "ASM-005",
+        "status": "IDLE",
+        "since": "2026-09-01T00:00:00.000Z"
+      },
+      "ASM-006": {
+        "workstationId": "ASM-006",
+        "status": "IDLE",
+        "since": "2026-09-01T00:00:00.000Z"
+      },
       "QC-001": {
         "workstationId": "QC-001",
         "status": "IDLE",
@@ -856,6 +963,11 @@
       },
       "QC-002": {
         "workstationId": "QC-002",
+        "status": "IDLE",
+        "since": "2026-09-01T00:00:00.000Z"
+      },
+      "QC-003": {
+        "workstationId": "QC-003",
         "status": "IDLE",
         "since": "2026-09-01T00:00:00.000Z"
       }

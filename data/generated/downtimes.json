@@ -17,6 +17,14 @@
   },
   {
     "id": "DT-0003",
+    "workstationId": "ASM-006",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-08T07:49:00.000Z",
+    "expectedRepairMinutes": 284,
+    "restoredAt": "2026-09-08T12:33:00.000Z"
+  },
+  {
+    "id": "DT-0004",
     "workstationId": "ASM-002",
     "failureCode": "POWER_SUPPLY_TRIP",
     "failedAt": "2026-09-08T08:47:00.000Z",
@@ -24,7 +32,47 @@
     "restoredAt": "2026-09-08T13:15:00.000Z"
   },
   {
-    "id": "DT-0004",
+    "id": "DT-0005",
+    "workstationId": "ASM-005",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-10T15:42:00.000Z",
+    "expectedRepairMinutes": 225,
+    "restoredAt": "2026-09-10T19:27:00.000Z"
+  },
+  {
+    "id": "DT-0006",
+    "workstationId": "ASM-006",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-14T12:34:00.000Z",
+    "expectedRepairMinutes": 107,
+    "restoredAt": "2026-09-14T14:21:00.000Z"
+  },
+  {
+    "id": "DT-0007",
+    "workstationId": "ASM-005",
+    "failureCode": "POWER_SUPPLY_TRIP",
+    "failedAt": "2026-09-15T12:51:00.000Z",
+    "expectedRepairMinutes": 293,
+    "restoredAt": "2026-09-15T17:44:00.000Z"
+  },
+  {
+    "id": "DT-0008",
+    "workstationId": "ASM-004",
+    "failureCode": "TORQUE_TOOL_FAILURE",
+    "failedAt": "2026-09-16T10:26:00.000Z",
+    "expectedRepairMinutes": 168,
+    "restoredAt": "2026-09-16T13:14:00.000Z"
+  },
+  {
+    "id": "DT-0009",
+    "workstationId": "ASM-004",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-21T12:18:00.000Z",
+    "expectedRepairMinutes": 242,
+    "restoredAt": "2026-09-21T16:20:00.000Z"
+  },
+  {
+    "id": "DT-0010",
     "workstationId": "ASM-001",
     "failureCode": "POWER_SUPPLY_TRIP",
     "failedAt": "2026-09-24T12:32:00.000Z",
@@ -32,7 +80,7 @@
     "restoredAt": "2026-09-24T16:13:00.000Z"
   },
   {
-    "id": "DT-0005",
+    "id": "DT-0011",
     "workstationId": "ASM-003",
     "failureCode": "CONVEYOR_JAM",
     "failedAt": "2026-09-25T12:10:00.000Z",
@@ -40,7 +88,7 @@
     "restoredAt": "2026-09-25T16:39:00.000Z"
   },
   {
-    "id": "DT-0006",
+    "id": "DT-0012",
     "workstationId": "ASM-002",
     "failureCode": "SERVO_FAULT",
     "failedAt": "2026-09-25T15:42:00.000Z",

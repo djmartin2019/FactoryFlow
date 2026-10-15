@@ -21,7 +21,7 @@
     "routingId": "RTG-NCP-200",
     "standardCostCents": 63140,
     "listPriceCents": 189000,
-    "finishedGoodsLocationId": "SHP-001",
+    "finishedGoodsLocationId": "SHP-002",
     "unitsPerPallet": 4,
     "baseDefectRate": 0.04
   },
@@ -34,7 +34,7 @@
     "routingId": "RTG-NCP-300",
     "standardCostCents": 163405,
     "listPriceCents": 465000,
-    "finishedGoodsLocationId": "SHP-002",
+    "finishedGoodsLocationId": "SHP-003",
     "unitsPerPallet": 2,
     "baseDefectRate": 0.07
   }

@@ -14,6 +14,13 @@
     "palletCapacity": 6
   },
   {
+    "id": "REC-003",
+    "name": "Receiving Dock C",
+    "departmentId": "DEPT-RECEIVING",
+    "kind": "RECEIVING",
+    "palletCapacity": 6
+  },
+  {
     "id": "INV-001",
     "name": "Raw Materials Rack A",
     "departmentId": "DEPT-RAW-INVENTORY",
@@ -23,6 +30,20 @@
   {
     "id": "INV-002",
     "name": "Raw Materials Rack B",
+    "departmentId": "DEPT-RAW-INVENTORY",
+    "kind": "RAW_STORAGE",
+    "palletCapacity": 24
+  },
+  {
+    "id": "INV-003",
+    "name": "Raw Materials Rack C",
+    "departmentId": "DEPT-RAW-INVENTORY",
+    "kind": "RAW_STORAGE",
+    "palletCapacity": 24
+  },
+  {
+    "id": "INV-004",
+    "name": "Raw Materials Rack D",
     "departmentId": "DEPT-RAW-INVENTORY",
     "kind": "RAW_STORAGE",
     "palletCapacity": 24
@@ -49,6 +70,27 @@
     "palletCapacity": 4
   },
   {
+    "id": "ASM-004",
+    "name": "Assembly Line D",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+  },
+  {
+    "id": "ASM-005",
+    "name": "Assembly Line E",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+  },
+  {
+    "id": "ASM-006",
+    "name": "Assembly Line F",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+  },
+  {
     "id": "QC-001",
     "name": "Inspection Cell A",
     "departmentId": "DEPT-QUALITY",
@@ -63,6 +105,13 @@
     "palletCapacity": 4
   },
   {
+    "id": "QC-003",
+    "name": "Inspection Cell C",
+    "departmentId": "DEPT-QUALITY",
+    "kind": "QUALITY",
+    "palletCapacity": 4
+  },
+  {
     "id": "SHP-001",
     "name": "Shipping Bay A",
     "departmentId": "DEPT-SHIPPING",
@@ -72,6 +121,13 @@
   {
     "id": "SHP-002",
     "name": "Shipping Bay B",
+    "departmentId": "DEPT-SHIPPING",
+    "kind": "SHIPPING",
+    "palletCapacity": 16
+  },
+  {
+    "id": "SHP-003",
+    "name": "Shipping Bay C",
     "departmentId": "DEPT-SHIPPING",
     "kind": "SHIPPING",
     "palletCapacity": 16

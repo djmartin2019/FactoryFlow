@@ -40,12 +40,13 @@ state, so every number can be traced back to the events that produced it.
 
 | Area | What you get |
 | --- | --- |
-| **3D factory** | Interactive Three.js facility (56 × 32 m) with receiving, raw-material racks, assembly cells, QC cells and shipping bays. Orbit, pan and zoom; hover and click to select. |
+| **3D factory** | Interactive Three.js facility (80 × 44 m) with receiving, raw-material racks, assembly cells, QC cells and shipping bays. Orbit, pan and zoom; hover and click to select. |
 | **KPI cards** | Six metrics computed from real state: good units, WIP, active orders, utilization, first-pass yield, shortage-blocked orders. Hover a card for its exact definition. |
 | **Playback toolbar** | Play/pause, reset, 60× / 600× / 3600× / 86400× speed, simulated date-time and a scrubbable progress bar. |
 | **Activity feed** | Latest 20 manufacturing events with timestamp, readable description, event type and station. Click an entry to select the related station in 3D. |
 | **Workstation overview** | Compact table of station, status, current work order, queue and utilization. Click a row to focus the 3D station. |
 | **Station details** | Status, current order, product, queue, utilization and recent events for workstations; stock on hand and reservations for inventory locations. |
+| **Performance overlay** | Optional FPS / frame time / draw calls / triangles / events-per-second HUD: open with `?perf` or press `P`. See [docs/PERFORMANCE.md](docs/PERFORMANCE.md). |
 | **Responsive layout** | The 3D view stays the main focus; the sidebar stacks below it on narrow screens. |
 
 ## Quick start
@@ -106,7 +107,7 @@ The dataset is two files:
 
 - `initial_state.json` – master data (products, BOMs, routings, suppliers, customers, locations,
   workstations) plus opening balances.
-- `events.json` – an ordered log of ~1,800 events (`PURCHASE_ORDER_CREATED`, `MATERIAL_RECEIVED`,
+- `events.json` – an ordered log of ~4,000 events (`PURCHASE_ORDER_CREATED`, `MATERIAL_RECEIVED`,
   `PRODUCTION_ORDER_RELEASED`, `OPERATION_STARTED`, `QUALITY_INSPECTION_COMPLETED`,
   `SHIPMENT_DISPATCHED`, `MACHINE_FAILED`, …).
 
@@ -221,8 +222,10 @@ The fictional **Northstar Components** assembles three control panels:
 | NCP-300 Advanced Automation | Mount & wire → PLC/HMI integration → Final test |
 
 Thirteen raw materials come from five suppliers; ten customers place orders. Defaults: seed
-`northstar-2026`, start 2026-09-01, 30 days, 75 customer orders, a demand surge on days 12–16, and two
-machine failures per assembly station.
+`northstar-2026`, start 2026-09-01, 30 days, 180 customer orders, a demand surge on days 12–16, and two
+machine failures per assembly station. The facility has 6 assembly stations, 3 inspection cells, 4 raw-material
+racks, 3 receiving docks and 3 shipping bays; `npm run generate:data -- --assemblyWorkstations=3
+--inspectionWorkstations=2 --customerOrders=75` reproduces the original smaller operation on the same floor.
 
 Generation is **deterministic**: the same seed and config always produce the same event log (verified by an
 event-log hash in `manifest.json`). The generator proposes events through the same reducer the app uses, so
