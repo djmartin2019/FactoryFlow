@@ -6,8 +6,8 @@ export async function loadSimulationData() {
     fetch("/data/events.json"),
   ]);
 
-  if (!initialResponse.ok || !eventsResponse.ok) {
-    throw new Error("Failed to load simulation data");
+  for (const r of [initialResponse, eventsResponse]) {
+    if (!r.ok) throw new Error(`Failed to load ${new URL(r.url, location.href).pathname} (HTTP ${r.status})`);
   }
 
   const initial = (await initialResponse.json()) as InitialStateFile;

@@ -1,0 +1,25 @@
+# Build + test only. No secrets, no deployment. Deploy is a manual, approved step (deploy/release.sh).
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-node@v4.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run typecheck:app
+      - run: npm test
+      - run: npm run validate:data
+      - run: npm run build
+      - name: Required data present as real files
+        run: test -s dist/data/initial_state.json && test -s dist/data/events.json && test -f dist/index.html
