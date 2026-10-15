@@ -19,6 +19,7 @@ export class SceneManager {
   private readonly visualizer: FactoryVisualizer;
   private readonly perf: PerfOverlay;
   private lastVisualizedSequence = -1;
+  private active = true;
   private readonly resizeObserver: ResizeObserver;
   private readonly onSelectionChange?: (id: string | null) => void;
 
@@ -104,7 +105,10 @@ export class SceneManager {
   private animate = (): void => {
     const deltaSeconds = this.clock.getDelta();
 
+    // The simulation clock lives here, so it keeps ticking while the 3D view is hidden.
     this.simulation.update(deltaSeconds);
+
+    if (!this.active) return;
 
     this.syncVisuals();
 
@@ -129,6 +133,16 @@ export class SceneManager {
       );
     }
   };
+
+  /** Pause/resume rendering (e.g. while another top-level view is shown). The clock is unaffected. */
+  public setActive(active: boolean): void {
+    if (this.active === active) return;
+    this.active = active;
+    if (active) {
+      this.lastVisualizedSequence = -1; // force a visual resync after being hidden
+      this.handleResize();
+    }
+  }
 
   private countMeshes(): number {
     let meshes = 0;
@@ -155,6 +169,8 @@ export class SceneManager {
 
     const width = container.clientWidth;
     const height = container.clientHeight;
+
+    if (width === 0 || height === 0) return; // hidden view
 
     this.cameraController.resize(width, height);
 

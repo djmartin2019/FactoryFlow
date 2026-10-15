@@ -24,6 +24,12 @@ const REFRESH_MS = 250;
 export interface DashboardLayout {
   /** Element the Three.js scene should be mounted into. */
   viewport: HTMLElement;
+  /** Persistent top bar (title, navigation, playback). */
+  header: HTMLElement;
+  /** Wrapper around the KPI row + 3D viewport + sidebar; hidden in other views. */
+  overview: HTMLElement;
+  /** Navigation slot inside the header. */
+  nav: HTMLElement;
 }
 
 export class Dashboard {
@@ -41,6 +47,9 @@ export class Dashboard {
   private selectHandler: (id: string) => void = () => {};
   private timer: number | undefined;
   private unsubscribe: () => void;
+  private overviewActive = true;
+  private refreshListeners = new Set<() => void>();
+  private periodListeners = new Set<(p: PeriodId) => void>();
 
   private readonly simulation: SimulationController;
 
@@ -51,6 +60,7 @@ export class Dashboard {
     this.toolbar = new PlaybackToolbar(simulation, () => this.refresh());
     this.kpis = new KpiCards((p) => {
       this.period = p;
+      for (const l of this.periodListeners) l(p);
       this.refresh();
     });
     this.overview = new StationOverview((id) => this.selectHandler(id));
@@ -64,7 +74,8 @@ export class Dashboard {
     title.append(el("h1", undefined, "FactoryFlow"), el("span", "demo-badge", "Demo Mode — Synthetic Manufacturing Data"));
     const periodWrap = el("label", "period", "KPI period ");
     periodWrap.appendChild(this.kpis.periodSelect);
-    header.append(title, this.toolbar.element, periodWrap);
+    const nav = el("nav", "app-nav");
+    header.append(title, nav, this.toolbar.element, periodWrap);
 
     const viewport = el("div", "viewport");
     const side = el("aside", "sidebar");
@@ -72,8 +83,10 @@ export class Dashboard {
     const main = el("main", "main");
     main.append(viewport, side);
 
-    root.append(header, this.kpis.element, main);
-    this.layout = { viewport };
+    const overview = el("div", "view view-overview");
+    overview.append(this.kpis.element, main);
+    root.append(header, overview);
+    this.layout = { viewport, header, overview, nav };
 
     // Capture every applied event; replay listeners survive reset/seek.
     this.unsubscribe = simulation.engine.onEvent((event) => {
@@ -103,22 +116,52 @@ export class Dashboard {
     this.refresh();
   }
 
+  get reportingPeriod(): PeriodId {
+    return this.period;
+  }
+
+  /** Shared period selection; fires when the header selector changes. */
+  onPeriodChange(cb: (p: PeriodId) => void): () => void {
+    this.periodListeners.add(cb);
+    return () => this.periodListeners.delete(cb);
+  }
+
+  /** Fires after every refresh tick (single shared timer; consumers throttle themselves). */
+  onRefresh(cb: () => void): () => void {
+    this.refreshListeners.add(cb);
+    return () => this.refreshListeners.delete(cb);
+  }
+
+  /** The overview skips its KPI/station/feed work while another view is shown. */
+  setOverviewActive(active: boolean): void {
+    this.overviewActive = active;
+    this.layout.overview.hidden = !active;
+    if (active) this.refresh();
+  }
+
   refresh(): void {
     const sim = this.simulation;
     const master = sim.engine.master;
+    this.toolbar.update();
+    if (!this.overviewActive) {
+      for (const l of this.refreshListeners) l();
+      return;
+    }
     this.log.sync(sim.epoch);
 
     const win = periodWindow(this.period, sim.currentTime.getTime(), sim.startTime.getTime());
     this.stations = stationMetrics(sim.state, master, win);
     this.kpis.update(computeKpis(sim.state, master, win, this.stations));
-    this.toolbar.update();
     this.overview.update(this.stations, this.selectedId);
     this.feed.update();
     this.details?.refresh();
+    for (const l of this.refreshListeners) l();
   }
 
   dispose(): void {
     window.clearInterval(this.timer);
     this.unsubscribe();
+    this.refreshListeners.clear();
+    this.periodListeners.clear();
   }
 }
