@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "og": "'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --hide-scrollbars --window-size=1200,630 --screenshot=public/og-image.png file://$PWD/design/og-image.html",
+    "og": "'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --hide-scrollbars --window-size=1200,630 --screenshot=public/og-v2.png file://$PWD/design/og.html",
     "generate:data": "node scripts/generate.ts",
     "validate:data": "node scripts/validate.ts",
     "test": "vitest run",
