@@ -27,21 +27,21 @@ export const STATUS_TEXT: Record<string, string> = {
 };
 
 export const STATUS_COLOR: Record<string, string> = {
-  PLANNED: "#64748b",
-  WAITING: "#38bdf8",
-  RUNNING: "#22c55e",
-  BLOCKED: "#f59e0b",
-  COMPLETED: "#a78bfa",
-  CANCELLED: "#ef4444",
-  PENDING: "#64748b",
-  NOT_STARTED: "#475569",
-  PAUSED: "#f59e0b",
+  PLANNED: "#5b7a9d",
+  WAITING: "#2ee6ff",
+  RUNNING: "#2ee6a6",
+  BLOCKED: "#ffb454",
+  COMPLETED: "#6f8cff",
+  CANCELLED: "#ff5c7a",
+  PENDING: "#5b7a9d",
+  NOT_STARTED: "#3d5575",
+  PAUSED: "#ffb454",
 };
 
 export function statusBadge(status: string, label?: string): HTMLElement {
   const b = el("span", "status-badge");
   const dot = el("span", "dot");
-  dot.style.background = STATUS_COLOR[status] ?? "#64748b";
+  dot.style.background = STATUS_COLOR[status] ?? "#5b7a9d";
   b.append(dot, document.createTextNode(label ?? STATUS_TEXT[status] ?? status));
   return b;
 }

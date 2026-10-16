@@ -4,54 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     <title>FactoryFlow Roadmap</title>
     <meta name="description" content="Where FactoryFlow is today and the milestones planned toward a manufacturer pilot." />
     <style>
       :root {
-        --bg: #0b1220;
-        --panel: #111a2e;
-        --border: #263148;
-        --text: #f1f5f9;
-        --muted: #94a3b8;
-        --done: #22c55e;
-        --progress: #38bdf8;
-        --planned: #a78bfa;
+        --bg: #050b16;
+        --panel: rgba(12, 24, 44, 0.72);
+        --border: rgba(120, 190, 255, 0.14);
+        --text: #e6f2ff;
+        --muted: #7d98b8;
+        --done: #2ee6a6;
+        --progress: #2ee6ff;
+        --planned: #7d98b8;
+        --glow: 0 0 18px rgba(46, 230, 255, 0.18);
+        --radius: 16px;
+        --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
       }
       :root[data-theme="light"] {
-        --bg: #f8fafc;
+        --bg: #f4f8fd;
         --panel: #ffffff;
-        --border: #d7dee9;
-        --text: #0f172a;
-        --muted: #475569;
+        --border: #d3deec;
+        --text: #0a1a30;
+        --muted: #46607f;
+        --done: #0f9f72;
+        --progress: #0a7fb5;
+        --planned: #5b7a9d;
+        --glow: none;
       }
       @media (prefers-color-scheme: light) {
         :root:not([data-theme="dark"]) {
-          --bg: #f8fafc;
+          --bg: #f4f8fd;
           --panel: #ffffff;
-          --border: #d7dee9;
-          --text: #0f172a;
-          --muted: #475569;
+          --border: #d3deec;
+          --text: #0a1a30;
+          --muted: #46607f;
+          --done: #0f9f72;
+          --progress: #0a7fb5;
+          --planned: #5b7a9d;
+          --glow: none;
         }
       }
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        background: var(--bg);
+        background:
+          radial-gradient(900px 500px at 15% -10%, rgba(30, 110, 255, 0.18), transparent 60%),
+          radial-gradient(700px 420px at 100% 0%, rgba(46, 230, 255, 0.1), transparent 60%),
+          var(--bg);
+        background-attachment: fixed;
         color: var(--text);
-        font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+        font: 16px/1.55 var(--font);
+        -webkit-font-smoothing: antialiased;
+      }
+      :root[data-theme="light"] body { background: var(--bg); }
+      @media (prefers-color-scheme: light) {
+        :root:not([data-theme="dark"]) body { background: var(--bg); }
       }
       .wrap { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
       header { margin-bottom: 28px; }
       .back { color: var(--progress); text-decoration: none; font-size: 14px; }
       .back:hover { text-decoration: underline; }
-      h1 { margin: 12px 0 6px; font-size: 30px; }
+      h1 { margin: 12px 0 6px; font-size: 30px; font-weight: 650; letter-spacing: -0.02em; }
       .lede { margin: 0; color: var(--muted); }
       .note {
         margin: 20px 0 28px;
         padding: 12px 14px;
         border: 1px solid var(--border);
-        border-radius: 10px;
+        border-radius: var(--radius);
         background: var(--panel);
+        backdrop-filter: blur(14px) saturate(150%);
         color: var(--muted);
         font-size: 14px;
       }
@@ -59,9 +83,10 @@
       li {
         background: var(--panel);
         border: 1px solid var(--border);
-        border-left: 4px solid var(--c, var(--planned));
-        border-radius: 10px;
-        padding: 16px 18px;
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        backdrop-filter: blur(14px) saturate(150%);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 4px 14px rgba(0, 0, 0, 0.25);
       }
       li[data-status="done"] { --c: var(--done); }
       li[data-status="progress"] { --c: var(--progress); }
@@ -82,11 +107,11 @@
       .exit { color: var(--muted); font-size: 14px; }
       .exit strong { color: var(--text); font-weight: 600; }
       .summary { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 20px; font-size: 14px; color: var(--muted); }
-      .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--c); }
+      .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--c); box-shadow: 0 0 8px var(--c); }
       .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 4px 24px; margin-top: 10px; }
       h3 { margin: 10px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
       ul { margin: 0; padding-left: 18px; font-size: 14px; }
-      ul li { background: none; border: 0; border-radius: 0; padding: 2px 0; }
+      ul li { background: none; border: 0; border-radius: 0; padding: 2px 0; backdrop-filter: none; box-shadow: none; }
       footer { margin-top: 32px; color: var(--muted); font-size: 13px; }
     </style>
   </head>

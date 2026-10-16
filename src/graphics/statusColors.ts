@@ -1,8 +1,8 @@
 import type { OperationalStatus } from "./FactoryObject";
 
 export const STATUS_COLORS: Record<OperationalStatus, number> = {
-  idle: 0x64748b,
-  running: 0x22c55e,
-  blocked: 0xf59e0b,
-  down: 0xef4444,
+  idle: 0x5b7a9d,
+  running: 0x2ee6a6,
+  blocked: 0xffb454,
+  down: 0xff5c7a,
 };

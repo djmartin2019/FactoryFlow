@@ -16,10 +16,10 @@ export function setText(node: Node, text: string): void {
 }
 
 export const STATUS_HEX: Record<string, string> = {
-  idle: "#64748b",
-  running: "#22c55e",
-  blocked: "#f59e0b",
-  down: "#ef4444",
+  idle: "#5b7a9d",
+  running: "#2ee6a6",
+  blocked: "#ffb454",
+  down: "#ff5c7a",
 };
 
 export const STATUS_LABEL: Record<string, string> = {
