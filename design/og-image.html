@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- Source for public/og-image.png (1200x630). Regenerate: npm run og -->
+<html><head><meta charset="utf-8"><style>
+*{margin:0;box-sizing:border-box}
+body{width:1200px;height:630px;overflow:hidden;background:#04070f;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;color:#e8f4ff;position:relative}
+.bg{position:absolute;inset:0;background:
+ radial-gradient(ellipse 700px 420px at 85% 30%,rgba(0,150,255,.35),transparent 70%),
+ radial-gradient(ellipse 600px 400px at 0% 100%,rgba(0,90,255,.28),transparent 70%),#04070f}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,200,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,.08) 1px,transparent 1px);background-size:48px 48px;
+ -webkit-mask-image:linear-gradient(115deg,transparent 20%,#000 90%)}
+.frame{position:absolute;inset:28px;border:1.5px solid rgba(0,229,255,.55);box-shadow:0 0 24px rgba(0,229,255,.35),inset 0 0 24px rgba(0,229,255,.12);
+ clip-path:polygon(0 0,calc(100% - 40px) 0,100% 40px,100% 100%,40px 100%,0 calc(100% - 40px))}
+.tag{position:absolute;left:84px;top:78px;font:600 17px "SF Mono",Menlo,monospace;letter-spacing:.28em;color:#00e5ff;text-shadow:0 0 12px rgba(0,229,255,.8)}
+.tag i{display:inline-block;width:10px;height:10px;border-radius:50%;background:#00e5ff;box-shadow:0 0 12px #00e5ff;margin-right:14px}
+h1{position:absolute;left:80px;top:150px;font-size:132px;font-weight:800;letter-spacing:-.04em;line-height:1;color:#fff;text-shadow:0 0 18px rgba(0,229,255,.9),0 0 50px rgba(0,120,255,.8)}
+h1 span{color:#00e5ff}
+.sub{position:absolute;left:86px;top:305px;width:560px;font-size:36px;font-weight:600;line-height:1.25;color:#cfe9ff}
+.sub b{color:#00e5ff;font-weight:600}
+.chips{position:absolute;left:86px;top:455px;display:flex;gap:14px}
+.chips div{font:600 17px "SF Mono",Menlo,monospace;color:#7fdcff;border:1px solid rgba(0,229,255,.5);padding:9px 16px;background:rgba(0,150,255,.1);letter-spacing:.06em;box-shadow:0 0 12px rgba(0,180,255,.2)}
+.url{position:absolute;left:86px;bottom:66px;font:500 20px "SF Mono",Menlo,monospace;color:#5fb8e8;letter-spacing:.08em}
+svg{position:absolute;right:50px;top:90px}
+</style></head><body>
+<div class="bg"></div><div class="grid"></div><div class="frame"></div>
+<div class="tag"><i></i>LIVE FACTORY SIMULATION</div>
+<h1>Factory<span>Flow</span></h1>
+<div class="sub">See your factory <b>think</b>.<br>Every order, machine and minute — in real time.</div>
+<div class="chips"><div>3D DIGITAL TWIN</div><div>LIVE KPIs</div><div>EVENT-DRIVEN</div></div>
+<div class="url">FACTORYFLOW.DJM-APPS.COM</div>
+<svg width="440" height="440" viewBox="0 0 440 440" fill="none">
+ <defs><filter id="g" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <linearGradient id="t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00e5ff" stop-opacity=".30"/><stop offset="1" stop-color="#0050ff" stop-opacity=".12"/></linearGradient></defs>
+ <g filter="url(#g)" stroke="#00e5ff" stroke-width="2.5" stroke-linejoin="round">
+  <!-- isometric conveyor line -->
+  <path d="M20 330 L220 215 L420 330 L220 425 Z" fill="url(#t)" opacity=".55"/>
+  <!-- machine blocks -->
+  <g fill="url(#t)">
+   <path d="M60 280 L110 251 L160 280 L110 309 Z"/><path d="M60 280 V230 L110 201 V251 Z"/><path d="M110 251 L160 280 V230 L110 201 Z"/>
+   <path d="M190 235 L250 200 L310 235 L250 270 Z"/><path d="M190 235 V165 L250 130 V200 Z"/><path d="M250 200 L310 235 V165 L250 130 Z"/>
+   <path d="M300 320 L350 291 L400 320 L350 349 Z"/><path d="M300 320 V265 L350 236 V291 Z"/><path d="M350 291 L400 320 V265 L350 236 Z"/>
+  </g>
+  <!-- flow path -->
+  <path d="M110 251 L250 200 L350 291" stroke-dasharray="3 9" stroke-width="3" stroke="#6fe9ff"/>
+ </g>
+ <g fill="#fff" filter="url(#g)"><circle cx="110" cy="251" r="6"/><circle cx="250" cy="200" r="6"/><circle cx="350" cy="291" r="6"/><circle cx="176" cy="225" r="4"/><circle cx="305" cy="245" r="4"/></g>
+ <!-- KPI sparkline -->
+ <polyline filter="url(#g)" points="40,70 100,50 150,78 210,36 270,58 330,22 400,40" stroke="#00e5ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
+</body></html>
