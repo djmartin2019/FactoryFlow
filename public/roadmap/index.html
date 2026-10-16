@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>FactoryFlow Roadmap</title>
+    <meta name="description" content="Where FactoryFlow is today and the milestones planned toward a manufacturer pilot." />
+    <style>
+      :root {
+        --bg: #0b1220;
+        --panel: #111a2e;
+        --border: #263148;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --done: #22c55e;
+        --progress: #38bdf8;
+        --planned: #a78bfa;
+      }
+      :root[data-theme="light"] {
+        --bg: #f8fafc;
+        --panel: #ffffff;
+        --border: #d7dee9;
+        --text: #0f172a;
+        --muted: #475569;
+      }
+      @media (prefers-color-scheme: light) {
+        :root:not([data-theme="dark"]) {
+          --bg: #f8fafc;
+          --panel: #ffffff;
+          --border: #d7dee9;
+          --text: #0f172a;
+          --muted: #475569;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      .wrap { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+      header { margin-bottom: 28px; }
+      .back { color: var(--progress); text-decoration: none; font-size: 14px; }
+      .back:hover { text-decoration: underline; }
+      h1 { margin: 12px 0 6px; font-size: 30px; }
+      .lede { margin: 0; color: var(--muted); }
+      .note {
+        margin: 20px 0 28px;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--panel);
+        color: var(--muted);
+        font-size: 14px;
+      }
+      ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+      li {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--c, var(--planned));
+        border-radius: 10px;
+        padding: 16px 18px;
+      }
+      li[data-status="done"] { --c: var(--done); }
+      li[data-status="progress"] { --c: var(--progress); }
+      .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+      .id { font-weight: 700; color: var(--c); font-variant-numeric: tabular-nums; }
+      h2 { margin: 0; font-size: 18px; }
+      .badge {
+        margin-left: auto;
+        padding: 2px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--c);
+        color: var(--c);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      p { margin: 8px 0 0; }
+      .exit { color: var(--muted); font-size: 14px; }
+      .exit strong { color: var(--text); font-weight: 600; }
+      .summary { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 20px; font-size: 14px; color: var(--muted); }
+      .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--c); }
+      .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 4px 24px; margin-top: 10px; }
+      h3 { margin: 10px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+      ul { margin: 0; padding-left: 18px; font-size: 14px; }
+      ul li { background: none; border: 0; border-radius: 0; padding: 2px 0; }
+      footer { margin-top: 32px; color: var(--muted); font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <a class="back" href="/">&larr; Back to FactoryFlow</a>
+        <h1>FactoryFlow roadmap</h1>
+        <p class="lede">
+          A manufacturing operations intelligence platform: what is happening, why, what happens next, and
+          which decisions could improve outcomes.
+        </p>
+      </header>
+
+      <div class="note">
+        FactoryFlow currently runs on <strong>synthetic</strong> data from a deterministic simulation of a fictional
+        control-panel manufacturer. The goal is a pilot with a real manufacturer once the milestones below are met.
+        Order and scope may change.
+      </div>
+
+            <div class="summary">
+        <span style="--c:var(--done)"><span class="dot"></span>Completed: foundation and reporting</span>
+        <span style="--c:var(--progress)"><span class="dot"></span>In progress: Phases 0&ndash;3</span>
+        <span style="--c:var(--planned)"><span class="dot"></span>Planned: Phases 4&ndash;6</span>
+      </div>
+<ol>
+        <li data-status="progress">
+          <div class="row"><span class="id">Phase 0</span><h2>Architecture and contracts</h2><span class="badge">In progress</span></div>
+          <p>Establish clear boundaries between simulation, analytics, and rendering, and define what every metric means.</p>
+          <div class="cols">
+            <div><h3>Built</h3><ul><li>Domain core with no UI or 3D dependencies</li><li>Seeded, replayable event history with validation</li><li>KPI dictionary and reporting layer</li><li>Test suite covering determinism and invariants</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Remove placeholder files</li><li>Add contributor/agent guidance</li><li>Document implemented versus proposed features</li></ul></div>
+          </div>
+          <p class="exit"><strong>Done when:</strong> the path from data to every on-screen number is documented and the repository matches its docs.</p>
+        </li>
+        <li data-status="progress">
+          <div class="row"><span class="id">Phase 1</span><h2>Production routing realism</h2><span class="badge">In progress</span></div>
+          <p>Replace one generic assembly timer with product-specific operations that draw on different resources.</p>
+          <div class="cols">
+            <div><h3>Built</h3><ul><li>Separate routings for NCP-100, NCP-200, and NCP-300</li><li>Quality inspection, rework, and machine downtime events</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Full NCP-300 routing: kit, mount, wire, configure, test, disposition</li><li>Work centers distinct from physical workstations</li><li>Setup times and skill or equipment requirements</li></ul></div>
+          </div>
+          <p class="exit"><strong>Done when:</strong> different product mixes create observable, explainable bottlenecks, reproducibly.</p>
+        </li>
+        <li data-status="progress">
+          <div class="row"><span class="id">Phase 2</span><h2>Work-order and unit traceability</h2><span class="badge">In progress</span></div>
+          <p>Reconstruct what happened to any order or individual unit, including failures and retests.</p>
+          <div class="cols">
+            <div><h3>Built</h3><ul><li>Work-order list and detail drawer with timeline, routing, and materials</li><li>Throughput chart in the Operations Explorer</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Serialized manufactured units</li><li>Per-attempt operation history (first failure and retest)</li><li>BOM and routing revision captured on each work order</li><li>Link 3D selection to the same detail view</li></ul></div>
+          </div>
+          <p class="exit"><strong>Done when:</strong> selecting a unit shows its full manufacturing history without guessing.</p>
+        </li>
+        <li data-status="progress">
+          <div class="row"><span class="id">Phase 3</span><h2>Procurement and material constraints</h2><span class="badge">In progress</span></div>
+          <p>Make material availability and supplier delays change what production can actually do.</p>
+          <div class="cols">
+            <div><h3>Built</h3><ul><li>Supplier purchase orders and receipts</li><li>Orders blocked by material shortage, with a KPI</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Reservations distinct from consumption</li><li>Incoming quality hold and partial receipts</li><li>Shortage root cause and downstream impact</li></ul></div>
+          </div>
+          <p class="exit"><strong>Done when:</strong> a supplier delay visibly changes the executable schedule.</p>
+        </li>
+        <li data-status="planned">
+          <div class="row"><span class="id">Phase 4</span><h2>Workforce and finite-capacity scheduling</h2><span class="badge">Planned</span></div>
+          <p>Model who can do the work and when, so capacity reflects people and skills, not only stations.</p>
+          <div class="cols">
+            <div><h3>Built</h3><ul><li>Nothing yet</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Skill matrix, shifts, and absences</li><li>Workload versus capacity</li><li>Projected completion with stated assumptions</li></ul></div>
+          </div>
+          <p class="exit"><strong>Done when:</strong> adding a station does not raise throughput when skills are the limit, and the app explains why.</p>
+        </li>
+        <li data-status="planned">
+          <div class="row"><span class="id">Phase 5</span><h2>Scenario comparison</h2><span class="badge">Planned</span></div>
+          <p>Compare proposed changes under the same demand and random seed without touching baseline data.</p>
+          <div class="cols">
+            <div><h3>Built</h3><ul><li>Nothing yet</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Isolated baseline snapshots and what-if branches</li><li>Compare capacity, labor, defect rate, supply, and demand mix</li><li>Throughput, WIP, flow time, and on-time delivery side by side</li></ul></div>
+          </div>
+          <p class="exit"><strong>Done when:</strong> a manager can defensibly compare two changes.</p>
+        </li>
+        <li data-status="planned">
+          <div class="row"><span class="id">Phase 6</span><h2>Real-data readiness</h2><span class="badge">Planned</span></div>
+          <p>Prove the same views work over a second, imperfect data source, as a step toward a manufacturer pilot.</p>
+          <div class="cols">
+            <div><h3>Built</h3><ul><li>Nothing yet</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Second adapter from an external-style dataset</li><li>Source provenance, freshness, and capability states</li><li>Backend, authentication, and data-governance decisions, driven by the pilot</li></ul></div>
+          </div>
+          <p class="exit"><strong>Done when:</strong> the same screens run over two independent data sources without rewrites.</p>
+        </li>
+      </ol>
+
+      <footer>Status reflects a code audit on 2026-10-15. Phases are delivered as thin vertical slices; the next slice is the NCP-300 routing with a traceable work order.</footer>
+    </div>
+  </body>
+</html>

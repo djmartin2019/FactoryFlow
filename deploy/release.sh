@@ -34,6 +34,7 @@ build() {
   done
   for f in "${REQUIRED_DATA[@]}"; do [ -s "dist/data/$f" ] || { echo "missing dist/data/$f" >&2; exit 1; }; done
   [ -s dist/index.html ] || { echo "dist/index.html missing" >&2; exit 1; }
+  [ -s dist/roadmap/index.html ] || { echo "dist/roadmap/index.html missing" >&2; exit 1; }
 
   id="$(date -u +%Y%m%d-%H%M%S)-$(git rev-parse --short HEAD)"
   mkdir -p release
@@ -49,7 +50,7 @@ install_release() {
   [ ! -e "$dest" ] || { echo "$dest already exists; releases are immutable" >&2; exit 1; }
   mkdir -p "$dest"
   tar -xzf "$tarball" -C "$dest"
-  for f in index.html data/initial_state.json data/events.json; do
+  for f in index.html roadmap/index.html data/initial_state.json data/events.json; do
     [ -s "$dest/$f" ] || { echo "release is missing $f" >&2; rm -rf "$dest"; exit 1; }
   done
   find "$dest" -type d -exec chmod 755 {} +

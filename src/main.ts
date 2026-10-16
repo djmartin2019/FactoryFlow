@@ -93,6 +93,10 @@ async function main() {
     tabs.set(id, b);
     dashboard.layout.nav.append(b);
   }
+  const roadmapLink = el("a", "nav-tab", "Roadmap");
+  roadmapLink.setAttribute("href", "/roadmap/index.html");
+  roadmapLink.style.textDecoration = "none";
+  dashboard.layout.nav.append(roadmapLink);
   show("overview");
 
   simulation.setSpeed(3600);
