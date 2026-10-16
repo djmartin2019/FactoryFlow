@@ -1,0 +1,833 @@
+{
+ "schemaVersion": "1.0.0",
+ "master": {
+  "departments": [
+   {
+    "id": "DEPT-RECEIVING",
+    "name": "Receiving",
+    "kind": "RECEIVING"
+   },
+   {
+    "id": "DEPT-RAW-INVENTORY",
+    "name": "Raw Inventory",
+    "kind": "RAW_STORAGE"
+   },
+   {
+    "id": "DEPT-ASSEMBLY",
+    "name": "Assembly",
+    "kind": "ASSEMBLY"
+   },
+   {
+    "id": "DEPT-QUALITY",
+    "name": "Quality Control",
+    "kind": "QUALITY"
+   },
+   {
+    "id": "DEPT-SHIPPING",
+    "name": "Shipping",
+    "kind": "SHIPPING"
+   }
+  ],
+  "locations": [
+   {
+    "id": "REC-001",
+    "name": "Receiving Dock A",
+    "departmentId": "DEPT-RECEIVING",
+    "kind": "RECEIVING",
+    "palletCapacity": 6
+   },
+   {
+    "id": "REC-002",
+    "name": "Receiving Dock B",
+    "departmentId": "DEPT-RECEIVING",
+    "kind": "RECEIVING",
+    "palletCapacity": 6
+   },
+   {
+    "id": "REC-003",
+    "name": "Receiving Dock C",
+    "departmentId": "DEPT-RECEIVING",
+    "kind": "RECEIVING",
+    "palletCapacity": 6
+   },
+   {
+    "id": "INV-001",
+    "name": "Raw Materials Rack A",
+    "departmentId": "DEPT-RAW-INVENTORY",
+    "kind": "RAW_STORAGE",
+    "palletCapacity": 24
+   },
+   {
+    "id": "INV-002",
+    "name": "Raw Materials Rack B",
+    "departmentId": "DEPT-RAW-INVENTORY",
+    "kind": "RAW_STORAGE",
+    "palletCapacity": 24
+   },
+   {
+    "id": "INV-003",
+    "name": "Raw Materials Rack C",
+    "departmentId": "DEPT-RAW-INVENTORY",
+    "kind": "RAW_STORAGE",
+    "palletCapacity": 24
+   },
+   {
+    "id": "INV-004",
+    "name": "Raw Materials Rack D",
+    "departmentId": "DEPT-RAW-INVENTORY",
+    "kind": "RAW_STORAGE",
+    "palletCapacity": 24
+   },
+   {
+    "id": "ASM-001",
+    "name": "Assembly Line A",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "ASM-002",
+    "name": "Assembly Line B",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "ASM-003",
+    "name": "Assembly Line C",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "ASM-004",
+    "name": "Assembly Line D",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "ASM-005",
+    "name": "Assembly Line E",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "ASM-006",
+    "name": "Assembly Line F",
+    "departmentId": "DEPT-ASSEMBLY",
+    "kind": "ASSEMBLY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "QC-001",
+    "name": "Inspection Cell A",
+    "departmentId": "DEPT-QUALITY",
+    "kind": "QUALITY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "QC-002",
+    "name": "Inspection Cell B",
+    "departmentId": "DEPT-QUALITY",
+    "kind": "QUALITY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "QC-003",
+    "name": "Inspection Cell C",
+    "departmentId": "DEPT-QUALITY",
+    "kind": "QUALITY",
+    "palletCapacity": 4
+   },
+   {
+    "id": "SHP-001",
+    "name": "Shipping Bay A",
+    "departmentId": "DEPT-SHIPPING",
+    "kind": "SHIPPING",
+    "palletCapacity": 16
+   },
+   {
+    "id": "SHP-002",
+    "name": "Shipping Bay B",
+    "departmentId": "DEPT-SHIPPING",
+    "kind": "SHIPPING",
+    "palletCapacity": 16
+   },
+   {
+    "id": "SHP-003",
+    "name": "Shipping Bay C",
+    "departmentId": "DEPT-SHIPPING",
+    "kind": "SHIPPING",
+    "palletCapacity": 16
+   }
+  ],
+  "suppliers": [
+   {
+    "id": "SUP-001",
+    "name": "Ironbridge Metalworks",
+    "leadTimeDays": 5,
+    "onTimeRate": 0.9,
+    "paymentTermsDays": 30,
+    "receivingLocationId": "REC-001"
+   },
+   {
+    "id": "SUP-002",
+    "name": "Voltaic Switchgear Ltd",
+    "leadTimeDays": 7,
+    "onTimeRate": 0.85,
+    "paymentTermsDays": 45,
+    "receivingLocationId": "REC-002"
+   },
+   {
+    "id": "SUP-003",
+    "name": "Clearline Connectors",
+    "leadTimeDays": 4,
+    "onTimeRate": 0.92,
+    "paymentTermsDays": 30,
+    "receivingLocationId": "REC-003"
+   },
+   {
+    "id": "SUP-004",
+    "name": "Meridian Automation Supply",
+    "leadTimeDays": 12,
+    "onTimeRate": 0.65,
+    "paymentTermsDays": 60,
+    "receivingLocationId": "REC-002"
+   },
+   {
+    "id": "SUP-005",
+    "name": "Brightwater Power Systems",
+    "leadTimeDays": 8,
+    "onTimeRate": 0.8,
+    "paymentTermsDays": 45,
+    "receivingLocationId": "REC-003"
+   }
+  ],
+  "customers": [
+   {
+    "id": "CUS-001",
+    "name": "Alder Valley Packaging",
+    "region": "Midwest",
+    "paymentTermsDays": 30
+   },
+   {
+    "id": "CUS-002",
+    "name": "Birchwood Water Utilities",
+    "region": "Northeast",
+    "paymentTermsDays": 45
+   }
+  ],
+  "materials": [
+   {
+    "id": "MAT-ENC-S",
+    "description": "Steel enclosure 600x400x200 mm, IP54",
+    "uom": "EA",
+    "standardCostCents": 8450,
+    "supplierId": "SUP-001",
+    "storageLocationId": "INV-001",
+    "unitsPerPallet": 20,
+    "orderMultiple": 10,
+    "initialCoverDays": 8,
+    "safetyDays": 3,
+    "sku": "MAT-ENC-S",
+    "supplierPartNumber": "IM-E640",
+    "leadTimeDays": 5
+   },
+   {
+    "id": "MAT-ENC-M",
+    "description": "Steel enclosure 800x600x250 mm, IP54",
+    "uom": "EA",
+    "standardCostCents": 14900,
+    "supplierId": "SUP-001",
+    "storageLocationId": "INV-001",
+    "unitsPerPallet": 12,
+    "orderMultiple": 10,
+    "initialCoverDays": 8,
+    "safetyDays": 3,
+    "sku": "MAT-ENC-M",
+    "supplierPartNumber": "IM-E862",
+    "leadTimeDays": 5
+   },
+   {
+    "id": "MAT-ENC-L",
+    "description": "Steel enclosure 1000x800x300 mm, IP55",
+    "uom": "EA",
+    "standardCostCents": 26800,
+    "supplierId": "SUP-001",
+    "storageLocationId": "INV-001",
+    "unitsPerPallet": 8,
+    "orderMultiple": 5,
+    "initialCoverDays": 8,
+    "safetyDays": 3,
+    "sku": "MAT-ENC-L",
+    "supplierPartNumber": "IM-E1083",
+    "leadTimeDays": 5
+   },
+   {
+    "id": "MAT-DIN-35",
+    "description": "DIN rail 35 mm, sold per metre",
+    "uom": "M",
+    "standardCostCents": 385,
+    "supplierId": "SUP-001",
+    "storageLocationId": "INV-001",
+    "unitsPerPallet": 500,
+    "orderMultiple": 50,
+    "initialCoverDays": 10,
+    "safetyDays": 3,
+    "sku": "MAT-DIN-35",
+    "supplierPartNumber": "IM-D35",
+    "leadTimeDays": 5
+   },
+   {
+    "id": "MAT-BRK-1P",
+    "description": "Circuit breaker 1-pole 16 A",
+    "uom": "EA",
+    "standardCostCents": 1850,
+    "supplierId": "SUP-002",
+    "storageLocationId": "INV-002",
+    "unitsPerPallet": 400,
+    "orderMultiple": 50,
+    "initialCoverDays": 8,
+    "safetyDays": 3,
+    "sku": "MAT-BRK-1P",
+    "supplierPartNumber": "VS-B116",
+    "leadTimeDays": 7
+   },
+   {
+    "id": "MAT-BRK-3P",
+    "description": "Circuit breaker 3-pole 32 A",
+    "uom": "EA",
+    "standardCostCents": 6400,
+    "supplierId": "SUP-002",
+    "storageLocationId": "INV-002",
+    "unitsPerPallet": 200,
+    "orderMultiple": 25,
+    "initialCoverDays": 8,
+    "safetyDays": 3,
+    "sku": "MAT-BRK-3P",
+    "supplierPartNumber": "VS-B332",
+    "leadTimeDays": 7
+   },
+   {
+    "id": "MAT-RLY-24",
+    "description": "Control relay 24 VDC, 4-pole",
+    "uom": "EA",
+    "standardCostCents": 1650,
+    "supplierId": "SUP-002",
+    "storageLocationId": "INV-002",
+    "unitsPerPallet": 500,
+    "orderMultiple": 50,
+    "initialCoverDays": 8,
+    "safetyDays": 3,
+    "sku": "MAT-RLY-24",
+    "supplierPartNumber": "VS-R424",
+    "leadTimeDays": 7
+   },
+   {
+    "id": "MAT-CTR-25",
+    "description": "Contactor 25 A, 24 VDC coil",
+    "uom": "EA",
+    "standardCostCents": 5250,
+    "supplierId": "SUP-002",
+    "storageLocationId": "INV-002",
+    "unitsPerPallet": 150,
+    "orderMultiple": 20,
+    "initialCoverDays": 8,
+    "safetyDays": 3,
+    "sku": "MAT-CTR-25",
+    "supplierPartNumber": "VS-C25",
+    "leadTimeDays": 7
+   },
+   {
+    "id": "MAT-TB-25",
+    "description": "Terminal block 2.5 mm2, DIN mount",
+    "uom": "EA",
+    "standardCostCents": 215,
+    "supplierId": "SUP-003",
+    "storageLocationId": "INV-003",
+    "unitsPerPallet": 5000,
+    "orderMultiple": 500,
+    "initialCoverDays": 9,
+    "safetyDays": 3,
+    "sku": "MAT-TB-25",
+    "supplierPartNumber": "CL-T25",
+    "leadTimeDays": 4
+   },
+   {
+    "id": "MAT-WIRE-KIT",
+    "description": "Panel wiring kit (cable, ferrules, duct)",
+    "uom": "KIT",
+    "standardCostCents": 5900,
+    "supplierId": "SUP-003",
+    "storageLocationId": "INV-003",
+    "unitsPerPallet": 100,
+    "orderMultiple": 20,
+    "initialCoverDays": 9,
+    "safetyDays": 3,
+    "sku": "MAT-WIRE-KIT",
+    "supplierPartNumber": "CL-WK1",
+    "leadTimeDays": 4
+   },
+   {
+    "id": "MAT-PLC-CPU",
+    "description": "PLC CPU module, 16 DI / 16 DO",
+    "uom": "EA",
+    "standardCostCents": 38500,
+    "supplierId": "SUP-004",
+    "storageLocationId": "INV-004",
+    "unitsPerPallet": 60,
+    "orderMultiple": 5,
+    "initialCoverDays": 6,
+    "safetyDays": 2,
+    "sku": "MAT-PLC-CPU",
+    "supplierPartNumber": "MA-PLC16",
+    "leadTimeDays": 12
+   },
+   {
+    "id": "MAT-HMI-7",
+    "description": "7-inch touchscreen HMI display",
+    "uom": "EA",
+    "standardCostCents": 29900,
+    "supplierId": "SUP-004",
+    "storageLocationId": "INV-004",
+    "unitsPerPallet": 40,
+    "orderMultiple": 5,
+    "initialCoverDays": 6,
+    "safetyDays": 2,
+    "sku": "MAT-HMI-7",
+    "supplierPartNumber": "MA-HMI7",
+    "leadTimeDays": 12
+   },
+   {
+    "id": "MAT-PSU-24",
+    "description": "Power supply 24 VDC 10 A",
+    "uom": "EA",
+    "standardCostCents": 7600,
+    "supplierId": "SUP-005",
+    "storageLocationId": "INV-003",
+    "unitsPerPallet": 120,
+    "orderMultiple": 10,
+    "initialCoverDays": 9,
+    "safetyDays": 3,
+    "sku": "MAT-PSU-24",
+    "supplierPartNumber": "BW-P2410",
+    "leadTimeDays": 8
+   }
+  ],
+  "products": [
+   {
+    "id": "NCP-100",
+    "sku": "NCP-100",
+    "name": "Basic Control Panel",
+    "description": "Entry-level relay-logic control panel",
+    "bomId": "BOM-NCP-100",
+    "routingId": "RTG-NCP-100",
+    "standardCostCents": 38315,
+    "listPriceCents": 95000,
+    "finishedGoodsLocationId": "SHP-001",
+    "unitsPerPallet": 6,
+    "baseDefectRate": 0.02
+   },
+   {
+    "id": "NCP-200",
+    "sku": "NCP-200",
+    "name": "Motor Control Panel",
+    "description": "Contactor-based motor starter panel",
+    "bomId": "BOM-NCP-200",
+    "routingId": "RTG-NCP-200",
+    "standardCostCents": 63140,
+    "listPriceCents": 189000,
+    "finishedGoodsLocationId": "SHP-002",
+    "unitsPerPallet": 4,
+    "baseDefectRate": 0.04
+   },
+   {
+    "id": "NCP-300",
+    "sku": "NCP-300",
+    "name": "Advanced Automation Panel",
+    "description": "PLC and HMI based automation panel",
+    "bomId": "BOM-NCP-300",
+    "routingId": "RTG-NCP-300",
+    "standardCostCents": 163405,
+    "listPriceCents": 465000,
+    "finishedGoodsLocationId": "SHP-003",
+    "unitsPerPallet": 2,
+    "baseDefectRate": 0.07
+   }
+  ],
+  "billsOfMaterials": [
+   {
+    "id": "BOM-NCP-100",
+    "productId": "NCP-100",
+    "version": "A",
+    "lines": [
+     {
+      "materialId": "MAT-ENC-S",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-BRK-1P",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-BRK-3P",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-TB-25",
+      "quantityPer": 12
+     },
+     {
+      "materialId": "MAT-DIN-35",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-WIRE-KIT",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-RLY-24",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-PSU-24",
+      "quantityPer": 1
+     }
+    ]
+   },
+   {
+    "id": "BOM-NCP-200",
+    "productId": "NCP-200",
+    "version": "A",
+    "lines": [
+     {
+      "materialId": "MAT-ENC-M",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-BRK-3P",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-BRK-1P",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-TB-25",
+      "quantityPer": 18
+     },
+     {
+      "materialId": "MAT-DIN-35",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-WIRE-KIT",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-RLY-24",
+      "quantityPer": 3
+     },
+     {
+      "materialId": "MAT-CTR-25",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-PSU-24",
+      "quantityPer": 1
+     }
+    ]
+   },
+   {
+    "id": "BOM-NCP-300",
+    "productId": "NCP-300",
+    "version": "A",
+    "lines": [
+     {
+      "materialId": "MAT-ENC-L",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-BRK-3P",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-BRK-1P",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-TB-25",
+      "quantityPer": 30
+     },
+     {
+      "materialId": "MAT-DIN-35",
+      "quantityPer": 3
+     },
+     {
+      "materialId": "MAT-WIRE-KIT",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-RLY-24",
+      "quantityPer": 4
+     },
+     {
+      "materialId": "MAT-CTR-25",
+      "quantityPer": 2
+     },
+     {
+      "materialId": "MAT-PLC-CPU",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-HMI-7",
+      "quantityPer": 1
+     },
+     {
+      "materialId": "MAT-PSU-24",
+      "quantityPer": 2
+     }
+    ]
+   }
+  ],
+  "routings": [
+   {
+    "id": "RTG-NCP-100",
+    "productId": "NCP-100",
+    "steps": [
+     {
+      "sequence": 10,
+      "operationType": "MOUNT_AND_WIRE",
+      "workstationKind": "ASSEMBLY",
+      "setupMinutes": 20,
+      "minutesPerUnit": 25
+     },
+     {
+      "sequence": 20,
+      "operationType": "FINAL_TEST",
+      "workstationKind": "INSPECTION",
+      "setupMinutes": 10,
+      "minutesPerUnit": 8
+     }
+    ]
+   },
+   {
+    "id": "RTG-NCP-200",
+    "productId": "NCP-200",
+    "steps": [
+     {
+      "sequence": 10,
+      "operationType": "MOUNT_AND_WIRE",
+      "workstationKind": "ASSEMBLY",
+      "setupMinutes": 20,
+      "minutesPerUnit": 30
+     },
+     {
+      "sequence": 20,
+      "operationType": "MOTOR_CIRCUIT_ASSEMBLY",
+      "workstationKind": "ASSEMBLY",
+      "setupMinutes": 15,
+      "minutesPerUnit": 20
+     },
+     {
+      "sequence": 30,
+      "operationType": "FINAL_TEST",
+      "workstationKind": "INSPECTION",
+      "setupMinutes": 10,
+      "minutesPerUnit": 12
+     }
+    ]
+   },
+   {
+    "id": "RTG-NCP-300",
+    "productId": "NCP-300",
+    "steps": [
+     {
+      "sequence": 10,
+      "operationType": "MOUNT_AND_WIRE",
+      "workstationKind": "ASSEMBLY",
+      "setupMinutes": 25,
+      "minutesPerUnit": 40
+     },
+     {
+      "sequence": 20,
+      "operationType": "PLC_HMI_INTEGRATION",
+      "workstationKind": "ASSEMBLY",
+      "setupMinutes": 30,
+      "minutesPerUnit": 35
+     },
+     {
+      "sequence": 30,
+      "operationType": "FINAL_TEST",
+      "workstationKind": "INSPECTION",
+      "setupMinutes": 15,
+      "minutesPerUnit": 20
+     }
+    ]
+   }
+  ],
+  "workstations": [
+   {
+    "id": "ASM-001",
+    "name": "Assembly Line A",
+    "kind": "ASSEMBLY",
+    "departmentId": "DEPT-ASSEMBLY",
+    "locationId": "ASM-001",
+    "concurrentJobs": 1,
+    "durationFactor": 1
+   },
+   {
+    "id": "QC-001",
+    "name": "Inspection Cell A",
+    "kind": "INSPECTION",
+    "departmentId": "DEPT-QUALITY",
+    "locationId": "QC-001",
+    "concurrentJobs": 1,
+    "durationFactor": 1
+   }
+  ]
+ },
+ "state": {
+  "asOf": "2026-09-01T00:00:00.000Z",
+  "lastSequence": 0,
+  "inventory": {
+   "INV-001::MAT-ENC-S": {
+    "locationId": "INV-001",
+    "itemId": "MAT-ENC-S",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 20,
+    "reserved": 0
+   },
+   "INV-001::MAT-ENC-M": {
+    "locationId": "INV-001",
+    "itemId": "MAT-ENC-M",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 10,
+    "reserved": 0
+   },
+   "INV-001::MAT-ENC-L": {
+    "locationId": "INV-001",
+    "itemId": "MAT-ENC-L",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 5,
+    "reserved": 0
+   },
+   "INV-001::MAT-DIN-35": {
+    "locationId": "INV-001",
+    "itemId": "MAT-DIN-35",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 50,
+    "reserved": 0
+   },
+   "INV-002::MAT-BRK-1P": {
+    "locationId": "INV-002",
+    "itemId": "MAT-BRK-1P",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 50,
+    "reserved": 0
+   },
+   "INV-002::MAT-BRK-3P": {
+    "locationId": "INV-002",
+    "itemId": "MAT-BRK-3P",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 50,
+    "reserved": 0
+   },
+   "INV-002::MAT-RLY-24": {
+    "locationId": "INV-002",
+    "itemId": "MAT-RLY-24",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 100,
+    "reserved": 0
+   },
+   "INV-002::MAT-CTR-25": {
+    "locationId": "INV-002",
+    "itemId": "MAT-CTR-25",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 40,
+    "reserved": 0
+   },
+   "INV-003::MAT-TB-25": {
+    "locationId": "INV-003",
+    "itemId": "MAT-TB-25",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 500,
+    "reserved": 0
+   },
+   "INV-003::MAT-WIRE-KIT": {
+    "locationId": "INV-003",
+    "itemId": "MAT-WIRE-KIT",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 40,
+    "reserved": 0
+   },
+   "INV-004::MAT-PLC-CPU": {
+    "locationId": "INV-004",
+    "itemId": "MAT-PLC-CPU",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 5,
+    "reserved": 0
+   },
+   "INV-004::MAT-HMI-7": {
+    "locationId": "INV-004",
+    "itemId": "MAT-HMI-7",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 5,
+    "reserved": 0
+   },
+   "INV-003::MAT-PSU-24": {
+    "locationId": "INV-003",
+    "itemId": "MAT-PSU-24",
+    "itemKind": "RAW_MATERIAL",
+    "onHand": 30,
+    "reserved": 0
+   },
+   "SHP-001::NCP-100": {
+    "locationId": "SHP-001",
+    "itemId": "NCP-100",
+    "itemKind": "FINISHED_GOOD",
+    "onHand": 3,
+    "reserved": 0
+   },
+   "SHP-002::NCP-200": {
+    "locationId": "SHP-002",
+    "itemId": "NCP-200",
+    "itemKind": "FINISHED_GOOD",
+    "onHand": 3,
+    "reserved": 0
+   },
+   "SHP-003::NCP-300": {
+    "locationId": "SHP-003",
+    "itemId": "NCP-300",
+    "itemKind": "FINISHED_GOOD",
+    "onHand": 3,
+    "reserved": 0
+   }
+  },
+  "inventoryTransactions": [],
+  "inventoryTransfers": {},
+  "purchaseOrders": {},
+  "receipts": {},
+  "productionOrders": {},
+  "productionOperations": {},
+  "workstationAssignments": {},
+  "qualityInspections": {},
+  "workstations": {
+   "ASM-001": {
+    "workstationId": "ASM-001",
+    "status": "IDLE",
+    "since": "2026-09-01T00:00:00.000Z"
+   },
+   "QC-001": {
+    "workstationId": "QC-001",
+    "status": "IDLE",
+    "since": "2026-09-01T00:00:00.000Z"
+   }
+  },
+  "downtimes": {},
+  "customerOrders": {},
+  "shipments": {}
+ }
+}

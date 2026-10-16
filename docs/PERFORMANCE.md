@@ -46,6 +46,25 @@ Observations:
 - Draw calls are higher than meshes/2 because each station has up to 6 material groups plus a label
   sprite. If this ever matters, labels and shared-material parts are the first things to batch.
 
+## Phase 0 baseline (domain core, Node)
+
+Recorded 2026-10-15 for later comparison; deliberately **not** asserted in CI, because wall-clock timings are
+flaky across machines. Node 22.22.3, Intel Core i9-9880H @ 2.30 GHz, macOS. Default dataset (seed
+`northstar-2026`, 30 days, 4,073 events), mean of 5 runs after one warm-up, single process.
+
+| Operation | Time |
+| --- | --- |
+| `generateDataset()` (includes reducer checks while generating) | ~311 ms |
+| `validateDataset()` | ~150 ms |
+| Full replay (`FactoryReplay.step()` over all events) | ~30 ms |
+| Seek to 50% including reset | ~11 ms |
+| Seek to 100% including reset | ~28 ms |
+| `computeKpis` + station metrics, all-time window | ~4 ms |
+
+Correctness baseline: `npm test` (72 tests, including `tests/contract.test.ts` on the committed canonical
+fixture) and `npm run validate:data` must pass. Treat a >2x regression in any row above as worth
+investigating. The browser results in the tables above predate this run and were not re-measured.
+
 ## Demand calibration
 
 Baseline: 75 orders on 3 assembly stations gave 48-60% utilization (mean ~54%). Candidates on the 6-station

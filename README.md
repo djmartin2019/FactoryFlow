@@ -254,7 +254,9 @@ src/
 tests/                       Vitest suites
 scripts/                     generate.ts, validate.ts
 examples/                    replay-example.ts
-docs/KPI_DEFINITIONS.md      KPI documentation
+docs/                        ARCHITECTURE.md (data → UI path), STATUS.md (implemented vs proposed),
+                             KPI_DEFINITIONS.md, PERFORMANCE.md, FACTORYFLOW_DESIGN.md
+CLAUDE.md                    Contributor / agent guidance
 public/data → data/generated Dataset served to the browser
 ```
 
@@ -277,6 +279,7 @@ public/data → data/generated Dataset served to the browser
 `npm test` covers:
 
 - Dataset generation determinism, validation invariants and reducer rules.
+- Contract tests on a small committed fixture (`tests/fixtures/canonical`): event shapes, replay, KPI values, feed text and 3D mapping.
 - Layout and 3D object construction.
 - KPI correctness against independent sums over the final state and event log.
 - Reset restoring initial KPI values; pause freezing state; seek bumping the epoch; end-of-dataset stop.
