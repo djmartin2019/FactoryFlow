@@ -7,6 +7,7 @@
  */
 import {
   PERIODS,
+  billsOfMaterials,
   goodUnitsThroughput,
   workCenterLoad,
   workOrderCounts,
@@ -18,15 +19,16 @@ import {
 } from "../../analytics";
 import { reportingSnapshot } from "../../simulation/reportingSnapshot";
 import type { SimulationController } from "../../simulation/SimulationController";
+import { nextShiftStart, weekdayShort } from "../../manufacturing/calendar";
 import { el, formatSimTime, setText } from "../dom";
-import { fmtDate, statusBadge, STATUS_TEXT } from "./format";
+import { fmtDate, fmtMoney, statusBadge, STATUS_TEXT } from "./format";
 import { ThroughputChart } from "./ThroughputChart";
 import { WorkOrderDrawer } from "./WorkOrderDrawer";
 
 const REFRESH_MS = 500;
 const PAGE_SIZE = 100;
 
-type Tab = "orders" | "analytics" | "workcenters" | "inventory";
+type Tab = "orders" | "analytics" | "workcenters" | "bom" | "inventory";
 type SortKey = "id" | "product" | "ordered" | "good" | "status" | "created" | "due" | "progress";
 
 interface Column {
@@ -120,7 +122,7 @@ export class OperationsExplorer {
     this.getPeriod = getPeriod;
     this.drawer = new WorkOrderDrawer(() => this.closeDetail());
 
-    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildInventoryPanel(), this.drawer.element);
+    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element);
     this.element.hidden = true;
     this.showTab("orders");
 
@@ -165,11 +167,18 @@ export class OperationsExplorer {
     if (this.tab === "orders") {
       if (changed || this.tableDirty) this.renderTable();
       this.renderDrawer(changed);
+    } else if (this.tab === "bom") {
+      // Master data: render once per master, not per event.
+      const master = snap.master;
+      if (this.bomMaster !== master) {
+        this.bomMaster = master;
+        this.renderBom(master);
+      }
     } else if (this.tab === "workcenters") {
       const wk = `${key}|${this.getPeriod()}|${Math.floor(snap.asOfMs / 60_000)}`;
       if (wk !== this.wcKey) {
         this.wcKey = wk;
-        this.renderWorkCenters(workCenterLoad(snap, this.getPeriod()));
+        this.renderWorkCenters(workCenterLoad(snap, this.getPeriod()), snap.asOfMs);
       }
     } else if (this.tab === "analytics") {
       const ck = `${key}|${this.getPeriod()}|${this.productFilter}|${Math.floor(snap.asOfMs / 60_000)}`;
@@ -223,6 +232,7 @@ export class OperationsExplorer {
       ["orders", "Work Orders"],
       ["analytics", "Production Analytics"],
       ["workcenters", "Work Centers"],
+      ["bom", "Bill of Materials"],
       ["inventory", "Inventory"],
     ];
     for (const [id, label] of defs) {
@@ -379,7 +389,64 @@ export class OperationsExplorer {
     return panel;
   }
 
+  private readonly bomRoot = el("div", "bom-root");
+  private bomMaster: unknown = null;
+
+  private buildBomPanel(): HTMLElement {
+    const panel = el("section", "ex-panel");
+    this.panels.set("bom", panel);
+    panel.append(
+      this.bomRoot,
+      el(
+        "p",
+        "hint",
+        "Quantities are per finished unit. Unit cost is the material's standard cost; the total equals the product's standard cost. Lead time is the supplier's standard lead time in calendar days. Synthetic demo master data.",
+      ),
+    );
+    return panel;
+  }
+
+  private renderBom(master: Parameters<typeof billsOfMaterials>[0]): void {
+    const sections = billsOfMaterials(master).map((b) => {
+      const section = el("section", "bom-product");
+      const head = el("div", "bom-head");
+      head.append(
+        el("h3", undefined, `${b.sku} — ${b.name}`),
+        el(
+          "span",
+          "hint",
+          `BOM ${b.bomId} rev ${b.version} · ${b.lines.length} components · standard cost ${fmtMoney(b.totalCostCents)} · list price ${fmtMoney(b.listPriceCents)} · longest lead time ${b.longestLeadTimeDays} d`,
+        ),
+      );
+      const wrap = el("div", "tbl-scroll");
+      const table = el("table", "mini-table");
+      const headRow = el("tr");
+      ["SKU", "Description", "UoM", "Qty per", "Unit cost", "Extended", "Supplier", "Lead time"].forEach((h, i) =>
+        headRow.append(el("th", i === 3 || i === 4 || i === 5 || i === 7 ? "num" : undefined, h)),
+      );
+      const thead = el("thead");
+      thead.append(headRow);
+      const tbody = el("tbody");
+      for (const l of b.lines) {
+        const tr = el("tr");
+        [l.sku, l.description, l.uom, String(l.quantityPer), fmtMoney(l.unitCostCents), fmtMoney(l.extendedCostCents), l.supplierName, `${l.leadTimeDays} d`].forEach(
+          (c, i) => tr.append(el("td", i === 3 || i === 4 || i === 5 || i === 7 ? "num" : undefined, c)),
+        );
+        tbody.append(tr);
+      }
+      const total = el("tr");
+      total.append(el("td", undefined, "Total"), ...Array.from({ length: 4 }, () => el("td")), el("td", "num", fmtMoney(b.totalCostCents)), el("td"), el("td"));
+      tbody.append(total);
+      table.append(thead, tbody);
+      wrap.append(table);
+      section.append(head, wrap);
+      return section;
+    });
+    this.bomRoot.replaceChildren(...sections);
+  }
+
   private readonly wcBody = el("tbody");
+  private readonly wcShift = el("p", "hint shift-note");
   private wcKey = "";
 
   private buildWorkCentersPanel(): HTMLElement {
@@ -388,13 +455,15 @@ export class OperationsExplorer {
     const wrap = el("div", "tbl-scroll");
     const t = el("table", "mini-table");
     const head = el("tr");
-    const headers = ["Work center", "Stations", "In process (units)", "Queued orders", "Queued units", "Queued std. min / station", "Oldest wait", "Utilization"];
+    const headers = ["Work center", "Stations", "In process (units)", "Queued orders", "Queued units", "Queued std. min / station", "Oldest wait (shift time)", "Utilization"];
     headers.forEach((h, i) => head.append(el("th", i >= 1 ? "num" : undefined, h)));
     const thead = el("thead");
     thead.append(head);
     t.append(thead, this.wcBody);
     wrap.append(t);
+    this.wcShift.hidden = true;
     panel.append(
+      this.wcShift,
       wrap,
       el(
         "p",
@@ -405,7 +474,16 @@ export class OperationsExplorer {
     return panel;
   }
 
-  private renderWorkCenters(rows: ReturnType<typeof workCenterLoad>): void {
+  private renderWorkCenters(rows: ReturnType<typeof workCenterLoad>, asOfMs: number): void {
+    const open = rows[0]?.shiftOpen ?? true;
+    this.wcShift.hidden = open;
+    if (!open) {
+      const next = nextShiftStart(asOfMs);
+      setText(
+        this.wcShift,
+        `Off shift: nothing starts until ${weekdayShort(next)} ${new Date(next).toISOString().slice(0, 10)} 06:00 UTC. Queued steps are waiting for the shift, not for a station, so no bottleneck is flagged.`,
+      );
+    }
     const fmtWait = (m: number | null) => (m === null ? "–" : m >= 120 ? `${(m / 60).toFixed(1)} h` : `${m} min`);
     this.wcBody.replaceChildren(
       ...rows.map((r) => {

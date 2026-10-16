@@ -32,6 +32,16 @@ const contains = (outer: FloorRect, inner: FloorRect, margin = 0) =>
   inner.minZ >= outer.minZ + margin && inner.maxZ <= outer.maxZ - margin;
 
 describe("factory layout", () => {
+  it("lays the assembly lanes out west -> east in process order", () => {
+    const x = (id: string) => factoryLayout.find((o) => o.id === id)!.position[0];
+    // kitting < mechanical < wiring (A and B share a column) < controls & motor; flex beside controls
+    expect(x("ASM-001")).toBeLessThan(x("ASM-002"));
+    expect(x("ASM-002")).toBeLessThan(x("ASM-003"));
+    expect(x("ASM-003")).toBe(x("ASM-005"));
+    expect(x("ASM-003")).toBeLessThan(x("ASM-004"));
+    expect(x("ASM-006")).toBe(x("ASM-004"));
+  });
+
   it("keeps every station ID the simulation maps", () => {
     expect(factoryLayout.map((o) => o.id).sort()).toEqual([...EXPECTED_IDS].sort());
   });

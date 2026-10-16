@@ -1,5 +1,5 @@
 import type { ActivityLog, FeedEntry } from "../manufacturing/eventFormat";
-import { el } from "./dom";
+import { el, formatShortTime } from "./dom";
 
 export const FEED_SIZE = 20;
 
@@ -27,7 +27,7 @@ export class ActivityFeed {
       li.dataset.type = entry.type;
       const meta = el("div", "feed-meta");
       meta.append(
-        el("span", "feed-time", `${entry.timestamp.slice(5, 10)} ${entry.timestamp.slice(11, 16)}`),
+        el("span", "feed-time", formatShortTime(entry.timestamp)),
         el("span", "feed-type", entry.type.replace(/_/g, " ").toLowerCase()),
       );
       li.append(meta, el("div", "feed-text", entry.text));

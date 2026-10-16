@@ -3,6 +3,7 @@
  * Everything derives from the snapshot (state + applied events) at one
  * timestamp, so it can never show future orders or events.
  */
+import { shiftMinutesBetween } from "../manufacturing/calendar.ts";
 import { WORK_CENTER_NAMES } from "../manufacturing/masterData.ts";
 import type {
   FactoryEvent,
@@ -265,7 +266,8 @@ export function workOrderDetail(snapshot: ReportingSnapshot, orderId: Id, timeli
   for (const step of steps) {
     if (!step.startedAt) continue;
     const start = Date.parse(step.startedAt);
-    if (readyAt !== undefined) step.waitMinutes = Math.max(0, Math.round((start - readyAt) / 60000));
+    // Waiting is shift time: nothing can start overnight or at weekends, so that is not queue delay.
+    if (readyAt !== undefined) step.waitMinutes = Math.round(shiftMinutesBetween(readyAt, start));
     const op = step.operationId ? state.productionOperations[step.operationId] : undefined;
     if (step.completedAt && op) {
       const elapsed = Math.round((Date.parse(step.completedAt) - start) / 60000);

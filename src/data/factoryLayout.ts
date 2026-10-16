@@ -13,7 +13,7 @@ import type {
  *
  *   north wall (z = -22)
  *   +--------------------------------------------------------------------+
- *   | INVENTORY (2x2)  | ASSEMBLY (2 rows x 3)        | QUALITY (3 cells) |
+ *   | INVENTORY (2x2)  | ASSEMBLY (process line, 4 stages) | QUALITY (3)  |
  *   |                  |                              |                   |
  *   |===== main material-handling aisle (z -2..2) =======================|
  *   | RECEIVING (3)    |  (open yard, future use)     | SHIPPING (3)      |
@@ -21,7 +21,9 @@ import type {
  *   west wall (x=-40)                                  east wall (x=40)
  *
  * Flow is a U: dock in (west) -> inventory -> assembly -> quality -> ship
- * out (east). Receiving and shipping sit on the west/east exterior walls.
+ * out (east). Assembly runs west -> east by stage: kitting, mechanical, wiring
+ * (two parallel benches, front and back row), controls & motor setup with the
+ * flexible bay beside it. Receiving and shipping sit on the west/east exterior walls.
  * Stations are data: add an entry here (and a station id the manufacturing
  * model knows) and everything else - master data, selection, dashboard -
  * picks it up from the id.
@@ -69,6 +71,11 @@ export const floorMarkings: FloorMarkingsConfig = {
     { minX: 21.25, maxX: 22.75, minZ: 3, maxZ: 20.5 },
   ],
   arrows: [
+    // assembly process line, east along the interior aisle
+    { x: -12, z: -13.5, heading: "E" },
+    { x: -6, z: -13.5, heading: "E" },
+    { x: 0, z: -13.5, heading: "E" },
+    { x: 6, z: -13.5, heading: "E" },
     // receiving -> inventory, up the cross aisle
     { x: -18, z: 14, heading: "N" },
     { x: -18, z: 7, heading: "N" },
@@ -184,7 +191,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
     capacity: 120,
     utilization: 0.84,
     department: "assembly",
-    position: [-11.6, 0.8, -9.5],
+    position: [-13.3, 0.8, -9.5],
     size: [4.4, 1.6, 2],
     color: 0xf59e0b,
   },
@@ -196,7 +203,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
     capacity: 110,
     utilization: 0.67,
     department: "assembly",
-    position: [-4, 0.8, -9.5],
+    position: [-7.3, 0.8, -9.5],
     size: [4.4, 1.6, 2],
     color: 0xf59e0b,
   },
@@ -208,7 +215,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
     capacity: 90,
     utilization: 0.0,
     department: "assembly",
-    position: [3.6, 0.8, -9.5],
+    position: [-1.3, 0.8, -9.5],
     size: [4.4, 1.6, 2],
     color: 0xf59e0b,
   },
@@ -220,7 +227,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
     capacity: 115,
     utilization: 0.6,
     department: "assembly",
-    position: [-11.6, 0.8, -17.5],
+    position: [4.7, 0.8, -9.5],
     size: [4.4, 1.6, 2],
     color: 0xf59e0b,
   },
@@ -232,7 +239,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
     capacity: 100,
     utilization: 0.2,
     department: "assembly",
-    position: [-4, 0.8, -17.5],
+    position: [-1.3, 0.8, -17.5],
     size: [4.4, 1.6, 2],
     color: 0xf59e0b,
   },
@@ -244,7 +251,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
     capacity: 95,
     utilization: 0.5,
     department: "assembly",
-    position: [3.6, 0.8, -17.5],
+    position: [4.7, 0.8, -17.5],
     size: [4.4, 1.6, 2],
     color: 0xf59e0b,
   },

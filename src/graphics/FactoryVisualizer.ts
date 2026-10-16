@@ -4,6 +4,7 @@ import type { OperationalStatus } from "./FactoryObject";
 import type { FactoryObjectConfig } from "./FactoryObject";
 import { inventoryByLocation, workstationViews } from "../manufacturing/selectors";
 import type { FactoryState, MasterData } from "../manufacturing/types";
+import { WipBuffers } from "./WipBuffers";
 
 const STATUS_COLORS: Record<OperationalStatus, THREE.Color> = {
   idle: new THREE.Color("#64748b"),
@@ -29,15 +30,34 @@ const FULL_FILL = 0.95;
 /** Translates manufacturing state into visual changes on the scene. */
 export class FactoryVisualizer {
   private readonly objectsById: ReadonlyMap<string, THREE.Mesh>;
+  private readonly parent: THREE.Object3D | null;
+  private wip: WipBuffers | null = null;
 
-  constructor(objectsById: ReadonlyMap<string, THREE.Mesh>) {
+  constructor(objectsById: ReadonlyMap<string, THREE.Mesh>, parent: THREE.Object3D | null = null) {
     this.objectsById = objectsById;
+    this.parent = parent;
   }
 
   /** Single entry point: refresh every simulated object from state. */
-  public update(state: Readonly<FactoryState>, master: MasterData): void {
+  public update(state: Readonly<FactoryState>, master: MasterData, nowMs?: number): void {
     this.updateWorkstations(state, master);
     this.updateLocations(state, master);
+    this.updateQueues(state, master, nowMs);
+  }
+
+  /** Work-center queue buffers; built on first use because lanes come from master data. */
+  private updateQueues(state: Readonly<FactoryState>, master: MasterData, nowMs?: number): void {
+    if (!this.parent) return;
+    if (!this.wip) {
+      const stations = new Map<string, FactoryObjectConfig>();
+      for (const [id, mesh] of this.objectsById) {
+        const config = mesh.userData.factoryObject as FactoryObjectConfig | undefined;
+        if (config) stations.set(id, config);
+      }
+      this.wip = new WipBuffers(stations, master);
+      this.parent.add(this.wip.group);
+    }
+    this.wip.update(state, master, nowMs);
   }
 
   /**

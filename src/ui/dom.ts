@@ -1,4 +1,6 @@
 /** Tiny DOM helpers shared by dashboard components (no innerHTML with data). */
+import { weekdayShort } from "../manufacturing/calendar";
+
 export function el<K extends keyof HTMLElementTagNameMap>(
   tag: K,
   className?: string,
@@ -29,7 +31,12 @@ export const STATUS_LABEL: Record<string, string> = {
   down: "Down",
 };
 
+/** "Mon 2026-09-07 14:00 UTC" */
 export const formatSimTime = (d: Date): string =>
-  `${d.toISOString().slice(0, 10)} ${d.toISOString().slice(11, 16)} UTC`;
+  `${weekdayShort(d.getTime())} ${d.toISOString().slice(0, 10)} ${d.toISOString().slice(11, 16)} UTC`;
+
+/** "Mon 09-07 14:00" for compact lists (activity feed, station events). ISO input. */
+export const formatShortTime = (iso: string): string =>
+  `${weekdayShort(Date.parse(iso))} ${iso.slice(5, 10)} ${iso.slice(11, 16)}`;
 
 export const formatPct = (v: number | null): string => (v === null ? "N/A" : `${(v * 100).toFixed(1)}%`);

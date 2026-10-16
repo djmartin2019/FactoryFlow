@@ -24,7 +24,7 @@ Per routing step attempt, shown in the work-order detail:
 
 | Measure | Definition |
 |---|---|
-| Wait | `startedAt` − previous step's `completedAt` (order `releasedAt` for the first step), minutes, floored at 0 |
+| Wait | shift minutes between the previous step's `completedAt` (order `releasedAt` for the first step) and `startedAt`; off-shift time is excluded |
 | Processing | `completedAt` − `startedAt` − hold, minutes |
 | Hold | `pausedMinutes`: time the operation was paused by a machine failure |
 
@@ -38,10 +38,12 @@ rows with their own times. Work-center names label steps only; they do not const
 | Queued orders / units | Orders whose next step is this work center, ready (predecessors complete, order released) and not started; units = step quantity |
 | Queued standard minutes | Σ `plannedMinutes` of the queued steps |
 | Per station | queued standard minutes ÷ stations serving the work center |
-| Oldest wait | now − previous step's completion (order release for the first step), longest queued step |
+| Oldest wait | shift minutes between the previous step's completion (order release for the first step) and now, longest queued step; nights and weekends are not waiting because nothing can start |
 | In process | units of steps running or paused at the work center |
 | Utilization | run time excluding failure holds ÷ (serving stations × shift minutes) in the reporting period; stations serving several work centers share capacity, so values are indicative |
-| Bottleneck candidate | work center with the largest queued standard minutes per station among those with a queue; at most one |
+| Bottleneck candidate | work center with the largest queued standard minutes per station among those with a queue; at most one. Not flagged while the plant is off shift (Mon-Fri 06:00-18:00 UTC), when stations cannot start work |
+
+The 3D plant draws the same queue (one box per queued order, amber pad on the bottleneck candidate) from `workCenterQueues`, so the view and the table share one definition.
 
 It marks where WIP waits, not why: a long queue can come from lane capacity, a failure upstream, or a burst of releases.
 

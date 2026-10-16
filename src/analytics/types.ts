@@ -71,7 +71,7 @@ export interface RoutingStepView {
   workstationName: string;
   /** Logical work center name; absent for routings without work centers. */
   workCenter?: string;
-  /** Minutes between the previous step completing (or order release) and this step starting. */
+  /** Shift minutes between the previous step completing (or order release) and this step starting. */
   waitMinutes?: number;
   /** Elapsed run time excluding machine-failure holds. */
   processingMinutes?: number;

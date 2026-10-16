@@ -26,6 +26,19 @@ export const inShift = (ms: number) => {
   return h >= SHIFT_START_HOUR && h < SHIFT_END_HOUR;
 };
 
+const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
+export const weekdayShort = (ms: number): string => WEEKDAYS[new Date(ms).getUTCDay()];
+
+/** Start of the next shift that opens strictly after `ms` (so, from inside a shift, the next working day). */
+export function nextShiftStart(ms: number): number {
+  let day = dayStart(ms);
+  for (let i = 0; i < 8; i++, day += DAY) {
+    const open = day + SHIFT_START_HOUR * HOUR;
+    if (isWorkingDay(day) && open > ms) return open;
+  }
+  return day;
+}
+
 /** Scheduled shift minutes inside [fromMs, toMs). */
 export function shiftMinutesBetween(fromMs: number, toMs: number): number {
   let total = 0;

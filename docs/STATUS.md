@@ -48,7 +48,10 @@ does not exist; do not assume it.
 | Good-units throughput chart | Implemented | `analytics/throughput.ts` |
 | Inventory view in the Operations Explorer | Implemented | explorer Inventory tab (`ui/explorer`); `selectors.ts` has `inventoryByLocation` |
 | Playback controls, accelerated time, seek | Implemented | `SimulationController`, `PlaybackToolbar` |
-| 3D factory with selection and status colouring | Implemented | `src/graphics/` |
+| 3D factory with selection and status colouring | Implemented | `src/graphics/`; assembly band laid out as a west -> east process line (kitting, mechanical, wiring A/B, controls & motor, flex) |
+| Shift state in the UI (on/off shift, next shift, weekday in dates) | Implemented | playback toolbar badge, Work Centers banner, faded 3D queues; waits and the bottleneck flag respect shifts (Mon-Fri 06:00-18:00 UTC) |
+| Bill of materials per product (Explorer "Bill of Materials" tab) | Implemented | `analytics/billOfMaterials.ts`; master data, quantities per finished unit, standard cost totals reconcile to `Product.standardCostCents` |
+| Work-center queue buffers and bottleneck highlight in 3D | Implemented | `WipBuffers`, `data/queueBuffers.ts`; drawn at each work center's lead station from `workCenterQueues`, the same definition as the Work Centers tab; capped at 6 boxes per work center (counts in the tab) |
 | Performance overlay (`?perf` / `P`) | Implemented | `PerfOverlay`; baselines in `docs/PERFORMANCE.md` |
 | Static hosting and release tooling | Implemented | `deploy/`, `.github/workflows/ci.yml` |
 | Public roadmap page | Implemented | `public/roadmap/index.html` |

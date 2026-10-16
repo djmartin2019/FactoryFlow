@@ -1,17 +1,27 @@
+import { weekdayShort } from "../../manufacturing/calendar";
 import { el } from "../dom";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-/** "2026-09-14 13:05" in UTC. */
+/** Integer cents as "$1,234.56". */
+export function fmtMoney(cents: number): string {
+  const sign = cents < 0 ? "-" : "";
+  const abs = Math.abs(cents);
+  return `${sign}$${Math.floor(abs / 100).toLocaleString("en-US")}.${pad(abs % 100)}`;
+}
+
+/** "Mon 2026-09-14 13:05" in UTC. */
 export function fmtDateTime(iso: string | number | undefined): string {
   if (iso === undefined) return "N/A";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "N/A";
-  return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
+  return `${weekdayShort(d.getTime())} ${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
 }
 
+/** "Mon 2026-09-14" */
 export function fmtDate(iso: string | number | undefined): string {
-  return fmtDateTime(iso).slice(0, 10);
+  const s = fmtDateTime(iso);
+  return s === "N/A" ? s : s.slice(0, 14);
 }
 
 export const STATUS_TEXT: Record<string, string> = {

@@ -4,8 +4,11 @@ import { Factory } from "./Factory";
 import { InteractionManager } from "./InteractionManager";
 import type { SimulationController } from "../simulation/SimulationController";
 import { FactoryVisualizer } from "./FactoryVisualizer";
+import { inShift } from "../manufacturing/calendar";
 import StationDetails from "../ui/StationDetails";
 import { PerfOverlay } from "../ui/PerfOverlay";
+import { SceneLegend } from "../ui/SceneLegend";
+import { PRODUCT_COLORS } from "./WipBuffers";
 
 export class SceneManager {
   private readonly scene: THREE.Scene;
@@ -19,6 +22,7 @@ export class SceneManager {
   private readonly visualizer: FactoryVisualizer;
   private readonly perf: PerfOverlay;
   private lastVisualizedSequence = -1;
+  private lastShiftOpen: boolean | null = null;
   private active = true;
   private readonly resizeObserver: ResizeObserver;
   private readonly onSelectionChange?: (id: string | null) => void;
@@ -55,10 +59,11 @@ export class SceneManager {
     this.scene.add(this.factory.group);
     const factory = this.factory;
 
-    this.visualizer = new FactoryVisualizer(factory.objectsById);
+    this.visualizer = new FactoryVisualizer(factory.objectsById, factory.group);
     this.syncVisuals();
 
     this.stationDetails = new StationDetails(container);
+    new SceneLegend(container, this.simulation.engine.master.products, PRODUCT_COLORS);
     this.perf = new PerfOverlay(container, () => this.countMeshes());
 
     this.interactionManager = new InteractionManager(
@@ -140,6 +145,7 @@ export class SceneManager {
     this.active = active;
     if (active) {
       this.lastVisualizedSequence = -1; // force a visual resync after being hidden
+      this.lastShiftOpen = null;
       this.handleResize();
     }
   }
@@ -155,11 +161,15 @@ export class SceneManager {
   /** Only re-derive visuals when an event has actually been applied. */
   private syncVisuals(): void {
     const state = this.simulation.state;
+    const nowMs = this.simulation.currentTime.getTime();
+    // Shift boundaries change what the queues mean without any event being applied.
+    const shiftOpen = inShift(nowMs);
 
-    if (state.lastSequence === this.lastVisualizedSequence) return;
+    if (state.lastSequence === this.lastVisualizedSequence && shiftOpen === this.lastShiftOpen) return;
     this.lastVisualizedSequence = state.lastSequence;
+    this.lastShiftOpen = shiftOpen;
 
-    this.visualizer.update(state, this.simulation.engine.master);
+    this.visualizer.update(state, this.simulation.engine.master, nowMs);
   }
 
   private handleResize = (): void => {

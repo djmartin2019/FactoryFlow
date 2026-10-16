@@ -3,7 +3,7 @@ import type { StationMetrics } from "../manufacturing/dashboardMetrics";
 import type { ActivityLog } from "../manufacturing/eventFormat";
 import { recordsForFactoryObject } from "../manufacturing/mapping";
 import type { FactoryState, MasterData } from "../manufacturing/types";
-import { STATUS_LABEL, el, formatPct } from "./dom";
+import { STATUS_LABEL, el, formatPct, formatShortTime } from "./dom";
 
 /** Live data the panel reads from; supplied by the dashboard each refresh. */
 export interface DetailsContext {
@@ -48,10 +48,9 @@ export default class StationDetails {
     const object = this.object;
     this.element.replaceChildren();
 
-    if (!object) {
-      this.element.appendChild(el("p", undefined, "Select a factory object to inspect it."));
-      return;
-    }
+    // The panel only exists while something is selected.
+    this.element.hidden = !object;
+    if (!object) return;
 
     const ctx = this.context?.() ?? null;
     const station = ctx?.stations.find((s) => s.workstationId === object.id);
@@ -125,7 +124,7 @@ export default class StationDetails {
       return;
     }
     const ul = el("ul", "mini-events");
-    for (const e of events) ul.appendChild(el("li", undefined, `${e.timestamp.slice(5, 10)} ${e.timestamp.slice(11, 16)} · ${e.text}`));
+    for (const e of events) ul.appendChild(el("li", undefined, `${formatShortTime(e.timestamp)} · ${e.text}`));
     this.element.appendChild(ul);
   }
 }

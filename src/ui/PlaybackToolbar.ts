@@ -1,4 +1,5 @@
 import type { SimulationController } from "../simulation/SimulationController";
+import { inShift, nextShiftStart, weekdayShort } from "../manufacturing/calendar";
 import { el, formatSimTime, setText } from "./dom";
 
 const SPEEDS = [60, 600, 3600, 86400] as const;
@@ -7,6 +8,7 @@ export class PlaybackToolbar {
   readonly element = el("div", "toolbar");
   private readonly playButton = el("button", "btn primary", "Play");
   private readonly clock = el("div", "clock", "");
+  private readonly shift = el("span", "shift-badge", "");
   private readonly progress = el("input", "progress");
   private readonly speedButtons = new Map<number, HTMLButtonElement>();
 
@@ -53,13 +55,18 @@ export class PlaybackToolbar {
       onChange();
     });
 
-    this.element.append(this.playButton, reset, speeds, this.clock, this.progress);
+    this.element.append(this.playButton, reset, speeds, this.clock, this.shift, this.progress);
   }
 
   update(): void {
     const sim = this.simulation;
     setText(this.playButton, sim.isPlaying ? "Pause" : sim.isDone ? "Replay" : "Play");
     setText(this.clock, formatSimTime(sim.currentTime));
+    const now = sim.currentTime.getTime();
+    const open = inShift(now);
+    const next = nextShiftStart(now);
+    setText(this.shift, open ? "On shift" : `Off shift · next ${weekdayShort(next)} 06:00`);
+    this.shift.classList.toggle("off", !open);
     for (const [s, b] of this.speedButtons) b.classList.toggle("active", s === sim.speedMultiplier);
     // Don't fight the user while they drag the slider.
     if (document.activeElement !== this.progress) this.progress.value = String(Math.round(sim.progress * 1000));
