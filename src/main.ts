@@ -73,6 +73,11 @@ async function main() {
   dashboard.onRefresh(() => explorer.update());
   dashboard.onPeriodChange(() => explorer.update(true));
 
+  scene?.details.onOpenWorkOrder((id) => {
+    show("explorer");
+    explorer.openWorkOrder(id);
+  });
+
   type ViewId = "overview" | "explorer";
   const tabs = new Map<ViewId, HTMLButtonElement>();
   const show = (view: ViewId) => {

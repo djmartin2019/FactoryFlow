@@ -21,8 +21,8 @@ does not exist; do not assume it.
 | Supplier purchase orders and receipts | Implemented | `PURCHASE_ORDER_CREATED`, `MATERIAL_RECEIVED` |
 | Shortage blocking with KPI | Implemented | `PRODUCTION_BLOCKED`, `shortageBlocked` KPI |
 | Reservations distinct from consumption | Partial | `MaterialReservation` and `MATERIAL_CONSUMED` are separate records; roadmap Phase 3 lists the full distinction as remaining |
-| Full NCP-300 routing (kit, mount, wire, configure, test, disposition) | Partial | routing exists, not the full sequence |
-| Work centers distinct from physical workstations | Proposed | design §3.2, Phase 1 |
+| Per-product routings: NCP-100 (kit, mount, wire, test), NCP-200 (+ motor-control setup), NCP-300 (+ PLC/HMI configure) | Implemented | schema 1.1.0; `disposition` is not a separate operation, it is the round-1/2 inspection outcome shown in the work-order timeline |
+| Work centers distinct from physical workstations | Partial | all routing steps carry a `workCenterId` label (`WORK_CENTER_NAMES`); stations are not constrained by it |
 | Setup times, skill or equipment requirements | Proposed | Phase 1 |
 | Serialized manufactured units and per-attempt history | Proposed | Phase 2 |
 | BOM and routing revision captured on work orders | Proposed | Phase 2 |
@@ -50,7 +50,7 @@ does not exist; do not assume it.
 | Static hosting and release tooling | Implemented | `deploy/`, `.github/workflows/ci.yml` |
 | Public roadmap page | Implemented | `public/roadmap/index.html` |
 | Material-movement animation in 3D | Proposed | `factoryObjectsForEvent` already returns `flows`; nothing animates them yet |
-| 3D selection linked to work-order detail | Proposed | Phase 2 |
+| 3D selection linked to work-order detail | Partial | station panel "Open WO detail" button opens the Explorer drawer for the station's current order; no unit-level link |
 | Bottleneck analysis and "why" explanations | Proposed | design §8.4, §9.3 |
 | Capability-aware UX (known / inferred / forecast) | Proposed | design §12.3 |
 

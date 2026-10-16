@@ -17,6 +17,7 @@ export default class StationDetails {
   private readonly element: HTMLDivElement;
   private object: FactoryObjectConfig | null = null;
   private context: (() => DetailsContext | null) | null = null;
+  private openWorkOrder: ((orderId: string) => void) | null = null;
 
   constructor(container: HTMLElement) {
     this.element = document.createElement("div");
@@ -30,6 +31,11 @@ export default class StationDetails {
   /** Provide live manufacturing data; without it only layout fields show. */
   public setContext(provider: () => DetailsContext | null): void {
     this.context = provider;
+  }
+
+  /** Called when the user asks to inspect the work order shown for a station. */
+  public onOpenWorkOrder(handler: (orderId: string) => void): void {
+    this.openWorkOrder = handler;
   }
 
   public render(object: FactoryObjectConfig | null): void {
@@ -72,6 +78,13 @@ export default class StationDetails {
       );
     }
     this.element.appendChild(this.list(fields));
+
+    const orderId = station?.currentOrderId;
+    if (orderId && this.openWorkOrder) {
+      const open = el("button", "btn", `Open ${orderId} detail`);
+      open.addEventListener("click", () => this.openWorkOrder?.(orderId));
+      this.element.appendChild(open);
+    }
 
     if (ctx && !station) this.appendInventory(ctx, object.id);
     if (ctx) this.appendEvents(ctx, object.id);

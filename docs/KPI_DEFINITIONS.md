@@ -18,6 +18,19 @@ It only affects the *historical* KPIs below; *current* KPIs are instantaneous.
 | First-pass quality yield | Historical | Share of units passing round-1 inspection | Σ `passedQuantity` ÷ Σ `inspectedQuantity` for round-1 inspections with `inspectedAt` in window | `qualityInspections[]` |
 | Blocked by material shortage | Current | Orders currently blocked for lack of material | count of `status = BLOCKED` and `blockReason = MATERIAL_SHORTAGE` | `productionOrders[]` |
 
+## Work-order operation times (drawer, not a dashboard KPI)
+
+Per routing step attempt, shown in the work-order detail:
+
+| Measure | Definition |
+|---|---|
+| Wait | `startedAt` − previous step's `completedAt` (order `releasedAt` for the first step), minutes, floored at 0 |
+| Processing | `completedAt` − `startedAt` − hold, minutes |
+| Hold | `pausedMinutes`: time the operation was paused by a machine failure |
+
+N/A until the step has started (wait) or completed (processing, hold). Rework and re-test attempts are separate
+rows with their own times. Work-center names label steps only; they do not constrain which station runs a step.
+
 ## N/A rules
 - Utilization: N/A until at least one scheduled shift minute has elapsed in the window (e.g. at simulation start, weekends only).
 - First-pass yield: N/A when no round-1 inspection completed in the window.

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "master": {
     "departments": [
       {
@@ -647,13 +647,31 @@
         "steps": [
           {
             "sequence": 10,
-            "operationType": "MOUNT_AND_WIRE",
+            "workCenterId": "WC-KITTING",
+            "operationType": "KIT",
             "workstationKind": "ASSEMBLY",
-            "setupMinutes": 20,
-            "minutesPerUnit": 25
+            "setupMinutes": 5,
+            "minutesPerUnit": 5
           },
           {
             "sequence": 20,
+            "workCenterId": "WC-ASSEMBLY",
+            "operationType": "MOUNT",
+            "workstationKind": "ASSEMBLY",
+            "setupMinutes": 5,
+            "minutesPerUnit": 8
+          },
+          {
+            "sequence": 30,
+            "workCenterId": "WC-WIRING",
+            "operationType": "WIRE",
+            "workstationKind": "ASSEMBLY",
+            "setupMinutes": 10,
+            "minutesPerUnit": 12
+          },
+          {
+            "sequence": 40,
+            "workCenterId": "WC-TEST",
             "operationType": "FINAL_TEST",
             "workstationKind": "INSPECTION",
             "setupMinutes": 10,
@@ -667,20 +685,39 @@
         "steps": [
           {
             "sequence": 10,
-            "operationType": "MOUNT_AND_WIRE",
+            "workCenterId": "WC-KITTING",
+            "operationType": "KIT",
             "workstationKind": "ASSEMBLY",
-            "setupMinutes": 20,
-            "minutesPerUnit": 30
+            "setupMinutes": 5,
+            "minutesPerUnit": 5
           },
           {
             "sequence": 20,
+            "workCenterId": "WC-ASSEMBLY",
+            "operationType": "MOUNT",
+            "workstationKind": "ASSEMBLY",
+            "setupMinutes": 5,
+            "minutesPerUnit": 10
+          },
+          {
+            "sequence": 30,
+            "workCenterId": "WC-WIRING",
+            "operationType": "WIRE",
+            "workstationKind": "ASSEMBLY",
+            "setupMinutes": 10,
+            "minutesPerUnit": 15
+          },
+          {
+            "sequence": 40,
+            "workCenterId": "WC-MOTOR",
             "operationType": "MOTOR_CIRCUIT_ASSEMBLY",
             "workstationKind": "ASSEMBLY",
             "setupMinutes": 15,
             "minutesPerUnit": 20
           },
           {
-            "sequence": 30,
+            "sequence": 50,
+            "workCenterId": "WC-TEST",
             "operationType": "FINAL_TEST",
             "workstationKind": "INSPECTION",
             "setupMinutes": 10,
@@ -694,20 +731,39 @@
         "steps": [
           {
             "sequence": 10,
-            "operationType": "MOUNT_AND_WIRE",
+            "workCenterId": "WC-KITTING",
+            "operationType": "KIT",
             "workstationKind": "ASSEMBLY",
-            "setupMinutes": 25,
-            "minutesPerUnit": 40
+            "setupMinutes": 10,
+            "minutesPerUnit": 10
           },
           {
             "sequence": 20,
-            "operationType": "PLC_HMI_INTEGRATION",
+            "workCenterId": "WC-ASSEMBLY",
+            "operationType": "MOUNT",
+            "workstationKind": "ASSEMBLY",
+            "setupMinutes": 15,
+            "minutesPerUnit": 15
+          },
+          {
+            "sequence": 30,
+            "workCenterId": "WC-WIRING",
+            "operationType": "WIRE",
+            "workstationKind": "ASSEMBLY",
+            "setupMinutes": 15,
+            "minutesPerUnit": 30
+          },
+          {
+            "sequence": 40,
+            "workCenterId": "WC-CONTROLS",
+            "operationType": "CONFIGURE",
             "workstationKind": "ASSEMBLY",
             "setupMinutes": 30,
             "minutesPerUnit": 35
           },
           {
-            "sequence": 30,
+            "sequence": 50,
+            "workCenterId": "WC-TEST",
             "operationType": "FINAL_TEST",
             "workstationKind": "INSPECTION",
             "setupMinutes": 15,

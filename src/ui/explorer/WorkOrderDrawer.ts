@@ -117,17 +117,19 @@ export class WorkOrderDrawer {
       "Production routing",
       d.routing.length
         ? table(
-            ["Seq", "Operation", "Workstation", "Status", "Start", "Complete", "Qty"],
+            ["Seq", "Operation", "Work center", "Workstation", "Status", "Start", "Complete", "Wait / run / hold (min)", "Qty"],
             d.routing.map((r) => [
               String(r.sequence),
               r.isRework ? `${r.label} ↺` : r.label,
+              r.workCenter ?? "N/A",
               r.workstationName,
               statusBadge(r.status),
               fmtDateTime(r.startedAt),
               fmtDateTime(r.completedAt),
+              r.processingMinutes === undefined ? "N/A" : `${r.waitMinutes ?? "N/A"} / ${r.processingMinutes} / ${r.holdMinutes ?? 0}`,
               r.completedQuantity === null ? "N/A" : String(r.completedQuantity),
             ]),
-            [0, 6],
+            [0, 8],
           )
         : el("div", "empty-state", "No routing is configured for this product."),
     );

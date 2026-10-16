@@ -3,6 +3,7 @@
  * Everything derives from the snapshot (state + applied events) at one
  * timestamp, so it can never show future orders or events.
  */
+import { WORK_CENTER_NAMES } from "../manufacturing/masterData.ts";
 import type {
   FactoryEvent,
   FactoryState,
@@ -28,6 +29,10 @@ const OPERATION_LABELS: Record<OperationType, string> = {
   MOUNT_AND_WIRE: "Mount & wire",
   MOTOR_CIRCUIT_ASSEMBLY: "Motor circuit assembly",
   PLC_HMI_INTEGRATION: "PLC / HMI integration",
+  KIT: "Kit materials",
+  MOUNT: "Mount components",
+  WIRE: "Wire & terminate",
+  CONFIGURE: "PLC / HMI configuration",
   FINAL_TEST: "Final test",
   REWORK: "Rework",
 };
@@ -225,6 +230,7 @@ export function workOrderDetail(snapshot: ReportingSnapshot, orderId: Id, timeli
     operationId: op.id,
     workstationId: op.workstationId,
     workstationName: wsName(master, op.workstationId) ?? `Any ${op.workstationKind.toLowerCase()} station`,
+    ...(op.workCenterId ? { workCenter: WORK_CENTER_NAMES[op.workCenterId] ?? op.workCenterId } : {}),
     status: op.status === "PENDING" ? "PENDING" : op.status,
     startedAt: op.startedAt,
     completedAt: op.completedAt,
@@ -252,6 +258,21 @@ export function workOrderDetail(snapshot: ReportingSnapshot, orderId: Id, timeli
   for (const op of ops) {
     if (used.has(op.id)) continue;
     steps.push(view(op, op.isRework ? "Rework" : `${operationLabel(op.type)} (re-test)`, true));
+  }
+
+  // Wait / processing / hold per attempt (see KPI_DEFINITIONS "Work-order operation times").
+  let readyAt = order.releasedAt ? Date.parse(order.releasedAt) : undefined;
+  for (const step of steps) {
+    if (!step.startedAt) continue;
+    const start = Date.parse(step.startedAt);
+    if (readyAt !== undefined) step.waitMinutes = Math.max(0, Math.round((start - readyAt) / 60000));
+    const op = step.operationId ? state.productionOperations[step.operationId] : undefined;
+    if (step.completedAt && op) {
+      const elapsed = Math.round((Date.parse(step.completedAt) - start) / 60000);
+      step.holdMinutes = op.pausedMinutes;
+      step.processingMinutes = Math.max(0, elapsed - op.pausedMinutes);
+      readyAt = Date.parse(step.completedAt);
+    }
   }
 
   // Materials: required from BOM x order quantity; reserved/consumed only where attributable.

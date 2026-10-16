@@ -195,7 +195,7 @@ function bomRequirements(master: MasterIndex, productId: Id, quantity: Quantity)
   return new Map(bom.lines.map((l) => [l.materialId, l.quantityPer * quantity]));
 }
 
-const ASSEMBLY_TYPES = new Set(["MOUNT_AND_WIRE", "MOTOR_CIRCUIT_ASSEMBLY", "PLC_HMI_INTEGRATION"]);
+const ASSEMBLY_TYPES = new Set(["MOUNT_AND_WIRE", "MOTOR_CIRCUIT_ASSEMBLY", "PLC_HMI_INTEGRATION", "KIT", "MOUNT", "WIRE", "CONFIGURE"]);
 
 function operationsOf(state: FactoryState, order: ProductionOrder): ProductionOperation[] {
   return order.operationIds.map((id) => state.productionOperations[id]);
@@ -379,7 +379,7 @@ export function applyEventInPlace(state: FactoryState, event: FactoryEvent, mast
       req(ops.length === routing.steps.length, `order ${order.id} operations do not match routing length`);
       ops.forEach((op, i) => {
         const step = routing.steps[i];
-        req(op.sequence === step.sequence && op.type === step.operationType && op.workstationKind === step.workstationKind,
+        req(op.sequence === step.sequence && op.type === step.operationType && op.workstationKind === step.workstationKind && op.workCenterId === step.workCenterId,
           `operation ${op.id} deviates from routing ${routing.id}`);
         req(op.productionOrderId === order.id && op.status === "PENDING" && !op.isRework && op.quantity === order.quantity,
           `operation ${op.id} must be a PENDING routing step for the full order quantity`);

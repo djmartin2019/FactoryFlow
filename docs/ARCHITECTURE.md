@@ -64,6 +64,13 @@ An event is `{ id, sequence, timestamp, type, entities, payload }` (`EventEnvelo
 - An event the reducer rejects throws `InvariantViolation`; `replayWithGuard` reports instead of throwing.
 - Stream = `initial_state.json` (master data + opening state) + ordered `events.json`.
 
+### Schema history
+- **1.1.0** (Phase 1, per-product routings): additive. `OperationType` gains `KIT`, `MOUNT`, `WIRE`, `CONFIGURE`;
+  `RoutingStep` and `ProductionOperation` gain optional `workCenterId` (reducer checks they agree). No event
+  shape changed. Migration: 1.0.0 logs replay unchanged (the field is optional); orders in 1.0.0 data keep the
+  old 3-step routings (`MOUNT_AND_WIRE`, `PLC_HMI_INTEGRATION`), so only regenerated data shows the new sequences. Synthetic abstractions: work centers, step durations and the absence of a disposition operation.
+  A real MES/ERP adapter must supply routing steps with work center, standard times and operation status events.
+
 ## 5. Clocks
 
 | Clock | Where | Meaning |

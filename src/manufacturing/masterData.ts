@@ -147,20 +147,36 @@ const PRODUCT_SEEDS = [
 /** Product mix used by demand generation and cover planning. */
 export const PRODUCT_MIX: Record<string, number> = { "NCP-100": 0.5, "NCP-200": 0.3, "NCP-300": 0.2 };
 
+/** Logical work centers (design §3.2). In schema 1.1.0 these label routing steps; stations are not yet constrained by them. */
+export const WORK_CENTER_NAMES: Record<string, string> = {
+  "WC-KITTING": "Kitting",
+  "WC-ASSEMBLY": "Mechanical assembly",
+  "WC-WIRING": "Wiring & termination",
+  "WC-MOTOR": "Motor-control setup",
+  "WC-CONTROLS": "Controls configuration",
+  "WC-TEST": "Functional test",
+};
+
 const ROUTING_STEPS: Record<string, Routing["steps"]> = {
   "NCP-100": [
-    { sequence: 10, operationType: "MOUNT_AND_WIRE", workstationKind: "ASSEMBLY", setupMinutes: 20, minutesPerUnit: 25 },
-    { sequence: 20, operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 10, minutesPerUnit: 8 },
+    { sequence: 10, workCenterId: "WC-KITTING", operationType: "KIT", workstationKind: "ASSEMBLY", setupMinutes: 5, minutesPerUnit: 5 },
+    { sequence: 20, workCenterId: "WC-ASSEMBLY", operationType: "MOUNT", workstationKind: "ASSEMBLY", setupMinutes: 5, minutesPerUnit: 8 },
+    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 10, minutesPerUnit: 12 },
+    { sequence: 40, workCenterId: "WC-TEST", operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 10, minutesPerUnit: 8 },
   ],
   "NCP-200": [
-    { sequence: 10, operationType: "MOUNT_AND_WIRE", workstationKind: "ASSEMBLY", setupMinutes: 20, minutesPerUnit: 30 },
-    { sequence: 20, operationType: "MOTOR_CIRCUIT_ASSEMBLY", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 20 },
-    { sequence: 30, operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 10, minutesPerUnit: 12 },
+    { sequence: 10, workCenterId: "WC-KITTING", operationType: "KIT", workstationKind: "ASSEMBLY", setupMinutes: 5, minutesPerUnit: 5 },
+    { sequence: 20, workCenterId: "WC-ASSEMBLY", operationType: "MOUNT", workstationKind: "ASSEMBLY", setupMinutes: 5, minutesPerUnit: 10 },
+    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 10, minutesPerUnit: 15 },
+    { sequence: 40, workCenterId: "WC-MOTOR", operationType: "MOTOR_CIRCUIT_ASSEMBLY", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 20 },
+    { sequence: 50, workCenterId: "WC-TEST", operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 10, minutesPerUnit: 12 },
   ],
   "NCP-300": [
-    { sequence: 10, operationType: "MOUNT_AND_WIRE", workstationKind: "ASSEMBLY", setupMinutes: 25, minutesPerUnit: 40 },
-    { sequence: 20, operationType: "PLC_HMI_INTEGRATION", workstationKind: "ASSEMBLY", setupMinutes: 30, minutesPerUnit: 35 },
-    { sequence: 30, operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 15, minutesPerUnit: 20 },
+    { sequence: 10, workCenterId: "WC-KITTING", operationType: "KIT", workstationKind: "ASSEMBLY", setupMinutes: 10, minutesPerUnit: 10 },
+    { sequence: 20, workCenterId: "WC-ASSEMBLY", operationType: "MOUNT", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 15 },
+    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 30 },
+    { sequence: 40, workCenterId: "WC-CONTROLS", operationType: "CONFIGURE", workstationKind: "ASSEMBLY", setupMinutes: 30, minutesPerUnit: 35 },
+    { sequence: 50, workCenterId: "WC-TEST", operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 15, minutesPerUnit: 20 },
   ],
 };
 

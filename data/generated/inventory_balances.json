@@ -3,9 +3,9 @@
     "locationId": "INV-001",
     "itemId": "MAT-ENC-S",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 89,
+    "onHand": 99,
     "reserved": 0,
-    "available": 89
+    "available": 99
   },
   {
     "locationId": "INV-001",
@@ -19,17 +19,17 @@
     "locationId": "INV-001",
     "itemId": "MAT-ENC-L",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 39,
+    "onHand": 29,
     "reserved": 0,
-    "available": 39
+    "available": 29
   },
   {
     "locationId": "INV-001",
     "itemId": "MAT-DIN-35",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 303,
+    "onHand": 203,
     "reserved": 0,
-    "available": 303
+    "available": 203
   },
   {
     "locationId": "INV-002",
@@ -43,9 +43,9 @@
     "locationId": "INV-002",
     "itemId": "MAT-BRK-3P",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 244,
+    "onHand": 294,
     "reserved": 0,
-    "available": 244
+    "available": 294
   },
   {
     "locationId": "INV-002",
@@ -83,25 +83,25 @@
     "locationId": "INV-004",
     "itemId": "MAT-PLC-CPU",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 44,
+    "onHand": 54,
     "reserved": 0,
-    "available": 44
+    "available": 54
   },
   {
     "locationId": "INV-004",
     "itemId": "MAT-HMI-7",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 44,
+    "onHand": 54,
     "reserved": 0,
-    "available": 44
+    "available": 54
   },
   {
     "locationId": "INV-003",
     "itemId": "MAT-PSU-24",
     "itemKind": "RAW_MATERIAL",
-    "onHand": 213,
+    "onHand": 143,
     "reserved": 0,
-    "available": 213
+    "available": 143
   },
   {
     "locationId": "SHP-001",

@@ -678,7 +678,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 8281
+        "unitCostCents": 8619
       },
       {
         "id": "POL-0023-2",
@@ -686,7 +686,7 @@
         "materialId": "MAT-ENC-L",
         "orderedQuantity": 15,
         "receivedQuantity": 15,
-        "unitCostCents": 26800
+        "unitCostCents": 26264
       },
       {
         "id": "POL-0023-3",
@@ -694,10 +694,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 389
+        "unitCostCents": 385
       }
     ],
-    "totalCents": 587070
+    "totalCents": 585590
   },
   {
     "id": "PO-0024",
@@ -714,7 +714,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1869
+        "unitCostCents": 1850
       },
       {
         "id": "POL-0024-2",
@@ -722,7 +722,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 6336
+        "unitCostCents": 6464
       },
       {
         "id": "POL-0024-3",
@@ -730,7 +730,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1667
+        "unitCostCents": 1634
       },
       {
         "id": "POL-0024-4",
@@ -738,10 +738,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 40,
         "receivedQuantity": 40,
-        "unitCostCents": 5198
+        "unitCostCents": 5303
       }
     ],
-    "totalCents": 878320
+    "totalCents": 883720
   },
   {
     "id": "PO-0025",
@@ -758,7 +758,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 1000,
         "receivedQuantity": 1000,
-        "unitCostCents": 215
+        "unitCostCents": 213
       },
       {
         "id": "POL-0025-2",
@@ -769,7 +769,7 @@
         "unitCostCents": 5900
       }
     ],
-    "totalCents": 451000
+    "totalCents": 449000
   },
   {
     "id": "PO-0026",
@@ -786,7 +786,7 @@
         "materialId": "MAT-PLC-CPU",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 38885
+        "unitCostCents": 37730
       },
       {
         "id": "POL-0026-2",
@@ -794,10 +794,10 @@
         "materialId": "MAT-HMI-7",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 30797
+        "unitCostCents": 30199
       }
     ],
-    "totalCents": 1393640
+    "totalCents": 1358580
   },
   {
     "id": "PO-0027",
@@ -814,10 +814,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 7600
+        "unitCostCents": 7372
       }
     ],
-    "totalCents": 380000
+    "totalCents": 368600
   },
   {
     "id": "PO-0028",
@@ -842,7 +842,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 10,
         "receivedQuantity": 10,
-        "unitCostCents": 14900
+        "unitCostCents": 14602
       },
       {
         "id": "POL-0028-3",
@@ -850,10 +850,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 377
+        "unitCostCents": 389
       }
     ],
-    "totalCents": 250660
+    "totalCents": 248280
   },
   {
     "id": "PO-0029",
@@ -870,7 +870,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 6592
+        "unitCostCents": 6208
       },
       {
         "id": "POL-0029-2",
@@ -878,7 +878,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1601
+        "unitCostCents": 1650
       },
       {
         "id": "POL-0029-3",
@@ -886,10 +886,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 5145
+        "unitCostCents": 5303
       }
     ],
-    "totalCents": 592600
+    "totalCents": 581460
   },
   {
     "id": "PO-0030",
@@ -906,10 +906,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 40,
         "receivedQuantity": 40,
-        "unitCostCents": 5900
+        "unitCostCents": 5782
       }
     ],
-    "totalCents": 236000
+    "totalCents": 231280
   },
   {
     "id": "PO-0031",
@@ -926,10 +926,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 30,
         "receivedQuantity": 30,
-        "unitCostCents": 7600
+        "unitCostCents": 7372
       }
     ],
-    "totalCents": 228000
+    "totalCents": 221160
   },
   {
     "id": "PO-0032",
@@ -946,7 +946,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 30,
         "receivedQuantity": 30,
-        "unitCostCents": 8281
+        "unitCostCents": 8450
       },
       {
         "id": "POL-0032-2",
@@ -954,7 +954,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 15198
+        "unitCostCents": 14453
       },
       {
         "id": "POL-0032-3",
@@ -962,7 +962,7 @@
         "materialId": "MAT-ENC-L",
         "orderedQuantity": 5,
         "receivedQuantity": 5,
-        "unitCostCents": 27068
+        "unitCostCents": 26264
       },
       {
         "id": "POL-0032-4",
@@ -973,7 +973,7 @@
         "unitCostCents": 393
       }
     ],
-    "totalCents": 727030
+    "totalCents": 713180
   },
   {
     "id": "PO-0033",
@@ -990,7 +990,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1887
+        "unitCostCents": 1795
       },
       {
         "id": "POL-0033-2",
@@ -998,7 +998,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 75,
         "receivedQuantity": 75,
-        "unitCostCents": 6208
+        "unitCostCents": 6336
       },
       {
         "id": "POL-0033-3",
@@ -1014,10 +1014,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 40,
         "receivedQuantity": 40,
-        "unitCostCents": 5093
+        "unitCostCents": 5303
       }
     ],
-    "totalCents": 1023020
+    "totalCents": 1031820
   },
   {
     "id": "PO-0034",
@@ -1034,7 +1034,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 1000,
         "receivedQuantity": 1000,
-        "unitCostCents": 215
+        "unitCostCents": 219
       },
       {
         "id": "POL-0034-2",
@@ -1042,10 +1042,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 60,
         "receivedQuantity": 60,
-        "unitCostCents": 5782
+        "unitCostCents": 5959
       }
     ],
-    "totalCents": 561920
+    "totalCents": 576540
   },
   {
     "id": "PO-0035",
@@ -1062,10 +1062,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 7600
+        "unitCostCents": 7676
       }
     ],
-    "totalCents": 380000
+    "totalCents": 383800
   },
   {
     "id": "PO-0036",
@@ -1082,10 +1082,10 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 30,
         "receivedQuantity": 30,
-        "unitCostCents": 8366
+        "unitCostCents": 8450
       }
     ],
-    "totalCents": 250980
+    "totalCents": 253500
   },
   {
     "id": "PO-0037",
@@ -1102,7 +1102,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1813
+        "unitCostCents": 1850
       },
       {
         "id": "POL-0037-2",
@@ -1110,7 +1110,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 6272
+        "unitCostCents": 6464
       },
       {
         "id": "POL-0037-3",
@@ -1118,7 +1118,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1601
+        "unitCostCents": 1683
       },
       {
         "id": "POL-0037-4",
@@ -1129,7 +1129,7 @@
         "unitCostCents": 5408
       }
     ],
-    "totalCents": 871320
+    "totalCents": 892820
   },
   {
     "id": "PO-0038",
@@ -1146,7 +1146,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 500,
         "receivedQuantity": 500,
-        "unitCostCents": 221
+        "unitCostCents": 211
       },
       {
         "id": "POL-0038-2",
@@ -1154,10 +1154,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 40,
         "receivedQuantity": 40,
-        "unitCostCents": 5841
+        "unitCostCents": 5959
       }
     ],
-    "totalCents": 344140
+    "totalCents": 343860
   },
   {
     "id": "PO-0039",
@@ -1174,7 +1174,7 @@
         "materialId": "MAT-PLC-CPU",
         "orderedQuantity": 10,
         "receivedQuantity": 10,
-        "unitCostCents": 37345
+        "unitCostCents": 38115
       },
       {
         "id": "POL-0039-2",
@@ -1182,10 +1182,10 @@
         "materialId": "MAT-HMI-7",
         "orderedQuantity": 10,
         "receivedQuantity": 10,
-        "unitCostCents": 29900
+        "unitCostCents": 29003
       }
     ],
-    "totalCents": 672450
+    "totalCents": 671180
   },
   {
     "id": "PO-0040",
@@ -1202,10 +1202,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 7676
+        "unitCostCents": 7372
       }
     ],
-    "totalCents": 383800
+    "totalCents": 368600
   },
   {
     "id": "PO-0041",
@@ -1222,7 +1222,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 8197
+        "unitCostCents": 8281
       },
       {
         "id": "POL-0041-2",
@@ -1230,7 +1230,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 30,
         "receivedQuantity": 30,
-        "unitCostCents": 15049
+        "unitCostCents": 14900
       },
       {
         "id": "POL-0041-3",
@@ -1246,10 +1246,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 150,
         "receivedQuantity": 150,
-        "unitCostCents": 393
+        "unitCostCents": 381
       }
     ],
-    "totalCents": 950400
+    "totalCents": 945810
   },
   {
     "id": "PO-0042",
@@ -1266,7 +1266,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 1906
+        "unitCostCents": 1832
       },
       {
         "id": "POL-0042-2",
@@ -1290,10 +1290,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 60,
         "receivedQuantity": 60,
-        "unitCostCents": 5408
+        "unitCostCents": 5303
       }
     ],
-    "totalCents": 1137680
+    "totalCents": 1127680
   },
   {
     "id": "PO-0043",
@@ -1310,7 +1310,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 1000,
         "receivedQuantity": 1000,
-        "unitCostCents": 217
+        "unitCostCents": 215
       },
       {
         "id": "POL-0043-2",
@@ -1318,10 +1318,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 60,
         "receivedQuantity": 60,
-        "unitCostCents": 5841
+        "unitCostCents": 5900
       }
     ],
-    "totalCents": 567460
+    "totalCents": 569000
   },
   {
     "id": "PO-0044",
@@ -1338,10 +1338,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 60,
         "receivedQuantity": 60,
-        "unitCostCents": 7676
+        "unitCostCents": 7372
       }
     ],
-    "totalCents": 460560
+    "totalCents": 442320
   },
   {
     "id": "PO-0045",
@@ -1358,7 +1358,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 60,
         "receivedQuantity": 60,
-        "unitCostCents": 14602
+        "unitCostCents": 15347
       },
       {
         "id": "POL-0045-2",
@@ -1366,10 +1366,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 385
+        "unitCostCents": 377
       }
     ],
-    "totalCents": 914620
+    "totalCents": 958520
   },
   {
     "id": "PO-0046",
@@ -1386,7 +1386,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1869
+        "unitCostCents": 1906
       },
       {
         "id": "POL-0046-2",
@@ -1402,7 +1402,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 200,
         "receivedQuantity": 200,
-        "unitCostCents": 1617
+        "unitCostCents": 1683
       },
       {
         "id": "POL-0046-4",
@@ -1410,10 +1410,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 120,
         "receivedQuantity": 120,
-        "unitCostCents": 5408
+        "unitCostCents": 5250
       }
     ],
-    "totalCents": 1983260
+    "totalCents": 1981200
   },
   {
     "id": "PO-0047",
@@ -1430,7 +1430,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 1000,
         "receivedQuantity": 1000,
-        "unitCostCents": 213
+        "unitCostCents": 219
       },
       {
         "id": "POL-0047-2",
@@ -1438,10 +1438,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 60,
         "receivedQuantity": 60,
-        "unitCostCents": 5841
+        "unitCostCents": 5959
       }
     ],
-    "totalCents": 563460
+    "totalCents": 576540
   },
   {
     "id": "PO-0048",
@@ -1458,7 +1458,7 @@
         "materialId": "MAT-PLC-CPU",
         "orderedQuantity": 10,
         "receivedQuantity": 10,
-        "unitCostCents": 39655
+        "unitCostCents": 39270
       },
       {
         "id": "POL-0048-2",
@@ -1466,10 +1466,10 @@
         "materialId": "MAT-HMI-7",
         "orderedQuantity": 10,
         "receivedQuantity": 10,
-        "unitCostCents": 30498
+        "unitCostCents": 29601
       }
     ],
-    "totalCents": 701530
+    "totalCents": 688710
   },
   {
     "id": "PO-0049",
@@ -1486,10 +1486,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 60,
         "receivedQuantity": 60,
-        "unitCostCents": 7600
+        "unitCostCents": 7676
       }
     ],
-    "totalCents": 456000
+    "totalCents": 460560
   },
   {
     "id": "PO-0050",
@@ -1506,7 +1506,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 8366
+        "unitCostCents": 8619
       },
       {
         "id": "POL-0050-2",
@@ -1514,7 +1514,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 110,
         "receivedQuantity": 110,
-        "unitCostCents": 15198
+        "unitCostCents": 15347
       },
       {
         "id": "POL-0050-3",
@@ -1530,10 +1530,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 250,
         "receivedQuantity": 250,
-        "unitCostCents": 373
+        "unitCostCents": 381
       }
     ],
-    "totalCents": 2197670
+    "totalCents": 2221120
   },
   {
     "id": "PO-0051",
@@ -1550,7 +1550,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 150,
         "receivedQuantity": 150,
-        "unitCostCents": 1795
+        "unitCostCents": 1887
       },
       {
         "id": "POL-0051-2",
@@ -1558,7 +1558,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 250,
         "receivedQuantity": 250,
-        "unitCostCents": 6528
+        "unitCostCents": 6208
       },
       {
         "id": "POL-0051-3",
@@ -1566,7 +1566,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 350,
         "receivedQuantity": 350,
-        "unitCostCents": 1601
+        "unitCostCents": 1634
       },
       {
         "id": "POL-0051-4",
@@ -1574,10 +1574,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 220,
         "receivedQuantity": 220,
-        "unitCostCents": 5355
+        "unitCostCents": 5250
       }
     ],
-    "totalCents": 3639700
+    "totalCents": 3561950
   },
   {
     "id": "PO-0052",
@@ -1594,7 +1594,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 2500,
         "receivedQuantity": 2500,
-        "unitCostCents": 209
+        "unitCostCents": 215
       },
       {
         "id": "POL-0052-2",
@@ -1602,10 +1602,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 140,
         "receivedQuantity": 140,
-        "unitCostCents": 5841
+        "unitCostCents": 5723
       }
     ],
-    "totalCents": 1340240
+    "totalCents": 1338720
   },
   {
     "id": "PO-0053",
@@ -1642,7 +1642,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 70,
         "receivedQuantity": 70,
-        "unitCostCents": 15198
+        "unitCostCents": 14453
       },
       {
         "id": "POL-0054-2",
@@ -1650,10 +1650,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 150,
         "receivedQuantity": 150,
-        "unitCostCents": 393
+        "unitCostCents": 385
       }
     ],
-    "totalCents": 1122810
+    "totalCents": 1069460
   },
   {
     "id": "PO-0055",
@@ -1670,7 +1670,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 1795
+        "unitCostCents": 1887
       },
       {
         "id": "POL-0055-2",
@@ -1678,7 +1678,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 150,
         "receivedQuantity": 150,
-        "unitCostCents": 6592
+        "unitCostCents": 6400
       },
       {
         "id": "POL-0055-3",
@@ -1686,7 +1686,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 250,
         "receivedQuantity": 250,
-        "unitCostCents": 1601
+        "unitCostCents": 1650
       },
       {
         "id": "POL-0055-4",
@@ -1694,10 +1694,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 160,
         "receivedQuantity": 160,
-        "unitCostCents": 5250
+        "unitCostCents": 5145
       }
     ],
-    "totalCents": 2318800
+    "totalCents": 2290050
   },
   {
     "id": "PO-0056",
@@ -1714,7 +1714,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 1500,
         "receivedQuantity": 1500,
-        "unitCostCents": 219
+        "unitCostCents": 221
       },
       {
         "id": "POL-0056-2",
@@ -1722,10 +1722,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 80,
         "receivedQuantity": 80,
-        "unitCostCents": 5900
+        "unitCostCents": 6018
       }
     ],
-    "totalCents": 800500
+    "totalCents": 812940
   },
   {
     "id": "PO-0057",
@@ -1742,10 +1742,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 80,
         "receivedQuantity": 80,
-        "unitCostCents": 7752
+        "unitCostCents": 7524
       }
     ],
-    "totalCents": 620160
+    "totalCents": 601920
   },
   {
     "id": "PO-0058",
@@ -1762,7 +1762,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 8281
+        "unitCostCents": 8619
       },
       {
         "id": "POL-0058-2",
@@ -1770,7 +1770,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 80,
         "receivedQuantity": 80,
-        "unitCostCents": 15347
+        "unitCostCents": 14453
       },
       {
         "id": "POL-0058-3",
@@ -1778,10 +1778,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 200,
         "receivedQuantity": 200,
-        "unitCostCents": 381
+        "unitCostCents": 373
       }
     ],
-    "totalCents": 1469580
+    "totalCents": 1403220
   },
   {
     "id": "PO-0059",
@@ -1798,7 +1798,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 150,
         "receivedQuantity": 150,
-        "unitCostCents": 1795
+        "unitCostCents": 1887
       },
       {
         "id": "POL-0059-2",
@@ -1806,7 +1806,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 175,
         "receivedQuantity": 175,
-        "unitCostCents": 6208
+        "unitCostCents": 6336
       },
       {
         "id": "POL-0059-3",
@@ -1814,7 +1814,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 300,
         "receivedQuantity": 300,
-        "unitCostCents": 1617
+        "unitCostCents": 1634
       },
       {
         "id": "POL-0059-4",
@@ -1825,7 +1825,7 @@
         "unitCostCents": 5355
       }
     ],
-    "totalCents": 2697550
+    "totalCents": 2738850
   },
   {
     "id": "PO-0060",
@@ -1842,7 +1842,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 1500,
         "receivedQuantity": 1500,
-        "unitCostCents": 213
+        "unitCostCents": 215
       },
       {
         "id": "POL-0060-2",
@@ -1850,10 +1850,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 6018
+        "unitCostCents": 5841
       }
     ],
-    "totalCents": 921300
+    "totalCents": 906600
   },
   {
     "id": "PO-0061",
@@ -1861,7 +1861,7 @@
     "createdAt": "2026-09-18T06:00:00.000Z",
     "promisedDeliveryAt": "2026-09-30T10:00:00.000Z",
     "receivingLocationId": "REC-002",
-    "status": "OPEN",
+    "status": "RECEIVED",
     "reason": "REORDER_POINT",
     "lines": [
       {
@@ -1869,19 +1869,19 @@
         "lineNumber": 1,
         "materialId": "MAT-PLC-CPU",
         "orderedQuantity": 10,
-        "receivedQuantity": 0,
-        "unitCostCents": 38500
+        "receivedQuantity": 10,
+        "unitCostCents": 39655
       },
       {
         "id": "POL-0061-2",
         "lineNumber": 2,
         "materialId": "MAT-HMI-7",
         "orderedQuantity": 10,
-        "receivedQuantity": 0,
-        "unitCostCents": 29601
+        "receivedQuantity": 10,
+        "unitCostCents": 29003
       }
     ],
-    "totalCents": 681010
+    "totalCents": 686580
   },
   {
     "id": "PO-0062",
@@ -1889,7 +1889,7 @@
     "createdAt": "2026-09-18T06:00:00.000Z",
     "promisedDeliveryAt": "2026-09-28T10:00:00.000Z",
     "receivingLocationId": "REC-003",
-    "status": "RECEIVED",
+    "status": "OPEN",
     "reason": "REORDER_POINT",
     "lines": [
       {
@@ -1897,11 +1897,11 @@
         "lineNumber": 1,
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 100,
-        "receivedQuantity": 100,
-        "unitCostCents": 7828
+        "receivedQuantity": 0,
+        "unitCostCents": 7752
       }
     ],
-    "totalCents": 782800
+    "totalCents": 775200
   },
   {
     "id": "PO-0063",
@@ -1918,7 +1918,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 8619
+        "unitCostCents": 8197
       },
       {
         "id": "POL-0063-2",
@@ -1926,10 +1926,10 @@
         "materialId": "MAT-ENC-L",
         "orderedQuantity": 10,
         "receivedQuantity": 10,
-        "unitCostCents": 27068
+        "unitCostCents": 27336
       }
     ],
-    "totalCents": 443060
+    "totalCents": 437300
   },
   {
     "id": "PO-0064",
@@ -1937,7 +1937,7 @@
     "createdAt": "2026-09-21T06:00:00.000Z",
     "promisedDeliveryAt": "2026-09-28T10:00:00.000Z",
     "receivingLocationId": "REC-002",
-    "status": "OPEN",
+    "status": "RECEIVED",
     "reason": "REORDER_POINT",
     "lines": [
       {
@@ -1945,11 +1945,11 @@
         "lineNumber": 1,
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 50,
-        "receivedQuantity": 0,
-        "unitCostCents": 6464
+        "receivedQuantity": 50,
+        "unitCostCents": 6592
       }
     ],
-    "totalCents": 323200
+    "totalCents": 329600
   },
   {
     "id": "PO-0065",
@@ -1966,7 +1966,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 500,
         "receivedQuantity": 500,
-        "unitCostCents": 217
+        "unitCostCents": 221
       },
       {
         "id": "POL-0065-2",
@@ -1974,10 +1974,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 40,
         "receivedQuantity": 40,
-        "unitCostCents": 5723
+        "unitCostCents": 5782
       }
     ],
-    "totalCents": 337420
+    "totalCents": 341780
   },
   {
     "id": "PO-0066",
@@ -1985,7 +1985,7 @@
     "createdAt": "2026-09-21T06:00:00.000Z",
     "promisedDeliveryAt": "2026-09-29T10:00:00.000Z",
     "receivingLocationId": "REC-003",
-    "status": "OPEN",
+    "status": "RECEIVED",
     "reason": "REORDER_POINT",
     "lines": [
       {
@@ -1993,11 +1993,11 @@
         "lineNumber": 1,
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 30,
-        "receivedQuantity": 0,
-        "unitCostCents": 7828
+        "receivedQuantity": 30,
+        "unitCostCents": 7752
       }
     ],
-    "totalCents": 234840
+    "totalCents": 232560
   },
   {
     "id": "PO-0067",
@@ -2014,7 +2014,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 8704
+        "unitCostCents": 8619
       },
       {
         "id": "POL-0067-2",
@@ -2022,7 +2022,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 15198
+        "unitCostCents": 14900
       },
       {
         "id": "POL-0067-3",
@@ -2030,10 +2030,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 385
+        "unitCostCents": 377
       }
     ],
-    "totalCents": 516540
+    "totalCents": 508080
   },
   {
     "id": "PO-0068",
@@ -2050,7 +2050,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1887
+        "unitCostCents": 1906
       },
       {
         "id": "POL-0068-2",
@@ -2058,7 +2058,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 6592
+        "unitCostCents": 6528
       },
       {
         "id": "POL-0068-3",
@@ -2074,10 +2074,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 40,
         "receivedQuantity": 40,
-        "unitCostCents": 5355
+        "unitCostCents": 5250
       }
     ],
-    "totalCents": 984950
+    "totalCents": 979450
   },
   {
     "id": "PO-0069",
@@ -2094,7 +2094,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 500,
         "receivedQuantity": 500,
-        "unitCostCents": 211
+        "unitCostCents": 215
       },
       {
         "id": "POL-0069-2",
@@ -2102,10 +2102,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 40,
         "receivedQuantity": 40,
-        "unitCostCents": 5900
+        "unitCostCents": 5959
       }
     ],
-    "totalCents": 341500
+    "totalCents": 345860
   },
   {
     "id": "PO-0070",
@@ -2122,7 +2122,7 @@
         "materialId": "MAT-PLC-CPU",
         "orderedQuantity": 5,
         "receivedQuantity": 0,
-        "unitCostCents": 37730
+        "unitCostCents": 38115
       },
       {
         "id": "POL-0070-2",
@@ -2130,10 +2130,10 @@
         "materialId": "MAT-HMI-7",
         "orderedQuantity": 5,
         "receivedQuantity": 0,
-        "unitCostCents": 29601
+        "unitCostCents": 29302
       }
     ],
-    "totalCents": 336655
+    "totalCents": 337085
   },
   {
     "id": "PO-0071",
@@ -2150,10 +2150,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 7524
+        "unitCostCents": 7448
       }
     ],
-    "totalCents": 376200
+    "totalCents": 372400
   },
   {
     "id": "PO-0072",
@@ -2170,7 +2170,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 20,
         "receivedQuantity": 20,
-        "unitCostCents": 8366
+        "unitCostCents": 8197
       },
       {
         "id": "POL-0072-2",
@@ -2178,10 +2178,10 @@
         "materialId": "MAT-ENC-L",
         "orderedQuantity": 5,
         "receivedQuantity": 5,
-        "unitCostCents": 26800
+        "unitCostCents": 26532
       }
     ],
-    "totalCents": 301320
+    "totalCents": 296600
   },
   {
     "id": "PO-0073",
@@ -2198,7 +2198,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 1832
+        "unitCostCents": 1813
       },
       {
         "id": "POL-0073-2",
@@ -2206,7 +2206,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 50,
         "receivedQuantity": 50,
-        "unitCostCents": 6272
+        "unitCostCents": 6464
       },
       {
         "id": "POL-0073-3",
@@ -2214,7 +2214,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 100,
         "receivedQuantity": 100,
-        "unitCostCents": 1601
+        "unitCostCents": 1634
       },
       {
         "id": "POL-0073-4",
@@ -2222,10 +2222,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 40,
         "receivedQuantity": 40,
-        "unitCostCents": 5145
+        "unitCostCents": 5198
       }
     ],
-    "totalCents": 771100
+    "totalCents": 785170
   },
   {
     "id": "PO-0074",
@@ -2242,18 +2242,10 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 500,
         "receivedQuantity": 500,
-        "unitCostCents": 213
-      },
-      {
-        "id": "POL-0074-2",
-        "lineNumber": 2,
-        "materialId": "MAT-WIRE-KIT",
-        "orderedQuantity": 20,
-        "receivedQuantity": 20,
-        "unitCostCents": 5782
+        "unitCostCents": 209
       }
     ],
-    "totalCents": 222140
+    "totalCents": 104500
   },
   {
     "id": "PO-0075",
@@ -2270,10 +2262,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 30,
         "receivedQuantity": 0,
-        "unitCostCents": 7448
+        "unitCostCents": 7828
       }
     ],
-    "totalCents": 223440
+    "totalCents": 234840
   },
   {
     "id": "PO-0076",
@@ -2281,7 +2273,7 @@
     "createdAt": "2026-09-24T06:00:00.000Z",
     "promisedDeliveryAt": "2026-09-29T10:00:00.000Z",
     "receivingLocationId": "REC-001",
-    "status": "RECEIVED",
+    "status": "OPEN",
     "reason": "REORDER_POINT",
     "lines": [
       {
@@ -2289,7 +2281,7 @@
         "lineNumber": 1,
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 10,
-        "receivedQuantity": 10,
+        "receivedQuantity": 0,
         "unitCostCents": 14453
       },
       {
@@ -2297,19 +2289,19 @@
         "lineNumber": 2,
         "materialId": "MAT-ENC-L",
         "orderedQuantity": 10,
-        "receivedQuantity": 10,
-        "unitCostCents": 27336
+        "receivedQuantity": 0,
+        "unitCostCents": 25996
       },
       {
         "id": "POL-0076-3",
         "lineNumber": 3,
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 100,
-        "receivedQuantity": 100,
-        "unitCostCents": 397
+        "receivedQuantity": 0,
+        "unitCostCents": 393
       }
     ],
-    "totalCents": 457590
+    "totalCents": 443790
   },
   {
     "id": "PO-0077",
@@ -2326,18 +2318,18 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 500,
         "receivedQuantity": 500,
-        "unitCostCents": 209
+        "unitCostCents": 211
       },
       {
         "id": "POL-0077-2",
         "lineNumber": 2,
         "materialId": "MAT-WIRE-KIT",
-        "orderedQuantity": 40,
-        "receivedQuantity": 40,
-        "unitCostCents": 5959
+        "orderedQuantity": 60,
+        "receivedQuantity": 60,
+        "unitCostCents": 6077
       }
     ],
-    "totalCents": 342860
+    "totalCents": 470120
   },
   {
     "id": "PO-0078",
@@ -2354,7 +2346,7 @@
         "materialId": "MAT-PLC-CPU",
         "orderedQuantity": 10,
         "receivedQuantity": 0,
-        "unitCostCents": 39655
+        "unitCostCents": 39270
       },
       {
         "id": "POL-0078-2",
@@ -2362,10 +2354,10 @@
         "materialId": "MAT-HMI-7",
         "orderedQuantity": 10,
         "receivedQuantity": 0,
-        "unitCostCents": 30498
+        "unitCostCents": 29003
       }
     ],
-    "totalCents": 701530
+    "totalCents": 682730
   },
   {
     "id": "PO-0079",
@@ -2382,10 +2374,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 20,
         "receivedQuantity": 0,
-        "unitCostCents": 7828
+        "unitCostCents": 7676
       }
     ],
-    "totalCents": 156560
+    "totalCents": 153520
   },
   {
     "id": "PO-0080",
@@ -2393,7 +2385,7 @@
     "createdAt": "2026-09-25T06:00:00.000Z",
     "promisedDeliveryAt": "2026-09-30T10:00:00.000Z",
     "receivingLocationId": "REC-001",
-    "status": "OPEN",
+    "status": "RECEIVED",
     "reason": "REORDER_POINT",
     "lines": [
       {
@@ -2401,19 +2393,19 @@
         "lineNumber": 1,
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 10,
-        "receivedQuantity": 0,
-        "unitCostCents": 8450
+        "receivedQuantity": 10,
+        "unitCostCents": 8619
       },
       {
         "id": "POL-0080-2",
         "lineNumber": 2,
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 10,
-        "receivedQuantity": 0,
+        "receivedQuantity": 10,
         "unitCostCents": 15198
       }
     ],
-    "totalCents": 236480
+    "totalCents": 238170
   },
   {
     "id": "PO-0081",
@@ -2438,7 +2430,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 75,
         "receivedQuantity": 0,
-        "unitCostCents": 6592
+        "unitCostCents": 6336
       },
       {
         "id": "POL-0081-3",
@@ -2454,10 +2446,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 60,
         "receivedQuantity": 0,
-        "unitCostCents": 5198
+        "unitCostCents": 5355
       }
     ],
-    "totalCents": 1159880
+    "totalCents": 1150100
   },
   {
     "id": "PO-0082",
@@ -2474,10 +2466,10 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 500,
         "receivedQuantity": 500,
-        "unitCostCents": 211
+        "unitCostCents": 209
       }
     ],
-    "totalCents": 105500
+    "totalCents": 104500
   },
   {
     "id": "PO-0083",
@@ -2502,10 +2494,10 @@
         "materialId": "MAT-HMI-7",
         "orderedQuantity": 10,
         "receivedQuantity": 0,
-        "unitCostCents": 29302
+        "unitCostCents": 29900
       }
     ],
-    "totalCents": 670320
+    "totalCents": 676300
   },
   {
     "id": "PO-0084",
@@ -2522,10 +2514,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 40,
         "receivedQuantity": 0,
-        "unitCostCents": 7372
+        "unitCostCents": 7752
       }
     ],
-    "totalCents": 294880
+    "totalCents": 310080
   },
   {
     "id": "PO-0085",
@@ -2542,10 +2534,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 40,
         "receivedQuantity": 0,
-        "unitCostCents": 5900
+        "unitCostCents": 5723
       }
     ],
-    "totalCents": 236000
+    "totalCents": 228920
   },
   {
     "id": "PO-0086",
@@ -2562,7 +2554,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 20,
         "receivedQuantity": 0,
-        "unitCostCents": 8450
+        "unitCostCents": 8535
       },
       {
         "id": "POL-0086-2",
@@ -2570,7 +2562,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 10,
         "receivedQuantity": 0,
-        "unitCostCents": 15198
+        "unitCostCents": 14453
       },
       {
         "id": "POL-0086-3",
@@ -2578,7 +2570,7 @@
         "materialId": "MAT-ENC-L",
         "orderedQuantity": 10,
         "receivedQuantity": 0,
-        "unitCostCents": 26532
+        "unitCostCents": 27604
       },
       {
         "id": "POL-0086-4",
@@ -2589,7 +2581,7 @@
         "unitCostCents": 377
       }
     ],
-    "totalCents": 624000
+    "totalCents": 628970
   },
   {
     "id": "PO-0087",
@@ -2614,7 +2606,7 @@
         "materialId": "MAT-RLY-24",
         "orderedQuantity": 100,
         "receivedQuantity": 0,
-        "unitCostCents": 1700
+        "unitCostCents": 1667
       },
       {
         "id": "POL-0087-3",
@@ -2622,10 +2614,10 @@
         "materialId": "MAT-CTR-25",
         "orderedQuantity": 20,
         "receivedQuantity": 0,
-        "unitCostCents": 5303
+        "unitCostCents": 5093
       }
     ],
-    "totalCents": 592860
+    "totalCents": 585360
   },
   {
     "id": "PO-0088",
@@ -2642,7 +2634,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 500,
         "receivedQuantity": 0,
-        "unitCostCents": 211
+        "unitCostCents": 215
       },
       {
         "id": "POL-0088-2",
@@ -2650,10 +2642,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 20,
         "receivedQuantity": 0,
-        "unitCostCents": 5723
+        "unitCostCents": 5782
       }
     ],
-    "totalCents": 219960
+    "totalCents": 223140
   },
   {
     "id": "PO-0089",
@@ -2670,10 +2662,10 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 40,
         "receivedQuantity": 0,
-        "unitCostCents": 7676
+        "unitCostCents": 7828
       }
     ],
-    "totalCents": 307040
+    "totalCents": 313120
   },
   {
     "id": "PO-0090",
@@ -2690,7 +2682,7 @@
         "materialId": "MAT-ENC-S",
         "orderedQuantity": 10,
         "receivedQuantity": 0,
-        "unitCostCents": 8197
+        "unitCostCents": 8450
       },
       {
         "id": "POL-0090-2",
@@ -2698,7 +2690,7 @@
         "materialId": "MAT-ENC-M",
         "orderedQuantity": 30,
         "receivedQuantity": 0,
-        "unitCostCents": 15049
+        "unitCostCents": 14453
       },
       {
         "id": "POL-0090-3",
@@ -2706,10 +2698,10 @@
         "materialId": "MAT-DIN-35",
         "orderedQuantity": 50,
         "receivedQuantity": 0,
-        "unitCostCents": 393
+        "unitCostCents": 373
       }
     ],
-    "totalCents": 553090
+    "totalCents": 536740
   },
   {
     "id": "PO-0091",
@@ -2726,7 +2718,7 @@
         "materialId": "MAT-BRK-1P",
         "orderedQuantity": 100,
         "receivedQuantity": 0,
-        "unitCostCents": 1795
+        "unitCostCents": 1850
       },
       {
         "id": "POL-0091-2",
@@ -2734,7 +2726,7 @@
         "materialId": "MAT-BRK-3P",
         "orderedQuantity": 50,
         "receivedQuantity": 0,
-        "unitCostCents": 6464
+        "unitCostCents": 6208
       },
       {
         "id": "POL-0091-3",
@@ -2753,7 +2745,7 @@
         "unitCostCents": 5408
       }
     ],
-    "totalCents": 995480
+    "totalCents": 988180
   },
   {
     "id": "PO-0092",
@@ -2770,7 +2762,7 @@
         "materialId": "MAT-TB-25",
         "orderedQuantity": 1000,
         "receivedQuantity": 0,
-        "unitCostCents": 209
+        "unitCostCents": 221
       },
       {
         "id": "POL-0092-2",
@@ -2778,10 +2770,10 @@
         "materialId": "MAT-WIRE-KIT",
         "orderedQuantity": 40,
         "receivedQuantity": 0,
-        "unitCostCents": 5900
+        "unitCostCents": 6018
       }
     ],
-    "totalCents": 445000
+    "totalCents": 461720
   },
   {
     "id": "PO-0093",
@@ -2798,7 +2790,7 @@
         "materialId": "MAT-PLC-CPU",
         "orderedQuantity": 10,
         "receivedQuantity": 0,
-        "unitCostCents": 37730
+        "unitCostCents": 38885
       },
       {
         "id": "POL-0093-2",
@@ -2806,10 +2798,10 @@
         "materialId": "MAT-HMI-7",
         "orderedQuantity": 10,
         "receivedQuantity": 0,
-        "unitCostCents": 29601
+        "unitCostCents": 29900
       }
     ],
-    "totalCents": 673310
+    "totalCents": 687850
   },
   {
     "id": "PO-0094",
@@ -2826,9 +2818,9 @@
         "materialId": "MAT-PSU-24",
         "orderedQuantity": 40,
         "receivedQuantity": 0,
-        "unitCostCents": 7752
+        "unitCostCents": 7372
       }
     ],
-    "totalCents": 310080
+    "totalCents": 294880
   }
 ]

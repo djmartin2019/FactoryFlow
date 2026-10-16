@@ -69,6 +69,14 @@ export interface RoutingStepView {
   /** Resolved workstation, or the kind of workstation the routing requires. */
   workstationId?: Id;
   workstationName: string;
+  /** Logical work center name; absent for routings without work centers. */
+  workCenter?: string;
+  /** Minutes between the previous step completing (or order release) and this step starting. */
+  waitMinutes?: number;
+  /** Elapsed run time excluding machine-failure holds. */
+  processingMinutes?: number;
+  /** Minutes paused by machine failures. */
+  holdMinutes?: number;
   status: "NOT_STARTED" | "PENDING" | "RUNNING" | "PAUSED" | "COMPLETED";
   startedAt?: IsoTimestamp;
   completedAt?: IsoTimestamp;

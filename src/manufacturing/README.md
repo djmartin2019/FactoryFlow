@@ -48,8 +48,8 @@ breakers, terminal blocks, DIN rail, wiring kits, relays, contactors, PLC CPU, H
 (Ironbridge Metalworks, Voltaic Switchgear, Clearline Connectors, Meridian Automation Supply, Brightwater
 Power Systems), 10 customers (Alder Valley Packaging … Juniper Bay Pumps). All fictional.
 
-Routings: NCP-100 `MOUNT_AND_WIRE → FINAL_TEST`; NCP-200 `MOUNT_AND_WIRE → MOTOR_CIRCUIT_ASSEMBLY → FINAL_TEST`;
-NCP-300 `MOUNT_AND_WIRE → PLC_HMI_INTEGRATION → FINAL_TEST`. Assembly steps run on ASM-00x, FINAL_TEST on QC-00x;
+Routings: NCP-100 `KIT → MOUNT → WIRE → FINAL_TEST`; NCP-200 `KIT → MOUNT → WIRE → MOTOR_CIRCUIT_ASSEMBLY → FINAL_TEST`;
+NCP-300 `KIT → MOUNT → WIRE → CONFIGURE → FINAL_TEST` (each step carries a `workCenterId`). Assembly steps run on ASM-00x, FINAL_TEST on QC-00x;
 each workstation runs one job at a time.
 
 ## Authoritative replay source

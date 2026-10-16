@@ -51,7 +51,7 @@ const AVG_UNITS_PER_ORDER = 4.7;
 const FAILURE_CODES = ["SERVO_FAULT", "CONVEYOR_JAM", "TORQUE_TOOL_FAILURE", "POWER_SUPPLY_TRIP"];
 const DELAY_REASONS: DelayReason[] = ["CARRIER_DELAY", "SUPPLIER_STOCKOUT", "CUSTOMS_HOLD"];
 const CARRIERS = ["Redline Freight", "Pinecrest Logistics", "Summit Parcel Co."];
-const ASSEMBLY_TYPES: OperationType[] = ["MOUNT_AND_WIRE", "MOTOR_CIRCUIT_ASSEMBLY", "PLC_HMI_INTEGRATION"];
+const ASSEMBLY_TYPES: OperationType[] = ["MOUNT_AND_WIRE", "MOTOR_CIRCUIT_ASSEMBLY", "PLC_HMI_INTEGRATION", "KIT", "MOUNT", "WIRE", "CONFIGURE"];
 
 const iso = (ms: number) => new Date(ms).toISOString();
 const roundUp = (value: number, multiple: number) => Math.ceil(value / multiple) * multiple;
@@ -435,6 +435,7 @@ class Simulation {
       sequence: step.sequence,
       type: step.operationType,
       workstationKind: step.workstationKind,
+      ...(step.workCenterId ? { workCenterId: step.workCenterId } : {}),
       quantity,
       plannedMinutes: step.setupMinutes + step.minutesPerUnit * quantity,
       isRework: false,

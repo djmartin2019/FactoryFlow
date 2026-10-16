@@ -129,8 +129,8 @@ describe("KPI contract", () => {
     expect(k.activeOrders.value).toBe(0);
     expect(k.shortageBlocked.value).toBe(0);
     expect(k.firstPassYield).toMatchObject({ value: 1, numerator: 9, denominator: 9 });
-    expect(k.utilization).toMatchObject({ numerator: 579, denominator: 6840 });
-    expect(k.utilization.value).toBeCloseTo(579 / 6840, 10);
+    expect(k.utilization).toMatchObject({ numerator: 608, denominator: 6840 });
+    expect(k.utilization.value).toBeCloseTo(608 / 6840, 10);
   });
 
   it("good units equal the sum of finished-goods receipts in the log", () => {
@@ -182,6 +182,6 @@ describe("generator parity", () => {
     });
     expect(JSON.parse(JSON.stringify(d.events))).toEqual(events);
     expect(JSON.parse(JSON.stringify(d.initialState))).toEqual(initial.state);
-    expect(d.manifest.eventLogHash).toBe("fcac9390");
+    expect(d.manifest.eventLogHash).toBe("fc2a2149");
   });
 });

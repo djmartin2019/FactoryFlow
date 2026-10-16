@@ -505,6 +505,12 @@ export class OperationsExplorer {
 
   // ---- detail ------------------------------------------------------------
 
+  /** Show a work order's detail drawer from outside the Explorer (e.g. a selected 3D station). */
+  openWorkOrder(id: string): void {
+    this.showTab("orders");
+    this.openDetail(id);
+  }
+
   private openDetail(id: string): void {
     this.selectedId = id;
     this.drawerKey = "";

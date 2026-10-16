@@ -12,7 +12,7 @@
  *               factory object IDs in src/data/factoryLayout.ts.
  */
 
-export const SCHEMA_VERSION = "1.0.0";
+export const SCHEMA_VERSION = "1.1.0";
 
 export type Id = string;
 export type IsoTimestamp = string;
@@ -102,6 +102,10 @@ export type OperationType =
   | "MOUNT_AND_WIRE"
   | "MOTOR_CIRCUIT_ASSEMBLY"
   | "PLC_HMI_INTEGRATION"
+  | "KIT"
+  | "MOUNT"
+  | "WIRE"
+  | "CONFIGURE"
   | "FINAL_TEST"
   | "REWORK";
 
@@ -109,6 +113,8 @@ export type WorkstationKind = "ASSEMBLY" | "INSPECTION";
 
 export interface RoutingStep {
   sequence: number;
+  /** Logical capacity-planning group (design §3.2); a label only in schema 1.1.0. */
+  workCenterId?: Id;
   operationType: OperationType;
   workstationKind: WorkstationKind;
   setupMinutes: Minutes;
@@ -360,6 +366,8 @@ export interface ProductionOperation {
   sequence: number;
   type: OperationType;
   workstationKind: WorkstationKind;
+  /** Logical work center copied from the routing step; absent on rework and pre-1.1.0 data. */
+  workCenterId?: Id;
   /** Units processed by this operation. */
   quantity: Quantity;
   plannedMinutes: Minutes;
