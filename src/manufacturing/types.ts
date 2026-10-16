@@ -12,7 +12,7 @@
  *               factory object IDs in src/data/factoryLayout.ts.
  */
 
-export const SCHEMA_VERSION = "1.1.0";
+export const SCHEMA_VERSION = "1.2.0";
 
 export type Id = string;
 export type IsoTimestamp = string;
@@ -113,7 +113,7 @@ export type WorkstationKind = "ASSEMBLY" | "INSPECTION";
 
 export interface RoutingStep {
   sequence: number;
-  /** Logical capacity-planning group (design §3.2); a label only in schema 1.1.0. */
+  /** Logical capacity-planning group (design §3.2); the work center whose stations may run this step (schema 1.2.0). */
   workCenterId?: Id;
   operationType: OperationType;
   workstationKind: WorkstationKind;
@@ -144,10 +144,19 @@ export interface Product {
   baseDefectRate: number;
 }
 
+/** Logical capacity-planning group (design §3.2). Stations serve work centers; routing steps require one. */
+export interface WorkCenter {
+  id: Id;
+  name: string;
+  kind: WorkstationKind;
+}
+
 export interface Workstation {
   id: Id;
   name: string;
   kind: WorkstationKind;
+  /** Work centers this station can serve; absent in pre-1.2.0 data, where any same-kind station is eligible. */
+  workCenterIds?: Id[];
   departmentId: Id;
   locationId: Id;
   /** One job at a time. */
@@ -165,6 +174,8 @@ export interface MasterData {
   products: Product[];
   billsOfMaterials: BillOfMaterials[];
   routings: Routing[];
+  /** Absent in pre-1.2.0 data. */
+  workCenters?: WorkCenter[];
   workstations: Workstation[];
 }
 
@@ -366,7 +377,7 @@ export interface ProductionOperation {
   sequence: number;
   type: OperationType;
   workstationKind: WorkstationKind;
-  /** Logical work center copied from the routing step; absent on rework and pre-1.1.0 data. */
+  /** Logical work center copied from the routing step (rework: WC-WIRING); absent in pre-1.1.0 data. */
   workCenterId?: Id;
   /** Units processed by this operation. */
   quantity: Quantity;

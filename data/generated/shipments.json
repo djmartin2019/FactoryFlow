@@ -150,40 +150,40 @@
   },
   {
     "id": "SHIP-0009",
-    "customerOrderId": "CO-0010",
-    "customerId": "CUS-010",
+    "customerOrderId": "CO-0009",
+    "customerId": "CUS-006",
     "dispatchedAt": "2026-09-02T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
         "id": "SHIP-0009-L1",
-        "customerOrderLineId": "CO-0010-L1",
-        "productId": "NCP-100",
-        "quantity": 5,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0010",
-    "customerOrderId": "CO-0009",
-    "customerId": "CUS-006",
-    "dispatchedAt": "2026-09-03T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0010-L1",
         "customerOrderLineId": "CO-0009-L1",
         "productId": "NCP-200",
         "quantity": 4,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0010-L2",
+        "id": "SHIP-0009-L2",
         "customerOrderLineId": "CO-0009-L2",
         "productId": "NCP-300",
         "quantity": 5,
         "fromLocationId": "SHP-003"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0010",
+    "customerOrderId": "CO-0010",
+    "customerId": "CUS-010",
+    "dispatchedAt": "2026-09-02T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0010-L1",
+        "customerOrderLineId": "CO-0010-L1",
+        "productId": "NCP-100",
+        "quantity": 5,
+        "fromLocationId": "SHP-001"
       }
     ]
   },
@@ -409,20 +409,36 @@
   },
   {
     "id": "SHIP-0023",
-    "customerOrderId": "CO-0025",
-    "customerId": "CUS-007",
-    "dispatchedAt": "2026-09-07T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "customerOrderId": "CO-0023",
+    "customerId": "CUS-001",
+    "dispatchedAt": "2026-09-04T15:00:00.000Z",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
         "id": "SHIP-0023-L1",
+        "customerOrderLineId": "CO-0023-L1",
+        "productId": "NCP-200",
+        "quantity": 6,
+        "fromLocationId": "SHP-002"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0024",
+    "customerOrderId": "CO-0025",
+    "customerId": "CUS-007",
+    "dispatchedAt": "2026-09-07T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0024-L1",
         "customerOrderLineId": "CO-0025-L1",
         "productId": "NCP-200",
         "quantity": 6,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0023-L2",
+        "id": "SHIP-0024-L2",
         "customerOrderLineId": "CO-0025-L2",
         "productId": "NCP-100",
         "quantity": 5,
@@ -431,14 +447,14 @@
     ]
   },
   {
-    "id": "SHIP-0024",
+    "id": "SHIP-0025",
     "customerOrderId": "CO-0026",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-07T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0024-L1",
+        "id": "SHIP-0025-L1",
         "customerOrderLineId": "CO-0026-L1",
         "productId": "NCP-100",
         "quantity": 4,
@@ -447,14 +463,14 @@
     ]
   },
   {
-    "id": "SHIP-0025",
+    "id": "SHIP-0026",
     "customerOrderId": "CO-0027",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-07T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0025-L1",
+        "id": "SHIP-0026-L1",
         "customerOrderLineId": "CO-0027-L1",
         "productId": "NCP-100",
         "quantity": 5,
@@ -463,14 +479,14 @@
     ]
   },
   {
-    "id": "SHIP-0026",
+    "id": "SHIP-0027",
     "customerOrderId": "CO-0028",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-07T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0026-L1",
+        "id": "SHIP-0027-L1",
         "customerOrderLineId": "CO-0028-L1",
         "productId": "NCP-300",
         "quantity": 5,
@@ -479,21 +495,21 @@
     ]
   },
   {
-    "id": "SHIP-0027",
+    "id": "SHIP-0028",
     "customerOrderId": "CO-0029",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-07T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0027-L1",
+        "id": "SHIP-0028-L1",
         "customerOrderLineId": "CO-0029-L1",
         "productId": "NCP-100",
         "quantity": 3,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0027-L2",
+        "id": "SHIP-0028-L2",
         "customerOrderLineId": "CO-0029-L2",
         "productId": "NCP-300",
         "quantity": 3,
@@ -502,21 +518,21 @@
     ]
   },
   {
-    "id": "SHIP-0028",
+    "id": "SHIP-0029",
     "customerOrderId": "CO-0030",
     "customerId": "CUS-009",
     "dispatchedAt": "2026-09-07T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0028-L1",
+        "id": "SHIP-0029-L1",
         "customerOrderLineId": "CO-0030-L1",
         "productId": "NCP-100",
         "quantity": 4,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0028-L2",
+        "id": "SHIP-0029-L2",
         "customerOrderLineId": "CO-0030-L2",
         "productId": "NCP-200",
         "quantity": 1,
@@ -525,14 +541,14 @@
     ]
   },
   {
-    "id": "SHIP-0029",
+    "id": "SHIP-0030",
     "customerOrderId": "CO-0031",
     "customerId": "CUS-009",
     "dispatchedAt": "2026-09-07T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0029-L1",
+        "id": "SHIP-0030-L1",
         "customerOrderLineId": "CO-0031-L1",
         "productId": "NCP-200",
         "quantity": 2,
@@ -541,14 +557,14 @@
     ]
   },
   {
-    "id": "SHIP-0030",
+    "id": "SHIP-0031",
     "customerOrderId": "CO-0035",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-07T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0030-L1",
+        "id": "SHIP-0031-L1",
         "customerOrderLineId": "CO-0035-L1",
         "productId": "NCP-200",
         "quantity": 3,
@@ -557,14 +573,14 @@
     ]
   },
   {
-    "id": "SHIP-0031",
+    "id": "SHIP-0032",
     "customerOrderId": "CO-0036",
     "customerId": "CUS-009",
     "dispatchedAt": "2026-09-08T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0031-L1",
+        "id": "SHIP-0032-L1",
         "customerOrderLineId": "CO-0036-L1",
         "productId": "NCP-100",
         "quantity": 2,
@@ -573,21 +589,21 @@
     ]
   },
   {
-    "id": "SHIP-0032",
+    "id": "SHIP-0033",
     "customerOrderId": "CO-0037",
     "customerId": "CUS-004",
     "dispatchedAt": "2026-09-08T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0032-L1",
+        "id": "SHIP-0033-L1",
         "customerOrderLineId": "CO-0037-L1",
         "productId": "NCP-100",
         "quantity": 6,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0032-L2",
+        "id": "SHIP-0033-L2",
         "customerOrderLineId": "CO-0037-L2",
         "productId": "NCP-200",
         "quantity": 3,
@@ -596,14 +612,14 @@
     ]
   },
   {
-    "id": "SHIP-0033",
+    "id": "SHIP-0034",
     "customerOrderId": "CO-0039",
     "customerId": "CUS-004",
-    "dispatchedAt": "2026-09-08T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "dispatchedAt": "2026-09-09T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0033-L1",
+        "id": "SHIP-0034-L1",
         "customerOrderLineId": "CO-0039-L1",
         "productId": "NCP-200",
         "quantity": 6,
@@ -612,21 +628,21 @@
     ]
   },
   {
-    "id": "SHIP-0034",
+    "id": "SHIP-0035",
     "customerOrderId": "CO-0040",
     "customerId": "CUS-006",
     "dispatchedAt": "2026-09-09T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0034-L1",
+        "id": "SHIP-0035-L1",
         "customerOrderLineId": "CO-0040-L1",
         "productId": "NCP-100",
         "quantity": 5,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0034-L2",
+        "id": "SHIP-0035-L2",
         "customerOrderLineId": "CO-0040-L2",
         "productId": "NCP-200",
         "quantity": 3,
@@ -635,14 +651,14 @@
     ]
   },
   {
-    "id": "SHIP-0035",
+    "id": "SHIP-0036",
     "customerOrderId": "CO-0042",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-09T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0035-L1",
+        "id": "SHIP-0036-L1",
         "customerOrderLineId": "CO-0042-L1",
         "productId": "NCP-100",
         "quantity": 6,
@@ -651,14 +667,14 @@
     ]
   },
   {
-    "id": "SHIP-0036",
+    "id": "SHIP-0037",
     "customerOrderId": "CO-0043",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-09T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0036-L1",
+        "id": "SHIP-0037-L1",
         "customerOrderLineId": "CO-0043-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -667,14 +683,14 @@
     ]
   },
   {
-    "id": "SHIP-0037",
+    "id": "SHIP-0038",
     "customerOrderId": "CO-0046",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-09T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0037-L1",
+        "id": "SHIP-0038-L1",
         "customerOrderLineId": "CO-0046-L1",
         "productId": "NCP-100",
         "quantity": 6,
@@ -683,14 +699,14 @@
     ]
   },
   {
-    "id": "SHIP-0038",
+    "id": "SHIP-0039",
     "customerOrderId": "CO-0047",
     "customerId": "CUS-008",
     "dispatchedAt": "2026-09-09T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0038-L1",
+        "id": "SHIP-0039-L1",
         "customerOrderLineId": "CO-0047-L1",
         "productId": "NCP-100",
         "quantity": 6,
@@ -699,14 +715,14 @@
     ]
   },
   {
-    "id": "SHIP-0039",
+    "id": "SHIP-0040",
     "customerOrderId": "CO-0048",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-09T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0039-L1",
+        "id": "SHIP-0040-L1",
         "customerOrderLineId": "CO-0048-L1",
         "productId": "NCP-200",
         "quantity": 2,
@@ -715,21 +731,21 @@
     ]
   },
   {
-    "id": "SHIP-0040",
+    "id": "SHIP-0041",
     "customerOrderId": "CO-0049",
     "customerId": "CUS-004",
     "dispatchedAt": "2026-09-10T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0040-L1",
+        "id": "SHIP-0041-L1",
         "customerOrderLineId": "CO-0049-L1",
         "productId": "NCP-200",
         "quantity": 1,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0040-L2",
+        "id": "SHIP-0041-L2",
         "customerOrderLineId": "CO-0049-L2",
         "productId": "NCP-100",
         "quantity": 2,
@@ -738,21 +754,21 @@
     ]
   },
   {
-    "id": "SHIP-0041",
+    "id": "SHIP-0042",
     "customerOrderId": "CO-0050",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-10T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0041-L1",
+        "id": "SHIP-0042-L1",
         "customerOrderLineId": "CO-0050-L1",
         "productId": "NCP-100",
         "quantity": 4,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0041-L2",
+        "id": "SHIP-0042-L2",
         "customerOrderLineId": "CO-0050-L2",
         "productId": "NCP-200",
         "quantity": 5,
@@ -761,21 +777,21 @@
     ]
   },
   {
-    "id": "SHIP-0042",
+    "id": "SHIP-0043",
     "customerOrderId": "CO-0051",
     "customerId": "CUS-004",
     "dispatchedAt": "2026-09-10T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0042-L1",
+        "id": "SHIP-0043-L1",
         "customerOrderLineId": "CO-0051-L1",
         "productId": "NCP-100",
         "quantity": 6,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0042-L2",
+        "id": "SHIP-0043-L2",
         "customerOrderLineId": "CO-0051-L2",
         "productId": "NCP-200",
         "quantity": 6,
@@ -784,14 +800,14 @@
     ]
   },
   {
-    "id": "SHIP-0043",
+    "id": "SHIP-0044",
     "customerOrderId": "CO-0052",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-10T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0043-L1",
+        "id": "SHIP-0044-L1",
         "customerOrderLineId": "CO-0052-L1",
         "productId": "NCP-100",
         "quantity": 5,
@@ -800,14 +816,14 @@
     ]
   },
   {
-    "id": "SHIP-0044",
+    "id": "SHIP-0045",
     "customerOrderId": "CO-0053",
     "customerId": "CUS-008",
     "dispatchedAt": "2026-09-10T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0044-L1",
+        "id": "SHIP-0045-L1",
         "customerOrderLineId": "CO-0053-L1",
         "productId": "NCP-100",
         "quantity": 3,
@@ -816,14 +832,14 @@
     ]
   },
   {
-    "id": "SHIP-0045",
+    "id": "SHIP-0046",
     "customerOrderId": "CO-0055",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-11T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0045-L1",
+        "id": "SHIP-0046-L1",
         "customerOrderLineId": "CO-0055-L1",
         "productId": "NCP-100",
         "quantity": 4,
@@ -832,21 +848,21 @@
     ]
   },
   {
-    "id": "SHIP-0046",
+    "id": "SHIP-0047",
     "customerOrderId": "CO-0056",
     "customerId": "CUS-005",
     "dispatchedAt": "2026-09-11T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0046-L1",
+        "id": "SHIP-0047-L1",
         "customerOrderLineId": "CO-0056-L1",
         "productId": "NCP-100",
         "quantity": 3,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0046-L2",
+        "id": "SHIP-0047-L2",
         "customerOrderLineId": "CO-0056-L2",
         "productId": "NCP-200",
         "quantity": 3,
@@ -855,21 +871,21 @@
     ]
   },
   {
-    "id": "SHIP-0047",
+    "id": "SHIP-0048",
     "customerOrderId": "CO-0057",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-11T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0047-L1",
+        "id": "SHIP-0048-L1",
         "customerOrderLineId": "CO-0057-L1",
         "productId": "NCP-200",
         "quantity": 4,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0047-L2",
+        "id": "SHIP-0048-L2",
         "customerOrderLineId": "CO-0057-L2",
         "productId": "NCP-100",
         "quantity": 3,
@@ -878,14 +894,14 @@
     ]
   },
   {
-    "id": "SHIP-0048",
+    "id": "SHIP-0049",
     "customerOrderId": "CO-0058",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-11T15:00:00.000Z",
     "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0048-L1",
+        "id": "SHIP-0049-L1",
         "customerOrderLineId": "CO-0058-L1",
         "productId": "NCP-100",
         "quantity": 4,
@@ -894,14 +910,14 @@
     ]
   },
   {
-    "id": "SHIP-0049",
+    "id": "SHIP-0050",
     "customerOrderId": "CO-0059",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-11T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0049-L1",
+        "id": "SHIP-0050-L1",
         "customerOrderLineId": "CO-0059-L1",
         "productId": "NCP-100",
         "quantity": 5,
@@ -910,34 +926,11 @@
     ]
   },
   {
-    "id": "SHIP-0050",
-    "customerOrderId": "CO-0060",
-    "customerId": "CUS-006",
-    "dispatchedAt": "2026-09-11T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0050-L1",
-        "customerOrderLineId": "CO-0060-L1",
-        "productId": "NCP-100",
-        "quantity": 6,
-        "fromLocationId": "SHP-001"
-      },
-      {
-        "id": "SHIP-0050-L2",
-        "customerOrderLineId": "CO-0060-L2",
-        "productId": "NCP-200",
-        "quantity": 2,
-        "fromLocationId": "SHP-002"
-      }
-    ]
-  },
-  {
     "id": "SHIP-0051",
     "customerOrderId": "CO-0034",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-14T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
         "id": "SHIP-0051-L1",
@@ -950,36 +943,13 @@
   },
   {
     "id": "SHIP-0052",
-    "customerOrderId": "CO-0061",
-    "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-14T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0052-L1",
-        "customerOrderLineId": "CO-0061-L1",
-        "productId": "NCP-200",
-        "quantity": 5,
-        "fromLocationId": "SHP-002"
-      },
-      {
-        "id": "SHIP-0052-L2",
-        "customerOrderLineId": "CO-0061-L2",
-        "productId": "NCP-100",
-        "quantity": 4,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0053",
     "customerOrderId": "CO-0032",
     "customerId": "CUS-008",
     "dispatchedAt": "2026-09-15T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0053-L1",
+        "id": "SHIP-0052-L1",
         "customerOrderLineId": "CO-0032-L1",
         "productId": "NCP-300",
         "quantity": 6,
@@ -988,14 +958,14 @@
     ]
   },
   {
-    "id": "SHIP-0054",
+    "id": "SHIP-0053",
     "customerOrderId": "CO-0033",
     "customerId": "CUS-003",
     "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0054-L1",
+        "id": "SHIP-0053-L1",
         "customerOrderLineId": "CO-0033-L1",
         "productId": "NCP-300",
         "quantity": 3,
@@ -1004,14 +974,14 @@
     ]
   },
   {
-    "id": "SHIP-0055",
+    "id": "SHIP-0054",
     "customerOrderId": "CO-0034",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0055-L1",
+        "id": "SHIP-0054-L1",
         "customerOrderLineId": "CO-0034-L2",
         "productId": "NCP-300",
         "quantity": 3,
@@ -1020,21 +990,21 @@
     ]
   },
   {
-    "id": "SHIP-0056",
+    "id": "SHIP-0055",
     "customerOrderId": "CO-0038",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0056-L1",
+        "id": "SHIP-0055-L1",
         "customerOrderLineId": "CO-0038-L1",
         "productId": "NCP-100",
         "quantity": 4,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0056-L2",
+        "id": "SHIP-0055-L2",
         "customerOrderLineId": "CO-0038-L2",
         "productId": "NCP-300",
         "quantity": 4,
@@ -1043,21 +1013,21 @@
     ]
   },
   {
-    "id": "SHIP-0057",
+    "id": "SHIP-0056",
     "customerOrderId": "CO-0041",
     "customerId": "CUS-006",
     "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0057-L1",
+        "id": "SHIP-0056-L1",
         "customerOrderLineId": "CO-0041-L1",
         "productId": "NCP-200",
         "quantity": 1,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0057-L2",
+        "id": "SHIP-0056-L2",
         "customerOrderLineId": "CO-0041-L2",
         "productId": "NCP-300",
         "quantity": 2,
@@ -1066,14 +1036,14 @@
     ]
   },
   {
-    "id": "SHIP-0058",
+    "id": "SHIP-0057",
     "customerOrderId": "CO-0044",
     "customerId": "CUS-003",
     "dispatchedAt": "2026-09-15T15:00:00.000Z",
     "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0058-L1",
+        "id": "SHIP-0057-L1",
         "customerOrderLineId": "CO-0044-L1",
         "productId": "NCP-300",
         "quantity": 1,
@@ -1082,147 +1052,21 @@
     ]
   },
   {
-    "id": "SHIP-0059",
-    "customerOrderId": "CO-0063",
-    "customerId": "CUS-003",
-    "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0059-L1",
-        "customerOrderLineId": "CO-0063-L1",
-        "productId": "NCP-100",
-        "quantity": 2,
-        "fromLocationId": "SHP-001"
-      },
-      {
-        "id": "SHIP-0059-L2",
-        "customerOrderLineId": "CO-0063-L2",
-        "productId": "NCP-200",
-        "quantity": 3,
-        "fromLocationId": "SHP-002"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0060",
-    "customerOrderId": "CO-0064",
-    "customerId": "CUS-004",
-    "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
-    "lines": [
-      {
-        "id": "SHIP-0060-L1",
-        "customerOrderLineId": "CO-0064-L1",
-        "productId": "NCP-100",
-        "quantity": 4,
-        "fromLocationId": "SHP-001"
-      },
-      {
-        "id": "SHIP-0060-L2",
-        "customerOrderLineId": "CO-0064-L2",
-        "productId": "NCP-200",
-        "quantity": 5,
-        "fromLocationId": "SHP-002"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0061",
-    "customerOrderId": "CO-0065",
-    "customerId": "CUS-006",
-    "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0061-L1",
-        "customerOrderLineId": "CO-0065-L1",
-        "productId": "NCP-200",
-        "quantity": 6,
-        "fromLocationId": "SHP-002"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0062",
-    "customerOrderId": "CO-0066",
-    "customerId": "CUS-009",
-    "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0062-L1",
-        "customerOrderLineId": "CO-0066-L1",
-        "productId": "NCP-200",
-        "quantity": 5,
-        "fromLocationId": "SHP-002"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0063",
-    "customerOrderId": "CO-0068",
-    "customerId": "CUS-008",
-    "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
-    "lines": [
-      {
-        "id": "SHIP-0063-L1",
-        "customerOrderLineId": "CO-0068-L1",
-        "productId": "NCP-100",
-        "quantity": 2,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0064",
-    "customerOrderId": "CO-0069",
-    "customerId": "CUS-008",
-    "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0064-L1",
-        "customerOrderLineId": "CO-0069-L1",
-        "productId": "NCP-100",
-        "quantity": 4,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0065",
-    "customerOrderId": "CO-0070",
-    "customerId": "CUS-001",
-    "dispatchedAt": "2026-09-15T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0065-L1",
-        "customerOrderLineId": "CO-0070-L1",
-        "productId": "NCP-100",
-        "quantity": 2,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0066",
+    "id": "SHIP-0058",
     "customerOrderId": "CO-0045",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0066-L1",
+        "id": "SHIP-0058-L1",
         "customerOrderLineId": "CO-0045-L1",
         "productId": "NCP-200",
         "quantity": 3,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0066-L2",
+        "id": "SHIP-0058-L2",
         "customerOrderLineId": "CO-0045-L2",
         "productId": "NCP-300",
         "quantity": 4,
@@ -1231,21 +1075,21 @@
     ]
   },
   {
-    "id": "SHIP-0067",
+    "id": "SHIP-0059",
     "customerOrderId": "CO-0054",
     "customerId": "CUS-008",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0067-L1",
+        "id": "SHIP-0059-L1",
         "customerOrderLineId": "CO-0054-L1",
         "productId": "NCP-200",
         "quantity": 1,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0067-L2",
+        "id": "SHIP-0059-L2",
         "customerOrderLineId": "CO-0054-L2",
         "productId": "NCP-300",
         "quantity": 3,
@@ -1254,21 +1098,67 @@
     ]
   },
   {
-    "id": "SHIP-0068",
-    "customerOrderId": "CO-0062",
-    "customerId": "CUS-010",
+    "id": "SHIP-0060",
+    "customerOrderId": "CO-0060",
+    "customerId": "CUS-006",
+    "dispatchedAt": "2026-09-16T15:00:00.000Z",
+    "carrier": "Pinecrest Logistics",
+    "lines": [
+      {
+        "id": "SHIP-0060-L1",
+        "customerOrderLineId": "CO-0060-L1",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      },
+      {
+        "id": "SHIP-0060-L2",
+        "customerOrderLineId": "CO-0060-L2",
+        "productId": "NCP-200",
+        "quantity": 2,
+        "fromLocationId": "SHP-002"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0061",
+    "customerOrderId": "CO-0061",
+    "customerId": "CUS-002",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0068-L1",
+        "id": "SHIP-0061-L1",
+        "customerOrderLineId": "CO-0061-L1",
+        "productId": "NCP-200",
+        "quantity": 5,
+        "fromLocationId": "SHP-002"
+      },
+      {
+        "id": "SHIP-0061-L2",
+        "customerOrderLineId": "CO-0061-L2",
+        "productId": "NCP-100",
+        "quantity": 4,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0062",
+    "customerOrderId": "CO-0062",
+    "customerId": "CUS-010",
+    "dispatchedAt": "2026-09-16T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0062-L1",
         "customerOrderLineId": "CO-0062-L1",
         "productId": "NCP-200",
         "quantity": 1,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0068-L2",
+        "id": "SHIP-0062-L2",
         "customerOrderLineId": "CO-0062-L2",
         "productId": "NCP-300",
         "quantity": 4,
@@ -1277,54 +1167,45 @@
     ]
   },
   {
-    "id": "SHIP-0069",
-    "customerOrderId": "CO-0067",
-    "customerId": "CUS-009",
+    "id": "SHIP-0063",
+    "customerOrderId": "CO-0063",
+    "customerId": "CUS-003",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0069-L1",
-        "customerOrderLineId": "CO-0067-L1",
-        "productId": "NCP-200",
-        "quantity": 3,
-        "fromLocationId": "SHP-002"
+        "id": "SHIP-0063-L1",
+        "customerOrderLineId": "CO-0063-L1",
+        "productId": "NCP-100",
+        "quantity": 2,
+        "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0069-L2",
-        "customerOrderLineId": "CO-0067-L2",
-        "productId": "NCP-300",
-        "quantity": 3,
-        "fromLocationId": "SHP-003"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0070",
-    "customerOrderId": "CO-0071",
-    "customerId": "CUS-010",
-    "dispatchedAt": "2026-09-16T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0070-L1",
-        "customerOrderLineId": "CO-0071-L1",
+        "id": "SHIP-0063-L2",
+        "customerOrderLineId": "CO-0063-L2",
         "productId": "NCP-200",
-        "quantity": 6,
+        "quantity": 3,
         "fromLocationId": "SHP-002"
       }
     ]
   },
   {
-    "id": "SHIP-0071",
-    "customerOrderId": "CO-0072",
-    "customerId": "CUS-010",
+    "id": "SHIP-0064",
+    "customerOrderId": "CO-0064",
+    "customerId": "CUS-004",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0071-L1",
-        "customerOrderLineId": "CO-0072-L1",
+        "id": "SHIP-0064-L1",
+        "customerOrderLineId": "CO-0064-L1",
+        "productId": "NCP-100",
+        "quantity": 4,
+        "fromLocationId": "SHP-001"
+      },
+      {
+        "id": "SHIP-0064-L2",
+        "customerOrderLineId": "CO-0064-L2",
         "productId": "NCP-200",
         "quantity": 5,
         "fromLocationId": "SHP-002"
@@ -1332,62 +1213,62 @@
     ]
   },
   {
-    "id": "SHIP-0072",
-    "customerOrderId": "CO-0073",
-    "customerId": "CUS-002",
+    "id": "SHIP-0065",
+    "customerOrderId": "CO-0068",
+    "customerId": "CUS-008",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0072-L1",
-        "customerOrderLineId": "CO-0073-L1",
-        "productId": "NCP-200",
-        "quantity": 10,
-        "fromLocationId": "SHP-002"
+        "id": "SHIP-0065-L1",
+        "customerOrderLineId": "CO-0068-L1",
+        "productId": "NCP-100",
+        "quantity": 2,
+        "fromLocationId": "SHP-001"
       }
     ]
   },
   {
-    "id": "SHIP-0073",
-    "customerOrderId": "CO-0074",
-    "customerId": "CUS-010",
+    "id": "SHIP-0066",
+    "customerOrderId": "CO-0069",
+    "customerId": "CUS-008",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0073-L1",
-        "customerOrderLineId": "CO-0074-L1",
-        "productId": "NCP-200",
-        "quantity": 8,
-        "fromLocationId": "SHP-002"
+        "id": "SHIP-0066-L1",
+        "customerOrderLineId": "CO-0069-L1",
+        "productId": "NCP-100",
+        "quantity": 4,
+        "fromLocationId": "SHP-001"
       }
     ]
   },
   {
-    "id": "SHIP-0074",
-    "customerOrderId": "CO-0075",
-    "customerId": "CUS-010",
+    "id": "SHIP-0067",
+    "customerOrderId": "CO-0070",
+    "customerId": "CUS-001",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0074-L1",
-        "customerOrderLineId": "CO-0075-L1",
-        "productId": "NCP-200",
-        "quantity": 6,
-        "fromLocationId": "SHP-002"
+        "id": "SHIP-0067-L1",
+        "customerOrderLineId": "CO-0070-L1",
+        "productId": "NCP-100",
+        "quantity": 2,
+        "fromLocationId": "SHP-001"
       }
     ]
   },
   {
-    "id": "SHIP-0075",
+    "id": "SHIP-0068",
     "customerOrderId": "CO-0076",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-16T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0075-L1",
+        "id": "SHIP-0068-L1",
         "customerOrderLineId": "CO-0076-L1",
         "productId": "NCP-300",
         "quantity": 3,
@@ -1396,14 +1277,14 @@
     ]
   },
   {
-    "id": "SHIP-0076",
+    "id": "SHIP-0069",
     "customerOrderId": "CO-0086",
     "customerId": "CUS-001",
-    "dispatchedAt": "2026-09-17T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "dispatchedAt": "2026-09-16T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0076-L1",
+        "id": "SHIP-0069-L1",
         "customerOrderLineId": "CO-0086-L1",
         "productId": "NCP-300",
         "quantity": 5,
@@ -1412,101 +1293,156 @@
     ]
   },
   {
-    "id": "SHIP-0077",
-    "customerOrderId": "CO-0092",
-    "customerId": "CUS-008",
+    "id": "SHIP-0070",
+    "customerOrderId": "CO-0065",
+    "customerId": "CUS-006",
     "dispatchedAt": "2026-09-17T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0077-L1",
-        "customerOrderLineId": "CO-0092-L1",
-        "productId": "NCP-100",
+        "id": "SHIP-0070-L1",
+        "customerOrderLineId": "CO-0065-L1",
+        "productId": "NCP-200",
         "quantity": 6,
-        "fromLocationId": "SHP-001"
+        "fromLocationId": "SHP-002"
       }
     ]
   },
   {
-    "id": "SHIP-0078",
-    "customerOrderId": "CO-0101",
-    "customerId": "CUS-010",
-    "dispatchedAt": "2026-09-17T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0078-L1",
-        "customerOrderLineId": "CO-0101-L1",
-        "productId": "NCP-100",
-        "quantity": 6,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0079",
-    "customerOrderId": "CO-0113",
+    "id": "SHIP-0071",
+    "customerOrderId": "CO-0066",
     "customerId": "CUS-009",
     "dispatchedAt": "2026-09-17T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0079-L1",
-        "customerOrderLineId": "CO-0113-L1",
-        "productId": "NCP-100",
-        "quantity": 4,
-        "fromLocationId": "SHP-001"
+        "id": "SHIP-0071-L1",
+        "customerOrderLineId": "CO-0066-L1",
+        "productId": "NCP-200",
+        "quantity": 5,
+        "fromLocationId": "SHP-002"
       }
     ]
   },
   {
-    "id": "SHIP-0080",
-    "customerOrderId": "CO-0114",
-    "customerId": "CUS-003",
+    "id": "SHIP-0072",
+    "customerOrderId": "CO-0067",
+    "customerId": "CUS-009",
     "dispatchedAt": "2026-09-17T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0080-L1",
-        "customerOrderLineId": "CO-0114-L1",
-        "productId": "NCP-100",
-        "quantity": 4,
-        "fromLocationId": "SHP-001"
+        "id": "SHIP-0072-L1",
+        "customerOrderLineId": "CO-0067-L1",
+        "productId": "NCP-200",
+        "quantity": 3,
+        "fromLocationId": "SHP-002"
+      },
+      {
+        "id": "SHIP-0072-L2",
+        "customerOrderLineId": "CO-0067-L2",
+        "productId": "NCP-300",
+        "quantity": 3,
+        "fromLocationId": "SHP-003"
       }
     ]
   },
   {
-    "id": "SHIP-0081",
-    "customerOrderId": "CO-0118",
-    "customerId": "CUS-001",
+    "id": "SHIP-0073",
+    "customerOrderId": "CO-0071",
+    "customerId": "CUS-010",
+    "dispatchedAt": "2026-09-17T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0073-L1",
+        "customerOrderLineId": "CO-0071-L1",
+        "productId": "NCP-200",
+        "quantity": 6,
+        "fromLocationId": "SHP-002"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0074",
+    "customerOrderId": "CO-0072",
+    "customerId": "CUS-010",
+    "dispatchedAt": "2026-09-17T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0074-L1",
+        "customerOrderLineId": "CO-0072-L1",
+        "productId": "NCP-200",
+        "quantity": 5,
+        "fromLocationId": "SHP-002"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0075",
+    "customerOrderId": "CO-0073",
+    "customerId": "CUS-002",
     "dispatchedAt": "2026-09-17T15:00:00.000Z",
     "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0081-L1",
-        "customerOrderLineId": "CO-0118-L1",
-        "productId": "NCP-100",
-        "quantity": 6,
-        "fromLocationId": "SHP-001"
+        "id": "SHIP-0075-L1",
+        "customerOrderLineId": "CO-0073-L1",
+        "productId": "NCP-200",
+        "quantity": 10,
+        "fromLocationId": "SHP-002"
       }
     ]
   },
   {
-    "id": "SHIP-0082",
-    "customerOrderId": "CO-0077",
-    "customerId": "CUS-005",
-    "dispatchedAt": "2026-09-18T15:00:00.000Z",
+    "id": "SHIP-0076",
+    "customerOrderId": "CO-0074",
+    "customerId": "CUS-010",
+    "dispatchedAt": "2026-09-17T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0076-L1",
+        "customerOrderLineId": "CO-0074-L1",
+        "productId": "NCP-200",
+        "quantity": 8,
+        "fromLocationId": "SHP-002"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0077",
+    "customerOrderId": "CO-0075",
+    "customerId": "CUS-010",
+    "dispatchedAt": "2026-09-17T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0082-L1",
+        "id": "SHIP-0077-L1",
+        "customerOrderLineId": "CO-0075-L1",
+        "productId": "NCP-200",
+        "quantity": 6,
+        "fromLocationId": "SHP-002"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0078",
+    "customerOrderId": "CO-0077",
+    "customerId": "CUS-005",
+    "dispatchedAt": "2026-09-17T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0078-L1",
         "customerOrderLineId": "CO-0077-L1",
         "productId": "NCP-100",
         "quantity": 6,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0082-L2",
+        "id": "SHIP-0078-L2",
         "customerOrderLineId": "CO-0077-L2",
         "productId": "NCP-200",
         "quantity": 4,
@@ -1515,14 +1451,62 @@
     ]
   },
   {
-    "id": "SHIP-0083",
-    "customerOrderId": "CO-0078",
-    "customerId": "CUS-010",
-    "dispatchedAt": "2026-09-18T15:00:00.000Z",
+    "id": "SHIP-0079",
+    "customerOrderId": "CO-0092",
+    "customerId": "CUS-008",
+    "dispatchedAt": "2026-09-17T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0083-L1",
+        "id": "SHIP-0079-L1",
+        "customerOrderLineId": "CO-0092-L1",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0080",
+    "customerOrderId": "CO-0101",
+    "customerId": "CUS-010",
+    "dispatchedAt": "2026-09-17T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0080-L1",
+        "customerOrderLineId": "CO-0101-L1",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0081",
+    "customerOrderId": "CO-0113",
+    "customerId": "CUS-009",
+    "dispatchedAt": "2026-09-17T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0081-L1",
+        "customerOrderLineId": "CO-0113-L1",
+        "productId": "NCP-100",
+        "quantity": 4,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0082",
+    "customerOrderId": "CO-0078",
+    "customerId": "CUS-010",
+    "dispatchedAt": "2026-09-18T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0082-L1",
         "customerOrderLineId": "CO-0078-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -1531,14 +1515,46 @@
     ]
   },
   {
+    "id": "SHIP-0083",
+    "customerOrderId": "CO-0114",
+    "customerId": "CUS-003",
+    "dispatchedAt": "2026-09-18T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0083-L1",
+        "customerOrderLineId": "CO-0114-L1",
+        "productId": "NCP-100",
+        "quantity": 4,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
     "id": "SHIP-0084",
+    "customerOrderId": "CO-0118",
+    "customerId": "CUS-001",
+    "dispatchedAt": "2026-09-18T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0084-L1",
+        "customerOrderLineId": "CO-0118-L1",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0085",
     "customerOrderId": "CO-0129",
     "customerId": "CUS-003",
     "dispatchedAt": "2026-09-18T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0084-L1",
+        "id": "SHIP-0085-L1",
         "customerOrderLineId": "CO-0129-L1",
         "productId": "NCP-100",
         "quantity": 5,
@@ -1547,14 +1563,14 @@
     ]
   },
   {
-    "id": "SHIP-0085",
+    "id": "SHIP-0086",
     "customerOrderId": "CO-0131",
     "customerId": "CUS-006",
     "dispatchedAt": "2026-09-18T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0085-L1",
+        "id": "SHIP-0086-L1",
         "customerOrderLineId": "CO-0131-L1",
         "productId": "NCP-300",
         "quantity": 1,
@@ -1563,14 +1579,14 @@
     ]
   },
   {
-    "id": "SHIP-0086",
+    "id": "SHIP-0087",
     "customerOrderId": "CO-0132",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-18T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0086-L1",
+        "id": "SHIP-0087-L1",
         "customerOrderLineId": "CO-0132-L1",
         "productId": "NCP-300",
         "quantity": 4,
@@ -1579,14 +1595,14 @@
     ]
   },
   {
-    "id": "SHIP-0087",
+    "id": "SHIP-0088",
     "customerOrderId": "CO-0134",
     "customerId": "CUS-005",
     "dispatchedAt": "2026-09-18T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0087-L1",
+        "id": "SHIP-0088-L1",
         "customerOrderLineId": "CO-0134-L1",
         "productId": "NCP-100",
         "quantity": 6,
@@ -1595,14 +1611,14 @@
     ]
   },
   {
-    "id": "SHIP-0088",
+    "id": "SHIP-0089",
     "customerOrderId": "CO-0135",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-18T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0088-L1",
+        "id": "SHIP-0089-L1",
         "customerOrderLineId": "CO-0135-L1",
         "productId": "NCP-100",
         "quantity": 2,
@@ -1611,14 +1627,14 @@
     ]
   },
   {
-    "id": "SHIP-0089",
+    "id": "SHIP-0090",
     "customerOrderId": "CO-0136",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-21T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0089-L1",
+        "id": "SHIP-0090-L1",
         "customerOrderLineId": "CO-0136-L1",
         "productId": "NCP-300",
         "quantity": 4,
@@ -1627,34 +1643,11 @@
     ]
   },
   {
-    "id": "SHIP-0090",
-    "customerOrderId": "CO-0138",
-    "customerId": "CUS-008",
-    "dispatchedAt": "2026-09-21T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0090-L1",
-        "customerOrderLineId": "CO-0138-L1",
-        "productId": "NCP-300",
-        "quantity": 2,
-        "fromLocationId": "SHP-003"
-      },
-      {
-        "id": "SHIP-0090-L2",
-        "customerOrderLineId": "CO-0138-L2",
-        "productId": "NCP-100",
-        "quantity": 6,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
     "id": "SHIP-0091",
     "customerOrderId": "CO-0079",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
         "id": "SHIP-0091-L1",
@@ -1670,7 +1663,7 @@
     "customerOrderId": "CO-0080",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
         "id": "SHIP-0092-L1",
@@ -1702,7 +1695,7 @@
     "customerOrderId": "CO-0082",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
         "id": "SHIP-0094-L1",
@@ -1741,7 +1734,7 @@
     "customerOrderId": "CO-0085",
     "customerId": "CUS-005",
     "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
         "id": "SHIP-0096-L1",
@@ -1757,7 +1750,7 @@
     "customerOrderId": "CO-0087",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
         "id": "SHIP-0097-L1",
@@ -1773,7 +1766,7 @@
     "customerOrderId": "CO-0088",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
         "id": "SHIP-0098-L1",
@@ -1786,13 +1779,36 @@
   },
   {
     "id": "SHIP-0099",
-    "customerOrderId": "CO-0089",
-    "customerId": "CUS-002",
+    "customerOrderId": "CO-0138",
+    "customerId": "CUS-008",
     "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
         "id": "SHIP-0099-L1",
+        "customerOrderLineId": "CO-0138-L1",
+        "productId": "NCP-300",
+        "quantity": 2,
+        "fromLocationId": "SHP-003"
+      },
+      {
+        "id": "SHIP-0099-L2",
+        "customerOrderLineId": "CO-0138-L2",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0100",
+    "customerOrderId": "CO-0089",
+    "customerId": "CUS-002",
+    "dispatchedAt": "2026-09-23T15:00:00.000Z",
+    "carrier": "Pinecrest Logistics",
+    "lines": [
+      {
+        "id": "SHIP-0100-L1",
         "customerOrderLineId": "CO-0089-L1",
         "productId": "NCP-200",
         "quantity": 9,
@@ -1801,14 +1817,14 @@
     ]
   },
   {
-    "id": "SHIP-0100",
+    "id": "SHIP-0101",
     "customerOrderId": "CO-0090",
     "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "dispatchedAt": "2026-09-23T15:00:00.000Z",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0100-L1",
+        "id": "SHIP-0101-L1",
         "customerOrderLineId": "CO-0090-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -1817,14 +1833,14 @@
     ]
   },
   {
-    "id": "SHIP-0101",
+    "id": "SHIP-0102",
     "customerOrderId": "CO-0091",
     "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "dispatchedAt": "2026-09-23T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0101-L1",
+        "id": "SHIP-0102-L1",
         "customerOrderLineId": "CO-0091-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -1833,14 +1849,14 @@
     ]
   },
   {
-    "id": "SHIP-0102",
+    "id": "SHIP-0103",
     "customerOrderId": "CO-0093",
     "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "dispatchedAt": "2026-09-23T15:00:00.000Z",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0102-L1",
+        "id": "SHIP-0103-L1",
         "customerOrderLineId": "CO-0093-L1",
         "productId": "NCP-200",
         "quantity": 7,
@@ -1849,62 +1865,14 @@
     ]
   },
   {
-    "id": "SHIP-0103",
-    "customerOrderId": "CO-0144",
-    "customerId": "CUS-009",
-    "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0103-L1",
-        "customerOrderLineId": "CO-0144-L1",
-        "productId": "NCP-100",
-        "quantity": 5,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
     "id": "SHIP-0104",
-    "customerOrderId": "CO-0147",
-    "customerId": "CUS-005",
-    "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
-    "lines": [
-      {
-        "id": "SHIP-0104-L1",
-        "customerOrderLineId": "CO-0147-L1",
-        "productId": "NCP-100",
-        "quantity": 6,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0105",
-    "customerOrderId": "CO-0149",
-    "customerId": "CUS-006",
-    "dispatchedAt": "2026-09-22T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
-    "lines": [
-      {
-        "id": "SHIP-0105-L1",
-        "customerOrderLineId": "CO-0149-L1",
-        "productId": "NCP-100",
-        "quantity": 6,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0106",
     "customerOrderId": "CO-0094",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-23T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0106-L1",
+        "id": "SHIP-0104-L1",
         "customerOrderLineId": "CO-0094-L1",
         "productId": "NCP-200",
         "quantity": 6,
@@ -1913,14 +1881,14 @@
     ]
   },
   {
-    "id": "SHIP-0107",
+    "id": "SHIP-0105",
     "customerOrderId": "CO-0095",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-23T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0107-L1",
+        "id": "SHIP-0105-L1",
         "customerOrderLineId": "CO-0095-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -1929,14 +1897,14 @@
     ]
   },
   {
-    "id": "SHIP-0108",
+    "id": "SHIP-0106",
     "customerOrderId": "CO-0096",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-23T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0108-L1",
+        "id": "SHIP-0106-L1",
         "customerOrderLineId": "CO-0096-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -1945,14 +1913,14 @@
     ]
   },
   {
-    "id": "SHIP-0109",
+    "id": "SHIP-0107",
     "customerOrderId": "CO-0097",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-23T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0109-L1",
+        "id": "SHIP-0107-L1",
         "customerOrderLineId": "CO-0097-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -1961,46 +1929,14 @@
     ]
   },
   {
-    "id": "SHIP-0110",
-    "customerOrderId": "CO-0150",
-    "customerId": "CUS-004",
-    "dispatchedAt": "2026-09-23T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0110-L1",
-        "customerOrderLineId": "CO-0150-L1",
-        "productId": "NCP-100",
-        "quantity": 5,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0111",
-    "customerOrderId": "CO-0151",
-    "customerId": "CUS-006",
-    "dispatchedAt": "2026-09-23T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
-    "lines": [
-      {
-        "id": "SHIP-0111-L1",
-        "customerOrderLineId": "CO-0151-L1",
-        "productId": "NCP-100",
-        "quantity": 1,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0112",
+    "id": "SHIP-0108",
     "customerOrderId": "CO-0098",
     "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-24T15:00:00.000Z",
+    "dispatchedAt": "2026-09-23T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0112-L1",
+        "id": "SHIP-0108-L1",
         "customerOrderLineId": "CO-0098-L1",
         "productId": "NCP-200",
         "quantity": 8,
@@ -2009,14 +1945,30 @@
     ]
   },
   {
-    "id": "SHIP-0113",
-    "customerOrderId": "CO-0099",
-    "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-24T15:00:00.000Z",
+    "id": "SHIP-0109",
+    "customerOrderId": "CO-0144",
+    "customerId": "CUS-009",
+    "dispatchedAt": "2026-09-23T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0113-L1",
+        "id": "SHIP-0109-L1",
+        "customerOrderLineId": "CO-0144-L1",
+        "productId": "NCP-100",
+        "quantity": 5,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0110",
+    "customerOrderId": "CO-0099",
+    "customerId": "CUS-002",
+    "dispatchedAt": "2026-09-24T15:00:00.000Z",
+    "carrier": "Pinecrest Logistics",
+    "lines": [
+      {
+        "id": "SHIP-0110-L1",
         "customerOrderLineId": "CO-0099-L1",
         "productId": "NCP-200",
         "quantity": 8,
@@ -2025,14 +1977,14 @@
     ]
   },
   {
-    "id": "SHIP-0114",
+    "id": "SHIP-0111",
     "customerOrderId": "CO-0100",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-24T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0114-L1",
+        "id": "SHIP-0111-L1",
         "customerOrderLineId": "CO-0100-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2041,14 +1993,14 @@
     ]
   },
   {
-    "id": "SHIP-0115",
+    "id": "SHIP-0112",
     "customerOrderId": "CO-0102",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-24T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0115-L1",
+        "id": "SHIP-0112-L1",
         "customerOrderLineId": "CO-0102-L1",
         "productId": "NCP-200",
         "quantity": 6,
@@ -2057,14 +2009,14 @@
     ]
   },
   {
-    "id": "SHIP-0116",
+    "id": "SHIP-0113",
     "customerOrderId": "CO-0103",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-24T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0116-L1",
+        "id": "SHIP-0113-L1",
         "customerOrderLineId": "CO-0103-L1",
         "productId": "NCP-200",
         "quantity": 8,
@@ -2073,14 +2025,14 @@
     ]
   },
   {
-    "id": "SHIP-0117",
+    "id": "SHIP-0114",
     "customerOrderId": "CO-0104",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-24T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0117-L1",
+        "id": "SHIP-0114-L1",
         "customerOrderLineId": "CO-0104-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2089,14 +2041,14 @@
     ]
   },
   {
-    "id": "SHIP-0118",
+    "id": "SHIP-0115",
     "customerOrderId": "CO-0105",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-24T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0118-L1",
+        "id": "SHIP-0115-L1",
         "customerOrderLineId": "CO-0105-L1",
         "productId": "NCP-200",
         "quantity": 6,
@@ -2105,14 +2057,14 @@
     ]
   },
   {
-    "id": "SHIP-0119",
+    "id": "SHIP-0116",
     "customerOrderId": "CO-0106",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-24T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0119-L1",
+        "id": "SHIP-0116-L1",
         "customerOrderLineId": "CO-0106-L1",
         "productId": "NCP-200",
         "quantity": 7,
@@ -2121,14 +2073,14 @@
     ]
   },
   {
-    "id": "SHIP-0120",
+    "id": "SHIP-0117",
     "customerOrderId": "CO-0107",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-24T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0120-L1",
+        "id": "SHIP-0117-L1",
         "customerOrderLineId": "CO-0107-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2137,14 +2089,14 @@
     ]
   },
   {
-    "id": "SHIP-0121",
+    "id": "SHIP-0118",
     "customerOrderId": "CO-0108",
     "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-25T15:00:00.000Z",
+    "dispatchedAt": "2026-09-24T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0121-L1",
+        "id": "SHIP-0118-L1",
         "customerOrderLineId": "CO-0108-L1",
         "productId": "NCP-200",
         "quantity": 8,
@@ -2153,14 +2105,14 @@
     ]
   },
   {
-    "id": "SHIP-0122",
+    "id": "SHIP-0119",
     "customerOrderId": "CO-0109",
     "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-25T15:00:00.000Z",
+    "dispatchedAt": "2026-09-24T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0122-L1",
+        "id": "SHIP-0119-L1",
         "customerOrderLineId": "CO-0109-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2169,14 +2121,14 @@
     ]
   },
   {
-    "id": "SHIP-0123",
+    "id": "SHIP-0120",
     "customerOrderId": "CO-0110",
     "customerId": "CUS-010",
-    "dispatchedAt": "2026-09-25T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "dispatchedAt": "2026-09-24T15:00:00.000Z",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0123-L1",
+        "id": "SHIP-0120-L1",
         "customerOrderLineId": "CO-0110-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2185,14 +2137,14 @@
     ]
   },
   {
-    "id": "SHIP-0124",
+    "id": "SHIP-0121",
     "customerOrderId": "CO-0111",
     "customerId": "CUS-010",
-    "dispatchedAt": "2026-09-25T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "dispatchedAt": "2026-09-24T15:00:00.000Z",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0124-L1",
+        "id": "SHIP-0121-L1",
         "customerOrderLineId": "CO-0111-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2201,14 +2153,14 @@
     ]
   },
   {
-    "id": "SHIP-0125",
+    "id": "SHIP-0122",
     "customerOrderId": "CO-0115",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-25T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0125-L1",
+        "id": "SHIP-0122-L1",
         "customerOrderLineId": "CO-0115-L1",
         "productId": "NCP-200",
         "quantity": 9,
@@ -2217,14 +2169,14 @@
     ]
   },
   {
-    "id": "SHIP-0126",
+    "id": "SHIP-0123",
     "customerOrderId": "CO-0116",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-25T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0126-L1",
+        "id": "SHIP-0123-L1",
         "customerOrderLineId": "CO-0116-L1",
         "productId": "NCP-200",
         "quantity": 6,
@@ -2233,14 +2185,14 @@
     ]
   },
   {
-    "id": "SHIP-0127",
+    "id": "SHIP-0124",
     "customerOrderId": "CO-0117",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-25T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0127-L1",
+        "id": "SHIP-0124-L1",
         "customerOrderLineId": "CO-0117-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2249,14 +2201,14 @@
     ]
   },
   {
-    "id": "SHIP-0128",
+    "id": "SHIP-0125",
     "customerOrderId": "CO-0119",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-25T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0128-L1",
+        "id": "SHIP-0125-L1",
         "customerOrderLineId": "CO-0119-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2265,21 +2217,21 @@
     ]
   },
   {
-    "id": "SHIP-0129",
+    "id": "SHIP-0126",
     "customerOrderId": "CO-0120",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-25T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0129-L1",
+        "id": "SHIP-0126-L1",
         "customerOrderLineId": "CO-0120-L1",
         "productId": "NCP-200",
         "quantity": 6,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0129-L2",
+        "id": "SHIP-0126-L2",
         "customerOrderLineId": "CO-0120-L2",
         "productId": "NCP-100",
         "quantity": 4,
@@ -2288,14 +2240,14 @@
     ]
   },
   {
-    "id": "SHIP-0130",
+    "id": "SHIP-0127",
     "customerOrderId": "CO-0121",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-25T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0130-L1",
+        "id": "SHIP-0127-L1",
         "customerOrderLineId": "CO-0121-L1",
         "productId": "NCP-200",
         "quantity": 10,
@@ -2304,14 +2256,14 @@
     ]
   },
   {
-    "id": "SHIP-0131",
+    "id": "SHIP-0128",
     "customerOrderId": "CO-0122",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-25T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0131-L1",
+        "id": "SHIP-0128-L1",
         "customerOrderLineId": "CO-0122-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2320,14 +2272,14 @@
     ]
   },
   {
-    "id": "SHIP-0132",
+    "id": "SHIP-0129",
     "customerOrderId": "CO-0123",
     "customerId": "CUS-010",
-    "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "dispatchedAt": "2026-09-25T15:00:00.000Z",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0132-L1",
+        "id": "SHIP-0129-L1",
         "customerOrderLineId": "CO-0123-L1",
         "productId": "NCP-200",
         "quantity": 6,
@@ -2336,14 +2288,14 @@
     ]
   },
   {
-    "id": "SHIP-0133",
+    "id": "SHIP-0130",
     "customerOrderId": "CO-0124",
     "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "dispatchedAt": "2026-09-25T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0133-L1",
+        "id": "SHIP-0130-L1",
         "customerOrderLineId": "CO-0124-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2352,14 +2304,14 @@
     ]
   },
   {
-    "id": "SHIP-0134",
+    "id": "SHIP-0131",
     "customerOrderId": "CO-0125",
     "customerId": "CUS-010",
-    "dispatchedAt": "2026-09-28T15:00:00.000Z",
+    "dispatchedAt": "2026-09-25T15:00:00.000Z",
     "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0134-L1",
+        "id": "SHIP-0131-L1",
         "customerOrderLineId": "CO-0125-L1",
         "productId": "NCP-200",
         "quantity": 9,
@@ -2368,14 +2320,14 @@
     ]
   },
   {
-    "id": "SHIP-0135",
+    "id": "SHIP-0132",
     "customerOrderId": "CO-0126",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
     "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0135-L1",
+        "id": "SHIP-0132-L1",
         "customerOrderLineId": "CO-0126-L1",
         "productId": "NCP-200",
         "quantity": 6,
@@ -2384,14 +2336,14 @@
     ]
   },
   {
-    "id": "SHIP-0136",
+    "id": "SHIP-0133",
     "customerOrderId": "CO-0127",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0136-L1",
+        "id": "SHIP-0133-L1",
         "customerOrderLineId": "CO-0127-L1",
         "productId": "NCP-200",
         "quantity": 6,
@@ -2400,14 +2352,14 @@
     ]
   },
   {
-    "id": "SHIP-0137",
+    "id": "SHIP-0134",
     "customerOrderId": "CO-0128",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
     "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0137-L1",
+        "id": "SHIP-0134-L1",
         "customerOrderLineId": "CO-0128-L1",
         "productId": "NCP-200",
         "quantity": 7,
@@ -2416,14 +2368,14 @@
     ]
   },
   {
-    "id": "SHIP-0138",
+    "id": "SHIP-0135",
     "customerOrderId": "CO-0130",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0138-L1",
+        "id": "SHIP-0135-L1",
         "customerOrderLineId": "CO-0130-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2432,14 +2384,14 @@
     ]
   },
   {
-    "id": "SHIP-0139",
+    "id": "SHIP-0136",
     "customerOrderId": "CO-0133",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0139-L1",
+        "id": "SHIP-0136-L1",
         "customerOrderLineId": "CO-0133-L1",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2448,21 +2400,21 @@
     ]
   },
   {
-    "id": "SHIP-0140",
+    "id": "SHIP-0137",
     "customerOrderId": "CO-0137",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0140-L1",
+        "id": "SHIP-0137-L1",
         "customerOrderLineId": "CO-0137-L1",
         "productId": "NCP-100",
         "quantity": 5,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0140-L2",
+        "id": "SHIP-0137-L2",
         "customerOrderLineId": "CO-0137-L2",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2471,14 +2423,14 @@
     ]
   },
   {
-    "id": "SHIP-0141",
+    "id": "SHIP-0138",
     "customerOrderId": "CO-0139",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0141-L1",
+        "id": "SHIP-0138-L1",
         "customerOrderLineId": "CO-0139-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2487,21 +2439,21 @@
     ]
   },
   {
-    "id": "SHIP-0142",
+    "id": "SHIP-0139",
     "customerOrderId": "CO-0140",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
     "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0142-L1",
+        "id": "SHIP-0139-L1",
         "customerOrderLineId": "CO-0140-L1",
         "productId": "NCP-100",
         "quantity": 1,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0142-L2",
+        "id": "SHIP-0139-L2",
         "customerOrderLineId": "CO-0140-L2",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2510,21 +2462,21 @@
     ]
   },
   {
-    "id": "SHIP-0143",
+    "id": "SHIP-0140",
     "customerOrderId": "CO-0141",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0143-L1",
+        "id": "SHIP-0140-L1",
         "customerOrderLineId": "CO-0141-L1",
         "productId": "NCP-100",
         "quantity": 6,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0143-L2",
+        "id": "SHIP-0140-L2",
         "customerOrderLineId": "CO-0141-L2",
         "productId": "NCP-200",
         "quantity": 4,
@@ -2533,21 +2485,21 @@
     ]
   },
   {
-    "id": "SHIP-0144",
+    "id": "SHIP-0141",
     "customerOrderId": "CO-0142",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0144-L1",
+        "id": "SHIP-0141-L1",
         "customerOrderLineId": "CO-0142-L1",
         "productId": "NCP-100",
         "quantity": 3,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0144-L2",
+        "id": "SHIP-0141-L2",
         "customerOrderLineId": "CO-0142-L2",
         "productId": "NCP-200",
         "quantity": 1,
@@ -2556,14 +2508,14 @@
     ]
   },
   {
-    "id": "SHIP-0145",
+    "id": "SHIP-0142",
     "customerOrderId": "CO-0143",
     "customerId": "CUS-008",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0145-L1",
+        "id": "SHIP-0142-L1",
         "customerOrderLineId": "CO-0143-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2572,14 +2524,14 @@
     ]
   },
   {
-    "id": "SHIP-0146",
+    "id": "SHIP-0143",
     "customerOrderId": "CO-0145",
     "customerId": "CUS-004",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0146-L1",
+        "id": "SHIP-0143-L1",
         "customerOrderLineId": "CO-0145-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2588,14 +2540,14 @@
     ]
   },
   {
-    "id": "SHIP-0147",
+    "id": "SHIP-0144",
     "customerOrderId": "CO-0146",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0147-L1",
+        "id": "SHIP-0144-L1",
         "customerOrderLineId": "CO-0146-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2604,14 +2556,14 @@
     ]
   },
   {
-    "id": "SHIP-0148",
+    "id": "SHIP-0145",
     "customerOrderId": "CO-0152",
     "customerId": "CUS-007",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0148-L1",
+        "id": "SHIP-0145-L1",
         "customerOrderLineId": "CO-0152-L1",
         "productId": "NCP-200",
         "quantity": 3,
@@ -2620,14 +2572,14 @@
     ]
   },
   {
-    "id": "SHIP-0149",
+    "id": "SHIP-0146",
     "customerOrderId": "CO-0153",
     "customerId": "CUS-009",
     "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0149-L1",
+        "id": "SHIP-0146-L1",
         "customerOrderLineId": "CO-0153-L1",
         "productId": "NCP-200",
         "quantity": 3,
@@ -2636,21 +2588,85 @@
     ]
   },
   {
-    "id": "SHIP-0150",
-    "customerOrderId": "CO-0155",
-    "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-28T15:00:00.000Z",
+    "id": "SHIP-0147",
+    "customerOrderId": "CO-0147",
+    "customerId": "CUS-005",
+    "dispatchedAt": "2026-09-29T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0147-L1",
+        "customerOrderLineId": "CO-0147-L1",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0148",
+    "customerOrderId": "CO-0149",
+    "customerId": "CUS-006",
+    "dispatchedAt": "2026-09-29T15:00:00.000Z",
     "carrier": "Pinecrest Logistics",
     "lines": [
       {
+        "id": "SHIP-0148-L1",
+        "customerOrderLineId": "CO-0149-L1",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0149",
+    "customerOrderId": "CO-0150",
+    "customerId": "CUS-004",
+    "dispatchedAt": "2026-09-29T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0149-L1",
+        "customerOrderLineId": "CO-0150-L1",
+        "productId": "NCP-100",
+        "quantity": 5,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0150",
+    "customerOrderId": "CO-0151",
+    "customerId": "CUS-006",
+    "dispatchedAt": "2026-09-29T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
         "id": "SHIP-0150-L1",
+        "customerOrderLineId": "CO-0151-L1",
+        "productId": "NCP-100",
+        "quantity": 1,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0151",
+    "customerOrderId": "CO-0155",
+    "customerId": "CUS-002",
+    "dispatchedAt": "2026-09-29T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0151-L1",
         "customerOrderLineId": "CO-0155-L1",
         "productId": "NCP-200",
         "quantity": 4,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0150-L2",
+        "id": "SHIP-0151-L2",
         "customerOrderLineId": "CO-0155-L2",
         "productId": "NCP-100",
         "quantity": 2,
@@ -2659,14 +2675,14 @@
     ]
   },
   {
-    "id": "SHIP-0151",
+    "id": "SHIP-0152",
     "customerOrderId": "CO-0158",
     "customerId": "CUS-004",
-    "dispatchedAt": "2026-09-28T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "dispatchedAt": "2026-09-29T15:00:00.000Z",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0151-L1",
+        "id": "SHIP-0152-L1",
         "customerOrderLineId": "CO-0158-L1",
         "productId": "NCP-100",
         "quantity": 1,
@@ -2675,76 +2691,14 @@
     ]
   },
   {
-    "id": "SHIP-0152",
-    "customerOrderId": "CO-0154",
-    "customerId": "CUS-007",
-    "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0152-L1",
-        "customerOrderLineId": "CO-0154-L1",
-        "productId": "NCP-100",
-        "quantity": 3,
-        "fromLocationId": "SHP-001"
-      },
-      {
-        "id": "SHIP-0152-L2",
-        "customerOrderLineId": "CO-0154-L2",
-        "productId": "NCP-300",
-        "quantity": 5,
-        "fromLocationId": "SHP-003"
-      }
-    ]
-  },
-  {
     "id": "SHIP-0153",
-    "customerOrderId": "CO-0156",
-    "customerId": "CUS-008",
+    "customerOrderId": "CO-0159",
+    "customerId": "CUS-009",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
         "id": "SHIP-0153-L1",
-        "customerOrderLineId": "CO-0156-L1",
-        "productId": "NCP-300",
-        "quantity": 5,
-        "fromLocationId": "SHP-003"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0154",
-    "customerOrderId": "CO-0157",
-    "customerId": "CUS-004",
-    "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0154-L1",
-        "customerOrderLineId": "CO-0157-L1",
-        "productId": "NCP-300",
-        "quantity": 2,
-        "fromLocationId": "SHP-003"
-      },
-      {
-        "id": "SHIP-0154-L2",
-        "customerOrderLineId": "CO-0157-L2",
-        "productId": "NCP-100",
-        "quantity": 2,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0155",
-    "customerOrderId": "CO-0159",
-    "customerId": "CUS-009",
-    "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0155-L1",
         "customerOrderLineId": "CO-0159-L1",
         "productId": "NCP-200",
         "quantity": 2,
@@ -2753,21 +2707,21 @@
     ]
   },
   {
-    "id": "SHIP-0156",
+    "id": "SHIP-0154",
     "customerOrderId": "CO-0160",
     "customerId": "CUS-004",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0156-L1",
+        "id": "SHIP-0154-L1",
         "customerOrderLineId": "CO-0160-L1",
         "productId": "NCP-200",
         "quantity": 1,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0156-L2",
+        "id": "SHIP-0154-L2",
         "customerOrderLineId": "CO-0160-L2",
         "productId": "NCP-100",
         "quantity": 4,
@@ -2776,14 +2730,14 @@
     ]
   },
   {
-    "id": "SHIP-0157",
+    "id": "SHIP-0155",
     "customerOrderId": "CO-0161",
     "customerId": "CUS-004",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0157-L1",
+        "id": "SHIP-0155-L1",
         "customerOrderLineId": "CO-0161-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2792,21 +2746,21 @@
     ]
   },
   {
-    "id": "SHIP-0158",
+    "id": "SHIP-0156",
     "customerOrderId": "CO-0162",
     "customerId": "CUS-009",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0158-L1",
+        "id": "SHIP-0156-L1",
         "customerOrderLineId": "CO-0162-L1",
         "productId": "NCP-100",
         "quantity": 5,
         "fromLocationId": "SHP-001"
       },
       {
-        "id": "SHIP-0158-L2",
+        "id": "SHIP-0156-L2",
         "customerOrderLineId": "CO-0162-L2",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2815,14 +2769,14 @@
     ]
   },
   {
-    "id": "SHIP-0159",
+    "id": "SHIP-0157",
     "customerOrderId": "CO-0164",
     "customerId": "CUS-003",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0159-L1",
+        "id": "SHIP-0157-L1",
         "customerOrderLineId": "CO-0164-L1",
         "productId": "NCP-100",
         "quantity": 5,
@@ -2831,14 +2785,14 @@
     ]
   },
   {
-    "id": "SHIP-0160",
+    "id": "SHIP-0158",
     "customerOrderId": "CO-0165",
     "customerId": "CUS-008",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0160-L1",
+        "id": "SHIP-0158-L1",
         "customerOrderLineId": "CO-0165-L1",
         "productId": "NCP-200",
         "quantity": 2,
@@ -2847,14 +2801,14 @@
     ]
   },
   {
-    "id": "SHIP-0161",
+    "id": "SHIP-0159",
     "customerOrderId": "CO-0166",
     "customerId": "CUS-010",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Pinecrest Logistics",
     "lines": [
       {
-        "id": "SHIP-0161-L1",
+        "id": "SHIP-0159-L1",
         "customerOrderLineId": "CO-0166-L1",
         "productId": "NCP-100",
         "quantity": 6,
@@ -2863,14 +2817,14 @@
     ]
   },
   {
-    "id": "SHIP-0162",
+    "id": "SHIP-0160",
     "customerOrderId": "CO-0168",
     "customerId": "CUS-006",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0162-L1",
+        "id": "SHIP-0160-L1",
         "customerOrderLineId": "CO-0168-L1",
         "productId": "NCP-200",
         "quantity": 5,
@@ -2879,21 +2833,21 @@
     ]
   },
   {
-    "id": "SHIP-0163",
+    "id": "SHIP-0161",
     "customerOrderId": "CO-0169",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
-        "id": "SHIP-0163-L1",
+        "id": "SHIP-0161-L1",
         "customerOrderLineId": "CO-0169-L1",
         "productId": "NCP-200",
         "quantity": 2,
         "fromLocationId": "SHP-002"
       },
       {
-        "id": "SHIP-0163-L2",
+        "id": "SHIP-0161-L2",
         "customerOrderLineId": "CO-0169-L2",
         "productId": "NCP-100",
         "quantity": 2,
@@ -2902,78 +2856,76 @@
     ]
   },
   {
+    "id": "SHIP-0162",
+    "customerOrderId": "CO-0154",
+    "customerId": "CUS-007",
+    "dispatchedAt": "2026-09-30T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0162-L1",
+        "customerOrderLineId": "CO-0154-L1",
+        "productId": "NCP-100",
+        "quantity": 3,
+        "fromLocationId": "SHP-001"
+      },
+      {
+        "id": "SHIP-0162-L2",
+        "customerOrderLineId": "CO-0154-L2",
+        "productId": "NCP-300",
+        "quantity": 5,
+        "fromLocationId": "SHP-003"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0163",
+    "customerOrderId": "CO-0156",
+    "customerId": "CUS-008",
+    "dispatchedAt": "2026-09-30T15:00:00.000Z",
+    "carrier": "Pinecrest Logistics",
+    "lines": [
+      {
+        "id": "SHIP-0163-L1",
+        "customerOrderLineId": "CO-0156-L1",
+        "productId": "NCP-300",
+        "quantity": 5,
+        "fromLocationId": "SHP-003"
+      }
+    ]
+  },
+  {
     "id": "SHIP-0164",
-    "customerOrderId": "CO-0170",
-    "customerId": "CUS-003",
-    "dispatchedAt": "2026-09-29T15:00:00.000Z",
+    "customerOrderId": "CO-0157",
+    "customerId": "CUS-004",
+    "dispatchedAt": "2026-09-30T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
         "id": "SHIP-0164-L1",
-        "customerOrderLineId": "CO-0170-L1",
+        "customerOrderLineId": "CO-0157-L1",
+        "productId": "NCP-300",
+        "quantity": 2,
+        "fromLocationId": "SHP-003"
+      },
+      {
+        "id": "SHIP-0164-L2",
+        "customerOrderLineId": "CO-0157-L2",
         "productId": "NCP-100",
-        "quantity": 6,
+        "quantity": 2,
         "fromLocationId": "SHP-001"
       }
     ]
   },
   {
     "id": "SHIP-0165",
-    "customerOrderId": "CO-0171",
-    "customerId": "CUS-009",
-    "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0165-L1",
-        "customerOrderLineId": "CO-0171-L1",
-        "productId": "NCP-200",
-        "quantity": 3,
-        "fromLocationId": "SHP-002"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0166",
-    "customerOrderId": "CO-0172",
-    "customerId": "CUS-005",
-    "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
-    "lines": [
-      {
-        "id": "SHIP-0166-L1",
-        "customerOrderLineId": "CO-0172-L1",
-        "productId": "NCP-100",
-        "quantity": 6,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0167",
-    "customerOrderId": "CO-0176",
-    "customerId": "CUS-002",
-    "dispatchedAt": "2026-09-29T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0167-L1",
-        "customerOrderLineId": "CO-0176-L1",
-        "productId": "NCP-100",
-        "quantity": 4,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0168",
     "customerOrderId": "CO-0163",
     "customerId": "CUS-005",
     "dispatchedAt": "2026-09-30T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0168-L1",
+        "id": "SHIP-0165-L1",
         "customerOrderLineId": "CO-0163-L1",
         "productId": "NCP-300",
         "quantity": 6,
@@ -2982,14 +2934,14 @@
     ]
   },
   {
-    "id": "SHIP-0169",
+    "id": "SHIP-0166",
     "customerOrderId": "CO-0167",
     "customerId": "CUS-002",
     "dispatchedAt": "2026-09-30T15:00:00.000Z",
-    "carrier": "Redline Freight",
+    "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0169-L1",
+        "id": "SHIP-0166-L1",
         "customerOrderLineId": "CO-0167-L1",
         "productId": "NCP-300",
         "quantity": 6,
@@ -2998,11 +2950,59 @@
     ]
   },
   {
+    "id": "SHIP-0167",
+    "customerOrderId": "CO-0170",
+    "customerId": "CUS-003",
+    "dispatchedAt": "2026-09-30T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0167-L1",
+        "customerOrderLineId": "CO-0170-L1",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0168",
+    "customerOrderId": "CO-0171",
+    "customerId": "CUS-009",
+    "dispatchedAt": "2026-09-30T15:00:00.000Z",
+    "carrier": "Redline Freight",
+    "lines": [
+      {
+        "id": "SHIP-0168-L1",
+        "customerOrderLineId": "CO-0171-L1",
+        "productId": "NCP-200",
+        "quantity": 3,
+        "fromLocationId": "SHP-002"
+      }
+    ]
+  },
+  {
+    "id": "SHIP-0169",
+    "customerOrderId": "CO-0172",
+    "customerId": "CUS-005",
+    "dispatchedAt": "2026-09-30T15:00:00.000Z",
+    "carrier": "Summit Parcel Co.",
+    "lines": [
+      {
+        "id": "SHIP-0169-L1",
+        "customerOrderLineId": "CO-0172-L1",
+        "productId": "NCP-100",
+        "quantity": 6,
+        "fromLocationId": "SHP-001"
+      }
+    ]
+  },
+  {
     "id": "SHIP-0170",
     "customerOrderId": "CO-0173",
     "customerId": "CUS-001",
     "dispatchedAt": "2026-09-30T15:00:00.000Z",
-    "carrier": "Pinecrest Logistics",
+    "carrier": "Redline Freight",
     "lines": [
       {
         "id": "SHIP-0170-L1",
@@ -3018,7 +3018,7 @@
     "customerOrderId": "CO-0174",
     "customerId": "CUS-005",
     "dispatchedAt": "2026-09-30T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
+    "carrier": "Redline Freight",
     "lines": [
       {
         "id": "SHIP-0171-L1",
@@ -3031,98 +3031,29 @@
   },
   {
     "id": "SHIP-0172",
-    "customerOrderId": "CO-0175",
-    "customerId": "CUS-009",
+    "customerOrderId": "CO-0176",
+    "customerId": "CUS-002",
     "dispatchedAt": "2026-09-30T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
         "id": "SHIP-0172-L1",
-        "customerOrderLineId": "CO-0175-L1",
+        "customerOrderLineId": "CO-0176-L1",
         "productId": "NCP-100",
-        "quantity": 1,
+        "quantity": 4,
         "fromLocationId": "SHP-001"
-      },
-      {
-        "id": "SHIP-0172-L2",
-        "customerOrderLineId": "CO-0175-L2",
-        "productId": "NCP-200",
-        "quantity": 2,
-        "fromLocationId": "SHP-002"
       }
     ]
   },
   {
     "id": "SHIP-0173",
-    "customerOrderId": "CO-0177",
-    "customerId": "CUS-010",
-    "dispatchedAt": "2026-09-30T15:00:00.000Z",
-    "carrier": "Summit Parcel Co.",
-    "lines": [
-      {
-        "id": "SHIP-0173-L1",
-        "customerOrderLineId": "CO-0177-L1",
-        "productId": "NCP-200",
-        "quantity": 4,
-        "fromLocationId": "SHP-002"
-      },
-      {
-        "id": "SHIP-0173-L2",
-        "customerOrderLineId": "CO-0177-L2",
-        "productId": "NCP-100",
-        "quantity": 2,
-        "fromLocationId": "SHP-001"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0174",
-    "customerOrderId": "CO-0178",
-    "customerId": "CUS-004",
-    "dispatchedAt": "2026-09-30T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0174-L1",
-        "customerOrderLineId": "CO-0178-L1",
-        "productId": "NCP-100",
-        "quantity": 1,
-        "fromLocationId": "SHP-001"
-      },
-      {
-        "id": "SHIP-0174-L2",
-        "customerOrderLineId": "CO-0178-L2",
-        "productId": "NCP-300",
-        "quantity": 4,
-        "fromLocationId": "SHP-003"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0175",
-    "customerOrderId": "CO-0179",
-    "customerId": "CUS-005",
-    "dispatchedAt": "2026-09-30T15:00:00.000Z",
-    "carrier": "Redline Freight",
-    "lines": [
-      {
-        "id": "SHIP-0175-L1",
-        "customerOrderLineId": "CO-0179-L1",
-        "productId": "NCP-200",
-        "quantity": 5,
-        "fromLocationId": "SHP-002"
-      }
-    ]
-  },
-  {
-    "id": "SHIP-0176",
     "customerOrderId": "CO-0180",
     "customerId": "CUS-006",
     "dispatchedAt": "2026-09-30T15:00:00.000Z",
     "carrier": "Summit Parcel Co.",
     "lines": [
       {
-        "id": "SHIP-0176-L1",
+        "id": "SHIP-0173-L1",
         "customerOrderLineId": "CO-0180-L1",
         "productId": "NCP-100",
         "quantity": 1,

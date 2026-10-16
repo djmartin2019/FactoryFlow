@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "master": {
     "departments": [
       {
@@ -772,11 +772,46 @@
         ]
       }
     ],
+    "workCenters": [
+      {
+        "id": "WC-KITTING",
+        "name": "Kitting",
+        "kind": "ASSEMBLY"
+      },
+      {
+        "id": "WC-ASSEMBLY",
+        "name": "Mechanical assembly",
+        "kind": "ASSEMBLY"
+      },
+      {
+        "id": "WC-WIRING",
+        "name": "Wiring & termination",
+        "kind": "ASSEMBLY"
+      },
+      {
+        "id": "WC-MOTOR",
+        "name": "Motor-control setup",
+        "kind": "ASSEMBLY"
+      },
+      {
+        "id": "WC-CONTROLS",
+        "name": "Controls configuration",
+        "kind": "ASSEMBLY"
+      },
+      {
+        "id": "WC-TEST",
+        "name": "Functional test",
+        "kind": "INSPECTION"
+      }
+    ],
     "workstations": [
       {
         "id": "ASM-001",
         "name": "Assembly Line A",
         "kind": "ASSEMBLY",
+        "workCenterIds": [
+          "WC-KITTING"
+        ],
         "departmentId": "DEPT-ASSEMBLY",
         "locationId": "ASM-001",
         "concurrentJobs": 1,
@@ -786,6 +821,9 @@
         "id": "ASM-002",
         "name": "Assembly Line B",
         "kind": "ASSEMBLY",
+        "workCenterIds": [
+          "WC-ASSEMBLY"
+        ],
         "departmentId": "DEPT-ASSEMBLY",
         "locationId": "ASM-002",
         "concurrentJobs": 1,
@@ -795,6 +833,9 @@
         "id": "ASM-003",
         "name": "Assembly Line C",
         "kind": "ASSEMBLY",
+        "workCenterIds": [
+          "WC-WIRING"
+        ],
         "departmentId": "DEPT-ASSEMBLY",
         "locationId": "ASM-003",
         "concurrentJobs": 1,
@@ -804,6 +845,10 @@
         "id": "ASM-004",
         "name": "Assembly Line D",
         "kind": "ASSEMBLY",
+        "workCenterIds": [
+          "WC-CONTROLS",
+          "WC-MOTOR"
+        ],
         "departmentId": "DEPT-ASSEMBLY",
         "locationId": "ASM-004",
         "concurrentJobs": 1,
@@ -813,6 +858,9 @@
         "id": "ASM-005",
         "name": "Assembly Line E",
         "kind": "ASSEMBLY",
+        "workCenterIds": [
+          "WC-WIRING"
+        ],
         "departmentId": "DEPT-ASSEMBLY",
         "locationId": "ASM-005",
         "concurrentJobs": 1,
@@ -822,6 +870,13 @@
         "id": "ASM-006",
         "name": "Assembly Line F",
         "kind": "ASSEMBLY",
+        "workCenterIds": [
+          "WC-KITTING",
+          "WC-ASSEMBLY",
+          "WC-WIRING",
+          "WC-CONTROLS",
+          "WC-MOTOR"
+        ],
         "departmentId": "DEPT-ASSEMBLY",
         "locationId": "ASM-006",
         "concurrentJobs": 1,
@@ -831,6 +886,9 @@
         "id": "QC-001",
         "name": "Inspection Cell A",
         "kind": "INSPECTION",
+        "workCenterIds": [
+          "WC-TEST"
+        ],
         "departmentId": "DEPT-QUALITY",
         "locationId": "QC-001",
         "concurrentJobs": 1,
@@ -840,6 +898,9 @@
         "id": "QC-002",
         "name": "Inspection Cell B",
         "kind": "INSPECTION",
+        "workCenterIds": [
+          "WC-TEST"
+        ],
         "departmentId": "DEPT-QUALITY",
         "locationId": "QC-002",
         "concurrentJobs": 1,
@@ -849,6 +910,9 @@
         "id": "QC-003",
         "name": "Inspection Cell C",
         "kind": "INSPECTION",
+        "workCenterIds": [
+          "WC-TEST"
+        ],
         "departmentId": "DEPT-QUALITY",
         "locationId": "QC-003",
         "concurrentJobs": 1,

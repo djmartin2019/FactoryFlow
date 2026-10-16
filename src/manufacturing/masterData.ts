@@ -10,6 +10,7 @@ import type {
   Material,
   Product,
   Routing,
+  WorkCenter,
   Supplier,
   Workstation,
 } from "./types.ts";
@@ -147,15 +148,37 @@ const PRODUCT_SEEDS = [
 /** Product mix used by demand generation and cover planning. */
 export const PRODUCT_MIX: Record<string, number> = { "NCP-100": 0.5, "NCP-200": 0.3, "NCP-300": 0.2 };
 
-/** Logical work centers (design §3.2). In schema 1.1.0 these label routing steps; stations are not yet constrained by them. */
-export const WORK_CENTER_NAMES: Record<string, string> = {
-  "WC-KITTING": "Kitting",
-  "WC-ASSEMBLY": "Mechanical assembly",
-  "WC-WIRING": "Wiring & termination",
-  "WC-MOTOR": "Motor-control setup",
-  "WC-CONTROLS": "Controls configuration",
-  "WC-TEST": "Functional test",
-};
+/** Logical work centers (design §3.2). Rework runs in WC-WIRING. */
+export const WORK_CENTERS: WorkCenter[] = [
+  { id: "WC-KITTING", name: "Kitting", kind: "ASSEMBLY" },
+  { id: "WC-ASSEMBLY", name: "Mechanical assembly", kind: "ASSEMBLY" },
+  { id: "WC-WIRING", name: "Wiring & termination", kind: "ASSEMBLY" },
+  { id: "WC-MOTOR", name: "Motor-control setup", kind: "ASSEMBLY" },
+  { id: "WC-CONTROLS", name: "Controls configuration", kind: "ASSEMBLY" },
+  { id: "WC-TEST", name: "Functional test", kind: "INSPECTION" },
+];
+
+export const WORK_CENTER_NAMES: Record<string, string> = Object.fromEntries(WORK_CENTERS.map((w) => [w.id, w.name]));
+
+/**
+ * Which work centers each assembly station serves (lanes). Five or more stations use this table in ASM-00x
+ * order (two wiring lanes, ASM-006 flexible); fewer stations share the assembly work centers round-robin so
+ * every work center stays covered (one station serves all).
+ */
+const ASSEMBLY_LANES: string[][] = [
+  ["WC-KITTING"],
+  ["WC-ASSEMBLY"],
+  ["WC-WIRING"],
+  ["WC-CONTROLS", "WC-MOTOR"],
+  ["WC-WIRING"],
+  ["WC-KITTING", "WC-ASSEMBLY", "WC-WIRING", "WC-CONTROLS", "WC-MOTOR"],
+];
+const ASSEMBLY_WORK_CENTER_IDS = ["WC-KITTING", "WC-ASSEMBLY", "WC-WIRING", "WC-MOTOR", "WC-CONTROLS"];
+
+export function assemblyLanes(stationCount: number): string[][] {
+  if (stationCount >= 5) return ASSEMBLY_LANES.slice(0, stationCount);
+  return Array.from({ length: stationCount }, (_, k) => ASSEMBLY_WORK_CENTER_IDS.filter((_, i) => i % stationCount === k));
+}
 
 const ROUTING_STEPS: Record<string, Routing["steps"]> = {
   "NCP-100": [
@@ -200,6 +223,7 @@ export function buildMasterData(config: GeneratorConfig): MasterData {
   const layoutCapacity = new Map(factoryLayout.map((o) => [o.id, o.capacity ?? REFERENCE_CAPACITY]));
 
   const workstations: Workstation[] = [];
+  const lanes = assemblyLanes(config.assemblyWorkstations);
   for (let i = 1; i <= config.assemblyWorkstations; i++) {
     const id = `ASM-${String(i).padStart(3, "0")}`;
     const loc = locations.find((l) => l.id === id);
@@ -208,6 +232,7 @@ export function buildMasterData(config: GeneratorConfig): MasterData {
       id,
       name: loc.name,
       kind: "ASSEMBLY",
+      workCenterIds: lanes[i - 1],
       departmentId: loc.departmentId,
       locationId: id,
       concurrentJobs: 1,
@@ -219,7 +244,7 @@ export function buildMasterData(config: GeneratorConfig): MasterData {
     const loc = locations.find((l) => l.id === id);
     if (!loc) throw new Error(`Layout has no ${id}`);
     workstations.push({
-      id, name: loc.name, kind: "INSPECTION", departmentId: loc.departmentId, locationId: id, concurrentJobs: 1, durationFactor: 1,
+      id, name: loc.name, kind: "INSPECTION", workCenterIds: ["WC-TEST"], departmentId: loc.departmentId, locationId: id, concurrentJobs: 1, durationFactor: 1,
     });
   }
 
@@ -265,6 +290,7 @@ export function buildMasterData(config: GeneratorConfig): MasterData {
     products,
     billsOfMaterials,
     routings,
+    workCenters: WORK_CENTERS,
     workstations,
   };
 }

@@ -621,7 +621,8 @@ This is a sequence of **vertical slices**, not permission to implement everythin
 ### Phase 1 — Production routing realism
 
 - Separate logical work centers from physical workstations; add routing operations and precedence.
-- Give NCP-100/200/300 different workflows, processing distributions, skill and equipment requirements.
+- Give NCP-100/200/300 different workflows, processing distributions and equipment requirements. Skill requirements are **deferred to Phase 4**: there is no workforce model in Phase 1, so a skill constraint would have nothing to bind to.
+- Let orders hop between stations: dispatch per operation to any station serving the step's work center, so lane queues (WIP waiting for a bottleneck) become observable.
 - Introduce queue/wait, setup, starved/blocked/working/downtime states.
 - Keep existing 3D layout and gradually relabel/repurpose workstations rather than immediately reconstructing the entire scene.
 
@@ -646,7 +647,7 @@ This is a sequence of **vertical slices**, not permission to implement everythin
 
 ### Phase 4 — Workforce and finite-capacity scheduling
 
-- Add skill matrix, shifts, absences, staff/equipment calendars, assignments, overtime options.
+- Add skill matrix and **skill requirements on routing operations** (moved from Phase 1), shifts, absences, staff/equipment calendars, assignments, overtime options.
 - Build workload versus capacity, resource-specific queues, and estimated completion dates.
 - Provide reasoned risk flags and labor-related bottleneck explanations.
 

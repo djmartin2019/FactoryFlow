@@ -22,8 +22,11 @@ does not exist; do not assume it.
 | Shortage blocking with KPI | Implemented | `PRODUCTION_BLOCKED`, `shortageBlocked` KPI |
 | Reservations distinct from consumption | Partial | `MaterialReservation` and `MATERIAL_CONSUMED` are separate records; roadmap Phase 3 lists the full distinction as remaining |
 | Per-product routings: NCP-100 (kit, mount, wire, test), NCP-200 (+ motor-control setup), NCP-300 (+ PLC/HMI configure) | Implemented | schema 1.1.0; `disposition` is not a separate operation, it is the round-1/2 inspection outcome shown in the work-order timeline |
-| Work centers distinct from physical workstations | Partial | all routing steps carry a `workCenterId` label (`WORK_CENTER_NAMES`); stations are not constrained by it |
-| Setup times, skill or equipment requirements | Proposed | Phase 1 |
+| Work centers distinct from physical workstations | Implemented | `WorkCenter` master data; stations declare `workCenterIds` (`assemblyLanes`); dispatch is per operation so orders hop between stations (schema 1.2.0) |
+| Work-center queues and bottleneck candidate | Implemented | `analytics/workCenters.ts`, Explorer "Work Centers" tab; definitions in `KPI_DEFINITIONS.md` |
+| Sequence-dependent setup (changeover) times | Proposed | Phase 1, next slices; setup is currently a fixed per-step number |
+| Equipment requirements on operations | Proposed | Phase 1, later slice |
+| Skill requirements and qualified-staff constraints | Proposed | **Phase 4** (needs the workforce model; removed from Phase 1) |
 | Serialized manufactured units and per-attempt history | Proposed | Phase 2 |
 | BOM and routing revision captured on work orders | Proposed | Phase 2 |
 | Incoming quality hold, partial receipts, substitutes | Proposed | Phase 3 |

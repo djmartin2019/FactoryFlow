@@ -685,20 +685,27 @@ class Simulation {
         const orders = Object.values(this.state.productionOrders);
 
         if (ws.kind === "ASSEMBLY") {
-          // Rework returns to the station that built the unit and has priority.
-          const reworkOrder = orders
-            .filter((o) => o.status === "RUNNING" && o.assignedWorkstationId === ws.id)
-            .sort(byDue)
-            .find((o) => this.pendingOps(o).some((op) => op.type === "REWORK" && this.startableOp(op)));
-          if (reworkOrder) {
-            const op = this.pendingOps(reworkOrder).find((x) => x.type === "REWORK" && this.startableOp(x))!;
-            this.startOperation(op, ws.id, now);
-            progressed = true;
-            continue;
-          }
-          const next = orders.filter((o) => o.status === "WAITING").sort(byDue)[0];
-          if (next) {
-            this.startOrder(next, ws.id, now);
+          const served = new Set(ws.workCenterIds ?? []);
+          const eligible = (op: ProductionOperation) => !op.workCenterId || served.size === 0 || served.has(op.workCenterId);
+          // Rework has priority; otherwise finish work in progress before releasing a new order into kitting.
+          const ready = orders
+            .filter((o) => o.status === "RUNNING" || o.status === "WAITING")
+            .flatMap((o) => {
+              const ops = this.pendingOps(o);
+              const candidates = o.status === "WAITING" ? [ops[0]] : ops.filter((op) => op.workstationKind === "ASSEMBLY" && this.startableOp(op));
+              return candidates.filter((op) => op.status === "PENDING" && eligible(op)).map((op) => ({ op, order: o }));
+            })
+            .sort(
+              (x, y) =>
+                Number(y.op.isRework) - Number(x.op.isRework) ||
+                Number(x.order.status === "WAITING") - Number(y.order.status === "WAITING") ||
+                byDue(x.order, y.order) ||
+                x.op.sequence - y.op.sequence,
+            );
+          const pick = ready[0];
+          if (pick) {
+            if (pick.order.status === "WAITING") this.startOrder(pick.order, ws.id, now);
+            else this.startOperation(pick.op, ws.id, now);
             progressed = true;
           }
         } else {
@@ -770,10 +777,11 @@ class Simulation {
     } else {
       this.emit("OPERATION_COMPLETED", now, base);
       if (!op.isRework) {
-        const next = this.pendingOps(order).find((o) => o.status === "PENDING");
-        if (next && ASSEMBLY_TYPES.includes(next.type)) {
-          this.startOperation(next, wsId, now); // same station keeps the job
-        } else {
+        // The unit moves on to whichever station serves its next work center; production is done after the last step.
+        const assemblyDone = this.pendingOps(order)
+          .filter((o) => o.workstationKind === "ASSEMBLY")
+          .every((o) => o.status === "COMPLETED");
+        if (assemblyDone) {
           this.emit("PRODUCTION_COMPLETED", now, { productionOrderId: order.id, workstationId: wsId, quantityProduced: order.quantity });
         }
       }
@@ -829,6 +837,7 @@ class Simulation {
         sequence,
         type,
         workstationKind: kind,
+        workCenterId: kind === "ASSEMBLY" ? "WC-WIRING" : "WC-TEST",
         quantity: rework,
         plannedMinutes: minutes,
         isRework,

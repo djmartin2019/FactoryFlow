@@ -65,6 +65,11 @@ An event is `{ id, sequence, timestamp, type, entities, payload }` (`EventEnvelo
 - Stream = `initial_state.json` (master data + opening state) + ordered `events.json`.
 
 ### Schema history
+- **1.2.0** (Phase 1, work centers): additive. `MasterData.workCenters` and `Workstation.workCenterIds` are new;
+  reducer rule "assembly operations run on the order's assigned workstation" became "the station serves the
+  operation's work center" (skipped when master data has no `workCenterIds`, so 1.1.0 logs still replay).
+  `assignedWorkstationId` now means the current or last assembly station and moves as an order hops. The
+  generator dispatches per operation, so 1.2.0 datasets differ from 1.1.0 ones for the same seed.
 - **1.1.0** (Phase 1, per-product routings): additive. `OperationType` gains `KIT`, `MOUNT`, `WIRE`, `CONFIGURE`;
   `RoutingStep` and `ProductionOperation` gain optional `workCenterId` (reducer checks they agree). No event
   shape changed. Migration: 1.0.0 logs replay unchanged (the field is optional); orders in 1.0.0 data keep the

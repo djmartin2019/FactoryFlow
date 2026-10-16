@@ -1,5 +1,5 @@
 {
- "schemaVersion": "1.1.0",
+ "schemaVersion": "1.2.0",
  "master": {
   "departments": [
    {
@@ -724,11 +724,50 @@
     ]
    }
   ],
+  "workCenters": [
+   {
+    "id": "WC-KITTING",
+    "name": "Kitting",
+    "kind": "ASSEMBLY"
+   },
+   {
+    "id": "WC-ASSEMBLY",
+    "name": "Mechanical assembly",
+    "kind": "ASSEMBLY"
+   },
+   {
+    "id": "WC-WIRING",
+    "name": "Wiring & termination",
+    "kind": "ASSEMBLY"
+   },
+   {
+    "id": "WC-MOTOR",
+    "name": "Motor-control setup",
+    "kind": "ASSEMBLY"
+   },
+   {
+    "id": "WC-CONTROLS",
+    "name": "Controls configuration",
+    "kind": "ASSEMBLY"
+   },
+   {
+    "id": "WC-TEST",
+    "name": "Functional test",
+    "kind": "INSPECTION"
+   }
+  ],
   "workstations": [
    {
     "id": "ASM-001",
     "name": "Assembly Line A",
     "kind": "ASSEMBLY",
+    "workCenterIds": [
+     "WC-KITTING",
+     "WC-ASSEMBLY",
+     "WC-WIRING",
+     "WC-MOTOR",
+     "WC-CONTROLS"
+    ],
     "departmentId": "DEPT-ASSEMBLY",
     "locationId": "ASM-001",
     "concurrentJobs": 1,
@@ -738,6 +777,9 @@
     "id": "QC-001",
     "name": "Inspection Cell A",
     "kind": "INSPECTION",
+    "workCenterIds": [
+     "WC-TEST"
+    ],
     "departmentId": "DEPT-QUALITY",
     "locationId": "QC-001",
     "concurrentJobs": 1,

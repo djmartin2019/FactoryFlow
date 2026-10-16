@@ -49,8 +49,9 @@ breakers, terminal blocks, DIN rail, wiring kits, relays, contactors, PLC CPU, H
 Power Systems), 10 customers (Alder Valley Packaging … Juniper Bay Pumps). All fictional.
 
 Routings: NCP-100 `KIT → MOUNT → WIRE → FINAL_TEST`; NCP-200 `KIT → MOUNT → WIRE → MOTOR_CIRCUIT_ASSEMBLY → FINAL_TEST`;
-NCP-300 `KIT → MOUNT → WIRE → CONFIGURE → FINAL_TEST` (each step carries a `workCenterId`). Assembly steps run on ASM-00x, FINAL_TEST on QC-00x;
-each workstation runs one job at a time.
+NCP-300 `KIT → MOUNT → WIRE → CONFIGURE → FINAL_TEST` (each step carries a `workCenterId`). Each ASM-00x station serves one or more work centers (`Workstation.workCenterIds`, lanes in `assemblyLanes`);
+a step runs on any idle station serving its work center, so an order hops between stations. FINAL_TEST runs on QC-00x.
+Each workstation runs one job at a time.
 
 ## Authoritative replay source
 

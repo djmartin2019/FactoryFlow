@@ -182,6 +182,6 @@ describe("generator parity", () => {
     });
     expect(JSON.parse(JSON.stringify(d.events))).toEqual(events);
     expect(JSON.parse(JSON.stringify(d.initialState))).toEqual(initial.state);
-    expect(d.manifest.eventLogHash).toBe("fc2a2149");
+    expect(d.manifest.eventLogHash).toBe("2449f60b");
   });
 });

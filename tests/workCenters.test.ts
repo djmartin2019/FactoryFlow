@@ -1,0 +1,90 @@
+import { describe, expect, it } from "vitest";
+import { workCenterLoad, type ReportingSnapshot } from "../src/analytics/index.ts";
+import { assemblyLanes } from "../src/manufacturing/masterData.ts";
+import { generateDataset } from "../src/manufacturing/generator.ts";
+import { FactoryReplay } from "../src/manufacturing/replay.ts";
+import { validateDataset } from "../src/manufacturing/validation.ts";
+import type { FactoryEvent, InitialStateFile, ManufacturingDataset } from "../src/manufacturing/types.ts";
+
+const ASSEMBLY_WCS = ["WC-KITTING", "WC-ASSEMBLY", "WC-WIRING", "WC-MOTOR", "WC-CONTROLS"];
+
+function snapshotAt(d: ManufacturingDataset, ms: number): ReportingSnapshot {
+  const initial: InitialStateFile = { schemaVersion: d.manifest.schemaVersion, master: d.master, state: d.initialState };
+  const r = new FactoryReplay(structuredClone(initial), d.events);
+  r.advanceToMs(ms);
+  return { asOfMs: ms, startMs: Date.parse(d.initialState.asOf), master: d.master, state: r.state, events: r.appliedEvents() };
+}
+
+describe("assembly lanes", () => {
+  it("cover every assembly work center for any station count", () => {
+    for (let n = 1; n <= 6; n++) {
+      const covered = new Set(assemblyLanes(n).flat());
+      for (const wc of ASSEMBLY_WCS) expect(covered.has(wc), `${wc} with ${n} stations`).toBe(true);
+    }
+  });
+});
+
+describe("hopping between stations", () => {
+  const d = generateDataset();
+
+  it("runs every operation on a station that serves its work center", () => {
+    const serves = new Map(d.master.workstations.map((w) => [w.id, w.workCenterIds ?? []]));
+    for (const op of Object.values(d.finalState.productionOperations)) {
+      if (!op.workstationId || !op.workCenterId) continue;
+      expect(serves.get(op.workstationId), `${op.id} on ${op.workstationId}`).toContain(op.workCenterId);
+    }
+  });
+
+  it("moves orders across more than one assembly station", () => {
+    const hopped = Object.values(d.finalState.productionOrders).filter((o) => {
+      const stations = new Set(
+        o.operationIds.map((id) => d.finalState.productionOperations[id]).filter((op) => op.workstationKind === "ASSEMBLY" && op.workstationId).map((op) => op.workstationId),
+      );
+      return stations.size > 1;
+    });
+    expect(hopped.length).toBeGreaterThan(0);
+  });
+
+  it("passes dataset validation including work-center coverage", () => {
+    expect(validateDataset(d).ok).toBe(true);
+  });
+});
+
+describe("bottleneck identification", () => {
+  // One station per lane, no flexible station, and a controls-heavy demand: controls must back up.
+  const cfg = { seed: "bottleneck-1", days: 14, assemblyWorkstations: 5, machineFailuresPerWorkstation: 0, demandSurge: { startDay: 1, endDay: 14, multiplier: 2.5 } } as const;
+
+  const peakQueue = (d: ManufacturingDataset) => {
+    const end = Date.parse(d.finalState.asOf);
+    let peak = 0;
+    const flagged = new Set<string>();
+    for (let t = Date.parse(d.initialState.asOf); t <= end; t += 12 * 3600_000) {
+      const rows = workCenterLoad(snapshotAt(d, t), "7d");
+      expect(rows.filter((r) => r.isBottleneck).length).toBeLessThanOrEqual(1);
+      for (const r of rows) {
+        peak = Math.max(peak, r.queuedMinutesPerStation ?? 0);
+        if (r.isBottleneck) flagged.add(r.workCenterId);
+      }
+    }
+    return { peak, flagged };
+  };
+
+  it("flags a work center where WIP waits, and a flexible station relieves it", () => {
+    const tight = peakQueue(generateDataset(cfg));
+    expect(tight.flagged.size).toBeGreaterThan(0);
+    expect(tight.peak).toBeGreaterThan(0);
+    const flex = peakQueue(generateDataset({ ...cfg, assemblyWorkstations: 6 }));
+    expect(flex.peak).toBeLessThanOrEqual(tight.peak);
+  });
+});
+
+describe("legacy logs", () => {
+  it("replays a log whose master data predates work centers", () => {
+    const d = generateDataset({ seed: "legacy-1", days: 7, assemblyWorkstations: 1, inspectionWorkstations: 1 });
+    const master = structuredClone(d.master);
+    delete master.workCenters;
+    for (const w of master.workstations) delete w.workCenterIds;
+    const r = new FactoryReplay({ schemaVersion: "1.1.0", master, state: structuredClone(d.initialState) }, d.events as FactoryEvent[]);
+    expect(() => r.advanceToMs(Date.parse(d.finalState.asOf))).not.toThrow();
+  });
+});

@@ -8,6 +8,7 @@
 import {
   PERIODS,
   goodUnitsThroughput,
+  workCenterLoad,
   workOrderCounts,
   workOrderDetail,
   workOrderSummaries,
@@ -25,7 +26,7 @@ import { WorkOrderDrawer } from "./WorkOrderDrawer";
 const REFRESH_MS = 500;
 const PAGE_SIZE = 100;
 
-type Tab = "orders" | "analytics" | "inventory";
+type Tab = "orders" | "analytics" | "workcenters" | "inventory";
 type SortKey = "id" | "product" | "ordered" | "good" | "status" | "created" | "due" | "progress";
 
 interface Column {
@@ -119,7 +120,7 @@ export class OperationsExplorer {
     this.getPeriod = getPeriod;
     this.drawer = new WorkOrderDrawer(() => this.closeDetail());
 
-    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildAnalyticsPanel(), this.buildInventoryPanel(), this.drawer.element);
+    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildInventoryPanel(), this.drawer.element);
     this.element.hidden = true;
     this.showTab("orders");
 
@@ -164,6 +165,12 @@ export class OperationsExplorer {
     if (this.tab === "orders") {
       if (changed || this.tableDirty) this.renderTable();
       this.renderDrawer(changed);
+    } else if (this.tab === "workcenters") {
+      const wk = `${key}|${this.getPeriod()}|${Math.floor(snap.asOfMs / 60_000)}`;
+      if (wk !== this.wcKey) {
+        this.wcKey = wk;
+        this.renderWorkCenters(workCenterLoad(snap, this.getPeriod()));
+      }
     } else if (this.tab === "analytics") {
       const ck = `${key}|${this.getPeriod()}|${this.productFilter}|${Math.floor(snap.asOfMs / 60_000)}`;
       if (ck !== this.chartKey) {
@@ -215,6 +222,7 @@ export class OperationsExplorer {
     const defs: Array<[Tab, string]> = [
       ["orders", "Work Orders"],
       ["analytics", "Production Analytics"],
+      ["workcenters", "Work Centers"],
       ["inventory", "Inventory"],
     ];
     for (const [id, label] of defs) {
@@ -369,6 +377,56 @@ export class OperationsExplorer {
       ),
     );
     return panel;
+  }
+
+  private readonly wcBody = el("tbody");
+  private wcKey = "";
+
+  private buildWorkCentersPanel(): HTMLElement {
+    const panel = el("section", "ex-panel");
+    this.panels.set("workcenters", panel);
+    const wrap = el("div", "tbl-scroll");
+    const t = el("table", "mini-table");
+    const head = el("tr");
+    const headers = ["Work center", "Stations", "In process (units)", "Queued orders", "Queued units", "Queued std. min / station", "Oldest wait", "Utilization"];
+    headers.forEach((h, i) => head.append(el("th", i >= 1 ? "num" : undefined, h)));
+    const thead = el("thead");
+    thead.append(head);
+    t.append(thead, this.wcBody);
+    wrap.append(t);
+    panel.append(
+      wrap,
+      el(
+        "p",
+        "hint",
+        "Queued = steps ready to start (predecessors complete) that no station has picked up. The flagged work center has the most queued standard minutes per serving station, i.e. where WIP is waiting longest to be served. Utilization = run time ÷ (serving stations × shift minutes) in the reporting period; stations serving several work centers share capacity. Synthetic data.",
+      ),
+    );
+    return panel;
+  }
+
+  private renderWorkCenters(rows: ReturnType<typeof workCenterLoad>): void {
+    const fmtWait = (m: number | null) => (m === null ? "–" : m >= 120 ? `${(m / 60).toFixed(1)} h` : `${m} min`);
+    this.wcBody.replaceChildren(
+      ...rows.map((r) => {
+        const tr = el("tr", r.isBottleneck ? "bottleneck" : undefined);
+        const name = el("td");
+        name.append(r.name);
+        if (r.isBottleneck) name.append(" ", el("span", "demo-badge", "Bottleneck"));
+        tr.append(name);
+        const cells = [
+          String(r.stationIds.length),
+          String(r.inProcessUnits),
+          String(r.queuedOrders),
+          String(r.queuedUnits),
+          r.queuedMinutesPerStation === null ? "N/A" : String(Math.round(r.queuedMinutesPerStation)),
+          fmtWait(r.oldestWaitMinutes),
+          r.utilization === null ? "N/A" : `${(r.utilization * 100).toFixed(0)}%`,
+        ];
+        for (const c of cells) tr.append(el("td", "num", c));
+        return tr;
+      }),
+    );
   }
 
   private buildInventoryPanel(): HTMLElement {

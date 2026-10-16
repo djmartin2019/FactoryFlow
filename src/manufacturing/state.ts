@@ -544,8 +544,9 @@ export function applyEventInPlace(state: FactoryState, event: FactoryEvent, mast
       req(wsMaster.kind === op.workstationKind, `${op.type} cannot run on ${wsMaster.kind} workstation ${wsMaster.id}`);
       req(ws.status === "IDLE" && !ws.currentOperationId && !ws.pausedOperationId,
         `workstation ${ws.workstationId} is not free (capacity 1): ${ws.status}`);
-      if (op.workstationKind === "ASSEMBLY") {
-        req(order.assignedWorkstationId === ws.workstationId, "assembly operations run on the order's assigned workstation");
+      if (op.workCenterId && wsMaster.workCenterIds) {
+        req(wsMaster.workCenterIds.includes(op.workCenterId),
+          `${op.type} needs work center ${op.workCenterId}, which ${wsMaster.id} does not serve`);
       }
       if (op.type === "FINAL_TEST") {
         req(order.productionCompletedAt && order.awaitingQcQuantity === op.quantity, "QC may only test units that finished production");
@@ -553,6 +554,8 @@ export function applyEventInPlace(state: FactoryState, event: FactoryEvent, mast
       op.status = "RUNNING";
       op.workstationId = ws.workstationId;
       op.startedAt = ts;
+      // Orders hop between stations: this is the order's current (or last) assembly station.
+      if (op.workstationKind === "ASSEMBLY") order.assignedWorkstationId = ws.workstationId;
       ws.status = "RUNNING";
       ws.currentOperationId = op.id;
       ws.since = ts;
@@ -588,7 +591,7 @@ export function applyEventInPlace(state: FactoryState, event: FactoryEvent, mast
       const p = event.payload;
       const order = getOrder(p.productionOrderId);
       req(order.status === "RUNNING" && !order.productionCompletedAt, `order ${order.id} cannot complete production now`);
-      req(p.workstationId === order.assignedWorkstationId, "production completes on the assigned workstation");
+      req(p.workstationId === order.assignedWorkstationId, "production completes on the station of the last assembly operation");
       const assemblyOps = operationsOf(state, order).filter((o) => ASSEMBLY_TYPES.has(o.type));
       req(assemblyOps.length > 0 && assemblyOps.every((o) => o.status === "COMPLETED"), "assembly operations are not all completed");
       req(p.quantityProduced === order.quantity, "produced quantity must equal order quantity");

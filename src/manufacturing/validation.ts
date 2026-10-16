@@ -124,9 +124,22 @@ export function validateDataset(dataset: ManufacturingDataset): ValidationReport
         if (!Object.values(fs.customerOrders).some((c) => c.lines.some((l) => l.id === lineId))) bad(`${o.id}: unknown demand line ${lineId}`);
       }
     }
+    // Every work center a routing needs must have a station, otherwise orders would stall forever.
+    for (const r of master.routings) {
+      for (const step of r.steps) {
+        if (!step.workCenterId) continue;
+        if (!master.workstations.some((w) => w.workCenterIds?.includes(step.workCenterId!))) {
+          bad(`${r.id}: no workstation serves ${step.workCenterId}`);
+        }
+      }
+    }
     for (const op of ops) {
       if (!fs.productionOrders[op.productionOrderId]) bad(`${op.id}: unknown order`);
       if (op.workstationId && !m.workstations.has(op.workstationId)) bad(`${op.id}: unknown workstation`);
+      const served = op.workstationId ? m.workstations.get(op.workstationId)?.workCenterIds : undefined;
+      if (op.workCenterId && served && !served.includes(op.workCenterId)) {
+        bad(`${op.id}: ran on ${op.workstationId}, which does not serve ${op.workCenterId}`);
+      }
     }
     for (const q of Object.values(fs.qualityInspections)) {
       if (!fs.productionOrders[q.productionOrderId] || !fs.productionOperations[q.operationId]) bad(`${q.id}: dangling reference`);

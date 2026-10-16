@@ -494,7 +494,7 @@
     "customerId": "CUS-001",
     "createdAt": "2026-09-04T08:12:00.000Z",
     "dueDate": "2026-09-17T17:00:00.000Z",
-    "status": "CANCELLED",
+    "status": "SHIPPED",
     "demandDriver": "BASELINE",
     "lines": [
       {
@@ -503,7 +503,7 @@
         "productId": "NCP-200",
         "quantity": 6,
         "allocatedQuantity": 0,
-        "shippedQuantity": 0,
+        "shippedQuantity": 6,
         "unitPriceCents": 179550
       }
     ]
@@ -3706,7 +3706,7 @@
     "customerId": "CUS-009",
     "createdAt": "2026-09-29T10:22:00.000Z",
     "dueDate": "2026-10-12T17:00:00.000Z",
-    "status": "SHIPPED",
+    "status": "OPEN",
     "demandDriver": "BASELINE",
     "lines": [
       {
@@ -3714,8 +3714,8 @@
         "lineNumber": 1,
         "productId": "NCP-100",
         "quantity": 1,
-        "allocatedQuantity": 0,
-        "shippedQuantity": 1,
+        "allocatedQuantity": 1,
+        "shippedQuantity": 0,
         "unitPriceCents": 95000
       },
       {
@@ -3723,8 +3723,8 @@
         "lineNumber": 2,
         "productId": "NCP-200",
         "quantity": 2,
-        "allocatedQuantity": 0,
-        "shippedQuantity": 2,
+        "allocatedQuantity": 2,
+        "shippedQuantity": 0,
         "unitPriceCents": 189000
       }
     ]
@@ -3753,7 +3753,7 @@
     "customerId": "CUS-010",
     "createdAt": "2026-09-29T12:56:00.000Z",
     "dueDate": "2026-10-12T17:00:00.000Z",
-    "status": "SHIPPED",
+    "status": "OPEN",
     "demandDriver": "BASELINE",
     "lines": [
       {
@@ -3761,8 +3761,8 @@
         "lineNumber": 1,
         "productId": "NCP-200",
         "quantity": 4,
-        "allocatedQuantity": 0,
-        "shippedQuantity": 4,
+        "allocatedQuantity": 4,
+        "shippedQuantity": 0,
         "unitPriceCents": 189000
       },
       {
@@ -3770,8 +3770,8 @@
         "lineNumber": 2,
         "productId": "NCP-100",
         "quantity": 2,
-        "allocatedQuantity": 0,
-        "shippedQuantity": 2,
+        "allocatedQuantity": 2,
+        "shippedQuantity": 0,
         "unitPriceCents": 95000
       }
     ]
@@ -3781,7 +3781,7 @@
     "customerId": "CUS-004",
     "createdAt": "2026-09-29T14:29:00.000Z",
     "dueDate": "2026-10-09T17:00:00.000Z",
-    "status": "SHIPPED",
+    "status": "OPEN",
     "demandDriver": "BASELINE",
     "lines": [
       {
@@ -3789,8 +3789,8 @@
         "lineNumber": 1,
         "productId": "NCP-100",
         "quantity": 1,
-        "allocatedQuantity": 0,
-        "shippedQuantity": 1,
+        "allocatedQuantity": 1,
+        "shippedQuantity": 0,
         "unitPriceCents": 95000
       },
       {
@@ -3798,8 +3798,8 @@
         "lineNumber": 2,
         "productId": "NCP-300",
         "quantity": 4,
-        "allocatedQuantity": 0,
-        "shippedQuantity": 4,
+        "allocatedQuantity": 4,
+        "shippedQuantity": 0,
         "unitPriceCents": 465000
       }
     ]
@@ -3809,7 +3809,7 @@
     "customerId": "CUS-005",
     "createdAt": "2026-09-29T15:22:00.000Z",
     "dueDate": "2026-10-08T17:00:00.000Z",
-    "status": "SHIPPED",
+    "status": "OPEN",
     "demandDriver": "BASELINE",
     "lines": [
       {
@@ -3817,8 +3817,8 @@
         "lineNumber": 1,
         "productId": "NCP-200",
         "quantity": 5,
-        "allocatedQuantity": 0,
-        "shippedQuantity": 5,
+        "allocatedQuantity": 5,
+        "shippedQuantity": 0,
         "unitPriceCents": 179550
       }
     ]

@@ -5,7 +5,7 @@
 import type { OperationalStatus } from "../graphics/FactoryObject.ts";
 import { MIN, shiftMinutesBetween } from "./calendar.ts";
 import { availableOf } from "./state.ts";
-import type { FactoryState, Id, MasterData, ProductionStage } from "./types.ts";
+import type { FactoryState, Id, IsoTimestamp, MasterData, ProductionOperation, ProductionStage } from "./types.ts";
 
 export interface LocationInventoryItem {
   itemId: Id;
@@ -43,6 +43,38 @@ export function inventoryByLocation(state: FactoryState, master: MasterData): Re
   return result;
 }
 
+export interface ReadyOperation {
+  operation: ProductionOperation;
+  productionOrderId: Id;
+  /** Work center that must run it; undefined for pre-1.1.0 data. */
+  workCenterId?: Id;
+  /** Since when it has been able to start: previous step completed, or order release for the first step. */
+  readySince?: IsoTimestamp;
+}
+
+/**
+ * Operations that could start now if a station were free: PENDING, predecessors complete, order on the floor
+ * (WAITING for its first step, RUNNING otherwise). This is the queue in front of each work center.
+ */
+export function readyOperations(state: FactoryState): ReadyOperation[] {
+  const out: ReadyOperation[] = [];
+  for (const o of Object.values(state.productionOrders)) {
+    if (o.status !== "WAITING" && o.status !== "RUNNING") continue;
+    const ops = o.operationIds.map((id) => state.productionOperations[id]);
+    const next = ops.find((op) => op.status !== "COMPLETED");
+    if (!next || next.status !== "PENDING") continue;
+    if (o.status === "WAITING" && next !== ops[0]) continue;
+    const prev = ops[ops.indexOf(next) - 1];
+    out.push({
+      operation: next,
+      productionOrderId: o.id,
+      workCenterId: next.workCenterId,
+      readySince: prev ? prev.completedAt : o.releasedAt,
+    });
+  }
+  return out;
+}
+
 export interface WorkstationView {
   workstationId: Id;
   runStatus: "IDLE" | "RUNNING" | "DOWN";
@@ -60,6 +92,7 @@ export function workstationViews(state: FactoryState, master: MasterData, window
   const shiftMinutes = shiftMinutesBetween(from, now);
   const anyShortage = Object.values(state.productionOrders).some((o) => o.status === "BLOCKED" && o.blockReason === "MATERIAL_SHORTAGE");
 
+  const ready = readyOperations(state);
   return master.workstations.map((ws) => {
     const rt = state.workstations[ws.id];
     const ops = Object.values(state.productionOperations).filter((o) => o.workstationId === ws.id && o.startedAt);
@@ -70,9 +103,11 @@ export function workstationViews(state: FactoryState, master: MasterData, window
       if (e > s) busy += (e - s) / MIN;
     }
     const currentOp = rt.currentOperationId ? state.productionOperations[rt.currentOperationId] : undefined;
-    const queued = Object.values(state.productionOrders)
-      .filter((o) => o.status === "WAITING" && ws.kind === "ASSEMBLY")
-      .map((o) => o.id);
+    // Queue = orders whose next step belongs to a work center this station serves.
+    const served = new Set(ws.workCenterIds ?? []);
+    const queued = ready
+      .filter((r) => r.operation.workstationKind === "ASSEMBLY" && ws.kind === "ASSEMBLY" && (served.size === 0 || !r.workCenterId || served.has(r.workCenterId)))
+      .map((r) => r.productionOrderId);
     const waitingQc =
       ws.kind === "INSPECTION"
         ? Object.values(state.productionOrders).filter((o) => o.stage === "AWAITING_QC").map((o) => o.id)
