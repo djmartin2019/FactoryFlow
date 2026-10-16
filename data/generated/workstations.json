@@ -1,7 +1,7 @@
 [
   {
     "id": "ASM-001",
-    "name": "Assembly Line A",
+    "name": "Kitting",
     "kind": "ASSEMBLY",
     "workCenterIds": [
       "WC-KITTING"
@@ -13,7 +13,7 @@
   },
   {
     "id": "ASM-002",
-    "name": "Assembly Line B",
+    "name": "Mechanical Assembly",
     "kind": "ASSEMBLY",
     "workCenterIds": [
       "WC-ASSEMBLY"
@@ -25,7 +25,7 @@
   },
   {
     "id": "ASM-003",
-    "name": "Assembly Line C",
+    "name": "Wiring & Termination A",
     "kind": "ASSEMBLY",
     "workCenterIds": [
       "WC-WIRING"
@@ -37,7 +37,7 @@
   },
   {
     "id": "ASM-004",
-    "name": "Assembly Line D",
+    "name": "Controls & Motor Setup",
     "kind": "ASSEMBLY",
     "workCenterIds": [
       "WC-CONTROLS",
@@ -50,7 +50,7 @@
   },
   {
     "id": "ASM-005",
-    "name": "Assembly Line E",
+    "name": "Wiring & Termination B",
     "kind": "ASSEMBLY",
     "workCenterIds": [
       "WC-WIRING"
@@ -62,7 +62,7 @@
   },
   {
     "id": "ASM-006",
-    "name": "Assembly Line F",
+    "name": "Flex Assembly",
     "kind": "ASSEMBLY",
     "workCenterIds": [
       "WC-KITTING",
@@ -78,7 +78,7 @@
   },
   {
     "id": "QC-001",
-    "name": "Inspection Cell A",
+    "name": "Functional Test A",
     "kind": "INSPECTION",
     "workCenterIds": [
       "WC-TEST"
@@ -90,7 +90,7 @@
   },
   {
     "id": "QC-002",
-    "name": "Inspection Cell B",
+    "name": "Functional Test B",
     "kind": "INSPECTION",
     "workCenterIds": [
       "WC-TEST"
@@ -102,7 +102,7 @@
   },
   {
     "id": "QC-003",
-    "name": "Inspection Cell C",
+    "name": "Functional Test C",
     "kind": "INSPECTION",
     "workCenterIds": [
       "WC-TEST"

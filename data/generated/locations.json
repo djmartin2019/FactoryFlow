@@ -50,63 +50,63 @@
   },
   {
     "id": "ASM-001",
-    "name": "Assembly Line A",
+    "name": "Kitting",
     "departmentId": "DEPT-ASSEMBLY",
     "kind": "ASSEMBLY",
     "palletCapacity": 4
   },
   {
     "id": "ASM-002",
-    "name": "Assembly Line B",
+    "name": "Mechanical Assembly",
     "departmentId": "DEPT-ASSEMBLY",
     "kind": "ASSEMBLY",
     "palletCapacity": 4
   },
   {
     "id": "ASM-003",
-    "name": "Assembly Line C",
+    "name": "Wiring & Termination A",
     "departmentId": "DEPT-ASSEMBLY",
     "kind": "ASSEMBLY",
     "palletCapacity": 4
   },
   {
     "id": "ASM-004",
-    "name": "Assembly Line D",
+    "name": "Controls & Motor Setup",
     "departmentId": "DEPT-ASSEMBLY",
     "kind": "ASSEMBLY",
     "palletCapacity": 4
   },
   {
     "id": "ASM-005",
-    "name": "Assembly Line E",
+    "name": "Wiring & Termination B",
     "departmentId": "DEPT-ASSEMBLY",
     "kind": "ASSEMBLY",
     "palletCapacity": 4
   },
   {
     "id": "ASM-006",
-    "name": "Assembly Line F",
+    "name": "Flex Assembly",
     "departmentId": "DEPT-ASSEMBLY",
     "kind": "ASSEMBLY",
     "palletCapacity": 4
   },
   {
     "id": "QC-001",
-    "name": "Inspection Cell A",
+    "name": "Functional Test A",
     "departmentId": "DEPT-QUALITY",
     "kind": "QUALITY",
     "palletCapacity": 4
   },
   {
     "id": "QC-002",
-    "name": "Inspection Cell B",
+    "name": "Functional Test B",
     "departmentId": "DEPT-QUALITY",
     "kind": "QUALITY",
     "palletCapacity": 4
   },
   {
     "id": "QC-003",
-    "name": "Inspection Cell C",
+    "name": "Functional Test C",
     "departmentId": "DEPT-QUALITY",
     "kind": "QUALITY",
     "palletCapacity": 4

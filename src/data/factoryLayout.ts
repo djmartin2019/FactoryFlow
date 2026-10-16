@@ -178,7 +178,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   // ASSEMBLY
   {
     id: "ASM-001",
-    name: "Assembly Line A",
+    name: "Kitting",
     type: "workstation",
     status: "running",
     capacity: 120,
@@ -190,7 +190,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   },
   {
     id: "ASM-002",
-    name: "Assembly Line B",
+    name: "Mechanical Assembly",
     type: "workstation",
     status: "running",
     capacity: 110,
@@ -202,7 +202,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   },
   {
     id: "ASM-003",
-    name: "Assembly Line C",
+    name: "Wiring & Termination A",
     type: "workstation",
     status: "down",
     capacity: 90,
@@ -214,7 +214,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   },
   {
     id: "ASM-004",
-    name: "Assembly Line D",
+    name: "Controls & Motor Setup",
     type: "workstation",
     status: "running",
     capacity: 115,
@@ -226,7 +226,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   },
   {
     id: "ASM-005",
-    name: "Assembly Line E",
+    name: "Wiring & Termination B",
     type: "workstation",
     status: "idle",
     capacity: 100,
@@ -238,7 +238,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   },
   {
     id: "ASM-006",
-    name: "Assembly Line F",
+    name: "Flex Assembly",
     type: "workstation",
     status: "running",
     capacity: 95,
@@ -252,7 +252,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   // QUALITY CONTROL
   {
     id: "QC-001",
-    name: "Inspection Cell A",
+    name: "Functional Test A",
     type: "inspection",
     status: "running",
     capacity: 80,
@@ -264,7 +264,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   },
   {
     id: "QC-002",
-    name: "Inspection Cell B",
+    name: "Functional Test B",
     type: "inspection",
     status: "idle",
     capacity: 80,
@@ -276,7 +276,7 @@ export const factoryLayout: FactoryObjectConfig[] = [
   },
   {
     id: "QC-003",
-    name: "Inspection Cell C",
+    name: "Functional Test C",
     type: "inspection",
     status: "idle",
     capacity: 80,

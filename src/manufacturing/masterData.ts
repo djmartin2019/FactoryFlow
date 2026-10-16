@@ -151,8 +151,8 @@ export const PRODUCT_MIX: Record<string, number> = { "NCP-100": 0.5, "NCP-200": 
 /** Logical work centers (design §3.2). Rework runs in WC-WIRING. */
 export const WORK_CENTERS: WorkCenter[] = [
   { id: "WC-KITTING", name: "Kitting", kind: "ASSEMBLY" },
-  { id: "WC-ASSEMBLY", name: "Mechanical assembly", kind: "ASSEMBLY" },
-  { id: "WC-WIRING", name: "Wiring & termination", kind: "ASSEMBLY" },
+  { id: "WC-ASSEMBLY", name: "Mechanical Assembly", kind: "ASSEMBLY" },
+  { id: "WC-WIRING", name: "Wiring & Termination", kind: "ASSEMBLY" },
   { id: "WC-MOTOR", name: "Motor-control setup", kind: "ASSEMBLY" },
   { id: "WC-CONTROLS", name: "Controls configuration", kind: "ASSEMBLY" },
   { id: "WC-TEST", name: "Functional test", kind: "INSPECTION" },
@@ -174,6 +174,24 @@ const ASSEMBLY_LANES: string[][] = [
   ["WC-KITTING", "WC-ASSEMBLY", "WC-WIRING", "WC-CONTROLS", "WC-MOTOR"],
 ];
 const ASSEMBLY_WORK_CENTER_IDS = ["WC-KITTING", "WC-ASSEMBLY", "WC-WIRING", "WC-MOTOR", "WC-CONTROLS"];
+
+/** Dashboard name for a lane, from the work centers it serves ("Wiring & Termination", "Flex Assembly"). */
+export function laneName(workCenterIds: string[]): string {
+  if (workCenterIds.length >= ASSEMBLY_WORK_CENTER_IDS.length) return "Flex Assembly";
+  if (workCenterIds.length > 2) return "Shared Assembly";
+  const key = [...workCenterIds].sort().join("+");
+  if (key === "WC-CONTROLS+WC-MOTOR") return "Controls & Motor Setup";
+  return workCenterIds.map((id) => WORK_CENTER_NAMES[id] ?? id).join(" & ");
+}
+
+/** One name per station; stations with the same lane get a letter suffix (A, B, ...). */
+export function laneStationNames(lanes: string[][]): string[] {
+  const base = lanes.map(laneName);
+  return base.map((n, i) => {
+    const same = base.flatMap((x, j) => (x === n ? [j] : []));
+    return same.length > 1 ? `${n} ${String.fromCharCode(65 + same.indexOf(i))}` : n;
+  });
+}
 
 export function assemblyLanes(stationCount: number): string[][] {
   if (stationCount >= 5) return ASSEMBLY_LANES.slice(0, stationCount);
@@ -224,13 +242,16 @@ export function buildMasterData(config: GeneratorConfig): MasterData {
 
   const workstations: Workstation[] = [];
   const lanes = assemblyLanes(config.assemblyWorkstations);
+  const stationNames = laneStationNames(lanes);
   for (let i = 1; i <= config.assemblyWorkstations; i++) {
     const id = `ASM-${String(i).padStart(3, "0")}`;
     const loc = locations.find((l) => l.id === id);
     if (!loc) throw new Error(`Layout has no ${id}`);
+    // The name says what the lane handles; keep the location label in step with it.
+    loc.name = stationNames[i - 1];
     workstations.push({
       id,
-      name: loc.name,
+      name: stationNames[i - 1],
       kind: "ASSEMBLY",
       workCenterIds: lanes[i - 1],
       departmentId: loc.departmentId,
@@ -243,6 +264,7 @@ export function buildMasterData(config: GeneratorConfig): MasterData {
     const id = `QC-${String(i).padStart(3, "0")}`;
     const loc = locations.find((l) => l.id === id);
     if (!loc) throw new Error(`Layout has no ${id}`);
+    loc.name = `Functional Test ${String.fromCharCode(64 + i)}`;
     workstations.push({
       id, name: loc.name, kind: "INSPECTION", workCenterIds: ["WC-TEST"], departmentId: loc.departmentId, locationId: id, concurrentJobs: 1, durationFactor: 1,
     });

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { workCenterLoad, type ReportingSnapshot } from "../src/analytics/index.ts";
+import { factoryLayout } from "../src/data/factoryLayout.ts";
 import { assemblyLanes } from "../src/manufacturing/masterData.ts";
 import { generateDataset } from "../src/manufacturing/generator.ts";
 import { FactoryReplay } from "../src/manufacturing/replay.ts";
@@ -21,6 +22,24 @@ describe("assembly lanes", () => {
       const covered = new Set(assemblyLanes(n).flat());
       for (const wc of ASSEMBLY_WCS) expect(covered.has(wc), `${wc} with ${n} stations`).toBe(true);
     }
+  });
+});
+
+describe("station names", () => {
+  it("describe the lane, and match the 3D layout for the default 6-station factory", () => {
+    const d = generateDataset();
+    const byId = new Map(d.master.workstations.map((w) => [w.id, w.name]));
+    expect(byId.get("ASM-003")).toBe("Wiring & Termination A");
+    expect(byId.get("ASM-005")).toBe("Wiring & Termination B");
+    expect(byId.get("ASM-006")).toBe("Flex Assembly");
+    for (const w of d.master.workstations) {
+      expect(factoryLayout.find((o) => o.id === w.id)?.name, w.id).toBe(w.name);
+    }
+  });
+
+  it("stay accurate when fewer stations share the lanes", () => {
+    const d = generateDataset({ assemblyWorkstations: 1 });
+    expect(d.master.workstations.find((w) => w.id === "ASM-001")!.name).toBe("Flex Assembly");
   });
 });
 
