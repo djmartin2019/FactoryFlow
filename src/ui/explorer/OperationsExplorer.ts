@@ -11,6 +11,8 @@ import {
   compareByAttention,
   dispatchReport,
   qualityReport,
+  materialShortages,
+  type MaterialShortageReport,
   bottleneckExplanations,
   type BottleneckExplanation,
   type QualityGroup,
@@ -39,7 +41,7 @@ import { WorkOrderDrawer } from "./WorkOrderDrawer";
 const REFRESH_MS = 500;
 const PAGE_SIZE = 100;
 
-type Tab = "orders" | "dispatch" | "quality" | "analytics" | "workcenters" | "bom" | "inventory";
+type Tab = "orders" | "dispatch" | "quality" | "shortages" | "analytics" | "workcenters" | "bom" | "inventory";
 type SortKey = "id" | "product" | "ordered" | "good" | "status" | "created" | "due" | "progress";
 
 interface Column {
@@ -133,7 +135,7 @@ export class OperationsExplorer {
     this.getPeriod = getPeriod;
     this.drawer = new WorkOrderDrawer(() => this.closeDetail());
 
-    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildDispatchPanel(), this.buildQualityPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element);
+    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildDispatchPanel(), this.buildQualityPanel(), this.buildShortagesPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element);
     this.element.hidden = true;
     this.showTab("orders");
 
@@ -205,6 +207,12 @@ export class OperationsExplorer {
         this.qualityKey = qk;
         this.renderQuality(qualityReport(snap, this.getPeriod()));
       }
+    } else if (this.tab === "shortages") {
+      const sk = `${key}|${Math.floor(snap.asOfMs / 60_000)}`;
+      if (sk !== this.shortagesKey) {
+        this.shortagesKey = sk;
+        this.renderShortages(materialShortages(snap));
+      }
     } else if (this.tab === "analytics") {
       const ck = `${key}|${this.getPeriod()}|${this.productFilter}|${Math.floor(snap.asOfMs / 60_000)}`;
       if (ck !== this.chartKey) {
@@ -257,6 +265,7 @@ export class OperationsExplorer {
       ["orders", "Work Orders"],
       ["dispatch", "Dispatch"],
       ["quality", "Quality"],
+      ["shortages", "Material Shortages"],
       ["analytics", "Production Analytics"],
       ["workcenters", "Work Centers"],
       ["bom", "Bill of Materials"],
@@ -702,6 +711,113 @@ export class OperationsExplorer {
       });
     this.productBody.replaceChildren(...groupRows(r.byProduct));
     this.stationBody.replaceChildren(...groupRows(r.byStation));
+  }
+
+  // ---- material shortages (S4) ---------------------------------------------
+  // Semantics: docs/KPI_DEFINITIONS.md "Material shortage impact". Observed at the current simulated time; no prediction.
+
+  private shortagesKey = "";
+  private readonly shortageCards = el("div", "ex-kpis");
+  private readonly shortageNote = el("p", "hint");
+  private readonly shortageOrdersBody = el("tbody");
+  private readonly shortageMaterialsBody = el("tbody");
+
+  private buildShortagesPanel(): HTMLElement {
+    const panel = el("section", "ex-panel");
+    this.panels.set("shortages", panel);
+    const tableOf = (headers: string[], body: HTMLElement, numFrom: number) => {
+      const tr = el("tr");
+      headers.forEach((h, i) => tr.append(el("th", i >= numFrom ? "num" : undefined, h)));
+      const thead = el("thead");
+      thead.append(tr);
+      const t = el("table", "mini-table");
+      t.append(thead, body);
+      const wrap = el("div", "tbl-scroll");
+      wrap.append(t);
+      return wrap;
+    };
+    panel.append(
+      this.shortageCards,
+      this.shortageNote,
+      el("h3", undefined, "Work orders blocked by a material shortage"),
+      tableOf(["Work order", "Product", "Units", "Blocked since", "Short material", "Required", "Available now", "Short by", "Supply on order", "Customer orders"], this.shortageOrdersBody, 2),
+      el("h3", undefined, "By material"),
+      tableOf(["Material", "Blocked work orders", "Available now", "Outstanding on open POs", "Open POs", "Earliest promised", "POs past promised date"], this.shortageMaterialsBody, 1),
+      el(
+        "p",
+        "hint",
+        "Availability is on hand minus reserved in raw storage right now. Supply is the outstanding quantity (ordered minus received) on open purchase orders; \"covers\" means purchase orders taken in promised-date order first reach the shortfall by that date. Blocked orders compete for the same stock and supply and nothing is allocated between them here, so shortfalls of different orders for one material must not be added. A promised date is the supplier's promise, not a forecast of arrival or of when the order will run. Customer orders are the ones the work order was planned for (a planning link). Synthetic data.",
+      ),
+    );
+    return panel;
+  }
+
+  private renderShortages(r: MaterialShortageReport): void {
+    const blocked = r.blockedOrders;
+    const pastDue = blocked.filter((o) => o.earliestCustomerDueMs !== null && o.earliestCustomerDueMs <= r.asOfMs).length;
+    const card = (label: string, value: string, scope: string, tip: string) => {
+      const c = el("article", "kpi");
+      c.title = tip;
+      c.append(el("div", "kpi-label", label), el("div", "kpi-value", value), el("div", "kpi-scope", scope));
+      return c;
+    };
+    const noSupply = blocked.flatMap((o) => o.lines).filter((l) => l.supply.status === "NO_SUPPLY").length;
+    this.shortageCards.replaceChildren(
+      card("Blocked by material shortage", String(blocked.length), "work orders now", "Work orders in status BLOCKED for a material shortage. Equals the dashboard KPI."),
+      card("Materials short", String(r.byMaterial.length), "distinct materials", "Materials short for at least one blocked work order at the current balances."),
+      card("Short with no supply on order", String(noSupply), "order/material pairs", "Blocked order and material pairs for which no open purchase-order quantity exists."),
+      card("Linked to a past-due customer order", String(pastDue), "blocked work orders", "Blocked work orders planned for a customer order whose due date has passed. A planning link, not proven unit flow."),
+    );
+    setText(this.shortageNote, blocked.length === 0 ? "No work order is blocked by a material shortage at this simulated time." : "");
+
+    const supplyText = (l: MaterialShortageReport["blockedOrders"][number]["lines"][number]) => {
+      const s = l.supply;
+      if (s.status === "NO_SUPPLY") return "No supply on order";
+      const pos = s.purchaseOrderIds.join(", ");
+      if (s.status === "NOT_COVERED") return `Not covered: ${s.outstandingQuantity} on order (${pos})`;
+      return `Covered by ${fmtDate(s.coverDateMs!)} (${pos})${s.overdue ? " · promised date has passed" : ""}`;
+    };
+    const rows: HTMLElement[] = [];
+    for (const o of blocked) {
+      const lines = o.lines.length ? o.lines : [null];
+      lines.forEach((l, i) => {
+        const tr = el("tr");
+        const first = i === 0;
+        const wo = el("td");
+        if (first) {
+          const b = el("button", "link-btn", o.orderId);
+          b.addEventListener("click", () => this.openWorkOrder(o.orderId));
+          wo.append(b);
+        }
+        tr.append(wo, el("td", undefined, first ? o.sku : ""), el("td", "num", first ? String(o.quantity) : ""), el("td", "num", first && o.blockedAtMs !== null ? fmtDateTime(o.blockedAtMs) : first ? "–" : ""));
+        if (l) {
+          tr.append(el("td", undefined, `${l.description} (${l.sku})`), el("td", "num", `${l.required} ${l.uom}`), el("td", "num", String(l.availableNow)), el("td", "num", String(l.shortfall)), el("td", undefined, supplyText(l)));
+        } else {
+          tr.append(el("td", undefined, "No shortfall at current balances; release is pending"), el("td"), el("td"), el("td"), el("td"));
+        }
+        const cust = el("td", undefined, first ? (o.customerOrderIds.length ? o.customerOrderIds.join(", ") : "–") : "");
+        if (first && o.earliestCustomerDueMs !== null) cust.title = `Earliest customer due date ${fmtDate(o.earliestCustomerDueMs)}`;
+        tr.append(cust);
+        rows.push(tr);
+      });
+    }
+    this.shortageOrdersBody.replaceChildren(...rows);
+
+    this.shortageMaterialsBody.replaceChildren(
+      ...r.byMaterial.map((m) => {
+        const tr = el("tr");
+        tr.append(
+          el("td", undefined, `${m.description} (${m.sku})`),
+          el("td", "num", String(m.blockedOrders)),
+          el("td", "num", String(m.availableNow)),
+          el("td", "num", String(m.outstandingQuantity)),
+          el("td", "num", String(m.openPurchaseOrders)),
+          el("td", "num", m.earliestPromisedMs === null ? "none on order" : fmtDate(m.earliestPromisedMs)),
+          el("td", "num", String(m.overduePurchaseOrders)),
+        );
+        return tr;
+      }),
+    );
   }
 
   private readonly wcBody = el("tbody");

@@ -117,7 +117,7 @@ Source: `docs/STATUS.md`, cross-checked against the file tree.
 | Domain | Event-sourced core, 22 event types, schema `1.3.0`, seeded generator, reducer invariants (`InvariantViolation`), dataset validation |
 | Manufacturing model | Products with BOMs; per-product routings (NCP-100/200/300); work centers distinct from stations; dispatch per operation; sequence-dependent changeovers; pooled equipment; quality inspection with rework; machine downtime; supplier POs and receipts; material shortage blocking; customer orders and shipments |
 | Analytics | 6 KPIs with definitions; work-order summaries/detail/timeline; work-center queues, load and bottleneck candidate; equipment load; good-units throughput; BOM cost view |
-| UI | Dashboard, playback (60x to 86400x, seek), activity feed, station table/details, Operations Explorer (work orders, work centers, inventory, BOM, throughput) |
+| UI | Dashboard, playback (60x to 86400x, seek), activity feed, station table/details, Operations Explorer (work orders, work centers, BOM, throughput; the Inventory tab is a placeholder) |
 | 3D | Three.js plant with selection, status colour, queue buffers per work center, bottleneck highlight, shift-aware rendering |
 | Process | CI (typecheck, typecheck:app, test, validate:data, build), canonical fixture contract tests, recorded perf baselines, static-hosting scripts (`deploy/`), public roadmap page |
 
@@ -231,7 +231,7 @@ carries (no schema bump). "New domain" needs new entities/events, a `SCHEMA_VERS
 | P1 | **Dispatch and lead-time analysis** | Which customer orders are late or past due, and where did the time go (for work orders)? | `CustomerOrder.dueDate`, shipments, WO timeline (wait vs processing vs hold) | Dates exist; no analytics | Incremental | High | M (two parts, S1a/S1b) | **0.1.0** |
 | P2 | **Quality, scrap and rework analysis** | Where and why do we lose units? | `QualityInspection.scrapQuantity`, `defects`, rework operations, station/product | Only first-pass yield | Incremental | High | S-M | **0.1** |
 | P3 | **Bottleneck explanation** | Why is this work center the constraint, and what is it waiting on? | work-center queues, equipment waits, changeover minutes, downtime, shift calendar | Candidate flag + columns | Incremental | High | M | **0.1** |
-| P4 | **Material shortage impact** | Which orders are blocked by which shortage, and when does supply arrive? | blocked orders, `MaterialReservation`, PO `promisedDeliveryAt`, inventory | Inventory tab; `shortageBlocked` KPI; no causal link | Incremental | Med-High | S-M | 0.1.0 if time allows (not a blocker) |
+| P4 | **Material shortage impact** | Which orders are blocked by which shortage, and when does supply arrive? | blocked orders, `MaterialReservation`, PO `promisedDeliveryAt`, inventory | `shortageBlocked` KPI only (the Inventory tab is a placeholder); no causal link | Incremental | Med-High | S-M | 0.1.0 if time allows (not a blocker) |
 | P5 | **Order and work-order traceability links** | For this customer order, which WOs, materials, inspections, shipment? | existing relationships (`ARCHITECTURE.md` §3) | WO drawer exists; not linked end-to-end | Incremental | Med-High | S | **0.1** |
 | P6 | **3D as analytical interface** | Where in the plant is the problem? | P1-P5 outputs mapped via `mapping.ts` | Selection, status colours, queue buffers | Incremental | Med-High | M | **0.1.0** (scoped: analytical link + overlays) |
 | P7 | **Work-center utilization and queue visibility** | How loaded is each work center over time? | exists | Implemented (Work Centers tab) | Existing | n/a | n/a | done; add history chart in P3 |
@@ -458,7 +458,7 @@ no document, release note or demo text may say or imply otherwise. The README st
      3D factory (select in either, see it in both; at least the status, queue and blocked overlays).
    - Honest documentation: README, architecture overview, known limitations, screenshots; the working simulation-based application clearly separated from planned integrations.
    - Passing tests, typechecks, data validation and production build.
-   - Recommended, not blocking: S4 shortage impact; lazy-loading the 3D scene so the dashboard and Explorer paint without Three.js.
+   - Recommended, not blocking: S4 shortage impact (implemented); lazy-loading the 3D scene so the dashboard and Explorer paint without Three.js.
 3. **Required technical milestones.** None from Revision 3. **M3b, M4, M5 and M6a are not release blockers.** M3a and others may land earlier if reached.
 4. **Dependencies.** Existing code and fixtures only (no schema change). Legal, asset and history review (§J). A hosting target.
 5. **Non-goals.** Source-independent ingestion claims; Databricks; predictive delivery risk or any "at risk" indicator; serial-unit traceability; workforce,

@@ -287,3 +287,27 @@ delay, never ranked or weighted against each other, and never called root causes
 **Verified** (`tests/bottleneck.test.ts`): an equipment wait, a station down now, and both together are shown side by side on the default dataset; a constructed outage adds exactly its
 in-shift minutes; utilization, setup and changeover figures equal the Work Centers table; across the run at most one work center is flagged, never off shift, and it always ranks first.
 
+## Material shortage impact (slice S4, implemented)
+
+Implemented in `src/analytics/materialShortages.ts`, the Explorer "Material Shortages" tab and `tests/materialShortages.test.ts`. Observed facts as of the current simulated
+time; **no prediction** of when an order will be released or run. The list is exactly the set the dashboard counts as **Blocked by material shortage** (work orders with
+status `BLOCKED` and reason `MATERIAL_SHORTAGE`); a test asserts the two counts agree at every sampled time.
+
+| Measure | Definition |
+|---|---|
+| Required | BOM `quantityPer` x work-order quantity, per material |
+| Available now | on hand minus reserved, summed over raw-storage locations, at the current balances (the same availability rule the release step applies) |
+| Short by | required - available now, listed only for materials where it is positive. Recomputed at the current time, not the figure recorded when the order was blocked. A blocked order with no shortfall left is shown as "release is pending" |
+| Outstanding supply | Σ (`orderedQuantity` - `receivedQuantity`) over lines of open purchase orders (status not `RECEIVED`) for the material; fully received lines and received orders contribute nothing |
+| Supply status | **Covered**: taking outstanding quantities in promised-date order (then purchase-order id), the cumulative total first reaches the shortfall; the cover date is the promised delivery date of the purchase order that reaches it, and the purchase orders used are listed. **Not covered**: open purchase orders exist but their outstanding total is below the shortfall. **No supply on order**: no outstanding quantity exists |
+| Overdue supply | The cover date (or, when not covered, the earliest promised date) is before the current time. Shown as "promised date has passed" |
+| Customer orders | The customer orders the work order was planned for, via `demandLineIds` (a planning link, not proven unit flow, as in S1) |
+| By material | Per short material: blocked work orders, available now, outstanding quantity, open purchase orders, earliest promised date, open purchase orders past their promised date |
+
+**What it deliberately does not do.** Blocked work orders compete for the same stock and the same incoming supply, and this view allocates neither, so each order's shortfall is
+independent and **shortfalls are never added across orders** (the by-material table carries counts and supply, not a summed shortfall). A promised date is the supplier's promise
+(the model also records late and short deliveries), not a forecast of arrival or of release. No throughput or lateness impact is estimated; that needs the capacity model
+(design Phases 3 and 4). Substitutes and incoming quality hold are not modeled.
+**Verified** (`tests/materialShortages.test.ts`): the KPI agreement above; required, available and short-by from the BOM and balances; each supply status, cumulative cover, partly received
+lines, ignored received orders and overdue supply from constructed purchase orders; and the customer-order links.
+
