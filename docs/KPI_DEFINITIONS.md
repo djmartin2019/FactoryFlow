@@ -72,11 +72,10 @@ It marks where WIP waits, not why: a long queue can come from lane capacity, a f
 
 ## Proposed, not implemented: dispatch, lead time and work-order time (slice S1)
 
-**Status: PROPOSED / NOT IMPLEMENTED. No code computes anything in this section yet.** It defines semantics before any card, tab or
+**Status by part.** The *Order metrics (S1a)* and *On-Time In-Full Dispatch* tables below are **IMPLEMENTED** (`src/analytics/dispatch.ts`, Explorer "Dispatch" tab, `tests/dispatch.test.ts`). Everything else in this section (work-order flow and cycle time, the exclusive categories A, the conditions B, and the reconciliation with the drawer) is **PROPOSED / NOT IMPLEMENTED** (slice S1b). The section defines semantics before any card, tab or
 chart exists (see `CLAUDE.md`). Scope is release 0.1.0 (`docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md` §E.3). Everything here
 reports **observed facts** from events and state. There is no forecast and no predicted delivery risk; "at risk" is not a
-term used by this section. Slice S1a (order metrics) and S1b (work-order metrics) are approved for implementation against these
-definitions (plan §L8); every metric below stays marked proposed until its code and tests exist.
+term used by this section. Slices S1a and S1b are approved against these definitions (plan §L8); a part is marked implemented only when its code and tests exist.
 
 ### Dispatch, not delivery
 
@@ -99,7 +98,7 @@ withheld for that source, never silently reinterpreted.
 | Customer **receipt** date, proof of delivery, carrier transit time | **No** | Transit time is not measurable (deferred); nothing here claims receipt |
 | Which work order's units fill which customer order | **No.** `ProductionOrder.demandLineIds` records the order lines a work order was *planned to satisfy*; finished goods enter a pool and are allocated to lines from stock | The order-to-work-order link is a **planning link, not proven unit flow**. Decomposing an order's lead time into its work orders' phases is **deferred** to unit/lot traceability (design Phase 2) |
 
-### Order metrics (S1a)
+### Order metrics (S1a) — IMPLEMENTED
 
 | Metric (user-facing name) | Definition |
 |---|---|
@@ -111,7 +110,7 @@ withheld for that source, never silently reinterpreted.
 | Time to Due Date (open orders) | For open orders not yet due: `dueDate - asOf`, with unshipped quantity and the status of linked work orders (a planning link). Calendar arithmetic only: it says nothing about whether the order will be late |
 | Cancelled orders | Excluded from every rate and count here; reported as their own count. A cancellation after a partial dispatch is excluded and flagged |
 
-### On-Time In-Full Dispatch (dispatch basis)
+### On-Time In-Full Dispatch (dispatch basis) — IMPLEMENTED
 
 | Measure | Definition |
 |---|---|
@@ -122,10 +121,12 @@ withheld for that source, never silently reinterpreted.
 | Past-Due Unshipped Orders | As above, shown beside the rate |
 | N/A | Rates are **N/A** (not 0) when their cohort is empty. Lead-time statistics are N/A when no order reached final dispatch in the window |
 
-Lead-time statistics (median, P90) cover `SHIPPED` orders whose final-dispatch instant is in the window and say so in their label.
+Lead-time statistics (median, P90) cover `SHIPPED` orders whose final-dispatch instant is in the window and say so in their label. Percentiles use the **nearest-rank** method on the ascending lead times (rank = ceil(p x n)). Windows are the existing half-open `(from, to]` period windows, clipped to the start of the data, so orders due before the data starts are outside "Since start".
+
+**Implementation notes (S1a).** Durations are kept in milliseconds internally and rounded only for display, so the segment identity is exact. The final-dispatch instant is derived by accumulating an order's shipments (ordered by dispatch time, then id) until every line is fully shipped; a `SHIPPED` order for which that cannot be derived is excluded from the cohort and reported as *indeterminate* (zero on the default dataset). Under the current reducer an order can only be cancelled while `OPEN` and unshipped, so a cancellation after a partial dispatch cannot occur; cancelled orders are excluded and counted regardless. The planned-work-orders list comes from `ProductionOrder.demandLineIds`.
 They exclude open orders, which biases them low while many orders are open; the view shows the open count beside them.
 
-### Work-order flow time versus cycle time versus order lead time
+### Work-order flow time versus cycle time versus order lead time (S1b, PROPOSED)
 
 | Measure | Definition |
 |---|---|
@@ -133,7 +134,7 @@ They exclude open orders, which biases them low while many orders are open; the 
 | Work-order cycle time | `completedAt` - `releasedAt` (shop-floor time after material is reserved) |
 | Relationship | Neither is a component of order lead time. A customer order may be filled from stock with no work order, and its linked work orders are a planning link |
 
-### A. Mutually exclusive elapsed-time categories (work order, S1b)
+### A. Mutually exclusive elapsed-time categories (work order, S1b, PROPOSED)
 
 A decomposition of **one work order's** elapsed time in which every instant belongs to **exactly one** category, built from the
 event log and replayed state. It is **not** defined at customer-order level (planning-link note above). It is descriptive: it says
@@ -203,7 +204,7 @@ previous **completed** step's `completedAt` thereafter; `Processing` = rounded e
 4. *Processing and Hold:* for completed steps, Σ step `Processing` + Σ step `Hold` equals the `PROCESSING` + `HELD_MACHINE_DOWN` time of the same steps within rounding (<= 0.5 minute per step and per pause); `pausedMinutes` is rounded per pause by the reducer, so the exact event-derived `HELD_MACHINE_DOWN` may differ from it by that bound. Report any larger difference instead of adjusting either side.
 5. *Never asserted:* equality of the drawer's `Wait` with `QUEUE_WAIT` over the whole work-order life, or with any category that includes the open wait, off-shift time, `POST_PRODUCTION` or `UNCLASSIFIED`.
 
-### B. Overlapping contributing conditions (not a partition)
+### B. Overlapping contributing conditions (not a partition; S1b, PROPOSED)
 
 Conditions that may hold at the same time, during the same order's wait, and **must not be summed, stacked or presented as
 shares of elapsed time**. They are *descriptive indicators of context*, labelled *contributing conditions* or *indicative causes*, never

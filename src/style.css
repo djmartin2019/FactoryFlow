@@ -1008,3 +1008,17 @@ table.orders,
     min-width: 200px;
   }
 }
+
+/* Inline link-style button (e.g. planned work order ids in the Dispatch tab) */
+.link-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline dotted;
+}
+.link-btn:hover {
+  text-decoration: underline;
+}

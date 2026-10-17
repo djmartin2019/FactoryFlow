@@ -55,3 +55,18 @@ export function statusBadge(status: string, label?: string): HTMLElement {
   b.append(dot, document.createTextNode(label ?? STATUS_TEXT[status] ?? status));
   return b;
 }
+
+/** Duration in ms as "2 d 3 h", "5 h 10 min" or "42 min"; rounded to the minute for display only. */
+export function fmtDuration(ms: number): string {
+  const total = Math.round(ms / 60_000);
+  if (total === 0) return "0 min";
+  const d = Math.floor(total / 1440);
+  const h = Math.floor((total % 1440) / 60);
+  const m = total % 60;
+  if (d > 0) return h > 0 ? `${d} d ${h} h` : `${d} d`;
+  if (h > 0) return m > 0 ? `${h} h ${m} min` : `${h} h`;
+  return `${m} min`;
+}
+
+/** 0..1 as "83%", or "N/A" when the rate is undefined (empty cohort). */
+export const fmtRate = (rate: number | null): string => (rate === null ? "N/A" : `${(rate * 100).toFixed(0)}%`);

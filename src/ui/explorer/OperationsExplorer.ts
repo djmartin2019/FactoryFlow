@@ -8,6 +8,9 @@
 import {
   PERIODS,
   billsOfMaterials,
+  dispatchReport,
+  type DispatchReport,
+  type OrderDispatchView,
   goodUnitsThroughput,
   equipmentLoad,
   workCenterLoad,
@@ -22,14 +25,14 @@ import { reportingSnapshot } from "../../simulation/reportingSnapshot";
 import type { SimulationController } from "../../simulation/SimulationController";
 import { nextShiftStart, weekdayShort } from "../../manufacturing/calendar";
 import { el, formatSimTime, setText } from "../dom";
-import { fmtDate, fmtMoney, statusBadge, STATUS_TEXT } from "./format";
+import { fmtDate, fmtDateTime, fmtDuration, fmtMoney, fmtRate, statusBadge, STATUS_TEXT } from "./format";
 import { ThroughputChart } from "./ThroughputChart";
 import { WorkOrderDrawer } from "./WorkOrderDrawer";
 
 const REFRESH_MS = 500;
 const PAGE_SIZE = 100;
 
-type Tab = "orders" | "analytics" | "workcenters" | "bom" | "inventory";
+type Tab = "orders" | "dispatch" | "analytics" | "workcenters" | "bom" | "inventory";
 type SortKey = "id" | "product" | "ordered" | "good" | "status" | "created" | "due" | "progress";
 
 interface Column {
@@ -123,7 +126,7 @@ export class OperationsExplorer {
     this.getPeriod = getPeriod;
     this.drawer = new WorkOrderDrawer(() => this.closeDetail());
 
-    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element);
+    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildDispatchPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element);
     this.element.hidden = true;
     this.showTab("orders");
 
@@ -182,6 +185,12 @@ export class OperationsExplorer {
         this.renderWorkCenters(workCenterLoad(snap, this.getPeriod()), snap.asOfMs);
         this.renderEquipment(equipmentLoad(snap, this.getPeriod()));
       }
+    } else if (this.tab === "dispatch") {
+      const dk = `${key}|${this.getPeriod()}|${Math.floor(snap.asOfMs / 60_000)}`;
+      if (dk !== this.dispatchKey) {
+        this.dispatchKey = dk;
+        this.renderDispatch(dispatchReport(snap, this.getPeriod()));
+      }
     } else if (this.tab === "analytics") {
       const ck = `${key}|${this.getPeriod()}|${this.productFilter}|${Math.floor(snap.asOfMs / 60_000)}`;
       if (ck !== this.chartKey) {
@@ -232,6 +241,7 @@ export class OperationsExplorer {
     bar.setAttribute("role", "tablist");
     const defs: Array<[Tab, string]> = [
       ["orders", "Work Orders"],
+      ["dispatch", "Dispatch"],
       ["analytics", "Production Analytics"],
       ["workcenters", "Work Centers"],
       ["bom", "Bill of Materials"],
@@ -445,6 +455,124 @@ export class OperationsExplorer {
       return section;
     });
     this.bomRoot.replaceChildren(...sections);
+  }
+
+  // ---- dispatch (S1a) ----------------------------------------------------
+  // Semantics: docs/KPI_DEFINITIONS.md "dispatch, lead time and work-order time". Dispatch basis, observed facts only.
+
+  private dispatchKey = "";
+  private readonly dispatchCards = el("div", "ex-kpis");
+  private readonly dispatchNote = el("p", "hint");
+  private readonly pastDueBody = el("tbody");
+  private readonly pastDueWrap = el("div");
+  private readonly ordersBody = el("tbody");
+  private readonly ordersCount = el("span", "hint");
+
+  private buildDispatchPanel(): HTMLElement {
+    const panel = el("section", "ex-panel");
+    this.panels.set("dispatch", panel);
+    const head = (labels: string[], numFrom: number) => {
+      const tr = el("tr");
+      labels.forEach((h, i) => tr.append(el("th", i >= numFrom ? "num" : undefined, h)));
+      const thead = el("thead");
+      thead.append(tr);
+      return thead;
+    };
+    const cols = ["Customer order", "Customer", "Status", "Due", "Past due", "Unshipped qty", "Planned work orders"];
+    const pastTable = el("table", "mini-table");
+    pastTable.append(head(cols, 4), this.pastDueBody);
+    const pastScroll = el("div", "tbl-scroll");
+    pastScroll.append(pastTable);
+    this.pastDueWrap.append(el("h3", undefined, "Past-Due Unshipped Orders"), pastScroll);
+
+    const allCols = ["Customer order", "Customer", "Status", "Created", "Due", "Final dispatch", "Lead time", "Lateness / status vs due", "Lead-time segments", "Planned work orders"];
+    const allTable = el("table", "mini-table");
+    allTable.append(head(allCols, 6), this.ordersBody);
+    const allScroll = el("div", "tbl-scroll");
+    allScroll.append(allTable);
+
+    panel.append(
+      this.dispatchCards,
+      this.dispatchNote,
+      this.pastDueWrap,
+      el("h3", undefined, "Customer orders"),
+      this.ordersCount,
+      allScroll,
+      el(
+        "p",
+        "hint",
+        "Dispatch basis: the model records when goods left, not when a customer received them, and the due date is treated as dispatch-by for this synthetic manufacturer. On-Time In-Full Dispatch counts orders whose due date falls in the reporting period and has passed; an order dispatched in part by its due date is not in full, and orders still unshipped past due count as late. Planned work orders are the work orders created to satisfy the order's lines; finished goods are allocated from stock, so this is a planning link, not a proven unit flow. No delivery forecast is shown. Synthetic data.",
+      ),
+    );
+    return panel;
+  }
+
+  private workOrderLinks(o: OrderDispatchView): HTMLElement {
+    const td = el("td");
+    const shown = o.plannedWorkOrderIds.slice(0, 3);
+    shown.forEach((id, i) => {
+      if (i > 0) td.append(" ");
+      const b = el("button", "link-btn", id);
+      b.title = "Open this work order (planned to satisfy the customer order)";
+      b.addEventListener("click", () => this.openWorkOrder(id));
+      td.append(b);
+    });
+    if (o.plannedWorkOrderIds.length > shown.length) td.append(` +${o.plannedWorkOrderIds.length - shown.length}`);
+    if (shown.length === 0) td.append("–");
+    return td;
+  }
+
+  private renderDispatch(r: DispatchReport): void {
+    const card = (label: string, value: string, scope: string, tip: string) => {
+      const c = el("article", "kpi");
+      c.title = tip;
+      c.append(el("div", "kpi-label", label), el("div", "kpi-value", value), el("div", "kpi-scope", scope));
+      return c;
+    };
+    const ratio = (x: { numerator: number; denominator: number }, unit: string) => `${x.numerator} / ${x.denominator} ${unit}`;
+    const lt = r.leadTime;
+    this.dispatchCards.replaceChildren(
+      card("On-Time In-Full Dispatch", fmtRate(r.onTimeInFull.rate), ratio(r.onTimeInFull, "orders due in period"), "Orders due in the period (and already due) that were fully dispatched on or before the due date. Unshipped overdue orders count as late; partial dispatch is not in full."),
+      card("Quantity Fill by Due Date", fmtRate(r.quantityFill.rate), ratio(r.quantityFill, "units"), "Units dispatched on or before the due date over units ordered, same orders as On-Time In-Full Dispatch."),
+      card("On-Time Dispatch Rate", fmtRate(r.onTimeDispatch.rate), ratio(r.onTimeDispatch, "shipments in period"), "Share of shipments dispatched in the period that left on or before their order's due date. Each shipment counts once."),
+      card("Past-Due Unshipped Orders", String(r.pastDue.count), `${r.pastDue.unshippedQuantity} units unshipped · ${r.pastDue.partiallyDispatched} partly dispatched`, "Open or partially dispatched orders whose due date has passed, as of the current simulated time."),
+      card("Order-to-Final-Dispatch Lead Time", lt.medianMs === null ? "N/A" : fmtDuration(lt.medianMs), lt.count === 0 ? "median · no orders reached final dispatch in period" : `median of ${lt.count} orders · P90 ${fmtDuration(lt.p90Ms!)}`, "Order creation to the dispatch that completed the order, for orders whose final dispatch is in the period. Open orders are excluded, which biases the figure low while many are open."),
+    );
+    const notes: string[] = [`${lt.openOrders} order${lt.openOrders === 1 ? "" : "s"} still open.`];
+    if (r.cancelledInWindow > 0) notes.push(`${r.cancelledInWindow} cancelled order${r.cancelledInWindow === 1 ? "" : "s"} with a due date in the period are excluded.`);
+    if (r.indeterminate > 0) notes.push(`${r.indeterminate} shipped order${r.indeterminate === 1 ? "" : "s"} excluded because the final dispatch could not be derived.`);
+    setText(this.dispatchNote, notes.join(" "));
+
+    this.pastDueWrap.hidden = r.pastDue.orders.length === 0;
+    this.pastDueBody.replaceChildren(
+      ...r.pastDue.orders.slice(0, 50).map((o) => {
+        const tr = el("tr");
+        tr.append(el("td", undefined, o.orderId), el("td", undefined, o.customerName), el("td", undefined, o.partiallyDispatched ? "Partly dispatched" : "Open"));
+        tr.append(el("td", "num", fmtDate(o.dueMs)), el("td", "num", fmtDuration(o.pastDueMs!)), el("td", "num", String(o.unshippedQuantity)), this.workOrderLinks(o));
+        return tr;
+      }),
+    );
+
+    const rows = r.orders.slice().sort((a, b) => b.dueMs - a.dueMs || b.orderId.localeCompare(a.orderId));
+    setText(this.ordersCount, rows.length > 100 ? `Showing 100 of ${rows.length} orders, latest due date first` : `${rows.length} orders, latest due date first`);
+    const statusText: Record<string, string> = { OPEN: "Open", PARTIALLY_SHIPPED: "Partly dispatched", SHIPPED: "Dispatched", CANCELLED: "Cancelled" };
+    this.ordersBody.replaceChildren(
+      ...rows.slice(0, 100).map((o) => {
+        const tr = el("tr");
+        let vsDue = "–";
+        if (o.latenessMs !== null) vsDue = o.latenessMs === 0 ? "On time" : `${fmtDuration(o.latenessMs)} late`;
+        else if (o.pastDueMs !== null) vsDue = `${fmtDuration(o.pastDueMs)} past due`;
+        else if (o.timeToDueMs !== null) vsDue = `${fmtDuration(o.timeToDueMs)} to due`;
+        const seg = o.segments
+          ? `${fmtDuration(o.segments.toFirstAllocationMs)} to allocation · ${fmtDuration(o.segments.allocationToFirstDispatchMs)} to dispatch · ${fmtDuration(o.segments.firstToFinalDispatchMs)} to final`
+          : "N/A";
+        tr.append(el("td", undefined, o.orderId), el("td", undefined, o.customerName), el("td", undefined, statusText[o.status] ?? o.status));
+        tr.append(el("td", "num", fmtDate(o.createdAtMs)), el("td", "num", fmtDate(o.dueMs)));
+        tr.append(el("td", "num", o.finalDispatchMs === null ? "–" : fmtDateTime(o.finalDispatchMs)), el("td", "num", o.leadTimeMs === null ? "–" : fmtDuration(o.leadTimeMs)));
+        tr.append(el("td", "num", vsDue), el("td", "num", seg), this.workOrderLinks(o));
+        return tr;
+      }),
+    );
   }
 
   private readonly wcBody = el("tbody");

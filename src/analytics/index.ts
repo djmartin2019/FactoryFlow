@@ -4,3 +4,4 @@ export * from "./workOrders.ts";
 export * from "./throughput.ts";
 export * from "./workCenters.ts";
 export * from "./billOfMaterials.ts";
+export * from "./dispatch.ts";

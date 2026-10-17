@@ -58,7 +58,8 @@ does not exist; do not assume it.
 | Material-movement animation in 3D | Proposed | `factoryObjectsForEvent` already returns `flows`; nothing animates them yet |
 | 3D selection linked to work-order detail | Partial | station panel "Open WO detail" button opens the Explorer drawer for the station's current order; no unit-level link |
 | Bottleneck analysis and "why" explanations | Proposed | design §8.4, §9.3 |
-| Dispatch and lead-time analytics (order-to-final-dispatch lead time, on-time in-full dispatch, work-order time decomposition) | Proposed | metrics defined, **unimplemented**, in `KPI_DEFINITIONS.md` ("Proposed, not implemented"); release 0.1.0 scope in `OPEN_SOURCE_DEVELOPMENT_PLAN.md` |
+| Order dispatch and lead-time analytics (Order-to-Final-Dispatch Lead Time, Dispatch Lateness, Past-Due Unshipped Orders, On-Time In-Full Dispatch, Quantity Fill by Due Date) | Implemented | `analytics/dispatch.ts`, Explorer "Dispatch" tab, `tests/dispatch.test.ts`; dispatch basis (no customer-receipt data), observed facts only, no forecast; definitions in `KPI_DEFINITIONS.md` |
+| Work-order elapsed-time decomposition and contributing conditions (S1b) | Proposed | defined, **unimplemented**, in `KPI_DEFINITIONS.md`; release 0.1.0 scope in `OPEN_SOURCE_DEVELOPMENT_PLAN.md` |
 | Quality and scrap analytics (scrap and rework rate, defect Pareto) | Proposed | data exists (`QualityInspection.scrapQuantity`, `defects`); no view; release 0.1.0 scope |
 | Capability-aware UX (known / inferred / forecast) | Proposed | design §12.3 |
 
