@@ -125,6 +125,11 @@ KPI definitions (numerator, denominator, period, edge cases): `docs/KPI_DEFINITI
   `(position, epoch)` and hands analytics an immutable-by-convention view.
 - `mapping.ts` is the adapter between domain entities and 3D object IDs. The domain refers to objects by ID
   only; it holds no scene objects.
+- `src/sources/` (not yet on the app's data path) is the integration boundary being built: an adapter turns
+  untrusted wire data into `CanonicalInput` with provenance, and nothing in it applies business rules. The simulation is
+  its first source (`src/sources/simulation/`): the emitter converts generator output to a deliberately different wire
+  format (snake_case, seconds, status codes) at the generator's output edge, and the adapter maps it back exactly.
+  Plan: `docs/SOURCE_INTEGRATION_PLAN_REV3.md`.
 - Not enforced: strict TypeScript covers `manufacturing/`, scripts, tests and examples only
   (`tsconfig.node.json`); `src/analytics`, `src/simulation`, `src/graphics` and `src/ui` are checked by the
   non-strict app config.

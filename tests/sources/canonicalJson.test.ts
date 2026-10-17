@@ -88,7 +88,17 @@ describe("content digest", () => {
     expect(contentDigest("abc")).toBe(contentDigest("abc"));
     expect(contentDigest("abc")).toMatch(/^[0-9a-f]{16}$/);
     expect(contentDigest("abc")).not.toBe(contentDigest("abd"));
-    expect(contentDigest("")).toBe("cbf29ce484222325"); // FNV-1a 64 offset basis
+    // The first lane is FNV-1a 32 (published vectors).
+    expect(contentDigest("").slice(0, 8)).toBe("811c9dc5");
+    expect(contentDigest("a").slice(0, 8)).toBe("e40c292c");
+    expect(contentDigest("foobar").slice(0, 8)).toBe("bf9cf968");
+    // Both lanes move: a one-byte change alters both halves.
+    const [x, y] = [contentDigest("order-1042"), contentDigest("order-1043")];
+    expect(x.slice(0, 8)).not.toBe(y.slice(0, 8));
+    expect(x.slice(8)).not.toBe(y.slice(8));
+    // Non-ASCII (incl. astral) text hashes its UTF-8 bytes and is stable.
+    expect(contentDigest("é日😀")).toBe(contentDigest("é日😀"));
+    expect(contentDigest("é日😀")).not.toBe(contentDigest("e日😀"));
   });
 
   it("content keys ignore key order and timestamp spelling", () => {

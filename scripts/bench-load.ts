@@ -6,6 +6,7 @@
  */
 import { readFileSync, statSync } from "node:fs";
 import { FactoryReplay } from "../src/manufacturing/replay.ts";
+import { adaptEvents, adaptInitialState, emitEvents, emitInitialState } from "../src/sources/simulation/index.ts";
 import type { FactoryEvent, FactoryState, InitialStateFile } from "../src/manufacturing/types.ts";
 
 const dir = new URL("../data/generated/", import.meta.url);
@@ -51,3 +52,16 @@ mean("seek to 100% incl. reset", () => {
 const cloneMs = mean("structuredClone(final state)", () => structuredClone(finalState));
 mean("JSON.stringify(final state)", () => JSON.stringify(finalState));
 console.log(`clone-per-event over the log (upper bound, final-size state): ~${((cloneMs * events.length) / 1000).toFixed(0)} s`);
+
+// Simulation as a source (M2): emitter at the generator edge, then the work the app would do at load.
+const wireEvents = emitEvents(events);
+const wireEventsText = JSON.stringify(wireEvents);
+const wireInitialText = JSON.stringify(emitInitialState(initial));
+console.log(`wire events ${(wireEventsText.length / 1e6).toFixed(2)} MB (${(wireEventsText.length / eventsText.length).toFixed(2)}x events.json)`);
+mean("emit wire events (generator edge)", () => emitEvents(events));
+mean("JSON.parse(wire events)", () => JSON.parse(wireEventsText));
+const parsedWire = JSON.parse(wireEventsText);
+const adaptMs = mean("adapt wire events (validate + normalize)", () => adaptEvents(parsedWire, { identityMapVersion: "passthrough/1" }));
+const initMs = mean("adapt wire initial state", () => adaptInitialState(JSON.parse(wireInitialText)));
+const parseMs = mean("JSON.parse(wire events) again", () => JSON.parse(wireEventsText));
+console.log(`added one-time load work (parse + adapt events + initial): ~${(parseMs + adaptMs + initMs).toFixed(0)} ms`);
