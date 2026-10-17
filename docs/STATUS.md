@@ -58,6 +58,8 @@ does not exist; do not assume it.
 | Material-movement animation in 3D | Proposed | `factoryObjectsForEvent` already returns `flows`; nothing animates them yet |
 | 3D selection linked to work-order detail | Partial | station panel "Open WO detail" button opens the Explorer drawer for the station's current order; no unit-level link |
 | Bottleneck analysis and "why" explanations | Proposed | design §8.4, §9.3 |
+| Delivery and lead-time analytics (order lead time, lateness, on-time-in-full, work-order time decomposition) | Proposed | metrics defined, **unimplemented**, in `KPI_DEFINITIONS.md` ("Proposed, not implemented"); release 0.1.0 scope in `OPEN_SOURCE_DEVELOPMENT_PLAN.md` |
+| Quality and scrap analytics (scrap and rework rate, defect Pareto) | Proposed | data exists (`QualityInspection.scrapQuantity`, `defects`); no view; release 0.1.0 scope |
 | Capability-aware UX (known / inferred / forecast) | Proposed | design §12.3 |
 
 ## Quality and process

@@ -3,7 +3,7 @@
 > **Status:** Living design document
 > **Audience:** Developers, architects, and AI coding agents (including Claude Code)
 > **Reference implementation:** Northstar Components, a fictional industrial electrical control-panel manufacturer
-> **Last updated:** 2026-10-15
+> **Last updated:** 2026-10-17 (Phases 4 to 6 re-scoped for the open-source plan, `docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md`)
 > **Suggested repository location:** `docs/FACTORYFLOW_DESIGN.md`
 
 ---
@@ -647,6 +647,8 @@ This is a sequence of **vertical slices**, not permission to implement everythin
 
 ### Phase 4 — Workforce and finite-capacity scheduling
 
+> **Re-scoped (2026-10-17):** optional research, not on the release roadmap. It roughly doubles the domain (staff, skills, calendars, scheduler) and does not serve the open-source release goals. If pursued, start with its own design note after release 0.2.
+
 - Add skill matrix and **skill requirements on routing operations** (moved from Phase 1), shifts, absences, staff/equipment calendars, assignments, overtime options.
 - Build workload versus capacity, resource-specific queues, and estimated completion dates.
 - Provide reasoned risk flags and labor-related bottleneck explanations.
@@ -655,6 +657,8 @@ This is a sequence of **vertical slices**, not permission to implement everythin
 
 ### Phase 5 — Scenario comparison and decision support
 
+> **Re-scoped (2026-10-17):** optional research, not on the release roadmap; depends on Phase 4 inputs for its most interesting scenarios.
+
 - Implement isolated baseline snapshots and parameterized what-if branches.
 - Compare capacity configurations, labor shifts, defect rates, supply lead times, and demand mix.
 - Report throughput, WIP, flow times, OTD, resource hours, and assumed costs, with model version/seed.
@@ -662,6 +666,8 @@ This is a sequence of **vertical slices**, not permission to implement everythin
 **Exit:** A manager can defensibly compare two proposed changes without altering live/baseline state.
 
 ### Phase 6 — Real-data readiness / pilot adapter
+
+> **Re-scoped (2026-10-17):** satisfied by the second-source milestone (M6a in `SOURCE_INTEGRATION_PLAN_REV3.md`) and the optional Databricks reference (open-source plan §H). There is no customer pilot; the pilot and "customer" language below is historical and describes deferred, out-of-scope work (open-source plan §I).
 
 - Build a second adapter from a **small realistic external-style fixture or persisted dataset**, not directly from simulator internals.
 - Introduce source identity maps, provenance, quality/quarantine, partial capability and freshness.

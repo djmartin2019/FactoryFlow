@@ -4,6 +4,32 @@ Status: **proposal for approval. No application code, tests, fixtures or depende
 This document is self-contained and supersedes `SOURCE_INTEGRATION_PLAN.md` (rev 1) and
 `SOURCE_INTEGRATION_PLAN_REV2.md` (rev 2), both left untouched for history.
 
+> **Amendment A1 (2026-10-17, accepted by the owner).** Scope and ordering changes from
+> `docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md` §F.5 (R1 to R7). The technical designs in §7 are **unchanged**; what changes is
+> which milestone implements which part, and when. Where an amendment note below conflicts with the milestone text,
+> the amendment governs.
+> - **M3b is split** into **M3b-core** (release 0.2.0) and **M3b-full** (unscheduled, after 0.2.0). The M3b-core contract is §7.4a. See the note at M3b.
+> - **M5**: the ratchet allowlist is dropped unless the import-boundary test proves insufficient; the module-graph test stays.
+> - **M6b** (snapshot-only ERP-like source) is unscheduled and optional after 0.2.0.
+> - **M7** is split: release-0.2.0 bookkeeping versus later hardening. See the note at M7.
+> - **D10**: the four `OrdinalSemantics` stay in the types; behavior is implemented only for `none`, `posting` and `causal`.
+>   `adapter_derived` and D11 are deferred.
+> - **`tests/legacy/` is retained after M3a** as a differential-testing oracle and removed before the 0.2.0 tag, on the evidence
+>   in Amendment A2. (Amendment A1 originally said "deleted at the end of M3a"; A2 supersedes that.)
+> - **Declarative mapping** (small, file-based, closed vocabulary) is an optional, unscheduled item defined in the open-source plan §F.5.
+>
+> **Amendment A2 (2026-10-17, accepted by the owner).** Release restructuring (`docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md` §G): the
+> public preview 0.1.0 does **not** depend on M3b, M4, M5 or M6a; source independence is release 0.2.0. Integration
+> milestones may still land earlier if development reaches them; release numbers are not development phases.
+> - **§7.4a is added** and is authoritative for M3b-core: a deterministic finite-batch projection with exact input accounting.
+>   It reuses §7.4 grouping and conflict rules and §7.5 ordering rules **unchanged**; it only fixes what M3b-core promises and
+>   what it leaves to M3b-full.
+> - **Legacy reducer (`tests/legacy/state.ts`)** is a test artifact, not a second engine. It is **retained through M4** and
+>   used as an independent oracle by M3a and M3b-core, then removed before the 0.2.0 tag. Removal evidence is listed under M3a.
+>   This replaces the "delete at end of M3a" wording here (A1), in M0 ("once M3a has merged") and in M7.
+> - Rows 7, 22 and 24 of the §9 matrix describe held/pending outcomes that exist only with a published log. Under M3b-core
+>   they resolve as stated in §7.4a ("What M3b-core does with late and retroactive records").
+
 ## Contents
 
 1. Context and decisions already made
@@ -12,7 +38,7 @@ This document is self-contained and supersedes `SOURCE_INTEGRATION_PLAN.md` (rev
 4. Principles
 5. Current architecture assessment
 6. Dependency and data-flow diagram
-7. Responsibilities, contracts and policies (7.1 responsibilities, 7.2 time, 7.3 identity, 7.4 ingestion and conflicts,
+7. Responsibilities, contracts and policies (7.1 responsibilities, 7.2 time, 7.3 identity, 7.4 ingestion and conflicts, 7.4a batch projection (M3b-core),
    7.5 ordering, 7.6 reducer atomicity, 7.7 observations versus events, 7.8 capabilities and provenance,
    7.9 integrity versus plan conformance, 7.10 OperationalView, 7.11 simulation wire schema)
 8. Incremental plan with acceptance criteria (M0 to M7)
@@ -291,6 +317,106 @@ inputs plus injected duplicates, conflicting duplicates, versioned corrections, 
 
 **Documented, not built:** live append into a running `SimulationController`; correction events as first-class
 inputs beyond `sourceVersion`; persisted ledgers; checkpoints; any streaming infrastructure.
+
+### 7.4a Batch projection: the M3b-core contract (Amendment A2)
+
+**M3b-core is a deterministic finite-batch ingestion and projection process. It takes a closed set of source inputs and produces an
+immutable, validated, ordered accepted event log, together with explicit quarantine and reconciliation results.** It is the §7.4
+`ingest` function applied once to a complete batch. It is not the published/pending/reproject machinery, and its result is not a
+"published log".
+
+**Closed batch.** A batch is closed when its membership is fixed before projection begins and nothing is added until the result is
+consumed. Its inputs are exactly: (1) the set of physical `CanonicalInput`s, from one or more sources and streams (a set, so
+arrival order is not part of the input); (2) the persisted `ConflictResolution`s and `OrderHint`s (file-based, versioned, D13);
+(3) the identity map version; (4) master data and the initial state; (5) adapter and schema versions. "Closed" is a statement about
+the caller's input, not about the world: a record the source never delivered stays missing, and any history that depends on it is
+quarantined, never filled in. Because nothing is published beforehand, "late" has no meaning inside a batch; every record is
+simply placed by the ordering rules.
+
+**Conceptual shape (illustrative; not implemented).**
+```ts
+interface BatchInputs { inputs: readonly CanonicalInput[]; resolutions: readonly ConflictResolution[];
+                        hints: readonly OrderHint[]; ctx: IngestContext }          // IngestContext has no clock (§7.2)
+interface BatchProjection {                                                         // deeply immutable
+  batchKey: string;                       // audit digest of canonical inputs + versions; never used for equality
+  accepted: readonly AcceptedEvent[];     // §7.4 Candidate.accepted: sequenced from initial.lastSequence + 1, contiguous,
+                                          //   timestamp-monotone, each carrying provenance + orderQuality
+  quarantined: readonly QuarantineRecord[]; // per LOGICAL identity (RecordRef), listing member refs
+  unprojected: readonly UnprojectedRecord[];
+  dispositions: readonly InputDisposition[]; // exactly one per PHYSICAL input (below)
+  accounting: BatchAccounting;            // counts and the identities below; a result whose identities do not balance is a bug
+  issues: readonly MappingIssue[];
+}
+function projectBatch(b: BatchInputs): BatchProjection;                             // pure and total: never throws, no clock
+```
+`BatchProjection` is a `Candidate` (§7.4) plus dispositions and accounting. It has no `revision`, no `pending`, no `published`.
+
+**From source records to canonical inputs.** A source adapter (pure function of raw record, identity map, context) turns each raw
+record into exactly one `CanonicalInput` or exactly one rejecting `MappingIssue`, unless the adapter declares a fan-out rule (none
+does today). Adapter rejections (`SCHEMA_INVALID`, `UNKNOWN_STATUS`, `UNKNOWN_UOM`, `UNPLACEABLE_TIME`, unsupported version/kind, ...)
+never reach ingest; they are counted at the adapter boundary. Identity failures (`UNRESOLVED_IDENTITY`, `IDENTITY_CONFLICT`) are
+carried into the batch as quarantine entries from the start. Business events become `business_event` inputs; snapshot and CDC
+inputs are `unprojected` (§7.7). `loadSource` composes adapter and `projectBatch` and reports both boundaries.
+
+**Duplicates and conflicting versions.** Unchanged from §7.4. Inputs are grouped by logical identity `RecordRef =
+(sourceId, sourceEventId)`; equality is exact equality of canonical JSON of the normalized content (the digest is audit-only).
+Equal members collapse (`DUPLICATE_IGNORED`). A source-declared `versioning` capability with one comparable maximum makes the
+highest version win and the rest `SUPERSEDED`. Everything else that differs **fails closed**: no member accepted
+(`DUPLICATE_CONFLICT`), unless a persisted resolution names a member's content or `"none"`. No first-wins, no arrival-order tie-break.
+
+**Ordering.** §7.5 unchanged: `occurredAt`, then source-declared ordinals scoped to `(sourceId, streamId)`, then the documented
+fixed order for independent ties (`arbitrary_independent`), and `AMBIGUOUS_ORDER` quarantine for interacting ties no ordinal or
+`OrderHint` orders. `SOURCE_ORDER_CONTRADICTION` for inverted `causal` ordinals. Quarantine is deterministic: the same set always
+quarantines the same members.
+
+**Shadow-state validation.** Walk the ordered, eligible events once, applying each with the atomic reducer (M3a) to a shadow copy of
+the initial state. A reducer rejection quarantines that logical identity (`INVARIANT_VIOLATION`, typed in M7; `REFERENCES_FUTURE_ENTITY`
+per O6); a rejected event leaves the shadow state unchanged (atomicity), so dependents then fail naturally and are quarantined as a
+cascade that names the first rejected identity they depend on where determinable. A non-invariant error or `CommitFailure` taints the
+shadow state; it is rebuilt from the already-accepted events and the walk continues. The accepted events are then stamped with
+`sequence` and `id` via `buildEvent`. The reducer remains the only authority on validity.
+
+**Accounting.** Every *physical* input receives exactly one disposition; every *logical* identity receives exactly one outcome.
+- Physical dispositions: `ACCEPTED` (the representative of an accepted identity), `DUPLICATE_IGNORED` (content-equal to a representative),
+  `SUPERSEDED` (a lower version of an accepted identity), `QUARANTINED(code)` (a distinct-content member of a quarantined identity),
+  `UNPROJECTED` (observation or CDC).
+- **I1 (physical):** |inputs| = |ACCEPTED| + |DUPLICATE_IGNORED| + |SUPERSEDED| + |QUARANTINED| + |UNPROJECTED|.
+- **I2 (logical):** |business-event identities| = |accepted identities| + |quarantined identities|, and |accepted identities| = |accepted log|.
+- **I3 (projection):** after replaying the accepted log from the initial state, `lastSequence` = initial `lastSequence` + |accepted log| and the
+  state equals the shadow state.
+- **I4 (adapter boundary, reported by `loadSource`):** |raw records| = |inputs| + |adapter rejections| (with declared fan-out, the sum of fan-outs).
+Tests assert I1-I4 for the simulation, the injected-defect corpus and shuffled orders.
+
+**Immutability and exposure.** The projection is a value: typed `DeepReadonly`, deep-frozen in tests, never mutated by consumers. The app
+receives the accepted events as the input of `FactoryReplay`/`SimulationController` (M4). Replay mutates its own cloned state and must not
+mutate event payloads (the M3a convention "payload objects cloned" and its freeze test cover this). The application and views read the counts
+(accepted, quarantined, unprojected, adapter rejections) and the source name; no data-health screen in 0.2.0.
+
+**Reprocessing and permutation.** Projecting the same closed batch again, or any permutation of it, or the same set assembled by
+concatenating parts in any order, yields a deep-equal `BatchProjection` (ids, sequences, order qualities, issues and their order
+included), excluding `ingestedAt` on stamped provenance. Projecting a *different* set is a different projection: M3b-core promises
+**no stability of `sequence`/`EVT-` ids, no prefix relationship and no pending/diff report between batches**. The consumer replaces the
+whole log and bumps the controller `epoch`; anything persisted must reference source identity, not `EVT-` ids (risk 7).
+
+**What M3b-core does with late and retroactive records.** Without a published log there is nothing to be late against. A valid record
+that sorts early is accepted in order (matrix row 7: **A**, no `late` pending change). A `posting`-stream late posting is likewise just
+placed (row 22). A conflict is a conflict of the batch's records (row 24 reduces to row 2: fail closed); there is no retraction.
+Matrix rows 7, 22 and 24 recover their held/retraction outcomes only in M3b-full.
+
+**Guarantees promised.** BG1 determinism over the input set (tested by permutation). BG2 exact accounting (I1-I4). BG3 fail-closed
+conflicts and ambiguity. BG4 no fabricated history: every accepted event is exactly one source business event, with provenance; nothing is
+inferred. BG5 purity: no clock, no I/O, no mutation of inputs. BG6 simulation parity (identical ids, sequences, hash, zero quarantine).
+**Intentionally deferred to M3b-full:** G2 (published prefix stability) and G3 (convergence after `reproject`); `publish`, `PendingChange`
+(`late`, `correction`, `retraction`, `order_change`), `reproject` and `rewrite.fromSequence`; folding a persisted ledger incrementally
+(property tests 2 and 6 of §7.4); revision counters; D3/D9 policy.
+
+**Compatibility with M3b-full (design constraints on M3b-core).** (1) Output fields `accepted`, `quarantined`, `unprojected`, `issues`
+keep the §7.4 `Candidate` shape, so `publish(published, candidate)` can take a `BatchProjection` unchanged. (2) Each `AcceptedEvent`
+carries `(sourceId, sourceEventId, contentKey)` and its provenance, the quantities `publish` compares for prefix tests. (3) The inputs are
+retained verbatim (normalized content, never mutated or dropped), so a future ledger can hold them. (4) Resolutions and hints are inputs
+from the start. (5) Ordering and grouping depend only on the set, never on batch boundaries. (6) No `ingestedAt` in equality. (7) No field,
+type or function in M3b-core is named `published`, `revision` or `pending`, so the later wrapper (`PublishedLog` holding a candidate plus
+a revision) does not collide with it.
 
 ### 7.5 Event ordering policy
 
@@ -659,6 +785,21 @@ still audit-only), found by profiling the adapter. (4) Measured cost: about 136 
 (`PERFORMANCE.md`).
 
 **M3a. Atomic reducer (own PR; pinned contract)**
+
+*Amendment A2: legacy reducer lifecycle.* `tests/legacy/state.ts` stays in the repository after M3a. **Why:** the differential
+test compares the new reducer with an implementation it was not derived from, and M3b-core and M4 route new code (shadow-state
+dry-run, app boot) through that reducer; the oracle remains the cheapest independent check that none of them changed accept/reject
+behavior. **Tests that depend on it:** the differential block of `tests/behaviorPinning.test.ts` (the only importer today); M3b-core
+adds a cross-check that replaying its accepted log through the legacy reducer is accepted and reaches a deep-equal state, and that
+every `INVARIANT_VIOLATION` quarantine of the simulation-derived corpus is rejected by the legacy reducer with the same message.
+**It is not supported code**: no `src/` import, no edits, and the header comment in the file (which still says "delete after M3a has
+merged and M7 closes") is to be corrected in the M3a PR to point at this amendment. **Safe to remove when all hold, recorded in the
+removal PR:** (1) M4 has merged with KPI parity at three seek points; (2) M3b-core's simulation parity and invariant-isolation tests
+pass with the legacy cross-check enabled on the removal commit's parent; (3) no deliberate accepted-path behavior change to
+`state.ts`/`rules.ts` has been made since M3a, or each one is listed as an intentional divergence with its fixture/migration note
+(for example the `PRODUCTION_ORDER_CREATED` duplicate-operation-id decision, or a `SCHEMA_VERSION` bump, either of which ends the
+oracle's usefulness and is a trigger to remove it); (4) the final differential run (corpus size, event counts, zero disagreements)
+is pasted into the PR. **Deadline:** removed before the 0.2.0 tag. Two reducers are never shipped together.
 - Implement §7.6: `prepareEvent` with `DeepReadonly`, `Commit`, `planMoves`/`commitMoves`, `CommitFailure`, dispatcher advancing `lastSequence`/`asOf`; `FactoryReplay` fault state; contributor checklist in `src/manufacturing/README.md`.
 - *Accept:*
   1. All M0 `it.fails` flipped to passing tests; corpus oracle passes for every `EventType`.
@@ -671,6 +812,19 @@ still audit-only), found by profiling the adapter. (4) Measured cost: about 136 
   8. `move` remains the only function that writes inventory (via `commitMoves`).
 
 **M3b. Ingest: ledger, conflicts, ordering, quarantine, candidate/published/pending, reprojection**
+
+*Amendment A1 (R1), refined by A2.* Split. **M3b-core (release 0.2.0):** order-independent candidate log, fail-closed duplicates and conflicts,
+ordering with `AMBIGUOUS_ORDER` quarantine, shadow-state dry-run, quarantine ledger, simulation parity (criterion 3),
+invariant isolation (criterion 6), observations kept out of the log (criterion 7), taint rebuild (criterion 8), and the
+arrival-order and input-assembly-order (the ledger-fold "batching" form belongs to M3b-full), conflict, version, `ingestedAt` independence, cascade and idempotence property tests of §7.4.
+In 0.2.0 the app loads a finite batch and consumes the batch projection of §7.4a; there is no published log, so "published" and "candidate" are **not** equated. **M3b-full (unscheduled, after 0.2.0):** the published log,
+`pending` changes, `reproject` and `rewrite.fromSequence` (criteria 4 and 5, and the publish/reproject property test; D3, D9).
+Nothing in M3b-core may preclude adding them: keep the candidate a pure function as specified in §7.4.
+*Amendment A2: M3b-core acceptance, in addition to criteria 1 (the property tests that apply), 2, 3, 6, 7 and 8.* (a) The accounting identities
+of §7.4a hold on every projection in every test (simulation, injected-defect, permuted); (b) the result is deep-frozen in tests and
+`FactoryReplay` over it never mutates it; (c) re-projecting the same closed batch, and projecting any permutation of it, is deep-equal
+excluding `ingestedAt`; (d) the legacy cross-check of the M3a amendment passes; (e) nothing in the M3b-core types is named or shaped
+so that M3b-full's `publish`/`reproject`/`pending` could not wrap it (§7.4a, "Compatibility with M3b-full").
 - Depends on M1, M3a. Implements §7.4 and §7.5.
 - *Accept:*
   1. The eight property tests of §7.4 pass (arrival order, batching, conflicts, versions, `ingestedAt`, publish/reproject, cascade, idempotence).
@@ -687,6 +841,10 @@ still audit-only), found by profiling the adapter. (4) Measured cost: about 136 
 - *Accept:* identical dashboard, explorer and 3D numbers at 3 fixed seek points before and after (KPI parity); the simulation produces **zero quarantine, zero pending and zero error issues** (otherwise the app fails loudly); all CI commands green; import-boundary test: nothing outside `src/sources/simulation` and `scripts` imports the sim wire schema; the capability gate is covered by a unit test (no DOM); **load budget** met (§14).
 
 **M5. OperationalView (transitional) and leak fixes**
+
+*Amendment A1 (R2).* Keep the port, the import-boundary test, the `WORK_CENTER_NAMES` fix, removal of `engine.*` access and the
+module-graph test. Drop the ratchet allowlist test unless the import-boundary test proves insufficient. The module-graph
+test is a release-0.2.0 criterion.
 - Controller implements the port; `Dashboard`, `PlaybackToolbar`, `OperationsExplorer`, `SceneManager` take it; `engine.*` access removed; single `now` passed to `workstationViews`/`WipBuffers`; `dataOrigin` drives the "Synthetic" label.
 - Fix `WORK_CENTER_NAMES` import: use `master.workCenters` (behavior-preserving), so the module graph from the app entry excludes generator-side `masterData.ts`.
 - Document transitional status, sunset criteria and the query table (§7.10).
@@ -699,12 +857,19 @@ Two fixtures, two test files, one shared harness. Details and the proof boundary
   - **Independently authored expected results**: `expected.json` written by hand from the fixture events before any FactoryFlow code runs on them (times placed inside one Mon-Fri 06:00-18:00 UTC shift to keep utilization arithmetic checkable), covering good units, WIP at three timestamps, active orders, first-pass yield, utilization numerator and denominator, work-order timeline length, and throughput buckets.
   - *Accept:* adapter normalizes; ingest yields the expected candidate with zero quarantine; the reducer accepts the whole history; existing analytics run **without any edit to `analytics/`, `ui/` or `graphics/`**; KPIs and detail views equal `expected.json`; the app boots from this source with the simulation module absent from the module graph (test from M5); `validateDataset` replay checks hold on the accepted log. A separate messy variant (`mes-like-messy`) pins the §9 rows that apply to event sources.
 - **M6b. Snapshot-only ERP-like source.**
+
+  - *Amendment A1 (R3).* Unscheduled (optional after 0.2.0). It needs `unprojected` handling that M3b-core omits and is not required by the demo or the first
+    Databricks reference. Its acceptance criteria are unchanged. The "Shared identity test" below still applies to M6a alone until then.
   - Hand-authored under `tests/fixtures/sources/erp-like/`: work-order status rows (`job_number`, `status`, `quantity`, `last_modified`), item and BOM-like exports, an unknown-status row, a missing-optional-field row, a row with unknown unit of measure.
   - *Accept:* adapter validates and normalizes observations (`Known`/`unknown`/`unsupported` preserved; no field defaulted to zero); ingest retains them with provenance in the ledger; `unprojected` lists them with `OBSERVATION_NOT_PROJECTED`; the candidate log is empty and unchanged by any number of re-ingests; `FactoryState` stays equal to the initial state; no analytics function is asked to produce a value from this source, and the boot gate refuses it with an explanatory message. **No dashboard or KPI claim is made.**
 - **Shared identity test.** The crosswalk maps ERP `1042` and MES `WO-001042` to one canonical id; same local key in different sources yields different ids; a conflicting crosswalk fails closed and quarantines both sources' records for that key.
 - *Overall accept:* every row of §9 has a pinned expected outcome; **if any edit to `analytics/`, `ui/` or `graphics/` is needed for M6a, the boundary is cosmetic and the milestone fails.**
 
 **M7. Hardening, reconciliation strategy, rule classification in code**
+
+*Amendment A1 (R4).* Split. **Release 0.2.0:** update `STATUS.md` and `PERFORMANCE.md`, record results against the D7 budgets (the
+`tests/legacy/` removal is governed by Amendment A2). **Later:** typed rejection codes with the five-way class and the generated or checked
+`REDUCER_RULES.md`, the reconciliation strategy document (depends on M3b-full), the checkpoint note and the ruleset-profile decision record.
 - Typed rejection codes with a `class` from the five-way taxonomy replacing `INVARIANT_VIOLATION`; a test fails for any unclassified code and for any `req` without a code. `docs/REDUCER_RULES.md` becomes generated or checked against the code table.
 - Reconciliation/reprojection strategy document: diff report of status changes after a revision; guidance for `pending` handling.
 - Recorded performance results against budgets; checkpoint design note; decision record on a ruleset profile **conditional on pilot evidence** (§7.9); `STATUS.md` update; `SCHEMA_VERSION` bump + migration note only if canonical shapes changed; delete `tests/legacy/`.
@@ -808,7 +973,7 @@ validate-before-mutate; the `CanonicalInput` union; strict reducer retained; ind
 - **D7. Performance budgets (ratify after the M0 baseline).** Proposed: steady-state rows in `PERFORMANCE.md` within 2x; added one-time load work (wire parse + validate + adapt + ingest) at most about 300 ms on the Node baseline for the default dataset and no new long task above 500 ms in the browser; wire files at most 1.5x `events.json`.
 - **D8. Carried over:** default source in the app (simulation, fixtures behind a flag); shift calendar as master data (defer); domain-purity leaks (`masterData.ts` -> layout, `selectors.ts` -> graphics type, generator in the barrel) as a separate small PR after M5.
 - **D9. Retroactive conflicts or corrections against already-published events.** Recommend **hold** (published log unchanged, `pending` reports the retraction, explicit `reproject` applies it) because retraction rewrites ids and sequences under a running UI and the contested record was valid when published. This is the one place where the served log favors the earlier arrival; it is visible, not silent. Alternative: **retract** automatically (fully fail closed, but consumers rebuild unprompted).
-- **D10. Ordinal semantics.** Recommend four values (`none`, `posting`, `causal`, `adapter_derived`). Alternative: two (`none`, `causal`), treating everything else as unordered; simpler, but forces ambiguity quarantine for ordinary MES posting order.
+- **D10. Ordinal semantics.** *(Amendment A1, R5: types keep all four; implement `none`, `posting`, `causal` only; `adapter_derived` and D11 deferred.)* Recommend four values (`none`, `posting`, `causal`, `adapter_derived`). Alternative: two (`none`, `causal`), treating everything else as unordered; simpler, but forces ambiguity quarantine for ordinary MES posting order.
 - **D11. Adapter-side lifecycle ordinal helper.** Recommend **defer** until a real adapter needs it and an ordinal-stripped-simulation experiment shows it reproduces every tie group. Alternative: build it in M3b (adds domain knowledge that can drift from the reducer).
 - **D12. Boot gate for observation-only sources.** Recommend refuse with an explanatory message (M4/M6b). Alternative: boot an empty dashboard (rejected: shows false zeros).
 - **D13. Where `OrderHint` and `ConflictResolution` live.** Recommend file-based, versioned artifacts next to the identity map, no UI. Alternative: embedded in source config.
