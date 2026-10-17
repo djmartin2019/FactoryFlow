@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { dispatchReport, nearestRank, type ReportingSnapshot } from "../src/analytics/index.ts";
+import { compareByAttention, dispatchReport, nearestRank, type ReportingSnapshot } from "../src/analytics/index.ts";
 import { DAY, HOUR } from "../src/manufacturing/calendar.ts";
 import { generateDataset } from "../src/manufacturing/generator.ts";
 import { buildEvent } from "../src/manufacturing/events.ts";
@@ -216,6 +216,22 @@ describe("On-Time In-Full Dispatch", () => {
     expect(week.cohortSize).toBe(1);
     expect(week.leadTime.count).toBe(1);
     expect(week.leadTime.medianMs).toBe(DAY);
+  });
+});
+
+describe("default order for the customer-order table", () => {
+  it("lists the most overdue first, then open by earliest due, then dispatched, then cancelled", () => {
+    const orders = [
+      order({ id: "CO-1", createdMs: at(0), dueMs: at(10), lines: [{ id: "L1", quantity: 5 }], status: "OPEN" }), // due later
+      order({ id: "CO-2", createdMs: at(0), dueMs: at(2), lines: [{ id: "L2", quantity: 5, shipped: 5 }], status: "SHIPPED" }),
+      order({ id: "CO-3", createdMs: at(0), dueMs: at(1), lines: [{ id: "L3", quantity: 5 }], status: "OPEN" }), // 4 days overdue... at asOf day 5
+      order({ id: "CO-4", createdMs: at(0), dueMs: at(3), lines: [{ id: "L4", quantity: 5 }], status: "OPEN" }), // 2 days overdue
+      order({ id: "CO-5", createdMs: at(0), dueMs: at(7), lines: [{ id: "L5", quantity: 5 }], status: "OPEN" }), // due sooner than CO-1
+      order({ id: "CO-6", createdMs: at(0), dueMs: at(4), lines: [{ id: "L6", quantity: 5 }], status: "CANCELLED" }),
+    ];
+    const r = report(snap(at(5), orders, [shipment("S2", "CO-2", at(1), [["L2", 5]])]));
+    const sorted = r.orders.slice().sort(compareByAttention).map((o) => o.orderId);
+    expect(sorted).toEqual(["CO-3", "CO-4", "CO-5", "CO-1", "CO-2", "CO-6"]);
   });
 });
 
