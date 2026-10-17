@@ -626,8 +626,37 @@ change it deliberately with a fixture/migration note; it is pinned as `accept` i
 - Place `src/sources` under the **strict** tsconfig.
 - *Accept:* compiles under `typecheck`; negative tests (missing field, wrong unit, unknown status, bad timestamp) return issues, never throw; derived ids stable, collision-free for adversarial keys, never containing `::`; canonical JSON is invariant under key order and timestamp spelling; type-level test that `ingest` accepts all three input kinds; bundle-size impact of the chosen validator measured and recorded (budget in §14).
 
+*M1 outcome (2026-10-16).* Implemented as `src/sources/{types,canonicalJson,identity,validation,index}.ts` (placed under the
+strict `tsconfig.node.json`), `docs/REDUCER_RULES.md` with `tests/reducerRules.test.ts` keeping it in step with `state.ts`,
+and `tests/sources/*.test.ts`. No change to `src/manufacturing`, schema or fixtures. Notes: (1) `ingestedAt` is **not** in
+`InputProvenance`; it lives on `StampedProvenance`, added by ingest, so adapters need no clock (section 7.2). (2) D1 resolved
+as zod, using **`zod/mini`** without re-exporting `z` after measuring: classic zod costs about 27 kB gzip at minimum and a
+namespace re-export about 100 kB; the shipped sources layer is 11.6 kB gzip (`PERFORMANCE.md`). Zod is pinned exactly
+(`4.6.5`, over a month old when added). (3) Identity: an empty tenant or site means "none"; derived ids are
+`PREFIX.<source>.<key>[.<tenant>[.<site>]]` with `.` as the separator and every other byte `_HH`-escaped (the plan's
+`PREFIX-<sourceId>-...` form could collide with simulation ids such as `OP-WO-0013-50`); this is the only departure from
+section 7.3 and is covered by the adversarial collision test. (4) `zod`'s issue payload does not carry the offending input, so
+`MISSING_FIELD` versus `WRONG_TYPE` is decided by looking the path up in the raw record.
+
 **M2. Simulation wire format, emitter, adapter** (split: 2a initial state/master, 2b events)
 - *Accept:* `adapter(emit(x))` deep-equals `x` for the initial state and every event; **conversions actually occur** (a test asserts the wire form differs: seconds vs minutes, status codes, key names, timestamp form); every wire record carries a `causal` ordinal and `stream`; generator `eventLogHash` and fixture hash `6ed76381` unchanged; `validate:data` green; provenance `origin: "simulated_event"`.
+
+*M2 outcome (2026-10-16).* Implemented as `src/sources/simulation/{wire,wireSpec,codec,emitter,adapter,index}.ts` and
+`tests/sources/simulationRoundTrip.test.ts`; no change to the generator, reducer, schema or fixtures. The wire format is
+**data**: `wireSpec.ts` holds one typed entry per domain entity and per event payload (a `satisfies EntitySpec<T>` over the domain
+interface, so a new domain field fails compilation until the wire says what to do with it), plus status codes and event kinds;
+`codec.ts` derives wire names (snake_case, `quantity` becomes `qty`, minutes become seconds `_s`), converts values by kind and
+decodes with `MappingIssue`s. Results: `adapter(emit(x))` equals `x` for the initial state and every event of the default
+dataset and the canonical fixture, **including JSON key order**, so `eventLogHash` (`1b408e8e`) and the fixture hash
+(`6ed76381`) are reproduced from adapted records; conversions are asserted (seconds, snake_case keys, `PLN`/`RUN`-style codes,
+`...Z` timestamps without `.000`); every record carries `seq` (a `causal` ordinal) and `stream: "sim"`; provenance origin is
+`simulated_event`. Notes: (1) the decoder walks the wire object in its own key order because the domain objects' key order is
+not the interface order (for example `Material`), and hashes depend on it; this is why the structural decode is the codec, not a
+zod object, while zod/mini still validates the envelope. (2) Ids are checked against the canonical-id predicate (the simulation
+namespace is passthrough) rather than resolved field by field; per-field resolution needs entity types on id fields and is left to
+the first non-passthrough adapter (M6). (3) `contentDigest` changed from a BigInt FNV-64 to two 32-bit lanes (about 10x faster,
+still audit-only), found by profiling the adapter. (4) Measured cost: about 136 ms added load work, wire 0.84x `events.json`
+(`PERFORMANCE.md`).
 
 **M3a. Atomic reducer (own PR; pinned contract)**
 - Implement §7.6: `prepareEvent` with `DeepReadonly`, `Commit`, `planMoves`/`commitMoves`, `CommitFailure`, dispatcher advancing `lastSequence`/`asOf`; `FactoryReplay` fault state; contributor checklist in `src/manufacturing/README.md`.
