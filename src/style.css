@@ -932,10 +932,18 @@ table.orders,
 
 /* Shift state next to the simulation clock */
 .shift-badge {
+  /* Fixed width: the "Off shift · next Wed 06:00" text is longer than "On shift", and a changing width
+     reflows the toolbar (the progress slider flexes) and can re-wrap the top bar. */
+  box-sizing: border-box;
+  flex: 0 0 188px;
+  width: 188px;
   padding: 2px 8px;
   border-radius: 999px;
   font-size: 12px;
+  text-align: center;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #2ee6a6;
   border: 1px solid currentColor;
 }
@@ -957,4 +965,46 @@ table.orders,
 .bom-head h3 {
   margin: 0;
   font-size: 16px;
+}
+
+/* Desktop: two fixed rows (identity, nav and KPI period above; playback controls below) so state changes
+   never move the content under the top bar and nothing competes for one row. */
+@media (min-width: 1000px) {
+  .topbar {
+    display: grid;
+    flex: 0 0 auto;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: 32px 34px;
+    grid-template-areas:
+      "title nav period"
+      "toolbar toolbar toolbar";
+    align-items: center;
+    gap: 8px 24px;
+    box-sizing: border-box;
+  }
+
+  .topbar > .title {
+    grid-area: title;
+    flex-wrap: nowrap;
+  }
+
+  .topbar > .app-nav {
+    grid-area: nav;
+    min-width: 0;
+  }
+
+  .topbar > .period {
+    grid-area: period;
+    white-space: nowrap;
+  }
+
+  .topbar > .toolbar {
+    grid-area: toolbar;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+
+  .topbar .progress {
+    min-width: 200px;
+  }
 }
