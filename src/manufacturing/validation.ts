@@ -6,6 +6,7 @@
  */
 import { inShift } from "./calendar.ts";
 import { eventIdFor } from "./events.ts";
+import { changeoverSetup } from "./rules.ts";
 import { indexMaster, inventoryKey, replayWithGuard } from "./state.ts";
 import type { FactoryEvent, FactoryState, Id, ManufacturingDataset, ProductionOperation } from "./types.ts";
 
@@ -325,6 +326,42 @@ export function validateDataset(dataset: ManufacturingDataset): ValidationReport
       const kind = m.workstations.get(ws.workstationId)!.kind;
       for (const op of ops.filter((x) => x.workstationId === ws.workstationId)) {
         if (op.workstationKind !== kind) bad(`${op.id}: ${op.workstationKind} operation on ${kind} workstation`);
+      }
+    }
+  });
+
+  check("equipment is exclusive and matches routing requirements", (bad) => {
+    const kindOf = new Map((master.equipment ?? []).map((e) => [e.id, e.kind]));
+    const byUnit = new Map<Id, ProductionOperation[]>();
+    for (const op of ops) {
+      const held = op.equipmentIds ?? [];
+      if (op.startedAt && master.equipment) {
+        const have = held.map((id) => kindOf.get(id) ?? `?${id}`).sort().join();
+        const need = [...(op.requiredEquipment ?? [])].sort().join();
+        if (have !== need) bad(`${op.id}: needs [${need}], held [${have}]`);
+      }
+      for (const id of held) (byUnit.get(id) ?? byUnit.set(id, []).get(id)!).push(op);
+    }
+    const end = (op: ProductionOperation) => (op.completedAt ? Date.parse(op.completedAt) : Date.parse(fs.asOf));
+    for (const [id, list] of byUnit) {
+      list.sort((a, b) => Date.parse(a.startedAt!) - Date.parse(b.startedAt!));
+      for (let i = 1; i < list.length; i++) {
+        if (Date.parse(list[i].startedAt!) < end(list[i - 1])) bad(`${id}: ${list[i].id} overlaps ${list[i - 1].id}`);
+      }
+    }
+  });
+
+  check("setup minutes follow the changeover table", (bad) => {
+    if (!master.changeovers) return;
+    for (const op of ops) {
+      if (!op.startedAt || op.isRework || op.setupMinutes === undefined) continue;
+      const productId = fs.productionOrders[op.productionOrderId].productId;
+      const expected = op.changeoverFromProductId
+        ? changeoverSetup(master, op.workCenterId, op.changeoverFromProductId, productId)
+        : undefined;
+      if (op.changeoverFromProductId && op.setupMinutes !== expected) bad(`${op.id}: setup ${op.setupMinutes} != rule ${expected}`);
+      if (!op.changeoverFromProductId && op.standardSetupMinutes !== undefined && op.setupMinutes > op.standardSetupMinutes) {
+        bad(`${op.id}: setup ${op.setupMinutes} exceeds standard ${op.standardSetupMinutes} without a product change`);
       }
     }
   });

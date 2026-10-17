@@ -24,6 +24,7 @@ import { DAY, HOUR, MIN, SHIFT_END_HOUR, SHIFT_START_HOUR, dayStart, inShift, is
 import { buildEvent } from "./events.ts";
 import { PRODUCT_MIX, REWORK_MINUTES_PER_UNIT, REWORK_SETUP_MINUTES, buildMasterData, resolveConfig } from "./masterData.ts";
 import { Rng } from "./rng.ts";
+import { changeoverSetup, pickEquipment, usesChangeover } from "./rules.ts";
 import { applyEventInPlace, availableAt, createEmptyState, indexMaster, setOpeningBalance } from "./state.ts";
 import { SCHEMA_VERSION } from "./types.ts";
 import type {
@@ -438,6 +439,8 @@ class Simulation {
       ...(step.workCenterId ? { workCenterId: step.workCenterId } : {}),
       quantity,
       plannedMinutes: step.setupMinutes + step.minutesPerUnit * quantity,
+      standardSetupMinutes: step.setupMinutes,
+      ...(step.requiredEquipment?.length ? { requiredEquipment: step.requiredEquipment } : {}),
       isRework: false,
       status: "PENDING",
       pausedMinutes: 0,
@@ -673,6 +676,11 @@ class Simulation {
     );
   }
 
+  /** Whether the operation could get its equipment right now. */
+  private equipmentFree(op: ProductionOperation): boolean {
+    return pickEquipment(this.master, this.state, op.requiredEquipment) !== undefined;
+  }
+
   private dispatch(now: number) {
     if (!inShift(now)) return;
     let progressed = true;
@@ -693,7 +701,7 @@ class Simulation {
             .flatMap((o) => {
               const ops = this.pendingOps(o);
               const candidates = o.status === "WAITING" ? [ops[0]] : ops.filter((op) => op.workstationKind === "ASSEMBLY" && this.startableOp(op));
-              return candidates.filter((op) => op.status === "PENDING" && eligible(op)).map((op) => ({ op, order: o }));
+              return candidates.filter((op) => op.status === "PENDING" && eligible(op) && this.equipmentFree(op)).map((op) => ({ op, order: o }));
             })
             .sort(
               (x, y) =>
@@ -712,7 +720,7 @@ class Simulation {
           const candidates = orders
             .filter((o) => o.status === "RUNNING")
             .sort(byDue)
-            .flatMap((o) => this.pendingOps(o).filter((op) => op.type === "FINAL_TEST" && this.startableOp(op)));
+            .flatMap((o) => this.pendingOps(o).filter((op) => op.type === "FINAL_TEST" && this.startableOp(op) && this.equipmentFree(op)));
           if (candidates.length > 0) {
             this.startOperation(candidates[0], ws.id, now);
             progressed = true;
@@ -739,9 +747,23 @@ class Simulation {
 
   private startOperation(op: ProductionOperation, wsId: Id, now: number) {
     const ws = this.idx.workstations.get(wsId)!;
-    this.emit("OPERATION_STARTED", now, { productionOperationId: op.id, productionOrderId: op.productionOrderId, workstationId: wsId });
+    const productId = this.state.productionOrders[op.productionOrderId].productId;
+    const priorProductId = op.workCenterId ? this.state.workstations[wsId].lastProductByWorkCenter?.[op.workCenterId] : undefined;
+    const standardSetup = op.standardSetupMinutes ?? 0;
+    const setup = usesChangeover(op) ? changeoverSetup(this.master, op.workCenterId, priorProductId, productId) ?? op.standardSetupMinutes : op.standardSetupMinutes;
+    const changeoverFromProductId = this.master.changeovers && usesChangeover(op) && priorProductId && priorProductId !== productId ? priorProductId : undefined;
+    const equipmentIds = pickEquipment(this.master, this.state, op.requiredEquipment) ?? [];
+    this.emit("OPERATION_STARTED", now, {
+      productionOperationId: op.id,
+      productionOrderId: op.productionOrderId,
+      workstationId: wsId,
+      ...(setup !== undefined ? { setupMinutes: setup } : {}),
+      ...(changeoverFromProductId ? { changeoverFromProductId } : {}),
+      ...(equipmentIds.length > 0 ? { equipmentIds } : {}),
+    });
     const variability = this.opsRng.float(0.92, 1.12);
-    const minutes = Math.max(1, Math.round(op.plannedMinutes * ws.durationFactor * variability));
+    const planned = op.plannedMinutes - standardSetup + (setup ?? standardSetup);
+    const minutes = Math.max(1, Math.round(planned * ws.durationFactor * variability));
     this.scheduleOperationEnd(op.id, now + minutes * MIN);
   }
 
@@ -831,7 +853,15 @@ class Simulation {
     });
     if (rework > 0) {
       const lastSeq = Math.max(...this.pendingOps(order).map((o) => o.sequence));
-      const make = (sequence: number, type: OperationType, kind: "ASSEMBLY" | "INSPECTION", minutes: number, isRework: boolean): ProductionOperation => ({
+      const make = (
+        sequence: number,
+        type: OperationType,
+        kind: "ASSEMBLY" | "INSPECTION",
+        setup: number,
+        perUnit: number,
+        isRework: boolean,
+        requiredEquipment: string[] | undefined,
+      ): ProductionOperation => ({
         id: `OP-${order.id}-${sequence}`,
         productionOrderId: order.id,
         sequence,
@@ -839,20 +869,24 @@ class Simulation {
         workstationKind: kind,
         workCenterId: kind === "ASSEMBLY" ? "WC-WIRING" : "WC-TEST",
         quantity: rework,
-        plannedMinutes: minutes,
+        plannedMinutes: setup + perUnit * rework,
+        standardSetupMinutes: setup,
+        ...(requiredEquipment?.length ? { requiredEquipment } : {}),
         isRework,
         status: "PENDING",
         pausedMinutes: 0,
         interruptedByDowntimeIds: [],
       });
-      const finalTest = this.idx.routingByProduct.get(order.productId)!.steps.find((s) => s.operationType === "FINAL_TEST")!;
+      const steps = this.idx.routingByProduct.get(order.productId)!.steps;
+      const finalTest = steps.find((s) => s.operationType === "FINAL_TEST")!;
+      const wiring = steps.find((s) => s.operationType === "WIRE" || s.operationType === "MOUNT_AND_WIRE");
       this.emit("REWORK_REQUESTED", now, {
         productionOrderId: order.id,
         inspectionId,
         quantity: rework,
         operations: [
-          make(lastSeq + 10, "REWORK", "ASSEMBLY", REWORK_SETUP_MINUTES + REWORK_MINUTES_PER_UNIT * rework, true),
-          make(lastSeq + 20, "FINAL_TEST", "INSPECTION", finalTest.setupMinutes + finalTest.minutesPerUnit * rework, false),
+          make(lastSeq + 10, "REWORK", "ASSEMBLY", REWORK_SETUP_MINUTES, REWORK_MINUTES_PER_UNIT, true, wiring?.requiredEquipment),
+          make(lastSeq + 20, "FINAL_TEST", "INSPECTION", finalTest.setupMinutes, finalTest.minutesPerUnit, false, finalTest.requiredEquipment),
         ],
       });
     }

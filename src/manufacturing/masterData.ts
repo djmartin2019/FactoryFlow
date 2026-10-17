@@ -1,8 +1,10 @@
 import { factoryLayout } from "../data/factoryLayout.ts";
 import type {
   BillOfMaterials,
+  ChangeoverRule,
   Customer,
   Department,
+  Equipment,
   FactoryLocation,
   GeneratorConfig,
   LocationKind,
@@ -198,28 +200,73 @@ export function assemblyLanes(stationCount: number): string[][] {
   return Array.from({ length: stationCount }, (_, k) => ASSEMBLY_WORK_CENTER_IDS.filter((_, i) => i % stationCount === k));
 }
 
+/** Shared tools, pooled across stations (schema 1.3.0). Fewer units than stations that need them is deliberate. */
+export const EQUIPMENT: Equipment[] = [
+  { id: "EQ-CRIMP-01", name: "Crimp & torque tool 1", kind: "CRIMP_TOOL" },
+  { id: "EQ-CRIMP-02", name: "Crimp & torque tool 2", kind: "CRIMP_TOOL" },
+  { id: "EQ-VFD-01", name: "VFD commissioning bench", kind: "VFD_BENCH" },
+  { id: "EQ-PLC-01", name: "PLC/HMI programming rig", kind: "PLC_PROGRAMMER" },
+  { id: "EQ-HIPOT-01", name: "Hipot tester", kind: "HIPOT_TESTER" },
+];
+
+const CRIMP = ["CRIMP_TOOL"];
+const HIPOT = ["HIPOT_TESTER"];
+
 const ROUTING_STEPS: Record<string, Routing["steps"]> = {
   "NCP-100": [
     { sequence: 10, workCenterId: "WC-KITTING", operationType: "KIT", workstationKind: "ASSEMBLY", setupMinutes: 5, minutesPerUnit: 5 },
     { sequence: 20, workCenterId: "WC-ASSEMBLY", operationType: "MOUNT", workstationKind: "ASSEMBLY", setupMinutes: 5, minutesPerUnit: 8 },
-    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 10, minutesPerUnit: 12 },
+    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 10, minutesPerUnit: 12, requiredEquipment: CRIMP },
     { sequence: 40, workCenterId: "WC-TEST", operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 10, minutesPerUnit: 8 },
   ],
   "NCP-200": [
     { sequence: 10, workCenterId: "WC-KITTING", operationType: "KIT", workstationKind: "ASSEMBLY", setupMinutes: 5, minutesPerUnit: 5 },
     { sequence: 20, workCenterId: "WC-ASSEMBLY", operationType: "MOUNT", workstationKind: "ASSEMBLY", setupMinutes: 5, minutesPerUnit: 10 },
-    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 10, minutesPerUnit: 15 },
-    { sequence: 40, workCenterId: "WC-MOTOR", operationType: "MOTOR_CIRCUIT_ASSEMBLY", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 20 },
-    { sequence: 50, workCenterId: "WC-TEST", operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 10, minutesPerUnit: 12 },
+    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 10, minutesPerUnit: 15, requiredEquipment: CRIMP },
+    { sequence: 40, workCenterId: "WC-MOTOR", operationType: "MOTOR_CIRCUIT_ASSEMBLY", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 20, requiredEquipment: ["VFD_BENCH"] },
+    { sequence: 50, workCenterId: "WC-TEST", operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 10, minutesPerUnit: 12, requiredEquipment: HIPOT },
   ],
   "NCP-300": [
     { sequence: 10, workCenterId: "WC-KITTING", operationType: "KIT", workstationKind: "ASSEMBLY", setupMinutes: 10, minutesPerUnit: 10 },
     { sequence: 20, workCenterId: "WC-ASSEMBLY", operationType: "MOUNT", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 15 },
-    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 30 },
-    { sequence: 40, workCenterId: "WC-CONTROLS", operationType: "CONFIGURE", workstationKind: "ASSEMBLY", setupMinutes: 30, minutesPerUnit: 35 },
-    { sequence: 50, workCenterId: "WC-TEST", operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 15, minutesPerUnit: 20 },
+    { sequence: 30, workCenterId: "WC-WIRING", operationType: "WIRE", workstationKind: "ASSEMBLY", setupMinutes: 15, minutesPerUnit: 30, requiredEquipment: CRIMP },
+    { sequence: 40, workCenterId: "WC-CONTROLS", operationType: "CONFIGURE", workstationKind: "ASSEMBLY", setupMinutes: 30, minutesPerUnit: 35, requiredEquipment: ["PLC_PROGRAMMER"] },
+    { sequence: 50, workCenterId: "WC-TEST", operationType: "FINAL_TEST", workstationKind: "INSPECTION", setupMinutes: 15, minutesPerUnit: 20, requiredEquipment: HIPOT },
   ],
 };
+
+/** Product complexity, used to size changeovers (more complex = more fixtures to swap). */
+const COMPLEXITY: Record<string, number> = { "NCP-100": 1, "NCP-200": 2, "NCP-300": 3 };
+const CHANGEOVER_UP_PER_LEVEL = 5;
+const CHANGEOVER_DOWN_PER_LEVEL = 2;
+const REPEAT_SETUP_FRACTION = 0.4;
+
+/**
+ * Sequence-dependent setup per work center and product pair. A repeat run of the same product reuses the
+ * fixtures (40% of standard, at least 2 min); switching pays the target's standard setup plus a penalty per
+ * complexity level crossed (5 min going up, 2 min going down). Synthetic values, not measured.
+ */
+export function buildChangeovers(): ChangeoverRule[] {
+  const rules: ChangeoverRule[] = [];
+  for (const wc of WORK_CENTERS) {
+    const std = new Map<string, number>();
+    for (const [productId, steps] of Object.entries(ROUTING_STEPS)) {
+      const step = steps.find((x) => x.workCenterId === wc.id);
+      if (step) std.set(productId, step.setupMinutes);
+    }
+    for (const [to, toSetup] of std) {
+      for (const from of std.keys()) {
+        const diff = COMPLEXITY[to] - COMPLEXITY[from];
+        const setupMinutes =
+          diff === 0
+            ? Math.max(2, Math.round(toSetup * REPEAT_SETUP_FRACTION))
+            : toSetup + (diff > 0 ? diff * CHANGEOVER_UP_PER_LEVEL : -diff * CHANGEOVER_DOWN_PER_LEVEL);
+        rules.push({ workCenterId: wc.id, fromProductId: from, toProductId: to, setupMinutes });
+      }
+    }
+  }
+  return rules;
+}
 
 /** Minutes for the rework step, per unit. */
 export const REWORK_MINUTES_PER_UNIT = 25;
@@ -314,5 +361,7 @@ export function buildMasterData(config: GeneratorConfig): MasterData {
     routings,
     workCenters: WORK_CENTERS,
     workstations,
+    equipment: EQUIPMENT,
+    changeovers: buildChangeovers(),
   };
 }

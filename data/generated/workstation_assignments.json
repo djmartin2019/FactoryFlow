@@ -4,7 +4,7 @@
     "productionOrderId": "WO-0001",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-01T08:37:00.000Z",
-    "releasedAt": "2026-09-01T13:04:00.000Z"
+    "releasedAt": "2026-09-01T13:01:00.000Z"
   },
   {
     "id": "ASG-0002",
@@ -18,1504 +18,1478 @@
     "productionOrderId": "WO-0003",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-01T09:14:00.000Z",
-    "releasedAt": "2026-09-01T11:47:00.000Z"
+    "releasedAt": "2026-09-01T12:26:00.000Z"
   },
   {
     "id": "ASG-0004",
     "productionOrderId": "WO-0004",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-01T11:47:00.000Z",
-    "releasedAt": "2026-09-01T15:33:00.000Z"
+    "releasedAt": "2026-09-01T15:10:00.000Z"
   },
   {
     "id": "ASG-0005",
     "productionOrderId": "WO-0005",
     "workstationId": "ASM-006",
     "assignedAt": "2026-09-01T11:47:00.000Z",
-    "releasedAt": "2026-09-02T07:10:00.000Z"
+    "releasedAt": "2026-09-02T08:31:00.000Z"
   },
   {
     "id": "ASG-0006",
     "productionOrderId": "WO-0006",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-01T12:43:00.000Z",
-    "releasedAt": "2026-09-02T07:11:00.000Z"
+    "releasedAt": "2026-09-02T07:16:00.000Z"
   },
   {
     "id": "ASG-0007",
     "productionOrderId": "WO-0008",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-01T13:13:00.000Z",
-    "releasedAt": "2026-09-01T16:12:00.000Z"
+    "assignedAt": "2026-09-01T13:20:00.000Z",
+    "releasedAt": "2026-09-01T18:03:00.000Z"
   },
   {
     "id": "ASG-0008",
     "productionOrderId": "WO-0007",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-01T13:31:00.000Z",
-    "releasedAt": "2026-09-02T10:43:00.000Z"
+    "assignedAt": "2026-09-01T13:40:00.000Z",
+    "releasedAt": "2026-09-02T10:54:00.000Z"
   },
   {
     "id": "ASG-0009",
     "productionOrderId": "WO-0009",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-01T14:17:00.000Z",
-    "releasedAt": "2026-09-01T18:40:00.000Z"
+    "assignedAt": "2026-09-01T14:35:00.000Z",
+    "releasedAt": "2026-09-01T18:47:00.000Z"
   },
   {
     "id": "ASG-0010",
     "productionOrderId": "WO-0010",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-01T14:48:00.000Z",
-    "releasedAt": "2026-09-02T08:19:00.000Z"
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-01T15:00:00.000Z",
+    "releasedAt": "2026-09-02T09:22:00.000Z"
   },
   {
     "id": "ASG-0011",
     "productionOrderId": "WO-0011",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-01T15:38:00.000Z",
-    "releasedAt": "2026-09-02T10:36:00.000Z"
+    "releasedAt": "2026-09-02T11:50:00.000Z"
   },
   {
     "id": "ASG-0012",
     "productionOrderId": "WO-0012",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-01T16:02:00.000Z",
-    "releasedAt": "2026-09-02T14:40:00.000Z"
+    "assignedAt": "2026-09-01T16:06:00.000Z",
+    "releasedAt": "2026-09-02T15:14:00.000Z"
   },
   {
     "id": "ASG-0013",
     "productionOrderId": "WO-0013",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-02T08:09:00.000Z",
-    "releasedAt": "2026-09-02T13:06:00.000Z"
+    "releasedAt": "2026-09-02T13:21:00.000Z"
   },
   {
     "id": "ASG-0014",
     "productionOrderId": "WO-0014",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-02T12:43:00.000Z",
-    "releasedAt": "2026-09-03T07:38:00.000Z"
+    "releasedAt": "2026-09-03T07:30:00.000Z"
   },
   {
     "id": "ASG-0015",
     "productionOrderId": "WO-0015",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-02T13:53:00.000Z",
-    "releasedAt": "2026-09-02T16:47:00.000Z"
+    "releasedAt": "2026-09-02T17:01:00.000Z"
   },
   {
     "id": "ASG-0016",
     "productionOrderId": "WO-0016",
     "workstationId": "ASM-006",
     "assignedAt": "2026-09-02T13:53:00.000Z",
-    "releasedAt": "2026-09-03T10:28:00.000Z"
+    "releasedAt": "2026-09-03T15:27:00.000Z"
   },
   {
     "id": "ASG-0017",
     "productionOrderId": "WO-0017",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-02T14:24:00.000Z",
-    "releasedAt": "2026-09-03T08:50:00.000Z"
+    "releasedAt": "2026-09-03T08:41:00.000Z"
   },
   {
     "id": "ASG-0018",
     "productionOrderId": "WO-0018",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-02T14:48:00.000Z",
-    "releasedAt": "2026-09-03T10:41:00.000Z"
+    "assignedAt": "2026-09-02T14:53:00.000Z",
+    "releasedAt": "2026-09-04T06:47:00.000Z"
   },
   {
     "id": "ASG-0019",
     "productionOrderId": "WO-0019",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-02T15:42:00.000Z",
-    "releasedAt": "2026-09-02T17:58:00.000Z"
+    "releasedAt": "2026-09-03T06:22:00.000Z"
   },
   {
     "id": "ASG-0020",
     "productionOrderId": "WO-0020",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-02T15:58:00.000Z",
-    "releasedAt": "2026-09-03T12:34:00.000Z"
+    "assignedAt": "2026-09-02T16:02:00.000Z",
+    "releasedAt": "2026-09-03T12:26:00.000Z"
   },
   {
     "id": "ASG-0021",
     "productionOrderId": "WO-0021",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-02T16:35:00.000Z",
-    "releasedAt": "2026-09-03T06:29:00.000Z"
+    "assignedAt": "2026-09-02T16:48:00.000Z",
+    "releasedAt": "2026-09-03T07:02:00.000Z"
   },
   {
     "id": "ASG-0022",
     "productionOrderId": "WO-0022",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-02T16:56:00.000Z",
-    "releasedAt": "2026-09-03T16:59:00.000Z"
+    "assignedAt": "2026-09-02T17:08:00.000Z",
+    "releasedAt": "2026-09-03T18:53:00.000Z"
   },
   {
     "id": "ASG-0023",
     "productionOrderId": "WO-0023",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-03T09:30:00.000Z",
-    "releasedAt": "2026-09-03T13:19:00.000Z"
+    "releasedAt": "2026-09-03T13:10:00.000Z"
   },
   {
     "id": "ASG-0024",
     "productionOrderId": "WO-0024",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-03T10:36:00.000Z",
-    "releasedAt": "2026-09-03T15:43:00.000Z"
+    "releasedAt": "2026-09-03T15:06:00.000Z"
   },
   {
     "id": "ASG-0025",
     "productionOrderId": "WO-0025",
     "workstationId": "ASM-006",
     "assignedAt": "2026-09-03T10:36:00.000Z",
-    "releasedAt": "2026-09-03T17:19:00.000Z"
+    "releasedAt": "2026-09-04T07:59:00.000Z"
   },
   {
     "id": "ASG-0026",
     "productionOrderId": "WO-0026",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-03T13:44:00.000Z",
-    "releasedAt": "2026-09-04T10:15:00.000Z"
+    "releasedAt": "2026-09-04T09:47:00.000Z"
   },
   {
     "id": "ASG-0027",
     "productionOrderId": "WO-0027",
-    "workstationId": "ASM-001",
+    "workstationId": "ASM-006",
     "assignedAt": "2026-09-03T14:28:00.000Z",
-    "releasedAt": "2026-09-03T17:52:00.000Z"
+    "releasedAt": "2026-09-03T17:40:00.000Z"
   },
   {
     "id": "ASG-0028",
     "productionOrderId": "WO-0028",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-03T16:30:00.000Z",
-    "releasedAt": "2026-09-04T06:34:00.000Z"
+    "releasedAt": "2026-09-04T06:28:00.000Z"
   },
   {
     "id": "ASG-0029",
     "productionOrderId": "WO-0029",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-04T08:04:00.000Z",
-    "releasedAt": "2026-09-04T09:53:00.000Z"
+    "releasedAt": "2026-09-04T09:42:00.000Z"
   },
   {
     "id": "ASG-0030",
     "productionOrderId": "WO-0030",
     "workstationId": "ASM-006",
     "assignedAt": "2026-09-04T08:12:00.000Z",
-    "releasedAt": "2026-09-04T14:50:00.000Z"
+    "releasedAt": "2026-09-07T06:17:00.000Z"
   },
   {
     "id": "ASG-0031",
     "productionOrderId": "WO-0031",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-04T08:55:00.000Z",
-    "releasedAt": "2026-09-04T15:58:00.000Z"
+    "releasedAt": "2026-09-04T14:15:00.000Z"
   },
   {
     "id": "ASG-0032",
-    "productionOrderId": "WO-0032",
+    "productionOrderId": "WO-0033",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-04T09:49:00.000Z",
-    "releasedAt": "2026-09-04T13:35:00.000Z"
+    "releasedAt": "2026-09-04T19:29:00.000Z"
   },
   {
     "id": "ASG-0033",
-    "productionOrderId": "WO-0033",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-04T10:22:00.000Z",
-    "releasedAt": "2026-09-07T07:29:00.000Z"
+    "productionOrderId": "WO-0032",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-04T10:25:00.000Z",
+    "releasedAt": "2026-09-04T14:28:00.000Z"
   },
   {
     "id": "ASG-0034",
     "productionOrderId": "WO-0034",
-    "workstationId": "ASM-006",
+    "workstationId": "ASM-001",
     "assignedAt": "2026-09-04T10:42:00.000Z",
-    "releasedAt": "2026-09-04T16:17:00.000Z"
+    "releasedAt": "2026-09-04T16:42:00.000Z"
   },
   {
     "id": "ASG-0035",
     "productionOrderId": "WO-0035",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-04T11:10:00.000Z",
-    "releasedAt": "2026-09-04T16:42:00.000Z"
+    "releasedAt": "2026-09-04T16:29:00.000Z"
   },
   {
     "id": "ASG-0036",
     "productionOrderId": "WO-0036",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-04T11:39:00.000Z",
-    "releasedAt": "2026-09-07T11:25:00.000Z"
+    "assignedAt": "2026-09-04T11:36:00.000Z",
+    "releasedAt": "2026-09-07T11:04:00.000Z"
   },
   {
     "id": "ASG-0037",
     "productionOrderId": "WO-0037",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-04T12:42:00.000Z",
-    "releasedAt": "2026-09-04T17:02:00.000Z"
+    "assignedAt": "2026-09-04T12:46:00.000Z",
+    "releasedAt": "2026-09-04T17:38:00.000Z"
   },
   {
     "id": "ASG-0038",
     "productionOrderId": "WO-0038",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-04T13:03:00.000Z",
-    "releasedAt": "2026-09-07T09:50:00.000Z"
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-04T13:07:00.000Z",
+    "releasedAt": "2026-09-07T12:26:00.000Z"
   },
   {
     "id": "ASG-0039",
     "productionOrderId": "WO-0039",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-04T15:22:00.000Z",
-    "releasedAt": "2026-09-07T06:44:00.000Z"
+    "releasedAt": "2026-09-07T08:05:00.000Z"
   },
   {
     "id": "ASG-0040",
     "productionOrderId": "WO-0040",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-04T16:30:00.000Z",
-    "releasedAt": "2026-09-07T10:28:00.000Z"
+    "releasedAt": "2026-09-07T08:17:00.000Z"
   },
   {
     "id": "ASG-0041",
     "productionOrderId": "WO-0043",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-07T11:37:00.000Z",
-    "releasedAt": "2026-09-07T14:04:00.000Z"
+    "releasedAt": "2026-09-07T14:06:00.000Z"
   },
   {
     "id": "ASG-0042",
     "productionOrderId": "WO-0045",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-07T13:18:00.000Z",
-    "releasedAt": "2026-09-07T15:08:00.000Z"
+    "releasedAt": "2026-09-07T14:48:00.000Z"
   },
   {
     "id": "ASG-0043",
     "productionOrderId": "WO-0046",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-07T15:24:00.000Z",
-    "releasedAt": "2026-09-08T07:05:00.000Z"
+    "releasedAt": "2026-09-08T07:03:00.000Z"
   },
   {
     "id": "ASG-0044",
     "productionOrderId": "WO-0047",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-07T15:24:00.000Z",
-    "releasedAt": "2026-09-08T06:33:00.000Z"
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-07T16:30:00.000Z",
+    "releasedAt": "2026-09-08T06:27:00.000Z"
   },
   {
     "id": "ASG-0045",
-    "productionOrderId": "WO-0048",
+    "productionOrderId": "WO-0049",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-07T16:30:00.000Z",
-    "releasedAt": "2026-09-08T06:37:00.000Z"
+    "assignedAt": "2026-09-08T10:20:00.000Z",
+    "releasedAt": "2026-09-08T15:41:00.000Z"
   },
   {
     "id": "ASG-0046",
-    "productionOrderId": "WO-0050",
+    "productionOrderId": "WO-0051",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-08T10:20:00.000Z",
-    "releasedAt": "2026-09-09T07:39:00.000Z"
+    "assignedAt": "2026-09-08T11:04:00.000Z",
+    "releasedAt": "2026-09-08T17:50:00.000Z"
   },
   {
     "id": "ASG-0047",
     "productionOrderId": "WO-0052",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-08T11:04:00.000Z",
-    "releasedAt": "2026-09-08T16:12:00.000Z"
+    "assignedAt": "2026-09-08T11:21:00.000Z",
+    "releasedAt": "2026-09-08T16:14:00.000Z"
   },
   {
     "id": "ASG-0048",
-    "productionOrderId": "WO-0053",
+    "productionOrderId": "WO-0050",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-08T11:20:00.000Z",
-    "releasedAt": "2026-09-09T07:31:00.000Z"
+    "assignedAt": "2026-09-08T11:33:00.000Z",
+    "releasedAt": "2026-09-08T17:19:00.000Z"
   },
   {
     "id": "ASG-0049",
-    "productionOrderId": "WO-0051",
+    "productionOrderId": "WO-0054",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-08T11:35:00.000Z",
-    "releasedAt": "2026-09-09T06:52:00.000Z"
+    "assignedAt": "2026-09-08T12:51:00.000Z",
+    "releasedAt": "2026-09-08T18:18:00.000Z"
   },
   {
     "id": "ASG-0050",
     "productionOrderId": "WO-0055",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-08T12:51:00.000Z",
-    "releasedAt": "2026-09-08T18:01:00.000Z"
+    "assignedAt": "2026-09-08T13:28:00.000Z",
+    "releasedAt": "2026-09-09T07:05:00.000Z"
   },
   {
     "id": "ASG-0051",
-    "productionOrderId": "WO-0056",
+    "productionOrderId": "WO-0057",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-08T13:32:00.000Z",
-    "releasedAt": "2026-09-09T06:54:00.000Z"
+    "assignedAt": "2026-09-08T16:14:00.000Z",
+    "releasedAt": "2026-09-09T07:34:00.000Z"
   },
   {
     "id": "ASG-0052",
     "productionOrderId": "WO-0058",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-09T06:00:00.000Z",
-    "releasedAt": "2026-09-09T07:51:00.000Z"
+    "releasedAt": "2026-09-09T07:53:00.000Z"
   },
   {
     "id": "ASG-0053",
     "productionOrderId": "WO-0059",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-09T06:54:00.000Z",
-    "releasedAt": "2026-09-09T11:21:00.000Z"
+    "assignedAt": "2026-09-09T08:33:00.000Z",
+    "releasedAt": "2026-09-09T12:59:00.000Z"
   },
   {
     "id": "ASG-0054",
-    "productionOrderId": "WO-0060",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-09T08:33:00.000Z",
-    "releasedAt": "2026-09-09T14:00:00.000Z"
+    "productionOrderId": "WO-0061",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-09T08:46:00.000Z",
+    "releasedAt": "2026-09-09T13:57:00.000Z"
   },
   {
     "id": "ASG-0055",
     "productionOrderId": "WO-0062",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-09T08:46:00.000Z",
-    "releasedAt": "2026-09-09T12:37:00.000Z"
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-09T09:39:00.000Z",
+    "releasedAt": "2026-09-09T15:07:00.000Z"
   },
   {
     "id": "ASG-0056",
     "productionOrderId": "WO-0063",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-09T09:39:00.000Z",
-    "releasedAt": "2026-09-09T14:46:00.000Z"
+    "assignedAt": "2026-09-09T11:03:00.000Z",
+    "releasedAt": "2026-09-09T14:35:00.000Z"
   },
   {
     "id": "ASG-0057",
     "productionOrderId": "WO-0064",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-09T11:03:00.000Z",
-    "releasedAt": "2026-09-09T14:34:00.000Z"
+    "assignedAt": "2026-09-09T12:10:00.000Z",
+    "releasedAt": "2026-09-09T15:47:00.000Z"
   },
   {
     "id": "ASG-0058",
     "productionOrderId": "WO-0065",
-    "workstationId": "ASM-001",
+    "workstationId": "ASM-006",
     "assignedAt": "2026-09-09T12:10:00.000Z",
-    "releasedAt": "2026-09-09T14:09:00.000Z"
+    "releasedAt": "2026-09-09T17:22:00.000Z"
   },
   {
     "id": "ASG-0059",
     "productionOrderId": "WO-0066",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-09T12:10:00.000Z",
-    "releasedAt": "2026-09-09T16:06:00.000Z"
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-09T13:53:00.000Z",
+    "releasedAt": "2026-09-09T16:00:00.000Z"
   },
   {
     "id": "ASG-0060",
     "productionOrderId": "WO-0067",
-    "workstationId": "ASM-001",
+    "workstationId": "ASM-006",
     "assignedAt": "2026-09-09T13:53:00.000Z",
-    "releasedAt": "2026-09-09T16:20:00.000Z"
+    "releasedAt": "2026-09-10T06:49:00.000Z"
   },
   {
     "id": "ASG-0061",
     "productionOrderId": "WO-0068",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-09T13:53:00.000Z",
-    "releasedAt": "2026-09-10T07:01:00.000Z"
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-09T15:08:00.000Z",
+    "releasedAt": "2026-09-10T08:04:00.000Z"
   },
   {
     "id": "ASG-0062",
     "productionOrderId": "WO-0069",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-09T15:08:00.000Z",
-    "releasedAt": "2026-09-10T08:07:00.000Z"
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-09T15:18:00.000Z",
+    "releasedAt": "2026-09-10T12:44:00.000Z"
   },
   {
     "id": "ASG-0063",
     "productionOrderId": "WO-0070",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-09T15:24:00.000Z",
-    "releasedAt": "2026-09-10T10:27:00.000Z"
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-09T15:47:00.000Z",
+    "releasedAt": "2026-09-10T06:46:00.000Z"
   },
   {
     "id": "ASG-0064",
     "productionOrderId": "WO-0071",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-09T15:47:00.000Z",
-    "releasedAt": "2026-09-10T06:45:00.000Z"
+    "assignedAt": "2026-09-10T09:05:00.000Z",
+    "releasedAt": "2026-09-10T11:22:00.000Z"
   },
   {
     "id": "ASG-0065",
-    "productionOrderId": "WO-0072",
+    "productionOrderId": "WO-0073",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-10T09:05:00.000Z",
-    "releasedAt": "2026-09-10T11:32:00.000Z"
+    "assignedAt": "2026-09-10T12:50:00.000Z",
+    "releasedAt": "2026-09-10T15:38:00.000Z"
   },
   {
     "id": "ASG-0066",
     "productionOrderId": "WO-0074",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-10T12:50:00.000Z",
-    "releasedAt": "2026-09-10T15:55:00.000Z"
+    "assignedAt": "2026-09-10T14:16:00.000Z",
+    "releasedAt": "2026-09-10T16:27:00.000Z"
   },
   {
     "id": "ASG-0067",
     "productionOrderId": "WO-0075",
-    "workstationId": "ASM-001",
+    "workstationId": "ASM-006",
     "assignedAt": "2026-09-10T14:16:00.000Z",
-    "releasedAt": "2026-09-11T06:35:00.000Z"
+    "releasedAt": "2026-09-11T07:58:00.000Z"
   },
   {
     "id": "ASG-0068",
     "productionOrderId": "WO-0076",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-10T14:16:00.000Z",
-    "releasedAt": "2026-09-10T18:45:00.000Z"
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-10T14:33:00.000Z",
+    "releasedAt": "2026-09-10T17:16:00.000Z"
   },
   {
     "id": "ASG-0069",
     "productionOrderId": "WO-0077",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-10T14:35:00.000Z",
-    "releasedAt": "2026-09-10T17:56:00.000Z"
+    "assignedAt": "2026-09-10T14:51:00.000Z",
+    "releasedAt": "2026-09-11T09:27:00.000Z"
   },
   {
     "id": "ASG-0070",
     "productionOrderId": "WO-0078",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-10T14:56:00.000Z",
-    "releasedAt": "2026-09-11T08:33:00.000Z"
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-10T15:22:00.000Z",
+    "releasedAt": "2026-09-11T08:05:00.000Z"
   },
   {
     "id": "ASG-0071",
     "productionOrderId": "WO-0079",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-10T15:22:00.000Z",
-    "releasedAt": "2026-09-11T06:43:00.000Z"
+    "assignedAt": "2026-09-10T16:01:00.000Z",
+    "releasedAt": "2026-09-11T08:04:00.000Z"
   },
   {
     "id": "ASG-0072",
     "productionOrderId": "WO-0080",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-10T16:01:00.000Z",
-    "releasedAt": "2026-09-11T08:19:00.000Z"
+    "assignedAt": "2026-09-10T16:32:00.000Z",
+    "releasedAt": "2026-09-11T11:29:00.000Z"
   },
   {
     "id": "ASG-0073",
     "productionOrderId": "WO-0081",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-10T16:33:00.000Z",
-    "releasedAt": "2026-09-11T09:59:00.000Z"
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-10T16:41:00.000Z",
+    "releasedAt": "2026-09-11T09:53:00.000Z"
   },
   {
     "id": "ASG-0074",
-    "productionOrderId": "WO-0041",
+    "productionOrderId": "WO-0082",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T10:34:00.000Z",
-    "releasedAt": "2026-09-15T14:57:00.000Z"
+    "assignedAt": "2026-09-11T09:47:00.000Z",
+    "releasedAt": "2026-09-11T11:57:00.000Z"
   },
   {
     "id": "ASG-0075",
-    "productionOrderId": "WO-0042",
+    "productionOrderId": "WO-0083",
     "workstationId": "ASM-006",
-    "assignedAt": "2026-09-14T10:34:00.000Z",
-    "releasedAt": "2026-09-14T16:18:00.000Z"
+    "assignedAt": "2026-09-11T09:47:00.000Z",
+    "releasedAt": "2026-09-11T16:31:00.000Z"
   },
   {
     "id": "ASG-0076",
-    "productionOrderId": "WO-0044",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-14T11:10:00.000Z",
-    "releasedAt": "2026-09-15T09:00:00.000Z"
+    "productionOrderId": "WO-0084",
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-11T10:43:00.000Z",
+    "releasedAt": "2026-09-11T14:06:00.000Z"
   },
   {
     "id": "ASG-0077",
-    "productionOrderId": "WO-0049",
+    "productionOrderId": "WO-0086",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T11:55:00.000Z",
-    "releasedAt": "2026-09-15T11:23:00.000Z"
+    "assignedAt": "2026-09-11T11:06:00.000Z",
+    "releasedAt": "2026-09-11T13:39:00.000Z"
   },
   {
     "id": "ASG-0078",
-    "productionOrderId": "WO-0054",
+    "productionOrderId": "WO-0087",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T12:44:00.000Z",
-    "releasedAt": "2026-09-15T13:05:00.000Z"
+    "assignedAt": "2026-09-11T11:23:00.000Z",
+    "releasedAt": "2026-09-11T17:08:00.000Z"
   },
   {
     "id": "ASG-0079",
-    "productionOrderId": "WO-0057",
+    "productionOrderId": "WO-0088",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T13:14:00.000Z",
-    "releasedAt": "2026-09-15T13:21:00.000Z"
+    "assignedAt": "2026-09-11T11:47:00.000Z",
+    "releasedAt": "2026-09-11T15:25:00.000Z"
   },
   {
     "id": "ASG-0080",
-    "productionOrderId": "WO-0061",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T13:47:00.000Z",
-    "releasedAt": "2026-09-15T16:04:00.000Z"
+    "productionOrderId": "WO-0089",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-11T12:00:00.000Z",
+    "releasedAt": "2026-09-14T07:22:00.000Z"
   },
   {
     "id": "ASG-0081",
-    "productionOrderId": "WO-0073",
+    "productionOrderId": "WO-0090",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T14:27:00.000Z",
-    "releasedAt": "2026-09-15T16:15:00.000Z"
+    "assignedAt": "2026-09-11T12:12:00.000Z",
+    "releasedAt": "2026-09-14T09:42:00.000Z"
   },
   {
     "id": "ASG-0082",
-    "productionOrderId": "WO-0086",
+    "productionOrderId": "WO-0092",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T15:08:00.000Z",
-    "releasedAt": "2026-09-16T07:43:00.000Z"
+    "assignedAt": "2026-09-11T12:54:00.000Z",
+    "releasedAt": "2026-09-14T10:22:00.000Z"
   },
   {
     "id": "ASG-0083",
     "productionOrderId": "WO-0094",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T15:54:00.000Z",
-    "releasedAt": "2026-09-15T18:25:00.000Z"
+    "assignedAt": "2026-09-11T13:11:00.000Z",
+    "releasedAt": "2026-09-14T07:04:00.000Z"
   },
   {
     "id": "ASG-0084",
-    "productionOrderId": "WO-0103",
+    "productionOrderId": "WO-0095",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T16:32:00.000Z",
-    "releasedAt": "2026-09-16T07:15:00.000Z"
+    "assignedAt": "2026-09-11T13:27:00.000Z",
+    "releasedAt": "2026-09-14T06:37:00.000Z"
   },
   {
     "id": "ASG-0085",
-    "productionOrderId": "WO-0082",
+    "productionOrderId": "WO-0096",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T17:15:00.000Z",
-    "releasedAt": "2026-09-16T07:45:00.000Z"
+    "assignedAt": "2026-09-11T16:27:00.000Z",
+    "releasedAt": "2026-09-14T06:28:00.000Z"
   },
   {
     "id": "ASG-0086",
-    "productionOrderId": "WO-0083",
+    "productionOrderId": "WO-0091",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T17:31:00.000Z",
-    "releasedAt": "2026-09-16T06:34:00.000Z"
+    "assignedAt": "2026-09-14T07:53:00.000Z",
+    "releasedAt": "2026-09-14T14:23:00.000Z"
   },
   {
     "id": "ASG-0087",
-    "productionOrderId": "WO-0084",
+    "productionOrderId": "WO-0098",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-14T17:50:00.000Z",
-    "releasedAt": "2026-09-16T12:07:00.000Z"
+    "assignedAt": "2026-09-14T08:26:00.000Z",
+    "releasedAt": "2026-09-14T15:17:00.000Z"
   },
   {
     "id": "ASG-0088",
-    "productionOrderId": "WO-0085",
+    "productionOrderId": "WO-0041",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T06:00:00.000Z",
-    "releasedAt": "2026-09-16T09:05:00.000Z"
+    "assignedAt": "2026-09-14T11:06:00.000Z",
+    "releasedAt": "2026-09-15T13:17:00.000Z"
   },
   {
     "id": "ASG-0089",
-    "productionOrderId": "WO-0087",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T06:14:00.000Z",
-    "releasedAt": "2026-09-16T09:01:00.000Z"
+    "productionOrderId": "WO-0042",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-14T11:06:00.000Z",
+    "releasedAt": "2026-09-14T16:56:00.000Z"
   },
   {
     "id": "ASG-0090",
-    "productionOrderId": "WO-0088",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T06:29:00.000Z",
-    "releasedAt": "2026-09-16T10:59:00.000Z"
+    "productionOrderId": "WO-0044",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-14T11:53:00.000Z",
+    "releasedAt": "2026-09-15T08:32:00.000Z"
   },
   {
     "id": "ASG-0091",
-    "productionOrderId": "WO-0089",
+    "productionOrderId": "WO-0048",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T06:46:00.000Z",
-    "releasedAt": "2026-09-16T10:23:00.000Z"
+    "assignedAt": "2026-09-14T12:30:00.000Z",
+    "releasedAt": "2026-09-15T14:43:00.000Z"
   },
   {
     "id": "ASG-0092",
-    "productionOrderId": "WO-0090",
+    "productionOrderId": "WO-0053",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T07:11:00.000Z",
-    "releasedAt": "2026-09-16T14:32:00.000Z"
+    "assignedAt": "2026-09-14T13:12:00.000Z",
+    "releasedAt": "2026-09-15T15:44:00.000Z"
   },
   {
     "id": "ASG-0093",
-    "productionOrderId": "WO-0091",
+    "productionOrderId": "WO-0056",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T07:44:00.000Z",
-    "releasedAt": "2026-09-16T17:31:00.000Z"
+    "assignedAt": "2026-09-14T13:38:00.000Z",
+    "releasedAt": "2026-09-15T17:08:00.000Z"
   },
   {
     "id": "ASG-0094",
-    "productionOrderId": "WO-0092",
+    "productionOrderId": "WO-0060",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T08:25:00.000Z",
-    "releasedAt": "2026-09-16T16:16:00.000Z"
+    "assignedAt": "2026-09-14T14:03:00.000Z",
+    "releasedAt": "2026-09-16T07:09:00.000Z"
   },
   {
     "id": "ASG-0095",
-    "productionOrderId": "WO-0093",
+    "productionOrderId": "WO-0072",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T08:53:00.000Z",
-    "releasedAt": "2026-09-17T07:08:00.000Z"
+    "assignedAt": "2026-09-14T14:37:00.000Z",
+    "releasedAt": "2026-09-16T10:00:00.000Z"
   },
   {
     "id": "ASG-0096",
-    "productionOrderId": "WO-0095",
+    "productionOrderId": "WO-0085",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T09:12:00.000Z",
-    "releasedAt": "2026-09-16T13:12:00.000Z"
+    "assignedAt": "2026-09-14T15:11:00.000Z",
+    "releasedAt": "2026-09-17T07:04:00.000Z"
   },
   {
     "id": "ASG-0097",
-    "productionOrderId": "WO-0096",
+    "productionOrderId": "WO-0093",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T09:26:00.000Z",
-    "releasedAt": "2026-09-16T14:51:00.000Z"
+    "assignedAt": "2026-09-14T15:52:00.000Z",
+    "releasedAt": "2026-09-17T08:08:00.000Z"
   },
   {
     "id": "ASG-0098",
-    "productionOrderId": "WO-0097",
+    "productionOrderId": "WO-0102",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T09:54:00.000Z",
-    "releasedAt": "2026-09-16T13:56:00.000Z"
+    "assignedAt": "2026-09-14T16:26:00.000Z",
+    "releasedAt": "2026-09-17T11:33:00.000Z"
   },
   {
     "id": "ASG-0099",
-    "productionOrderId": "WO-0098",
+    "productionOrderId": "WO-0103",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T10:09:00.000Z",
-    "releasedAt": "2026-09-17T07:45:00.000Z"
+    "assignedAt": "2026-09-14T16:58:00.000Z",
+    "releasedAt": "2026-09-16T13:29:00.000Z"
   },
   {
     "id": "ASG-0100",
-    "productionOrderId": "WO-0099",
+    "productionOrderId": "WO-0097",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T10:48:00.000Z",
-    "releasedAt": "2026-09-17T07:05:00.000Z"
+    "assignedAt": "2026-09-15T10:08:00.000Z",
+    "releasedAt": "2026-09-16T08:43:00.000Z"
   },
   {
     "id": "ASG-0101",
-    "productionOrderId": "WO-0114",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T11:13:00.000Z",
-    "releasedAt": "2026-09-16T11:29:00.000Z"
+    "productionOrderId": "WO-0099",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-15T10:08:00.000Z",
+    "releasedAt": "2026-09-16T18:16:00.000Z"
   },
   {
     "id": "ASG-0102",
-    "productionOrderId": "WO-0100",
+    "productionOrderId": "WO-0104",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T12:10:00.000Z",
-    "releasedAt": "2026-09-17T12:53:00.000Z"
+    "assignedAt": "2026-09-15T10:56:00.000Z",
+    "releasedAt": "2026-09-16T12:36:00.000Z"
   },
   {
     "id": "ASG-0103",
-    "productionOrderId": "WO-0101",
+    "productionOrderId": "WO-0113",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T13:08:00.000Z",
-    "releasedAt": "2026-09-17T11:26:00.000Z"
+    "assignedAt": "2026-09-15T11:18:00.000Z",
+    "releasedAt": "2026-09-17T11:07:00.000Z"
   },
   {
     "id": "ASG-0104",
-    "productionOrderId": "WO-0104",
+    "productionOrderId": "WO-0119",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T13:54:00.000Z",
-    "releasedAt": "2026-09-17T10:00:00.000Z"
+    "assignedAt": "2026-09-15T12:46:00.000Z",
+    "releasedAt": "2026-09-16T11:47:00.000Z"
   },
   {
     "id": "ASG-0105",
-    "productionOrderId": "WO-0113",
+    "productionOrderId": "WO-0128",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T14:37:00.000Z",
-    "releasedAt": "2026-09-17T13:39:00.000Z"
+    "assignedAt": "2026-09-15T15:38:00.000Z",
+    "releasedAt": "2026-09-16T11:27:00.000Z"
   },
   {
     "id": "ASG-0106",
-    "productionOrderId": "WO-0120",
+    "productionOrderId": "WO-0140",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T14:51:00.000Z",
-    "releasedAt": "2026-09-17T13:03:00.000Z"
+    "assignedAt": "2026-09-16T14:32:00.000Z",
+    "releasedAt": "2026-09-16T17:22:00.000Z"
   },
   {
     "id": "ASG-0107",
-    "productionOrderId": "WO-0129",
+    "productionOrderId": "WO-0141",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-15T15:38:00.000Z",
-    "releasedAt": "2026-09-17T12:08:00.000Z"
+    "assignedAt": "2026-09-16T14:53:00.000Z",
+    "releasedAt": "2026-09-16T18:35:00.000Z"
   },
   {
     "id": "ASG-0108",
-    "productionOrderId": "WO-0141",
+    "productionOrderId": "WO-0145",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-16T14:32:00.000Z",
-    "releasedAt": "2026-09-17T14:13:00.000Z"
+    "assignedAt": "2026-09-17T08:32:00.000Z",
+    "releasedAt": "2026-09-17T14:30:00.000Z"
   },
   {
     "id": "ASG-0109",
-    "productionOrderId": "WO-0142",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-16T14:56:00.000Z",
-    "releasedAt": "2026-09-17T15:46:00.000Z"
+    "productionOrderId": "WO-0147",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-17T08:57:00.000Z",
+    "releasedAt": "2026-09-17T11:25:00.000Z"
   },
   {
     "id": "ASG-0110",
-    "productionOrderId": "WO-0102",
+    "productionOrderId": "WO-0100",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-16T16:40:00.000Z",
-    "releasedAt": "2026-09-17T13:26:00.000Z"
+    "assignedAt": "2026-09-17T13:43:00.000Z",
+    "releasedAt": "2026-09-18T10:31:00.000Z"
   },
   {
     "id": "ASG-0111",
-    "productionOrderId": "WO-0105",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-16T17:09:00.000Z",
-    "releasedAt": "2026-09-17T13:47:00.000Z"
+    "productionOrderId": "WO-0101",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-17T13:43:00.000Z",
+    "releasedAt": "2026-09-18T07:19:00.000Z"
   },
   {
     "id": "ASG-0112",
-    "productionOrderId": "WO-0146",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-17T08:32:00.000Z",
-    "releasedAt": "2026-09-17T16:22:00.000Z"
-  },
-  {
-    "id": "ASG-0113",
-    "productionOrderId": "WO-0148",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-17T09:15:00.000Z",
-    "releasedAt": "2026-09-17T15:19:00.000Z"
-  },
-  {
-    "id": "ASG-0114",
-    "productionOrderId": "WO-0106",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-17T10:52:00.000Z",
-    "releasedAt": "2026-09-17T17:28:00.000Z"
-  },
-  {
-    "id": "ASG-0115",
-    "productionOrderId": "WO-0108",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-17T11:17:00.000Z",
-    "releasedAt": "2026-09-17T17:55:00.000Z"
-  },
-  {
-    "id": "ASG-0116",
-    "productionOrderId": "WO-0158",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-17T14:47:00.000Z",
-    "releasedAt": "2026-09-17T18:27:00.000Z"
-  },
-  {
-    "id": "ASG-0117",
-    "productionOrderId": "WO-0160",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-17T16:13:00.000Z",
-    "releasedAt": "2026-09-18T08:44:00.000Z"
-  },
-  {
-    "id": "ASG-0118",
-    "productionOrderId": "WO-0161",
+    "productionOrderId": "WO-0105",
     "workstationId": "ASM-006",
-    "assignedAt": "2026-09-17T16:21:00.000Z",
-    "releasedAt": "2026-09-18T12:30:00.000Z"
-  },
-  {
-    "id": "ASG-0119",
-    "productionOrderId": "WO-0163",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-18T09:12:00.000Z",
-    "releasedAt": "2026-09-18T14:13:00.000Z"
-  },
-  {
-    "id": "ASG-0120",
-    "productionOrderId": "WO-0164",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-18T09:31:00.000Z",
+    "assignedAt": "2026-09-17T14:25:00.000Z",
     "releasedAt": "2026-09-18T11:22:00.000Z"
   },
   {
-    "id": "ASG-0121",
-    "productionOrderId": "WO-0165",
+    "id": "ASG-0113",
+    "productionOrderId": "WO-0112",
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-17T14:35:00.000Z",
+    "releasedAt": "2026-09-18T11:52:00.000Z"
+  },
+  {
+    "id": "ASG-0114",
+    "productionOrderId": "WO-0157",
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-17T14:47:00.000Z",
+    "releasedAt": "2026-09-18T08:19:00.000Z"
+  },
+  {
+    "id": "ASG-0115",
+    "productionOrderId": "WO-0159",
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-17T16:13:00.000Z",
+    "releasedAt": "2026-09-18T12:57:00.000Z"
+  },
+  {
+    "id": "ASG-0116",
+    "productionOrderId": "WO-0160",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-17T16:46:00.000Z",
+    "releasedAt": "2026-09-18T14:05:00.000Z"
+  },
+  {
+    "id": "ASG-0117",
+    "productionOrderId": "WO-0162",
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-18T09:12:00.000Z",
+    "releasedAt": "2026-09-18T14:21:00.000Z"
+  },
+  {
+    "id": "ASG-0118",
+    "productionOrderId": "WO-0163",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-18T09:31:00.000Z",
+    "releasedAt": "2026-09-18T11:44:00.000Z"
+  },
+  {
+    "id": "ASG-0119",
+    "productionOrderId": "WO-0164",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-18T12:40:00.000Z",
-    "releasedAt": "2026-09-21T09:05:00.000Z"
+    "releasedAt": "2026-09-21T10:45:00.000Z"
+  },
+  {
+    "id": "ASG-0120",
+    "productionOrderId": "WO-0165",
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-18T16:09:00.000Z",
+    "releasedAt": "2026-09-21T06:46:00.000Z"
+  },
+  {
+    "id": "ASG-0121",
+    "productionOrderId": "WO-0167",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-18T16:37:00.000Z",
+    "releasedAt": "2026-09-21T08:59:00.000Z"
   },
   {
     "id": "ASG-0122",
-    "productionOrderId": "WO-0166",
+    "productionOrderId": "WO-0168",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-18T16:09:00.000Z",
-    "releasedAt": "2026-09-21T06:45:00.000Z"
+    "assignedAt": "2026-09-18T16:40:00.000Z",
+    "releasedAt": "2026-09-21T11:52:00.000Z"
   },
   {
     "id": "ASG-0123",
-    "productionOrderId": "WO-0168",
+    "productionOrderId": "WO-0171",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-18T16:37:00.000Z",
-    "releasedAt": "2026-09-21T09:15:00.000Z"
+    "assignedAt": "2026-09-21T08:09:00.000Z",
+    "releasedAt": "2026-09-21T13:29:00.000Z"
   },
   {
     "id": "ASG-0124",
-    "productionOrderId": "WO-0169",
-    "workstationId": "ASM-006",
-    "assignedAt": "2026-09-18T16:37:00.000Z",
-    "releasedAt": "2026-09-21T10:13:00.000Z"
+    "productionOrderId": "WO-0173",
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-21T09:00:00.000Z",
+    "releasedAt": "2026-09-21T10:34:00.000Z"
   },
   {
     "id": "ASG-0125",
-    "productionOrderId": "WO-0172",
+    "productionOrderId": "WO-0110",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T08:02:00.000Z",
-    "releasedAt": "2026-09-21T17:53:00.000Z"
+    "assignedAt": "2026-09-21T09:49:00.000Z",
+    "releasedAt": "2026-09-21T17:19:00.000Z"
   },
   {
     "id": "ASG-0126",
-    "productionOrderId": "WO-0173",
+    "productionOrderId": "WO-0111",
     "workstationId": "ASM-006",
-    "assignedAt": "2026-09-21T08:09:00.000Z",
-    "releasedAt": "2026-09-21T13:42:00.000Z"
+    "assignedAt": "2026-09-21T09:49:00.000Z",
+    "releasedAt": "2026-09-22T07:33:00.000Z"
   },
   {
     "id": "ASG-0127",
-    "productionOrderId": "WO-0175",
+    "productionOrderId": "WO-0114",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T09:00:00.000Z",
-    "releasedAt": "2026-09-21T10:54:00.000Z"
+    "assignedAt": "2026-09-21T10:24:00.000Z",
+    "releasedAt": "2026-09-22T09:56:00.000Z"
   },
   {
     "id": "ASG-0128",
-    "productionOrderId": "WO-0107",
+    "productionOrderId": "WO-0115",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T10:39:00.000Z",
-    "releasedAt": "2026-09-22T07:56:00.000Z"
+    "assignedAt": "2026-09-21T11:03:00.000Z",
+    "releasedAt": "2026-09-22T11:34:00.000Z"
   },
   {
     "id": "ASG-0129",
-    "productionOrderId": "WO-0109",
+    "productionOrderId": "WO-0116",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T11:34:00.000Z",
-    "releasedAt": "2026-09-22T07:49:00.000Z"
+    "assignedAt": "2026-09-21T11:30:00.000Z",
+    "releasedAt": "2026-09-22T16:05:00.000Z"
   },
   {
     "id": "ASG-0130",
-    "productionOrderId": "WO-0110",
+    "productionOrderId": "WO-0117",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T12:17:00.000Z",
-    "releasedAt": "2026-09-22T08:03:00.000Z"
+    "assignedAt": "2026-09-21T12:25:00.000Z",
+    "releasedAt": "2026-09-22T18:10:00.000Z"
   },
   {
     "id": "ASG-0131",
-    "productionOrderId": "WO-0111",
+    "productionOrderId": "WO-0118",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T12:38:00.000Z",
-    "releasedAt": "2026-09-22T09:48:00.000Z"
+    "assignedAt": "2026-09-21T12:44:00.000Z",
+    "releasedAt": "2026-09-22T17:38:00.000Z"
   },
   {
     "id": "ASG-0132",
-    "productionOrderId": "WO-0112",
+    "productionOrderId": "WO-0120",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T13:11:00.000Z",
-    "releasedAt": "2026-09-22T11:59:00.000Z"
+    "assignedAt": "2026-09-21T13:07:00.000Z",
+    "releasedAt": "2026-09-23T10:34:00.000Z"
   },
   {
     "id": "ASG-0133",
-    "productionOrderId": "WO-0115",
+    "productionOrderId": "WO-0121",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T13:57:00.000Z",
-    "releasedAt": "2026-09-22T14:44:00.000Z"
+    "assignedAt": "2026-09-21T13:53:00.000Z",
+    "releasedAt": "2026-09-23T09:03:00.000Z"
   },
   {
     "id": "ASG-0134",
-    "productionOrderId": "WO-0116",
+    "productionOrderId": "WO-0122",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T14:36:00.000Z",
-    "releasedAt": "2026-09-22T15:05:00.000Z"
+    "assignedAt": "2026-09-21T14:18:00.000Z",
+    "releasedAt": "2026-09-23T13:03:00.000Z"
   },
   {
     "id": "ASG-0135",
-    "productionOrderId": "WO-0117",
+    "productionOrderId": "WO-0123",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T15:07:00.000Z",
-    "releasedAt": "2026-09-23T07:13:00.000Z"
+    "assignedAt": "2026-09-21T14:42:00.000Z",
+    "releasedAt": "2026-09-23T11:53:00.000Z"
   },
   {
     "id": "ASG-0136",
-    "productionOrderId": "WO-0118",
+    "productionOrderId": "WO-0124",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T16:08:00.000Z",
-    "releasedAt": "2026-09-22T14:03:00.000Z"
+    "assignedAt": "2026-09-21T15:03:00.000Z",
+    "releasedAt": "2026-09-23T14:06:00.000Z"
   },
   {
     "id": "ASG-0137",
-    "productionOrderId": "WO-0119",
+    "productionOrderId": "WO-0125",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T16:30:00.000Z",
-    "releasedAt": "2026-09-22T17:29:00.000Z"
+    "assignedAt": "2026-09-21T15:33:00.000Z",
+    "releasedAt": "2026-09-24T07:57:00.000Z"
   },
   {
     "id": "ASG-0138",
-    "productionOrderId": "WO-0121",
+    "productionOrderId": "WO-0126",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T16:53:00.000Z",
-    "releasedAt": "2026-09-23T07:49:00.000Z"
+    "assignedAt": "2026-09-21T16:23:00.000Z",
+    "releasedAt": "2026-09-24T07:41:00.000Z"
   },
   {
     "id": "ASG-0139",
-    "productionOrderId": "WO-0122",
+    "productionOrderId": "WO-0127",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-21T17:35:00.000Z",
-    "releasedAt": "2026-09-23T07:10:00.000Z"
+    "assignedAt": "2026-09-21T17:06:00.000Z",
+    "releasedAt": "2026-09-24T08:49:00.000Z"
   },
   {
     "id": "ASG-0140",
-    "productionOrderId": "WO-0123",
+    "productionOrderId": "WO-0131",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T06:00:00.000Z",
-    "releasedAt": "2026-09-23T06:58:00.000Z"
+    "assignedAt": "2026-09-21T17:29:00.000Z",
+    "releasedAt": "2026-09-24T15:29:00.000Z"
   },
   {
     "id": "ASG-0141",
-    "productionOrderId": "WO-0124",
+    "productionOrderId": "WO-0134",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T06:24:00.000Z",
-    "releasedAt": "2026-09-23T11:20:00.000Z"
+    "assignedAt": "2026-09-21T17:47:00.000Z",
+    "releasedAt": "2026-09-25T08:18:00.000Z"
   },
   {
     "id": "ASG-0142",
-    "productionOrderId": "WO-0125",
+    "productionOrderId": "WO-0176",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T06:52:00.000Z",
-    "releasedAt": "2026-09-23T09:54:00.000Z"
+    "assignedAt": "2026-09-22T06:00:00.000Z",
+    "releasedAt": "2026-09-23T06:47:00.000Z"
   },
   {
     "id": "ASG-0143",
-    "productionOrderId": "WO-0128",
+    "productionOrderId": "WO-0179",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T07:21:00.000Z",
-    "releasedAt": "2026-09-23T10:30:00.000Z"
+    "assignedAt": "2026-09-22T06:36:00.000Z",
+    "releasedAt": "2026-09-23T07:00:00.000Z"
   },
   {
     "id": "ASG-0144",
-    "productionOrderId": "WO-0178",
+    "productionOrderId": "WO-0180",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T07:48:00.000Z",
-    "releasedAt": "2026-09-23T06:51:00.000Z"
+    "assignedAt": "2026-09-22T07:16:00.000Z",
+    "releasedAt": "2026-09-29T08:03:00.000Z"
   },
   {
     "id": "ASG-0145",
-    "productionOrderId": "WO-0181",
+    "productionOrderId": "WO-0182",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T08:18:00.000Z",
-    "releasedAt": "2026-09-29T16:16:00.000Z"
+    "assignedAt": "2026-09-22T08:15:00.000Z",
+    "releasedAt": "2026-09-29T09:36:00.000Z"
   },
   {
     "id": "ASG-0146",
-    "productionOrderId": "WO-0182",
+    "productionOrderId": "WO-0183",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T08:56:00.000Z",
-    "releasedAt": "2026-09-29T14:52:00.000Z"
+    "assignedAt": "2026-09-22T12:11:00.000Z",
+    "releasedAt": "2026-09-22T16:42:00.000Z"
   },
   {
     "id": "ASG-0147",
-    "productionOrderId": "WO-0183",
+    "productionOrderId": "WO-0184",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T09:11:00.000Z",
-    "releasedAt": "2026-09-29T16:32:00.000Z"
+    "assignedAt": "2026-09-22T13:08:00.000Z",
+    "releasedAt": "2026-09-22T17:05:00.000Z"
   },
   {
     "id": "ASG-0148",
-    "productionOrderId": "WO-0184",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T12:11:00.000Z",
-    "releasedAt": "2026-09-28T15:26:00.000Z"
+    "productionOrderId": "WO-0187",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-22T13:20:00.000Z",
+    "releasedAt": "2026-09-22T16:58:00.000Z"
   },
   {
     "id": "ASG-0149",
-    "productionOrderId": "WO-0185",
+    "productionOrderId": "WO-0189",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T13:08:00.000Z",
-    "releasedAt": "2026-09-28T15:40:00.000Z"
+    "assignedAt": "2026-09-22T14:47:00.000Z",
+    "releasedAt": "2026-09-22T17:30:00.000Z"
   },
   {
     "id": "ASG-0150",
-    "productionOrderId": "WO-0188",
+    "productionOrderId": "WO-0129",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T13:24:00.000Z",
-    "releasedAt": "2026-09-28T18:12:00.000Z"
+    "assignedAt": "2026-09-22T15:52:00.000Z",
+    "releasedAt": "2026-09-24T11:27:00.000Z"
   },
   {
     "id": "ASG-0151",
-    "productionOrderId": "WO-0190",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T14:47:00.000Z",
-    "releasedAt": "2026-09-28T16:48:00.000Z"
+    "productionOrderId": "WO-0130",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-22T15:52:00.000Z",
+    "releasedAt": "2026-09-24T14:47:00.000Z"
   },
   {
     "id": "ASG-0152",
-    "productionOrderId": "WO-0126",
+    "productionOrderId": "WO-0132",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T15:02:00.000Z",
-    "releasedAt": "2026-09-23T15:23:00.000Z"
+    "assignedAt": "2026-09-22T16:34:00.000Z",
+    "releasedAt": "2026-09-24T18:09:00.000Z"
   },
   {
     "id": "ASG-0153",
-    "productionOrderId": "WO-0127",
+    "productionOrderId": "WO-0133",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T15:52:00.000Z",
-    "releasedAt": "2026-09-23T16:18:00.000Z"
+    "assignedAt": "2026-09-22T17:11:00.000Z",
+    "releasedAt": "2026-09-25T07:38:00.000Z"
   },
   {
     "id": "ASG-0154",
-    "productionOrderId": "WO-0130",
+    "productionOrderId": "WO-0135",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T16:36:00.000Z",
-    "releasedAt": "2026-09-23T17:31:00.000Z"
+    "assignedAt": "2026-09-22T17:46:00.000Z",
+    "releasedAt": "2026-09-25T12:40:00.000Z"
   },
   {
     "id": "ASG-0155",
-    "productionOrderId": "WO-0131",
+    "productionOrderId": "WO-0136",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-22T17:17:00.000Z",
-    "releasedAt": "2026-09-23T19:42:00.000Z"
+    "assignedAt": "2026-09-23T06:00:00.000Z",
+    "releasedAt": "2026-09-25T13:25:00.000Z"
   },
   {
     "id": "ASG-0156",
-    "productionOrderId": "WO-0132",
+    "productionOrderId": "WO-0137",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T06:00:00.000Z",
-    "releasedAt": "2026-09-23T18:12:00.000Z"
+    "assignedAt": "2026-09-23T06:17:00.000Z",
+    "releasedAt": "2026-09-25T14:22:00.000Z"
   },
   {
     "id": "ASG-0157",
-    "productionOrderId": "WO-0133",
+    "productionOrderId": "WO-0138",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T06:19:00.000Z",
-    "releasedAt": "2026-09-24T07:44:00.000Z"
+    "assignedAt": "2026-09-23T06:39:00.000Z",
+    "releasedAt": "2026-09-25T17:27:00.000Z"
   },
   {
     "id": "ASG-0158",
-    "productionOrderId": "WO-0134",
+    "productionOrderId": "WO-0139",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T06:58:00.000Z",
-    "releasedAt": "2026-09-24T07:27:00.000Z"
+    "assignedAt": "2026-09-23T07:07:00.000Z",
+    "releasedAt": "2026-09-28T09:39:00.000Z"
   },
   {
     "id": "ASG-0159",
-    "productionOrderId": "WO-0135",
+    "productionOrderId": "WO-0142",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T08:42:00.000Z",
-    "releasedAt": "2026-09-24T08:07:00.000Z"
+    "assignedAt": "2026-09-23T13:31:00.000Z",
+    "releasedAt": "2026-09-28T12:54:00.000Z"
   },
   {
     "id": "ASG-0160",
-    "productionOrderId": "WO-0136",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T09:04:00.000Z",
-    "releasedAt": "2026-09-24T13:33:00.000Z"
+    "productionOrderId": "WO-0143",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-23T13:31:00.000Z",
+    "releasedAt": "2026-09-28T12:38:00.000Z"
   },
   {
     "id": "ASG-0161",
-    "productionOrderId": "WO-0137",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T09:57:00.000Z",
-    "releasedAt": "2026-09-24T11:30:00.000Z"
+    "productionOrderId": "WO-0144",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-23T14:04:00.000Z",
+    "releasedAt": "2026-09-28T14:29:00.000Z"
   },
   {
     "id": "ASG-0162",
-    "productionOrderId": "WO-0138",
+    "productionOrderId": "WO-0146",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T10:19:00.000Z",
-    "releasedAt": "2026-09-24T11:17:00.000Z"
+    "assignedAt": "2026-09-23T14:20:00.000Z",
+    "releasedAt": "2026-09-28T16:29:00.000Z"
   },
   {
     "id": "ASG-0163",
-    "productionOrderId": "WO-0139",
+    "productionOrderId": "WO-0148",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T11:59:00.000Z",
-    "releasedAt": "2026-09-24T13:16:00.000Z"
+    "assignedAt": "2026-09-23T14:48:00.000Z",
+    "releasedAt": "2026-09-28T19:32:00.000Z"
   },
   {
     "id": "ASG-0164",
-    "productionOrderId": "WO-0140",
+    "productionOrderId": "WO-0149",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T12:28:00.000Z",
-    "releasedAt": "2026-09-24T17:51:00.000Z"
+    "assignedAt": "2026-09-23T15:23:00.000Z",
+    "releasedAt": "2026-09-29T07:59:00.000Z"
   },
   {
     "id": "ASG-0165",
-    "productionOrderId": "WO-0143",
+    "productionOrderId": "WO-0150",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T13:27:00.000Z",
-    "releasedAt": "2026-09-25T06:24:00.000Z"
+    "assignedAt": "2026-09-23T16:13:00.000Z",
+    "releasedAt": "2026-09-29T08:39:00.000Z"
   },
   {
     "id": "ASG-0166",
-    "productionOrderId": "WO-0144",
+    "productionOrderId": "WO-0151",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T14:17:00.000Z",
-    "releasedAt": "2026-09-24T19:12:00.000Z"
+    "assignedAt": "2026-09-23T16:30:00.000Z",
+    "releasedAt": "2026-09-29T11:38:00.000Z"
   },
   {
     "id": "ASG-0167",
-    "productionOrderId": "WO-0145",
+    "productionOrderId": "WO-0153",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T14:49:00.000Z",
-    "releasedAt": "2026-09-24T19:06:00.000Z"
+    "assignedAt": "2026-09-23T17:11:00.000Z",
+    "releasedAt": "2026-09-29T16:55:00.000Z"
   },
   {
     "id": "ASG-0168",
-    "productionOrderId": "WO-0147",
+    "productionOrderId": "WO-0154",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T15:17:00.000Z",
-    "releasedAt": "2026-09-25T07:10:00.000Z"
+    "assignedAt": "2026-09-24T06:00:00.000Z",
+    "releasedAt": "2026-09-29T18:06:00.000Z"
   },
   {
     "id": "ASG-0169",
-    "productionOrderId": "WO-0149",
+    "productionOrderId": "WO-0155",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T15:46:00.000Z",
-    "releasedAt": "2026-09-25T10:36:00.000Z"
+    "assignedAt": "2026-09-24T06:28:00.000Z",
+    "releasedAt": "2026-09-30T07:26:00.000Z"
   },
   {
     "id": "ASG-0170",
-    "productionOrderId": "WO-0150",
+    "productionOrderId": "WO-0156",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T16:28:00.000Z",
-    "releasedAt": "2026-09-25T13:11:00.000Z"
+    "assignedAt": "2026-09-24T07:08:00.000Z",
+    "releasedAt": "2026-09-30T12:29:00.000Z"
   },
   {
     "id": "ASG-0171",
-    "productionOrderId": "WO-0151",
+    "productionOrderId": "WO-0158",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T17:23:00.000Z",
-    "releasedAt": "2026-09-25T10:55:00.000Z"
+    "assignedAt": "2026-09-24T07:44:00.000Z",
+    "releasedAt": "2026-09-30T12:14:00.000Z"
   },
   {
     "id": "ASG-0172",
-    "productionOrderId": "WO-0152",
+    "productionOrderId": "WO-0166",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-23T17:42:00.000Z",
-    "releasedAt": "2026-09-25T14:20:00.000Z"
+    "assignedAt": "2026-09-24T08:06:00.000Z",
+    "releasedAt": "2026-09-30T15:28:00.000Z"
   },
   {
     "id": "ASG-0173",
-    "productionOrderId": "WO-0159",
+    "productionOrderId": "WO-0169",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T06:00:00.000Z",
-    "releasedAt": "2026-09-25T18:19:00.000Z"
+    "assignedAt": "2026-09-24T08:27:00.000Z",
+    "releasedAt": "2026-09-30T16:27:00.000Z"
   },
   {
     "id": "ASG-0174",
-    "productionOrderId": "WO-0154",
+    "productionOrderId": "WO-0175",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T08:57:00.000Z",
-    "releasedAt": "2026-09-28T06:23:00.000Z"
+    "assignedAt": "2026-09-24T08:55:00.000Z"
   },
   {
     "id": "ASG-0175",
-    "productionOrderId": "WO-0155",
+    "productionOrderId": "WO-0177",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T09:49:00.000Z",
-    "releasedAt": "2026-09-25T15:57:00.000Z"
+    "assignedAt": "2026-09-24T09:20:00.000Z",
+    "releasedAt": "2026-09-30T18:38:00.000Z"
   },
   {
     "id": "ASG-0176",
-    "productionOrderId": "WO-0156",
+    "productionOrderId": "WO-0192",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T10:18:00.000Z",
-    "releasedAt": "2026-09-28T07:12:00.000Z"
+    "assignedAt": "2026-09-24T09:47:00.000Z",
+    "releasedAt": "2026-09-28T09:44:00.000Z"
   },
   {
     "id": "ASG-0177",
-    "productionOrderId": "WO-0157",
+    "productionOrderId": "WO-0193",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T10:59:00.000Z",
-    "releasedAt": "2026-09-28T09:32:00.000Z"
+    "assignedAt": "2026-09-24T10:05:00.000Z",
+    "releasedAt": "2026-09-28T17:58:00.000Z"
   },
   {
     "id": "ASG-0178",
-    "productionOrderId": "WO-0167",
+    "productionOrderId": "WO-0188",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T11:41:00.000Z",
-    "releasedAt": "2026-09-28T07:05:00.000Z"
+    "assignedAt": "2026-09-24T10:44:00.000Z"
   },
   {
     "id": "ASG-0179",
-    "productionOrderId": "WO-0193",
+    "productionOrderId": "WO-0178",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T12:07:00.000Z",
-    "releasedAt": "2026-09-28T17:01:00.000Z"
+    "assignedAt": "2026-09-24T12:30:00.000Z"
   },
   {
     "id": "ASG-0180",
-    "productionOrderId": "WO-0170",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T12:23:00.000Z",
-    "releasedAt": "2026-09-28T09:16:00.000Z"
+    "productionOrderId": "WO-0185",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-24T15:05:00.000Z"
   },
   {
     "id": "ASG-0181",
-    "productionOrderId": "WO-0177",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T16:38:00.000Z",
-    "releasedAt": "2026-09-28T09:45:00.000Z"
+    "productionOrderId": "WO-0186",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-24T15:25:00.000Z"
   },
   {
     "id": "ASG-0182",
-    "productionOrderId": "WO-0179",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T17:08:00.000Z",
-    "releasedAt": "2026-09-28T11:20:00.000Z"
+    "productionOrderId": "WO-0190",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-24T16:41:00.000Z"
   },
   {
     "id": "ASG-0183",
-    "productionOrderId": "WO-0180",
+    "productionOrderId": "WO-0106",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-24T17:36:00.000Z",
-    "releasedAt": "2026-09-28T12:25:00.000Z"
+    "assignedAt": "2026-09-24T16:43:00.000Z"
   },
   {
     "id": "ASG-0184",
-    "productionOrderId": "WO-0186",
+    "productionOrderId": "WO-0107",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T06:00:00.000Z",
-    "releasedAt": "2026-09-28T13:49:00.000Z"
+    "assignedAt": "2026-09-24T17:30:00.000Z"
   },
   {
     "id": "ASG-0185",
-    "productionOrderId": "WO-0187",
+    "productionOrderId": "WO-0108",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T06:20:00.000Z",
-    "releasedAt": "2026-09-28T13:24:00.000Z"
+    "assignedAt": "2026-09-24T17:54:00.000Z"
   },
   {
     "id": "ASG-0186",
-    "productionOrderId": "WO-0191",
+    "productionOrderId": "WO-0109",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T06:40:00.000Z",
-    "releasedAt": "2026-09-28T14:21:00.000Z"
+    "assignedAt": "2026-09-25T06:00:00.000Z"
   },
   {
     "id": "ASG-0187",
-    "productionOrderId": "WO-0196",
+    "productionOrderId": "WO-0195",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T07:04:00.000Z",
-    "releasedAt": "2026-09-28T14:55:00.000Z"
+    "assignedAt": "2026-09-25T06:17:00.000Z"
   },
   {
     "id": "ASG-0188",
-    "productionOrderId": "WO-0198",
+    "productionOrderId": "WO-0197",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T07:19:00.000Z",
-    "releasedAt": "2026-09-28T16:15:00.000Z"
+    "assignedAt": "2026-09-25T06:30:00.000Z"
   },
   {
     "id": "ASG-0189",
-    "productionOrderId": "WO-0199",
+    "productionOrderId": "WO-0198",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T07:34:00.000Z",
-    "releasedAt": "2026-09-28T18:18:00.000Z"
+    "assignedAt": "2026-09-25T06:43:00.000Z"
   },
   {
     "id": "ASG-0190",
-    "productionOrderId": "WO-0201",
+    "productionOrderId": "WO-0200",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T07:59:00.000Z",
-    "releasedAt": "2026-09-28T18:24:00.000Z"
+    "assignedAt": "2026-09-25T07:05:00.000Z"
   },
   {
     "id": "ASG-0191",
-    "productionOrderId": "WO-0195",
+    "productionOrderId": "WO-0194",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T08:27:00.000Z",
-    "releasedAt": "2026-09-28T17:50:00.000Z"
+    "assignedAt": "2026-09-25T07:33:00.000Z",
+    "releasedAt": "2026-09-28T10:28:00.000Z"
   },
   {
     "id": "ASG-0192",
-    "productionOrderId": "WO-0197",
+    "productionOrderId": "WO-0196",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T08:43:00.000Z",
-    "releasedAt": "2026-09-29T06:36:00.000Z"
+    "assignedAt": "2026-09-25T07:50:00.000Z",
+    "releasedAt": "2026-09-28T10:41:00.000Z"
   },
   {
     "id": "ASG-0193",
-    "productionOrderId": "WO-0200",
+    "productionOrderId": "WO-0199",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T09:05:00.000Z",
-    "releasedAt": "2026-09-29T07:27:00.000Z"
+    "assignedAt": "2026-09-25T08:06:00.000Z",
+    "releasedAt": "2026-09-28T12:26:00.000Z"
   },
   {
     "id": "ASG-0194",
-    "productionOrderId": "WO-0203",
+    "productionOrderId": "WO-0202",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T09:36:00.000Z",
-    "releasedAt": "2026-09-29T08:22:00.000Z"
+    "assignedAt": "2026-09-25T08:32:00.000Z",
+    "releasedAt": "2026-09-28T12:06:00.000Z"
   },
   {
     "id": "ASG-0195",
-    "productionOrderId": "WO-0194",
+    "productionOrderId": "WO-0201",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T10:05:00.000Z",
-    "releasedAt": "2026-09-29T12:14:00.000Z"
+    "assignedAt": "2026-09-25T08:57:00.000Z",
+    "releasedAt": "2026-09-29T14:29:00.000Z"
   },
   {
     "id": "ASG-0196",
-    "productionOrderId": "WO-0202",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T10:34:00.000Z",
-    "releasedAt": "2026-09-30T08:53:00.000Z"
+    "productionOrderId": "WO-0191",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-25T10:19:00.000Z"
   },
   {
     "id": "ASG-0197",
-    "productionOrderId": "WO-0204",
+    "productionOrderId": "WO-0203",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T11:58:00.000Z",
-    "releasedAt": "2026-09-28T17:48:00.000Z"
+    "assignedAt": "2026-09-25T10:33:00.000Z"
   },
   {
     "id": "ASG-0198",
-    "productionOrderId": "WO-0205",
+    "productionOrderId": "WO-0204",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T12:14:00.000Z",
-    "releasedAt": "2026-09-29T06:38:00.000Z"
+    "assignedAt": "2026-09-25T13:53:00.000Z",
+    "releasedAt": "2026-09-28T15:26:00.000Z"
   },
   {
     "id": "ASG-0199",
-    "productionOrderId": "WO-0189",
+    "productionOrderId": "WO-0205",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T12:29:00.000Z",
-    "releasedAt": "2026-09-30T10:20:00.000Z"
+    "assignedAt": "2026-09-28T08:59:00.000Z",
+    "releasedAt": "2026-09-30T09:38:00.000Z"
   },
   {
     "id": "ASG-0200",
-    "productionOrderId": "WO-0192",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T13:24:00.000Z",
-    "releasedAt": "2026-09-30T12:13:00.000Z"
+    "productionOrderId": "WO-0206",
+    "workstationId": "ASM-006",
+    "assignedAt": "2026-09-28T09:16:00.000Z"
   },
   {
     "id": "ASG-0201",
-    "productionOrderId": "WO-0206",
+    "productionOrderId": "WO-0208",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-25T14:30:00.000Z",
-    "releasedAt": "2026-09-29T08:54:00.000Z"
+    "assignedAt": "2026-09-28T15:08:00.000Z"
   },
   {
     "id": "ASG-0202",
     "productionOrderId": "WO-0207",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-28T08:59:00.000Z",
-    "releasedAt": "2026-09-30T08:08:00.000Z"
+    "assignedAt": "2026-09-28T15:24:00.000Z",
+    "releasedAt": "2026-09-29T15:36:00.000Z"
   },
   {
     "id": "ASG-0203",
-    "productionOrderId": "WO-0208",
+    "productionOrderId": "WO-0211",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-28T10:01:00.000Z",
-    "releasedAt": "2026-09-29T06:56:00.000Z"
+    "assignedAt": "2026-09-28T15:43:00.000Z"
   },
   {
     "id": "ASG-0204",
     "productionOrderId": "WO-0209",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-28T15:08:00.000Z",
-    "releasedAt": "2026-09-29T07:12:00.000Z"
+    "assignedAt": "2026-09-28T16:11:00.000Z",
+    "releasedAt": "2026-09-29T17:09:00.000Z"
   },
   {
     "id": "ASG-0205",
     "productionOrderId": "WO-0210",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-28T15:23:00.000Z",
-    "releasedAt": "2026-09-29T13:31:00.000Z"
+    "assignedAt": "2026-09-28T16:44:00.000Z",
+    "releasedAt": "2026-09-29T16:16:00.000Z"
   },
   {
     "id": "ASG-0206",
-    "productionOrderId": "WO-0211",
+    "productionOrderId": "WO-0212",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-28T15:38:00.000Z",
-    "releasedAt": "2026-09-29T09:11:00.000Z"
+    "assignedAt": "2026-09-28T16:56:00.000Z",
+    "releasedAt": "2026-09-29T18:07:00.000Z"
   },
   {
     "id": "ASG-0207",
-    "productionOrderId": "WO-0212",
+    "productionOrderId": "WO-0213",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-28T16:06:00.000Z",
-    "releasedAt": "2026-09-29T16:46:00.000Z"
+    "assignedAt": "2026-09-29T08:49:00.000Z"
   },
   {
     "id": "ASG-0208",
-    "productionOrderId": "WO-0213",
+    "productionOrderId": "WO-0214",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-28T16:33:00.000Z",
-    "releasedAt": "2026-09-29T10:43:00.000Z"
+    "assignedAt": "2026-09-29T09:24:00.000Z"
   },
   {
     "id": "ASG-0209",
-    "productionOrderId": "WO-0214",
+    "productionOrderId": "WO-0216",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-29T08:49:00.000Z",
-    "releasedAt": "2026-09-30T18:19:00.000Z"
+    "assignedAt": "2026-09-29T10:22:00.000Z"
   },
   {
     "id": "ASG-0210",
     "productionOrderId": "WO-0215",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-29T09:24:00.000Z",
-    "releasedAt": "2026-09-30T14:56:00.000Z"
+    "assignedAt": "2026-09-29T10:34:00.000Z",
+    "releasedAt": "2026-09-29T17:22:00.000Z"
   },
   {
     "id": "ASG-0211",
-    "productionOrderId": "WO-0216",
-    "workstationId": "ASM-001",
-    "assignedAt": "2026-09-29T10:22:00.000Z",
-    "releasedAt": "2026-09-30T13:17:00.000Z"
-  },
-  {
-    "id": "ASG-0212",
     "productionOrderId": "WO-0217",
     "workstationId": "ASM-001",
     "assignedAt": "2026-09-29T11:09:00.000Z",
-    "releasedAt": "2026-09-30T12:15:00.000Z"
+    "releasedAt": "2026-09-29T18:20:00.000Z"
+  },
+  {
+    "id": "ASG-0212",
+    "productionOrderId": "WO-0219",
+    "workstationId": "ASM-001",
+    "assignedAt": "2026-09-29T12:56:00.000Z"
   },
   {
     "id": "ASG-0213",
-    "productionOrderId": "WO-0219",
+    "productionOrderId": "WO-0218",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-29T12:56:00.000Z",
-    "releasedAt": "2026-09-30T14:53:00.000Z"
+    "assignedAt": "2026-09-29T13:21:00.000Z",
+    "releasedAt": "2026-09-30T07:17:00.000Z"
   },
   {
     "id": "ASG-0214",
-    "productionOrderId": "WO-0218",
+    "productionOrderId": "WO-0221",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-29T13:16:00.000Z",
-    "releasedAt": "2026-09-30T12:05:00.000Z"
+    "assignedAt": "2026-09-29T14:29:00.000Z"
   },
   {
     "id": "ASG-0215",
-    "productionOrderId": "WO-0221",
+    "productionOrderId": "WO-0222",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-29T14:29:00.000Z",
-    "releasedAt": "2026-09-30T15:20:00.000Z"
+    "assignedAt": "2026-09-29T15:28:00.000Z"
   },
   {
     "id": "ASG-0216",
     "productionOrderId": "WO-0220",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-29T15:17:00.000Z",
-    "releasedAt": "2026-09-30T12:44:00.000Z"
+    "assignedAt": "2026-09-29T16:03:00.000Z",
+    "releasedAt": "2026-09-30T07:04:00.000Z"
   },
   {
     "id": "ASG-0217",
-    "productionOrderId": "WO-0222",
+    "productionOrderId": "WO-0223",
     "workstationId": "ASM-001",
-    "assignedAt": "2026-09-29T15:31:00.000Z",
-    "releasedAt": "2026-09-30T17:31:00.000Z"
+    "assignedAt": "2026-09-30T12:29:00.000Z"
   }
 ]

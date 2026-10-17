@@ -80,6 +80,8 @@ export function describeEvent(event: FactoryEvent, master: MasterData): FeedEntr
       break;
     case "OPERATION_STARTED":
       text = `${event.payload.productionOrderId}: operation ${event.payload.productionOperationId} started`;
+      if (event.payload.changeoverFromProductId) text += ` (changeover from ${event.payload.changeoverFromProductId}, setup ${event.payload.setupMinutes} min)`;
+      if (event.payload.equipmentIds?.length) text += ` using ${event.payload.equipmentIds.join(", ")}`;
       break;
     case "OPERATION_COMPLETED":
       text = `${event.payload.productionOrderId}: operation ${event.payload.productionOperationId} completed`;

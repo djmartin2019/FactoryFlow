@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "master": {
     "departments": [
       {
@@ -667,7 +667,10 @@
             "operationType": "WIRE",
             "workstationKind": "ASSEMBLY",
             "setupMinutes": 10,
-            "minutesPerUnit": 12
+            "minutesPerUnit": 12,
+            "requiredEquipment": [
+              "CRIMP_TOOL"
+            ]
           },
           {
             "sequence": 40,
@@ -705,7 +708,10 @@
             "operationType": "WIRE",
             "workstationKind": "ASSEMBLY",
             "setupMinutes": 10,
-            "minutesPerUnit": 15
+            "minutesPerUnit": 15,
+            "requiredEquipment": [
+              "CRIMP_TOOL"
+            ]
           },
           {
             "sequence": 40,
@@ -713,7 +719,10 @@
             "operationType": "MOTOR_CIRCUIT_ASSEMBLY",
             "workstationKind": "ASSEMBLY",
             "setupMinutes": 15,
-            "minutesPerUnit": 20
+            "minutesPerUnit": 20,
+            "requiredEquipment": [
+              "VFD_BENCH"
+            ]
           },
           {
             "sequence": 50,
@@ -721,7 +730,10 @@
             "operationType": "FINAL_TEST",
             "workstationKind": "INSPECTION",
             "setupMinutes": 10,
-            "minutesPerUnit": 12
+            "minutesPerUnit": 12,
+            "requiredEquipment": [
+              "HIPOT_TESTER"
+            ]
           }
         ]
       },
@@ -751,7 +763,10 @@
             "operationType": "WIRE",
             "workstationKind": "ASSEMBLY",
             "setupMinutes": 15,
-            "minutesPerUnit": 30
+            "minutesPerUnit": 30,
+            "requiredEquipment": [
+              "CRIMP_TOOL"
+            ]
           },
           {
             "sequence": 40,
@@ -759,7 +774,10 @@
             "operationType": "CONFIGURE",
             "workstationKind": "ASSEMBLY",
             "setupMinutes": 30,
-            "minutesPerUnit": 35
+            "minutesPerUnit": 35,
+            "requiredEquipment": [
+              "PLC_PROGRAMMER"
+            ]
           },
           {
             "sequence": 50,
@@ -767,7 +785,10 @@
             "operationType": "FINAL_TEST",
             "workstationKind": "INSPECTION",
             "setupMinutes": 15,
-            "minutesPerUnit": 20
+            "minutesPerUnit": 20,
+            "requiredEquipment": [
+              "HIPOT_TESTER"
+            ]
           }
         ]
       }
@@ -917,6 +938,263 @@
         "locationId": "QC-003",
         "concurrentJobs": 1,
         "durationFactor": 1
+      }
+    ],
+    "equipment": [
+      {
+        "id": "EQ-CRIMP-01",
+        "name": "Crimp & torque tool 1",
+        "kind": "CRIMP_TOOL"
+      },
+      {
+        "id": "EQ-CRIMP-02",
+        "name": "Crimp & torque tool 2",
+        "kind": "CRIMP_TOOL"
+      },
+      {
+        "id": "EQ-VFD-01",
+        "name": "VFD commissioning bench",
+        "kind": "VFD_BENCH"
+      },
+      {
+        "id": "EQ-PLC-01",
+        "name": "PLC/HMI programming rig",
+        "kind": "PLC_PROGRAMMER"
+      },
+      {
+        "id": "EQ-HIPOT-01",
+        "name": "Hipot tester",
+        "kind": "HIPOT_TESTER"
+      }
+    ],
+    "changeovers": [
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-100",
+        "setupMinutes": 2
+      },
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-100",
+        "setupMinutes": 7
+      },
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-100",
+        "setupMinutes": 9
+      },
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-200",
+        "setupMinutes": 10
+      },
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-200",
+        "setupMinutes": 2
+      },
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-200",
+        "setupMinutes": 7
+      },
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-300",
+        "setupMinutes": 20
+      },
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-300",
+        "setupMinutes": 15
+      },
+      {
+        "workCenterId": "WC-KITTING",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-300",
+        "setupMinutes": 4
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-100",
+        "setupMinutes": 2
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-100",
+        "setupMinutes": 7
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-100",
+        "setupMinutes": 9
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-200",
+        "setupMinutes": 10
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-200",
+        "setupMinutes": 2
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-200",
+        "setupMinutes": 7
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-300",
+        "setupMinutes": 25
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-300",
+        "setupMinutes": 20
+      },
+      {
+        "workCenterId": "WC-ASSEMBLY",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-300",
+        "setupMinutes": 6
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-100",
+        "setupMinutes": 4
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-100",
+        "setupMinutes": 12
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-100",
+        "setupMinutes": 14
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-200",
+        "setupMinutes": 15
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-200",
+        "setupMinutes": 4
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-200",
+        "setupMinutes": 12
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-300",
+        "setupMinutes": 25
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-300",
+        "setupMinutes": 20
+      },
+      {
+        "workCenterId": "WC-WIRING",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-300",
+        "setupMinutes": 6
+      },
+      {
+        "workCenterId": "WC-MOTOR",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-200",
+        "setupMinutes": 6
+      },
+      {
+        "workCenterId": "WC-CONTROLS",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-300",
+        "setupMinutes": 12
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-100",
+        "setupMinutes": 4
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-100",
+        "setupMinutes": 12
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-100",
+        "setupMinutes": 14
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-200",
+        "setupMinutes": 15
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-200",
+        "setupMinutes": 4
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-200",
+        "setupMinutes": 12
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-100",
+        "toProductId": "NCP-300",
+        "setupMinutes": 25
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-200",
+        "toProductId": "NCP-300",
+        "setupMinutes": 20
+      },
+      {
+        "workCenterId": "WC-TEST",
+        "fromProductId": "NCP-300",
+        "toProductId": "NCP-300",
+        "setupMinutes": 6
       }
     ]
   },
@@ -1090,6 +1368,23 @@
         "workstationId": "QC-003",
         "status": "IDLE",
         "since": "2026-09-01T00:00:00.000Z"
+      }
+    },
+    "equipment": {
+      "EQ-CRIMP-01": {
+        "equipmentId": "EQ-CRIMP-01"
+      },
+      "EQ-CRIMP-02": {
+        "equipmentId": "EQ-CRIMP-02"
+      },
+      "EQ-VFD-01": {
+        "equipmentId": "EQ-VFD-01"
+      },
+      "EQ-PLC-01": {
+        "equipmentId": "EQ-PLC-01"
+      },
+      "EQ-HIPOT-01": {
+        "equipmentId": "EQ-HIPOT-01"
       }
     },
     "downtimes": {},

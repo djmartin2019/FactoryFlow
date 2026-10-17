@@ -42,6 +42,7 @@ import type {
   ProductionStage,
   Quantity,
 } from "./types.ts";
+import { changeoverSetup, usesChangeover } from "./rules.ts";
 
 export class InvariantViolation extends Error {
   constructor(message: string) {
@@ -106,6 +107,8 @@ export function createEmptyState(asOf: IsoTimestamp, master: MasterData): Factor
   for (const ws of master.workstations) {
     workstations[ws.id] = { workstationId: ws.id, status: "IDLE", since: asOf };
   }
+  const equipment: NonNullable<FactoryState["equipment"]> = {};
+  for (const e of master.equipment ?? []) equipment[e.id] = { equipmentId: e.id };
   return {
     asOf,
     lastSequence: 0,
@@ -119,6 +122,7 @@ export function createEmptyState(asOf: IsoTimestamp, master: MasterData): Factor
     workstationAssignments: {},
     qualityInspections: {},
     workstations,
+    ...(master.equipment ? { equipment } : {}),
     downtimes: {},
     customerOrders: {},
     shipments: {},
@@ -551,6 +555,29 @@ export function applyEventInPlace(state: FactoryState, event: FactoryEvent, mast
       if (op.type === "FINAL_TEST") {
         req(order.productionCompletedAt && order.awaitingQcQuantity === op.quantity, "QC may only test units that finished production");
       }
+      // Sequence-dependent setup: the applied minutes must be what the changeover table says for this station's history.
+      const priorProductId = op.workCenterId ? ws.lastProductByWorkCenter?.[op.workCenterId] : undefined;
+      const changesOver = Boolean(masterData.changeovers) && usesChangeover(op) && priorProductId !== undefined && priorProductId !== order.productId;
+      req(p.changeoverFromProductId === (changesOver ? priorProductId : undefined),
+        `operation ${op.id}: changeover origin ${p.changeoverFromProductId ?? "none"} does not match ${ws.workstationId} history`);
+      const standardSetup = op.standardSetupMinutes;
+      const expectedSetup = usesChangeover(op) ? changeoverSetup(masterData, op.workCenterId, priorProductId, order.productId) ?? standardSetup : standardSetup;
+      req(p.setupMinutes === expectedSetup,
+        `operation ${op.id}: setup ${p.setupMinutes ?? "standard"} min, expected ${expectedSetup ?? "standard"}`);
+      // Equipment: one free unit of every required kind, held until the operation completes.
+      const needed = masterData.equipment ? [...(op.requiredEquipment ?? [])].sort() : [];
+      const given = p.equipmentIds ?? [];
+      req(given.length === needed.length && new Set(given).size === given.length, `operation ${op.id} needs ${needed.length} equipment unit(s), got ${given.length}`);
+      req(needed.join() === given.map((id) => masterData.equipment!.find((e) => e.id === id)?.kind ?? `?${id}`).sort().join(),
+        `operation ${op.id} was given equipment of the wrong kind: ${given.join(", ")}`);
+      for (const id of given) {
+        req(state.equipment?.[id] && !state.equipment[id].currentOperationId, `equipment ${id} is not free`);
+        state.equipment![id].currentOperationId = op.id;
+      }
+      if (given.length > 0) op.equipmentIds = given;
+      if (expectedSetup !== undefined) op.setupMinutes = expectedSetup;
+      if (changesOver) op.changeoverFromProductId = priorProductId;
+      if (usesChangeover(op) && op.workCenterId) (ws.lastProductByWorkCenter ??= {})[op.workCenterId] = order.productId;
       op.status = "RUNNING";
       op.workstationId = ws.workstationId;
       op.startedAt = ts;
@@ -575,6 +602,7 @@ export function applyEventInPlace(state: FactoryState, event: FactoryEvent, mast
       }
       op.status = "COMPLETED";
       op.completedAt = ts;
+      for (const id of op.equipmentIds ?? []) delete state.equipment![id].currentOperationId;
       ws.status = "IDLE";
       delete ws.currentOperationId;
       ws.since = ts;

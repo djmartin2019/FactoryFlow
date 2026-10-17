@@ -12,7 +12,7 @@
  *               factory object IDs in src/data/factoryLayout.ts.
  */
 
-export const SCHEMA_VERSION = "1.2.0";
+export const SCHEMA_VERSION = "1.3.0";
 
 export type Id = string;
 export type IsoTimestamp = string;
@@ -117,8 +117,11 @@ export interface RoutingStep {
   workCenterId?: Id;
   operationType: OperationType;
   workstationKind: WorkstationKind;
+  /** Standard setup; the applied setup is this unless a `ChangeoverRule` matches (schema 1.3.0). */
   setupMinutes: Minutes;
   minutesPerUnit: Minutes;
+  /** Equipment kinds this step needs, one unit of each, held for the whole operation (schema 1.3.0). */
+  requiredEquipment?: EquipmentKind[];
 }
 
 export interface Routing {
@@ -151,6 +154,27 @@ export interface WorkCenter {
   kind: WorkstationKind;
 }
 
+/** What a piece of equipment is; routing steps require kinds, not individual units (schema 1.3.0). */
+export type EquipmentKind = string;
+
+/** A shared tool or machine that operations borrow from a pool; it is not bound to one workstation (schema 1.3.0). */
+export interface Equipment {
+  id: Id;
+  name: string;
+  kind: EquipmentKind;
+}
+
+/**
+ * Setup minutes when `workCenterId` switches from `fromProductId` to `toProductId`
+ * (equal ids = repeat run). No matching rule, or a station with no history, means the routing step's standard setup.
+ */
+export interface ChangeoverRule {
+  workCenterId: Id;
+  fromProductId: Id;
+  toProductId: Id;
+  setupMinutes: Minutes;
+}
+
 export interface Workstation {
   id: Id;
   name: string;
@@ -177,6 +201,10 @@ export interface MasterData {
   /** Absent in pre-1.2.0 data. */
   workCenters?: WorkCenter[];
   workstations: Workstation[];
+  /** Absent in pre-1.3.0 data (no equipment constraints). */
+  equipment?: Equipment[];
+  /** Absent in pre-1.3.0 data (setup is always the standard). */
+  changeovers?: ChangeoverRule[];
 }
 
 // ---------------------------------------------------------------------------
@@ -382,9 +410,19 @@ export interface ProductionOperation {
   /** Units processed by this operation. */
   quantity: Quantity;
   plannedMinutes: Minutes;
+  /** Standard setup included in `plannedMinutes` (schema 1.3.0). */
+  standardSetupMinutes?: Minutes;
+  /** Equipment kinds required, copied from the routing step (schema 1.3.0). */
+  requiredEquipment?: EquipmentKind[];
   isRework: boolean;
   status: OperationStatus;
   workstationId?: Id;
+  /** Setup actually applied at start (schema 1.3.0). */
+  setupMinutes?: Minutes;
+  /** Product this station last ran for the operation's work center, when different from this order's product (schema 1.3.0). */
+  changeoverFromProductId?: Id;
+  /** Equipment held from start to completion (schema 1.3.0). */
+  equipmentIds?: Id[];
   startedAt?: IsoTimestamp;
   completedAt?: IsoTimestamp;
   pausedAt?: IsoTimestamp;
@@ -434,7 +472,15 @@ export interface WorkstationRuntime {
   currentOperationId?: Id;
   /** Operation interrupted by a failure; resumes when the machine is restored. */
   pausedOperationId?: Id;
+  /** Product of the last non-rework operation started here, per work center; drives changeover (schema 1.3.0). */
+  lastProductByWorkCenter?: Record<Id, Id>;
   since: IsoTimestamp;
+}
+
+/** Which operation holds a piece of equipment right now (schema 1.3.0). */
+export interface EquipmentRuntime {
+  equipmentId: Id;
+  currentOperationId?: Id;
 }
 
 export interface Downtime {
@@ -511,6 +557,8 @@ export interface FactoryState {
   workstationAssignments: Record<Id, WorkstationAssignment>;
   qualityInspections: Record<Id, QualityInspection>;
   workstations: Record<Id, WorkstationRuntime>;
+  /** Absent in pre-1.3.0 data. */
+  equipment?: Record<Id, EquipmentRuntime>;
   downtimes: Record<Id, Downtime>;
   customerOrders: Record<Id, CustomerOrder>;
   shipments: Record<Id, Shipment>;
@@ -547,7 +595,17 @@ export interface EventPayloads {
   PRODUCTION_RESUMED: { productionOrderId: Id; operationId: Id; workstationId: Id; downtimeId: Id };
   MATERIAL_CONSUMED: { productionOrderId: Id; consumptions: MaterialConsumption[] };
   PRODUCTION_STARTED: { productionOrderId: Id; workstationId: Id; assignmentId: Id };
-  OPERATION_STARTED: { productionOperationId: Id; productionOrderId: Id; workstationId: Id };
+  OPERATION_STARTED: {
+    productionOperationId: Id;
+    productionOrderId: Id;
+    workstationId: Id;
+    /** Setup applied (schema 1.3.0); absent = the operation's standard setup. */
+    setupMinutes?: Minutes;
+    /** Set when the station last ran a different product for this work center. */
+    changeoverFromProductId?: Id;
+    /** One unit per required kind (schema 1.3.0). */
+    equipmentIds?: Id[];
+  };
   OPERATION_COMPLETED: { productionOperationId: Id; productionOrderId: Id; workstationId: Id };
   PRODUCTION_COMPLETED: { productionOrderId: Id; workstationId: Id; quantityProduced: Quantity };
   QUALITY_INSPECTION_COMPLETED: { inspection: QualityInspection };

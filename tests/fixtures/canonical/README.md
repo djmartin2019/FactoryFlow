@@ -7,7 +7,7 @@ Small, committed replay input used by `tests/contract.test.ts`.
 
 Generated with `generateDataset({ seed: "fixture-v1", days: 7, customerOrders: 4, purchaseOrders: 4,
 customerCount: 2, assemblyWorkstations: 1, inspectionWorkstations: 1, machineFailuresPerWorkstation: 1,
-demandSurge: null })`; event-log hash `2449f60b`.
+demandSurge: null })`; event-log hash `6ed76381`.
 
 Outcome: 3 production orders completed (3 + 4 + 2 units), 4 shipments, 9 good units, 100% first-pass yield,
 one machine failure with a blocked and resumed operation.

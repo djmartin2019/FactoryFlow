@@ -65,6 +65,18 @@ An event is `{ id, sequence, timestamp, type, entities, payload }` (`EventEnvelo
 - Stream = `initial_state.json` (master data + opening state) + ordered `events.json`.
 
 ### Schema history
+- **1.3.0** (Phase 1, equipment and changeover): additive. New master data `MasterData.equipment` (pooled units with a
+  `kind`), `MasterData.changeovers` (setup minutes per work center and from→to product), and
+  `RoutingStep.requiredEquipment` (kinds, one unit each). `ProductionOperation` gains `standardSetupMinutes`,
+  `requiredEquipment`, and, once started, `setupMinutes`, `changeoverFromProductId`, `equipmentIds`.
+  `OPERATION_STARTED` gains optional `setupMinutes`, `changeoverFromProductId`, `equipmentIds`.
+  `FactoryState.equipment` (who holds each unit) and `WorkstationRuntime.lastProductByWorkCenter` are new runtime state.
+  Reducer rules: a start must carry exactly one free unit of every required kind (released by `OPERATION_COMPLETED`;
+  held while the station is down), and `setupMinutes` must equal the changeover rule for the station's last product at
+  that work center, else the standard setup. Rework is exempt from changeover. The rules live in `rules.ts`, shared
+  by generator and reducer. Migration: older logs replay unchanged (the checks only apply when master data carries
+  `equipment` / `changeovers`). Generator output differs from 1.2.0 for the same seed: equipment is a capacity limit
+  and applied setup differs from standard. The canonical fixture was regenerated (hash `6ed76381`).
 - **1.2.0** (Phase 1, work centers): additive. `MasterData.workCenters` and `Workstation.workCenterIds` are new;
   reducer rule "assembly operations run on the order's assigned workstation" became "the station serves the
   operation's work center" (skipped when master data has no `workCenterIds`, so 1.1.0 logs still replay).

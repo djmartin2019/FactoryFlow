@@ -1,7 +1,7 @@
 # Implemented versus proposed
 
 `docs/FACTORYFLOW_DESIGN.md` describes where FactoryFlow is going. This file records what exists in the
-repository **today**, as of the Phase 0 audit (2026-10-15). If the two disagree, the code and this file are
+repository **today**, as of the Phase 1 equipment and changeover slice (2026-10-16). If the two disagree, the code and this file are
 the current truth; the design doc is intent.
 
 Legend: **Implemented** works and is tested or validated. **Partial** exists in reduced form. **Proposed**
@@ -24,8 +24,8 @@ does not exist; do not assume it.
 | Per-product routings: NCP-100 (kit, mount, wire, test), NCP-200 (+ motor-control setup), NCP-300 (+ PLC/HMI configure) | Implemented | schema 1.1.0; `disposition` is not a separate operation, it is the round-1/2 inspection outcome shown in the work-order timeline |
 | Work centers distinct from physical workstations | Implemented | `WorkCenter` master data; stations declare `workCenterIds` (`assemblyLanes`); dispatch is per operation so orders hop between stations (schema 1.2.0) |
 | Work-center queues and bottleneck candidate | Implemented | `analytics/workCenters.ts`, Explorer "Work Centers" tab; definitions in `KPI_DEFINITIONS.md` |
-| Sequence-dependent setup (changeover) times | Proposed | Phase 1, next slices; setup is currently a fixed per-step number |
-| Equipment requirements on operations | Proposed | Phase 1, later slice |
+| Sequence-dependent setup (changeover) times | Implemented | schema 1.3.0; `changeovers` table per work center and from→to product, history kept per station and work center (`rules.ts`); synthetic values, rework exempt |
+| Equipment requirements on operations | Implemented | schema 1.3.0; pooled `equipment` units, `RoutingStep.requiredEquipment` kinds, held start→completion; equipment does not fail or have calendars yet (Phase 4) |
 | Skill requirements and qualified-staff constraints | Proposed | **Phase 4** (needs the workforce model; removed from Phase 1) |
 | Serialized manufactured units and per-attempt history | Proposed | Phase 2 |
 | BOM and routing revision captured on work orders | Proposed | Phase 2 |

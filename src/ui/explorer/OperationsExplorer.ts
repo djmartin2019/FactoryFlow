@@ -9,6 +9,7 @@ import {
   PERIODS,
   billsOfMaterials,
   goodUnitsThroughput,
+  equipmentLoad,
   workCenterLoad,
   workOrderCounts,
   workOrderDetail,
@@ -179,6 +180,7 @@ export class OperationsExplorer {
       if (wk !== this.wcKey) {
         this.wcKey = wk;
         this.renderWorkCenters(workCenterLoad(snap, this.getPeriod()), snap.asOfMs);
+        this.renderEquipment(equipmentLoad(snap, this.getPeriod()));
       }
     } else if (this.tab === "analytics") {
       const ck = `${key}|${this.getPeriod()}|${this.productFilter}|${Math.floor(snap.asOfMs / 60_000)}`;
@@ -446,6 +448,8 @@ export class OperationsExplorer {
   }
 
   private readonly wcBody = el("tbody");
+  private readonly eqBody = el("tbody");
+  private readonly eqSection = el("div");
   private readonly wcShift = el("p", "hint shift-note");
   private wcKey = "";
 
@@ -455,13 +459,29 @@ export class OperationsExplorer {
     const wrap = el("div", "tbl-scroll");
     const t = el("table", "mini-table");
     const head = el("tr");
-    const headers = ["Work center", "Stations", "In process (units)", "Queued orders", "Queued units", "Queued std. min / station", "Oldest wait (shift time)", "Utilization"];
+    const headers = ["Work center", "Stations", "In process (units)", "Queued orders", "Queued units", "Queued std. min / station", "Waiting on equipment", "Oldest wait (shift time)", "Setup min (changeovers)", "Utilization"];
     headers.forEach((h, i) => head.append(el("th", i >= 1 ? "num" : undefined, h)));
     const thead = el("thead");
     thead.append(head);
     t.append(thead, this.wcBody);
     wrap.append(t);
     this.wcShift.hidden = true;
+    const eqHead = el("tr");
+    ["Equipment", "Kind", "Held by", "Utilization", "Steps waiting"].forEach((h, i) => eqHead.append(el("th", i >= 3 ? "num" : undefined, h)));
+    const eqThead = el("thead");
+    eqThead.append(eqHead);
+    const eqTable = el("table", "mini-table");
+    eqTable.append(eqThead, this.eqBody);
+    const eqWrap = el("div", "tbl-scroll");
+    eqWrap.append(eqTable);
+    this.eqSection.append(
+      eqWrap,
+      el(
+        "p",
+        "hint",
+        "Shared tools are borrowed from a pool for the whole operation, including while the station is down. Utilization = time held ÷ shift minutes in the reporting period. Steps waiting = ready steps that cannot start because every unit of the kind is in use. Setup (changeovers) = setup minutes applied by steps that started in the period, and how many followed a different product at that work center. Synthetic data.",
+      ),
+    );
     panel.append(
       this.wcShift,
       wrap,
@@ -470,8 +490,21 @@ export class OperationsExplorer {
         "hint",
         "Queued = steps ready to start (predecessors complete) that no station has picked up. The flagged work center has the most queued standard minutes per serving station, i.e. where WIP is waiting longest to be served. Utilization = run time ÷ (serving stations × shift minutes) in the reporting period; stations serving several work centers share capacity. Synthetic data.",
       ),
+      this.eqSection,
     );
     return panel;
+  }
+
+  private renderEquipment(rows: ReturnType<typeof equipmentLoad>): void {
+    this.eqSection.hidden = rows.length === 0;
+    this.eqBody.replaceChildren(
+      ...rows.map((r) => {
+        const tr = el("tr");
+        tr.append(el("td", undefined, r.name), el("td", undefined, r.kind), el("td", undefined, r.heldByOrderId ?? "free"));
+        tr.append(el("td", "num", r.utilization === null ? "N/A" : `${(r.utilization * 100).toFixed(0)}%`), el("td", "num", String(r.stepsWaiting)));
+        return tr;
+      }),
+    );
   }
 
   private renderWorkCenters(rows: ReturnType<typeof workCenterLoad>, asOfMs: number): void {
@@ -498,7 +531,9 @@ export class OperationsExplorer {
           String(r.queuedOrders),
           String(r.queuedUnits),
           r.queuedMinutesPerStation === null ? "N/A" : String(Math.round(r.queuedMinutesPerStation)),
+          String(r.waitingOnEquipment),
           fmtWait(r.oldestWaitMinutes),
+          `${r.setupMinutes} (${r.changeovers})`,
           r.utilization === null ? "N/A" : `${(r.utilization * 100).toFixed(0)}%`,
         ];
         for (const c of cells) tr.append(el("td", "num", c));
