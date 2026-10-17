@@ -355,7 +355,11 @@ function projectBatch(b: BatchInputs): BatchProjection;                         
 record into exactly one `CanonicalInput` or exactly one rejecting `MappingIssue`, unless the adapter declares a fan-out rule (none
 does today). Adapter rejections (`SCHEMA_INVALID`, `UNKNOWN_STATUS`, `UNKNOWN_UOM`, `UNPLACEABLE_TIME`, unsupported version/kind, ...)
 never reach ingest; they are counted at the adapter boundary. Identity failures (`UNRESOLVED_IDENTITY`, `IDENTITY_CONFLICT`) are
-carried into the batch as quarantine entries from the start. Business events become `business_event` inputs; snapshot and CDC
+carried into the batch as explicit quarantine outcomes from the start **when the record still has a source identity and provenance**
+(a `RecordRef` and a raw locator): such a record is a physical input with disposition `QUARANTINED`, so it counts in I1 and its identity
+in I2. A record that cannot be represented as a canonical input at all (malformed, or missing the source identity needed to form a
+`RecordRef`) is an adapter rejection, counted in I4 with a `MappingIssue` and its raw locator. The loader assigns the raw locator before
+adaptation, so every physical source record has an attributable disposition and none can disappear (Amendment A2, owner decision L10). Business events become `business_event` inputs; snapshot and CDC
 inputs are `unprojected` (§7.7). `loadSource` composes adapter and `projectBatch` and reports both boundaries.
 
 **Duplicates and conflicting versions.** Unchanged from §7.4. Inputs are grouped by logical identity `RecordRef =

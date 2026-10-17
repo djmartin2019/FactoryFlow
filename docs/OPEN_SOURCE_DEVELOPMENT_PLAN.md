@@ -45,7 +45,7 @@ codebase.
 | --- | --- |
 | The owner | A substantial project to learn from, explain, maintain and show |
 | Engineers and hiring reviewers | A readable, tested, documented architecture with honest statements of what works |
-| Manufacturing and data practitioners | A worked example of work-order traceability, bottleneck, quality and delivery analysis, with defined KPIs |
+| Manufacturing and data practitioners | A worked example of work-order traceability, bottleneck, quality and dispatch analysis, with defined KPIs |
 | Data-platform engineers | A reference for feeding an external source (first example: Databricks) into the same analytics |
 
 ### Goals (in priority order for the first release, 0.1.0)
@@ -149,8 +149,8 @@ You supplied "M0, M1, M2 complete". The repository supports that:
 
 ### C.4 Known limitations that matter for a public release
 
-- **No intelligence on delivery or lead time**: customer orders carry `dueDate`, but nothing computes on-time
-  delivery, lead time or lateness. (`grep` finds no such analytics; the only `leadTime` use is BOM supplier lead time.)
+- **No intelligence on dispatch or lead time**: customer orders carry `dueDate`, but nothing computes on-time
+  dispatch, lead time or lateness. (`grep` finds no such analytics; the only `leadTime` use is BOM supplier lead time.)
 - **No quality analytics beyond first-pass yield**: inspections record `scrapQuantity` and `defects: DefectCount[]`
   (`types.ts`), but no view aggregates them.
 - **Bottleneck is a flag, not an explanation** (largest queued standard minutes per station).
@@ -191,7 +191,7 @@ optional external platform to its left. Dashed pieces are optional.
                          ┌──────────────────────────────────┼───────────────────────┐
                          ▼                                  ▼                       ▼
                  src/analytics/                       src/ui/ (2D)           src/graphics/ (3D)
-          KPIs, delivery, quality, bottleneck   Dashboard + Operations Explorer   investigates the same
+          KPIs, dispatch, quality, bottleneck   Dashboard + Operations Explorer   investigates the same
           explanations, traceability queries    (complete without 3D)             analytics via selection
 ```
 
@@ -228,7 +228,7 @@ carries (no schema bump). "New domain" needs new entities/events, a `SCHEMA_VERS
 
 | # | Capability | Business question | Data needed | Today | Class | Value | Cost | Release |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P1 | **Delivery and lead-time analysis** | Which customer orders are late or past due, and where did the time go (for work orders)? | `CustomerOrder.dueDate`, shipments, WO timeline (wait vs processing vs hold) | Dates exist; no analytics | Incremental | High | M (two parts, S1a/S1b) | **0.1.0** |
+| P1 | **Dispatch and lead-time analysis** | Which customer orders are late or past due, and where did the time go (for work orders)? | `CustomerOrder.dueDate`, shipments, WO timeline (wait vs processing vs hold) | Dates exist; no analytics | Incremental | High | M (two parts, S1a/S1b) | **0.1.0** |
 | P2 | **Quality, scrap and rework analysis** | Where and why do we lose units? | `QualityInspection.scrapQuantity`, `defects`, rework operations, station/product | Only first-pass yield | Incremental | High | S-M | **0.1** |
 | P3 | **Bottleneck explanation** | Why is this work center the constraint, and what is it waiting on? | work-center queues, equipment waits, changeover minutes, downtime, shift calendar | Candidate flag + columns | Incremental | High | M | **0.1** |
 | P4 | **Material shortage impact** | Which orders are blocked by which shortage, and when does supply arrive? | blocked orders, `MaterialReservation`, PO `promisedDeliveryAt`, inventory | Inventory tab; `shortageBlocked` KPI; no causal link | Incremental | Med-High | S-M | 0.1.0 if time allows (not a blocker) |
@@ -264,32 +264,37 @@ Each slice: definition first in `KPI_DEFINITIONS.md`, then analytics in `src/ana
 a `ReportingSnapshot` (`tests/helpers/snapshot.ts`), then Explorer UI, then 3D link. Acceptance criteria are
 measurable against the default dataset (seed `northstar-2026`) or a hand-built fixture.
 
-**S1. Delivery and lead time (P1)** (two parts so each is a reviewable PR)
+**S1. Dispatch and lead time (P1)** (two parts so each is a reviewable PR)
 
-Metric semantics are defined, as **proposed and unimplemented**, in `KPI_DEFINITIONS.md` ("Proposed, not implemented: delivery, lead
-time and work-order time"). Summary only:
-- Everything is **observed**, on a **dispatch basis**: the model has no customer-receipt date, so transit time is not reported and "delivery"
-  means dispatch. The order-to-work-order link is a **planning link** (`demandLineIds`), not proven unit flow, because finished goods are
-  allocated from stock; so order lead time is not decomposed into work-order phases (deferred to unit/lot traceability, P8).
-- **Order lead time** (created to the shipment that completes the order) with three exclusive milestone segments that sum exactly to it;
-  **lateness**; **past-due open orders**; **time to due date**; **on-time-in-full** (cohorted by due date, so unshipped overdue orders
-  stay in the denominator) with **quantity fill by due date** for partial shipments; cancelled orders excluded and counted.
+Metric semantics are defined, as **proposed / not implemented**, in `KPI_DEFINITIONS.md` ("Proposed, not implemented: dispatch, lead
+time and work-order time"), which is authoritative. Summary only:
+- Everything is **observed** and on a **dispatch basis**. The model records dispatch, not customer receipt, so nothing in the UI says
+  "delivery"; transit time is not reported. For the synthetic manufacturer `dueDate` is treated as **dispatch-by**, a documented
+  assumption that another source's adapter must restate. The order-to-work-order link is a **planning link** (`demandLineIds`), not proven
+  unit flow, so order lead time is not decomposed into work-order phases (deferred to unit/lot traceability, P8).
+- **Names:** Order-to-Final-Dispatch Lead Time (with three exclusive milestone segments summing exactly to it), Dispatch Lateness,
+  Past-Due Unshipped Orders, Time to Due Date, **On-Time In-Full Dispatch** (cohorted by due date; unshipped overdue orders stay in the
+  denominator; partial dispatch does not satisfy in-full), **Quantity Fill by Due Date** (separate), and optionally a shipment-level
+  **On-Time Dispatch Rate**. Cancelled orders are excluded and counted. Empty cohorts are N/A. No predictive risk.
 - **Work-order flow time and cycle time**, distinct from order lead time.
-- **A. Mutually exclusive categories** for one work order (`HELD_MACHINE_DOWN` > `PROCESSING` > `MATERIAL_BLOCKED` > `OFF_SHIFT` >
-  `QUEUE_WAIT` > `PRE_RELEASE` > `POST_PRODUCTION` > `UNCLASSIFIED`), summing exactly to elapsed time, versus
-  **B. overlapping contributing conditions** (material shortage, station unavailable, equipment unavailable, backlog, changeover, off
-  shift), which are labelled indicative, never summed, never called root causes.
-- **S1a (orders):** Explorer "Delivery" tab with lead time, lateness, past-due list, time to due date, on-time-in-full and fill, N/A
-  rules; click an order to see its linked work orders (labelled "planned to satisfy"). **S1b (work orders):** the exclusive decomposition
-  and the available conditions in the work-order drawer.
-- Accept (S1a): every figure recomputes in a unit test from a hand-built snapshot; tests for cancelled orders, partial shipments, an
-  order shipped on the due instant, an unshipped overdue order staying in the denominator, an empty cohort giving N/A, and milestone
-  segments summing exactly to lead time; no schema, fixture or hash change.
-- Accept (S1b): for every work order of the default dataset, the A categories sum exactly to `end - createdAt` (exact timestamp
-  arithmetic) and `UNCLASSIFIED` is zero or each non-zero case is explained; the crosswalk to the drawer's wait/processing/hold holds;
-  a hand-built fixture with overlapping material block and machine down shows precedence working; conditions B are shown with the
-  "may overlap, not additive" wording; conditions marked limited in `KPI_DEFINITIONS.md` are either implemented with tests or shown as
-  unavailable, never as zero.
+- **A. Mutually exclusive categories** for one work order, defined by **eligibility predicates** over reducer state (`PRE_RELEASE`,
+  `MATERIAL_BLOCKED`, `HELD_MACHINE_DOWN`, `PROCESSING`, `QUEUE_WAIT`, `OFF_SHIFT`, `POST_PRODUCTION`, `UNCLASSIFIED`), summing exactly to
+  elapsed time. `QUEUE_WAIT` requires an open operation waiting to start; `POST_PRODUCTION` requires all operations completed and nothing
+  pending, so post-operation time is never counted as queue waiting. Precedence is only a safeguard. Versus **B. overlapping contributing
+  conditions**, which are indicative, never summed, never root causes; equipment and backlog are **current-state observations only** in 0.1.0.
+- **Reconciliation with the drawer:** the existing step `Wait` and the new `QUEUE_WAIT` are **not** equal in general; they agree only on closed,
+  in-shift, unrounded waits (`KPI_DEFINITIONS.md` lists the differences and the valid tests). The drawer is not changed.
+- **S1a (orders):** Explorer "Dispatch" tab with the order metrics above and their N/A rules; click an order to see its linked work orders
+  (labelled "planned to satisfy"). **S1b (work orders):** the exclusive decomposition and the available conditions in the work-order drawer.
+- Accept (S1a): every figure recomputes in a unit test from a hand-built snapshot; tests for cancelled orders, partial dispatches, an
+  order dispatched on the due instant, an unshipped overdue order staying in the denominator, a partial dispatch failing "in full" but counting in
+  Quantity Fill, an empty cohort giving N/A, and milestone segments summing exactly to lead time; no schema, fixture or hash change.
+- Accept (S1b): for every work order of the default dataset the A categories sum exactly to `end - createdAt` and `UNCLASSIFIED` is zero or each
+  non-zero case is explained; the predicates are mutually exclusive at every instant (no tie-break used); the reconciliation tests in
+  `KPI_DEFINITIONS.md` pass (closed waits exact, drawer display within 0.5 minute per step); a fixture with a post-operation gap shows it as
+  `POST_PRODUCTION`, not `QUEUE_WAIT`; a fixture with rework shows the rework wait as `QUEUE_WAIT`; a fixture with overlapping material block history and a
+  later machine-down shows the categories staying exclusive; conditions B carry the "may overlap, not additive" wording and equipment/backlog show
+  "current state at <asOf>", never as durations.
 
 **S2. Quality and scrap (P2)**
 - Definitions: scrap rate, rework rate, FPY by product and station, defect Pareto by type.
@@ -301,7 +306,7 @@ time and work-order time"). Summary only:
   unavailable, changeover minutes, station downtime, off shift, material shortage upstream) as **overlapping, indicative** indicators.
   They are not a partition, are never summed into a percentage of elapsed time, and are not a root-cause claim. Each is sourced from
   existing analytics or from the S1b conditions; conditions that are current-state only are labelled so.
-- UI: a "Why" panel on the Work Centers tab; queue-over-time chart.
+- UI: a "Why" panel on the Work Centers tab. Equipment availability and backlog appear as **current-state observations**; there is no queue-over-time chart in 0.1.0 (it would reconstruct history, L11).
 - Accept: a constructed fixture with a known cause (all units of an equipment kind held) shows that condition; a fixture where two
   conditions overlap shows both with the non-additive note; wording tests/review confirm "indicative", not "root cause".
 
@@ -341,7 +346,7 @@ in the integration lane. M6a's `expected.json` should cover the S1 to S3 results
 | Step | Work | Source | Needs | Targets |
 | --- | --- | --- | --- | --- |
 | 0 | **Truth alignment** (C.3 items 1-3, 5, 6; docs only) | new | none | 0.1.0 |
-| 1 | **S1a** order lead time, lateness, past-due, on-time-in-full | §E.3, KPI_DEFINITIONS (proposed) | none | 0.1.0 |
+| 1 | **S1a** lead time, lateness, past-due unshipped, on-time in-full dispatch | §E.3, KPI_DEFINITIONS (proposed) | none | 0.1.0 |
 | 2 | **S1b** work-order decomposition (A) and conditions (B) | same | S1a not required, shares helpers | 0.1.0 |
 | 3 | **S2** quality and scrap | §E.3 | none | 0.1.0 |
 | 4 | **S3** bottleneck explanation | §E.3 | S1b helpers | 0.1.0 |
@@ -448,7 +453,7 @@ no document, release note or demo text may say or imply otherwise. The README st
 2. **Required capabilities.**
    - Public GitHub repository; Apache License 2.0 (subject to the ownership, dependency and asset review); hosted demo without login; reproducible local setup.
    - Existing deterministic simulation, domain model, dashboard and 3D visualization (as in `STATUS.md`).
-   - **S1a/S1b** delivery and lead-time analytics, **S2** quality and scrap analytics, **S3** bottleneck explanations (§E.3), on observed facts only.
+   - **S1a/S1b** dispatch and lead-time analytics, **S2** quality and scrap analytics, **S3** bottleneck explanations (§E.3), on observed facts only.
    - Basic customer-order to work-order navigation (labelled as a planning link) and a clear analytical connection between the Operations Explorer and the
      3D factory (select in either, see it in both; at least the status, queue and blocked overlays).
    - Honest documentation: README, architecture overview, known limitations, screenshots; the working simulation-based application clearly separated from planned integrations.
@@ -462,7 +467,7 @@ no document, release note or demo text may say or imply otherwise. The README st
    defined before it was built; navigation order to work order to work center to 3D object works in both directions (manual smoke, recorded); the Explorer and
    dashboard are fully usable without relying on the 3D scene; the synthetic-data label is visible on every view; fixture hash `6ed76381` and log hash `1b408e8e`
    unchanged (or changed deliberately with a `SCHEMA_VERSION` bump and migration note); README claims match `STATUS.md`.
-7. **Demonstration scenario (about two minutes).** Open the hosted demo, no login. In the Delivery tab find a late or past-due customer order and read its lead
+7. **Demonstration scenario (about two minutes).** Open the hosted demo, no login. In the Dispatch tab find a late or past-due customer order and read its lead
    time and milestone segments. Open its linked work orders (shown as "planned to satisfy"). In a work order's drawer read the exclusive time breakdown and the
    contributing conditions, noting the "may overlap" wording. Follow the work center to the Work Centers tab, read the bottleneck panel, and select the same work
    center in the 3D plant, seeing its queue and overlay. Then clone the repository and run the same thing locally with `npm install && npm run dev`.
@@ -644,7 +649,7 @@ governance showcase; PySpark port of the reducer; other platforms; production-sc
 | Checkpointing for large logs | Deferred until a dataset needs it |
 | Commercial pilots, customer security review, SLAs | Out of scope; annotated in the design doc |
 | Production enterprise deployment (security, HA, monitoring, governance, volume validation, domain validation) | Not provided by any release (G.0.1, L3) |
-| Predictive delivery risk, "at risk" flags | Deferred until a capacity model exists (P10); 0.1.0 reports observed facts only |
+| Predictive dispatch/delivery risk, "at risk" flags | Deferred until a capacity model exists (P10); 0.1.0 reports observed facts only |
 | Order-level lead-time decomposition into work-order phases, transit/receipt time, quality-hold time | Deferred (need unit/lot traceability, a receipt event, incoming-quality modeling); see `KPI_DEFINITIONS.md` |
 
 ---
@@ -661,7 +666,7 @@ A release is **ready for publication** only when every box for that release is c
 - [ ] Fixture hash `6ed76381` and log hash `1b408e8e` unchanged, or changed deliberately with a `SCHEMA_VERSION` bump, regenerated fixture and migration note (`CLAUDE.md`).
 
 **Product**
-- [ ] S1a, S1b, S2, S3 shipped; definitions moved from "proposed" to implemented in `KPI_DEFINITIONS.md` (the "Proposed, not implemented" label removed only for what exists); unit tests recompute every
+- [ ] S1a, S1b, S2, S3 shipped; definitions moved from "proposed" to implemented in `KPI_DEFINITIONS.md` (the "Proposed / Not Implemented" label removed only for what exists); unit tests recompute every
   displayed number; the exclusive decomposition reconciles to elapsed time in tests.
 - [ ] Reported figures are observed facts on a dispatch basis; no predicted-risk indicator exists anywhere in the UI or docs.
 - [ ] Order to work order to work center to 3D object path works in both directions (manual smoke, recorded); the order-to-work-order link is labelled as a planning link.
@@ -710,7 +715,7 @@ A release is **ready for publication** only when every box for that release is c
 Ordered by dependency and value. Each is a separate PR; the two lanes are independent (§F.1).
 
 1. **Truth-alignment PR (docs only, small).** Fix C.3 items 1, 2, 3, 5, 6 and add the archive banner on Rev1/Rev2. Release lane.
-2. **S1a: order lead time, lateness, past-due, on-time-in-full** (Intelligence lane). First step on the 0.1.0 critical path; its definitions are now complete in `KPI_DEFINITIONS.md`, needs no schema change.
+2. **S1a: Order-to-Final-Dispatch Lead Time, Dispatch Lateness, Past-Due Unshipped Orders, On-Time In-Full Dispatch** (Intelligence lane). First step on the 0.1.0 critical path; its definitions are now complete in `KPI_DEFINITIONS.md`, needs no schema change.
 3. **M3a: atomic reducer** (Integration lane, in parallel; not on the 0.1.0 critical path). Fully specified, guarded by the M0 harness; it also corrects the legacy header comment.
 4. **S1b, S2, S3, S5/S6** in that order, then legal/asset review, README and screenshots, then tag 0.1.0.
 5. **M3b-core** (Revision 3 §7.4a) once M3a has merged, then M4, M5, M6a for 0.2.0.
@@ -723,14 +728,14 @@ Ordered by dependency and value. Each is a separate PR; the two lanes are indepe
 
 | # | Decision | Status / recommendation |
 | --- | --- | --- |
-| L1 | License and ownership: Apache-2.0 contingent on confirming no employer or third-party claim and on the dependency and asset review | Open. Proceed with Apache-2.0 after the review |
-| L2 | Split M3b into core and full (R1) | **Accepted 2026-10-17** |
-| L3 | M6b and most of M7 unscheduled (R3/R4) | **Accepted 2026-10-17** |
-| L4 | Hosted-demo target: keep the existing static host, add GitHub Pages for forks, or both | Open. Both; Pages needs Vite `base` work |
-| L5 | In 0.2.0, does the hosted demo offer the MES-like source (via a documented option) or stay simulation-only? | Open. Recommend simulation-only on the hosted demo and the option documented for local use (D8) |
-| L6 | Fictional company name "Northstar Components": keep or rename after a trademark check | Open. Check, then decide |
-| L7 | Edit design doc and Rev3 per R1-R8 | **Done 2026-10-17** |
-| L8 | Treat the following as defined in `KPI_DEFINITIONS.md` (proposed): `dueDate` means **dispatch-by**; delivery means **dispatch**; on-time-in-full is cohorted by due date; lead-time segments are milestone-bounded; the exclusive precedence order | **Approved 2026-10-17.** S1a may be built against these definitions |
-| L9 | Legacy-reducer removal criteria and the "before the 0.2.0 tag" deadline (Rev3 Amendment A2) | **Approved 2026-10-17** (retained through M4, removed on the A2 evidence before the 0.2.0 tag) |
-| L10 | Whether the §7.4a detail that identity failures enter the batch as quarantine entries (rather than being counted only at the adapter boundary) is the right split | Open; settle in the M3b-core PR, either way I4 must balance |
-| L11 | Historical equipment-unavailable and backlog conditions in S1b/S3: implement via an event walk in 0.1.0, or ship as current-state-only and labelled | Open. Recommend current-state-only for 0.1.0 |
+| L1 | License: Apache-2.0 | **Retained as the intended license.** Legal and ownership review is **not complete**: the owner must confirm the right to publish the code and assets, and the dependency and asset review is still to be done, before any release |
+| L2 | Split M3b into core and full (R1) | **Closed: accepted 2026-10-17** |
+| L3 | M6b and most of M7 unscheduled (R3/R4) | **Closed: accepted 2026-10-17** |
+| L4 | Hosted-demo target | **Closed 2026-10-17.** Use the existing static hosting as the initial publishing target. GitHub Pages for forks is optional and does not block 0.1.0 (it would need Vite `base` work) |
+| L5 | Independent MES source in the public demo | **Closed 2026-10-17.** The default public demo stays simulation-based. For 0.2.0, document how to run the MES-like fixture locally; no public UI source selector is required |
+| L6 | Fictional company name "Northstar Components" | **Open.** Kept provisionally; the trademark check is not done. No renaming and no fixture regeneration |
+| L7 | Edit design doc and Rev3 per R1-R8 | **Closed: done 2026-10-17** |
+| L8 | Analytical definitions (`KPI_DEFINITIONS.md`) | **Closed 2026-10-17.** **S1a approved** with explicit dispatch terminology (`dueDate` is dispatch-by for the synthetic manufacturer only; On-Time In-Full Dispatch, Order-to-Final-Dispatch Lead Time, Past-Due Unshipped Orders). **S1b approved** after the corrections were incorporated and checked against the reducer's operation, inspection, rework and receipt transitions and the generator's event timing: eligibility-based `QUEUE_WAIT`/`POST_PRODUCTION`, and a partial reconciliation with the drawer's step `Wait`. No unresolved contradiction was found; limitations are documented there (rounding, a possible rework-request gap, `POST_PRODUCTION` expected to be zero-length on simulated data). All metrics remain **Proposed / Not implemented** |
+| L9 | Legacy reducer | **Closed 2026-10-17.** Retained through M4 as a differential-testing oracle, not a second supported reducer; removed before the 0.2.0 tag only after the evidence in Revision 3 Amendment A2 is recorded |
+| L10 | Identity failures | **Closed 2026-10-17.** Identity failures with enough source identity and provenance to form a `RecordRef` and a raw locator enter the ingestion boundary as explicit quarantine outcomes (counted in I1 as quarantined physical inputs). A record that cannot be represented as a canonical input (malformed, or missing source identity) is an adapter-boundary rejection with its raw locator (counted in I4). Every physical source record has an attributable disposition. Clarified in Revision 3 §7.4a; I1 to I4 unchanged |
+| L11 | Equipment and backlog conditions in 0.1.0 | **Closed 2026-10-17.** Current-state observations only, labelled "current state at <asOf>"; no historical durations, no reconstructed history. A tested event-walk implementation may come later if justified |
