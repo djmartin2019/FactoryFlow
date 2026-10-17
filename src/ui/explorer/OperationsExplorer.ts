@@ -12,6 +12,7 @@ import {
   dispatchReport,
   qualityReport,
   materialShortages,
+  customerOrderDetail,
   type MaterialShortageReport,
   bottleneckExplanations,
   type BottleneckExplanation,
@@ -36,12 +37,14 @@ import { inShift as inShiftNow, nextShiftStart, weekdayShort } from "../../manuf
 import { el, formatSimTime, setText } from "../dom";
 import { fmtDate, fmtDateTime, fmtDuration, fmtMoney, fmtRate, statusBadge, STATUS_TEXT } from "./format";
 import { ThroughputChart } from "./ThroughputChart";
+import { CustomerOrderDrawer } from "./CustomerOrderDrawer";
 import { WorkOrderDrawer } from "./WorkOrderDrawer";
+import { entityTab, type EntityRef, type ExplorerTab } from "../route";
 
 const REFRESH_MS = 500;
 const PAGE_SIZE = 100;
 
-type Tab = "orders" | "dispatch" | "quality" | "shortages" | "analytics" | "workcenters" | "bom" | "inventory";
+type Tab = ExplorerTab;
 type SortKey = "id" | "product" | "ordered" | "good" | "status" | "created" | "due" | "progress";
 
 interface Column {
@@ -124,6 +127,12 @@ export class OperationsExplorer {
   private readonly rows = new Map<string, RowEntry>();
   private renderedOrder: string[] = [];
   private readonly drawer: WorkOrderDrawer;
+  private readonly coDrawer: CustomerOrderDrawer;
+  private selectedCoId: string | null = null;
+  private coDrawerKey = "";
+  /** Entities the user navigated away from through drawer links; the drawers' Back button walks it. */
+  private trail: EntityRef[] = [];
+  private routeListener: (() => void) | null = null;
   private readonly chart = new ThroughputChart();
   private readonly productSelect = el("select", "ctl");
   private drawerKey = "";
@@ -134,13 +143,18 @@ export class OperationsExplorer {
     this.sim = sim;
     this.getPeriod = getPeriod;
     this.drawer = new WorkOrderDrawer(() => this.closeDetail());
+    this.coDrawer = new CustomerOrderDrawer(() => this.closeCustomerOrder());
+    this.drawer.setNavigation({ onOpenCustomerOrder: (id) => this.openEntity({ kind: "customer-order", id }, true), onBack: () => this.goBack() });
+    this.coDrawer.setNavigation({ onOpenWorkOrder: (id) => this.openEntity({ kind: "work-order", id }, true), onBack: () => this.goBack() });
 
-    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildDispatchPanel(), this.buildQualityPanel(), this.buildShortagesPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element);
+    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildDispatchPanel(), this.buildQualityPanel(), this.buildShortagesPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element, this.coDrawer.element);
     this.element.hidden = true;
     this.showTab("orders");
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && this.active && this.drawer.isOpen) this.closeDetail();
+      if (e.key !== "Escape" || !this.active) return;
+      if (this.coDrawer.isOpen) this.closeCustomerOrder();
+      else if (this.drawer.isOpen) this.closeDetail();
     };
     window.addEventListener("keydown", onKey);
     this.cleanup.push(() => window.removeEventListener("keydown", onKey));
@@ -201,6 +215,7 @@ export class OperationsExplorer {
         this.dispatchKey = dk;
         this.renderDispatch(dispatchReport(snap, this.getPeriod()));
       }
+      this.renderCoDrawer(changed);
     } else if (this.tab === "quality") {
       const qk = `${key}|${this.getPeriod()}|${Math.floor(snap.asOfMs / 60_000)}`;
       if (qk !== this.qualityKey) {
@@ -293,6 +308,9 @@ export class OperationsExplorer {
     for (const [id, p] of this.panels) p.hidden = id !== tab;
     if (tab !== "orders") this.drawer.hide();
     else this.drawerKey = "";
+    if (tab !== "dispatch") this.coDrawer.hide();
+    else this.coDrawerKey = "";
+    this.notifyRoute();
   }
 
   private buildOrdersPanel(): HTMLElement {
@@ -538,7 +556,10 @@ export class OperationsExplorer {
       if (i > 0) td.append(" ");
       const b = el("button", "link-btn", id);
       b.title = "Open this work order (planned to satisfy the customer order)";
-      b.addEventListener("click", () => this.openWorkOrder(id));
+      b.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        this.openWorkOrder(id);
+      });
       td.append(b);
     });
     if (o.plannedWorkOrderIds.length > shown.length) td.append(` +${o.plannedWorkOrderIds.length - shown.length}`);
@@ -569,7 +590,8 @@ export class OperationsExplorer {
 
     this.pastDueWrap.hidden = r.pastDue.orders.length === 0;
     const pastRows = r.pastDue.orders.slice(0, 50).map((o) => {
-      const tr = el("tr");
+      const tr = el("tr", o.orderId === this.selectedCoId ? "clickable selected" : "clickable");
+      tr.addEventListener("click", () => this.openEntity({ kind: "customer-order", id: o.orderId }, false));
       tr.append(el("td", undefined, o.orderId), el("td", undefined, o.customerName), el("td", undefined, o.partiallyDispatched ? "Partly dispatched" : "Open"));
       tr.append(el("td", "num", fmtDate(o.dueMs)), el("td", "num", fmtDuration(o.pastDueMs!)), el("td", "num", String(o.unshippedQuantity)), this.workOrderLinks(o));
       return tr;
@@ -589,7 +611,8 @@ export class OperationsExplorer {
     const statusText: Record<string, string> = { OPEN: "Open", PARTIALLY_SHIPPED: "Partly dispatched", SHIPPED: "Dispatched", CANCELLED: "Cancelled" };
     this.ordersBody.replaceChildren(
       ...rows.slice(0, 100).map((o) => {
-        const tr = el("tr");
+        const tr = el("tr", o.orderId === this.selectedCoId ? "clickable selected" : "clickable");
+        tr.addEventListener("click", () => this.openEntity({ kind: "customer-order", id: o.orderId }, false));
         let vsDue = "–";
         if (o.latenessMs !== null) vsDue = o.latenessMs === 0 ? "On time" : `${fmtDuration(o.latenessMs)} late`;
         else if (o.pastDueMs !== null) vsDue = `${fmtDuration(o.pastDueMs)} past due`;
@@ -795,8 +818,17 @@ export class OperationsExplorer {
         } else {
           tr.append(el("td", undefined, "No shortfall at current balances; release is pending"), el("td"), el("td"), el("td"), el("td"));
         }
-        const cust = el("td", undefined, first ? (o.customerOrderIds.length ? o.customerOrderIds.join(", ") : "–") : "");
-        if (first && o.earliestCustomerDueMs !== null) cust.title = `Earliest customer due date ${fmtDate(o.earliestCustomerDueMs)}`;
+        const cust = el("td");
+        if (first) {
+          if (o.customerOrderIds.length === 0) cust.append("–");
+          o.customerOrderIds.forEach((cid, ci) => {
+            if (ci > 0) cust.append(", ");
+            const b = el("button", "link-btn", cid);
+            b.addEventListener("click", () => this.openEntity({ kind: "customer-order", id: cid }, false));
+            cust.append(b);
+          });
+          if (o.earliestCustomerDueMs !== null) cust.title = `Earliest customer due date ${fmtDate(o.earliestCustomerDueMs)}`;
+        }
         tr.append(cust);
         rows.push(tr);
       });
@@ -1118,22 +1150,100 @@ export class OperationsExplorer {
 
   /** Show a work order's detail drawer from outside the Explorer (e.g. a selected 3D station). */
   openWorkOrder(id: string): void {
-    this.showTab("orders");
-    this.openDetail(id);
+    this.openEntity({ kind: "work-order", id }, false);
+  }
+
+  /**
+   * Open a work order or customer order in its drawer. `fromLink` is true when the user followed a link inside a drawer: the entity
+   * they came from is remembered so Back returns to it. Otherwise the trail restarts.
+   */
+  openEntity(ref: EntityRef, fromLink: boolean): void {
+    const current: EntityRef | null = this.selectedId && this.drawer.isOpen ? { kind: "work-order", id: this.selectedId } : this.selectedCoId && this.coDrawer.isOpen ? { kind: "customer-order", id: this.selectedCoId } : null;
+    if (fromLink && current) this.trail.push(current);
+    else if (!fromLink) this.trail = [];
+    this.drawer.hide();
+    this.coDrawer.hide();
+    if (ref.kind === "work-order") {
+      this.selectedCoId = null;
+      this.selectedId = ref.id;
+      this.showTab("orders");
+      for (const [rid, r] of this.rows) r.tr.classList.toggle("selected", rid === ref.id);
+    } else {
+      this.selectedId = null;
+      this.selectedCoId = ref.id;
+      this.showTab("dispatch");
+      this.dispatchKey = "";
+    }
+    this.drawerKey = "";
+    this.coDrawerKey = "";
+    this.drawer.setBackVisible(this.trail.length > 0);
+    this.coDrawer.setBackVisible(this.trail.length > 0);
+    this.update(true);
+    this.notifyRoute();
+  }
+
+  private goBack(): void {
+    const prev = this.trail.pop();
+    if (!prev) return;
+    const keep = this.trail.slice();
+    this.openEntity(prev, false);
+    this.trail = keep;
+    this.drawer.setBackVisible(keep.length > 0);
+    this.coDrawer.setBackVisible(keep.length > 0);
   }
 
   private openDetail(id: string): void {
-    this.selectedId = id;
-    this.drawerKey = "";
-    for (const [rid, r] of this.rows) r.tr.classList.toggle("selected", rid === id);
-    this.update(true);
+    this.openEntity({ kind: "work-order", id }, false);
   }
 
   private closeDetail(): void {
     this.selectedId = null;
     this.drawer.hide();
     this.drawerKey = "";
+    this.trail = [];
     for (const r of this.rows.values()) r.tr.classList.remove("selected");
+    this.notifyRoute();
+  }
+
+  private closeCustomerOrder(): void {
+    this.selectedCoId = null;
+    this.coDrawer.hide();
+    this.coDrawerKey = "";
+    this.trail = [];
+    this.dispatchKey = "";
+    this.update(true);
+    this.notifyRoute();
+  }
+
+  // ---- deep links (S5) -----------------------------------------------------
+
+  /** What is on screen: the active tab and the selected entity, if its drawer belongs to that tab. */
+  route(): { tab: ExplorerTab; entity?: EntityRef } {
+    if (this.tab === "orders" && this.selectedId) return { tab: this.tab, entity: { kind: "work-order", id: this.selectedId } };
+    if (this.tab === "dispatch" && this.selectedCoId) return { tab: this.tab, entity: { kind: "customer-order", id: this.selectedCoId } };
+    return { tab: this.tab };
+  }
+
+  /** Called whenever `route()` may have changed. */
+  onRouteChange(listener: () => void): void {
+    this.routeListener = listener;
+  }
+
+  private notifyRoute(): void {
+    this.routeListener?.();
+  }
+
+  /** Show a route's tab and entity (from a URL). A tab-only route clears the selection on that tab. */
+  applyRoute(tab: ExplorerTab, entity?: EntityRef): void {
+    if (entity && entityTab(entity) === tab) {
+      this.openEntity(entity, false);
+      return;
+    }
+    this.trail = [];
+    if (tab === "orders" && this.selectedId) this.closeDetail();
+    if (tab === "dispatch" && this.selectedCoId) this.closeCustomerOrder();
+    this.showTab(tab);
+    this.update(true);
   }
 
   private renderDrawer(changed: boolean): void {
@@ -1144,5 +1254,15 @@ export class OperationsExplorer {
     this.drawerKey = this.dataKey;
     if (detail) this.drawer.render(detail, workOrderTime(snap, this.selectedId));
     else this.drawer.renderMissing(this.selectedId);
+  }
+
+  private renderCoDrawer(changed: boolean): void {
+    if (!this.selectedCoId) return;
+    if (!changed && this.coDrawerKey !== "") return;
+    const snap = reportingSnapshot(this.sim);
+    const detail = customerOrderDetail(snap, this.selectedCoId);
+    this.coDrawerKey = this.dataKey;
+    if (detail) this.coDrawer.render(detail);
+    else this.coDrawer.renderMissing(this.selectedCoId);
   }
 }

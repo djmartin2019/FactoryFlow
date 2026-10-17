@@ -5,6 +5,7 @@ import { loadSimulationData } from "./simulation/loadSimulationData";
 import { Dashboard } from "./ui/Dashboard";
 import { OperationsExplorer } from "./ui/explorer/OperationsExplorer";
 import { el } from "./ui/dom";
+import { formatRoute, parseRoute, type Route } from "./ui/route";
 
 /** Replace the page with a readable error instead of leaving it blank. */
 function showFatal(container: HTMLElement | null, title: string, detail: string): void {
@@ -80,7 +81,9 @@ async function main() {
 
   type ViewId = "overview" | "explorer";
   const tabs = new Map<ViewId, HTMLButtonElement>();
+  let activeView: ViewId = "overview";
   const show = (view: ViewId) => {
+    activeView = view;
     scene?.setActive(view === "overview");
     dashboard.setOverviewActive(view === "overview");
     explorer.setActive(view === "explorer");
@@ -88,7 +91,26 @@ async function main() {
       b.classList.toggle("active", id === view);
       b.setAttribute("aria-current", id === view ? "page" : "false");
     }
+    syncRoute();
   };
+
+  // Deep links: the URL hash records the view, Explorer tab and selected work order or customer order (not simulated time).
+  const currentRoute = (): Route => (activeView === "overview" ? { view: "overview" } : { view: "explorer", ...explorer.route() });
+  function syncRoute(): void {
+    const hash = formatRoute(currentRoute());
+    if (location.hash !== hash) history.replaceState(null, "", hash);
+  }
+  const applyRoute = (r: Route | null): void => {
+    if (!r) return;
+    if (formatRoute(currentRoute()) === formatRoute(r)) return;
+    if (r.view === "overview") show("overview");
+    else {
+      show("explorer");
+      explorer.applyRoute(r.tab, r.entity);
+    }
+  };
+  explorer.onRouteChange(syncRoute);
+  window.addEventListener("hashchange", () => applyRoute(parseRoute(location.hash)));
   for (const [id, label] of [
     ["overview", "Factory Overview"],
     ["explorer", "Operations Explorer"],
@@ -102,7 +124,9 @@ async function main() {
   roadmapLink.setAttribute("href", "/roadmap/index.html");
   roadmapLink.style.textDecoration = "none";
   dashboard.layout.nav.append(roadmapLink);
+  const initialRoute = parseRoute(location.hash); // read before the first show() rewrites the hash
   show("overview");
+  applyRoute(initialRoute);
 
   simulation.setSpeed(3600);
 

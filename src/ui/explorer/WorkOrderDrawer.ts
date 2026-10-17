@@ -1,46 +1,7 @@
 import { TIME_CATEGORIES, type TimeCategory, type WorkOrderDetail, type WorkOrderTime } from "../../analytics";
 import { el } from "../dom";
+import { kv, section, table } from "./drawerParts";
 import { fmtDateTime, fmtDuration, statusBadge, STATUS_TEXT } from "./format";
-
-function table(headers: string[], rows: Array<Array<string | Node>>, numeric: number[] = []): HTMLElement {
-  const wrap = el("div", "tbl-scroll");
-  const t = el("table", "mini-table");
-  const head = el("tr");
-  headers.forEach((h, i) => head.append(el("th", numeric.includes(i) ? "num" : undefined, h)));
-  const thead = el("thead");
-  thead.append(head);
-  t.append(thead);
-  const body = el("tbody");
-  for (const r of rows) {
-    const tr = el("tr");
-    r.forEach((c, i) => {
-      const td = el("td", numeric.includes(i) ? "num" : undefined);
-      td.append(c);
-      tr.append(td);
-    });
-    body.append(tr);
-  }
-  t.append(body);
-  wrap.append(t);
-  return wrap;
-}
-
-const section = (title: string, ...children: Node[]) => {
-  const s = el("section", "drawer-section");
-  s.append(el("h3", undefined, title), ...children);
-  return s;
-};
-
-const kv = (pairs: Array<[string, string | Node]>) => {
-  const dl = el("dl", "kv");
-  for (const [k, v] of pairs) {
-    dl.append(el("dt", undefined, k));
-    const dd = el("dd");
-    dd.append(v);
-    dl.append(dd);
-  }
-  return dl;
-};
 
 const OUTCOME: Record<string, string> = {
   PASSED: "Passed",
@@ -104,14 +65,28 @@ export class WorkOrderDrawer {
   private readonly title = el("h2");
   private readonly body = el("div", "drawer-body");
 
+  private openCustomerOrder: (id: string) => void = () => {};
+  private readonly back = el("button", "btn", "← Back");
+
   constructor(onClose: () => void) {
     const head = el("div", "drawer-head");
     const close = el("button", "btn", "Close");
     close.setAttribute("aria-label", "Close work order detail");
     close.addEventListener("click", onClose);
-    head.append(this.title, close);
+    this.back.hidden = true;
+    head.append(this.back, this.title, close);
     this.element.append(head, this.body);
     this.element.hidden = true;
+  }
+
+  /** Navigation to related entities: customer-order links, and the way back to where the user came from. */
+  setNavigation(nav: { onOpenCustomerOrder: (id: string) => void; onBack: () => void }): void {
+    this.openCustomerOrder = nav.onOpenCustomerOrder;
+    this.back.addEventListener("click", nav.onBack);
+  }
+
+  setBackVisible(visible: boolean): void {
+    this.back.hidden = !visible;
   }
 
   get isOpen(): boolean {
@@ -140,9 +115,15 @@ export class WorkOrderDrawer {
       s.status === "BLOCKED"
         ? `Blocked — ${s.blockReason === "MATERIAL_SHORTAGE" ? "material shortage" : "machine down"}`
         : STATUS_TEXT[s.status];
-    const customer = d.customerOrders.length
-      ? d.customerOrders.map((c) => `${c.id} (${c.customerName})`).join(", ")
-      : "N/A";
+    const customer = el("span");
+    if (d.customerOrders.length === 0) customer.append("N/A");
+    d.customerOrders.forEach((c, i) => {
+      if (i > 0) customer.append(", ");
+      const b = el("button", "link-btn", c.id);
+      b.title = "Open this customer order (the work order was planned to satisfy it)";
+      b.addEventListener("click", () => this.openCustomerOrder(c.id));
+      customer.append(b, ` (${c.customerName})`);
+    });
 
     const summary = section(
       "Order summary",
@@ -158,7 +139,7 @@ export class WorkOrderDrawer {
         ["Started", fmtDateTime(s.startedAt)],
         ["Completed", fmtDateTime(s.completedAt)],
         ["Due", fmtDateTime(s.dueDate)],
-        ["Customer order", customer],
+        ["Planned for customer order", customer],
       ]),
     );
 

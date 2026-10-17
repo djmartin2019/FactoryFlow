@@ -314,8 +314,8 @@ time and work-order time"), which is authoritative. Summary only:
 - Accept: each blocked order lists the short material, shortfall quantity and the earliest open PO
   `promisedDeliveryAt` that would cover it (or "no supply on order"); reconciles to the `shortageBlocked` KPI count.
 
-**S5/S6. Traceability links and 3D investigation (P5, P6)**
-- Customer order → WOs → materials/inspections → shipment navigation in the drawer; deep-linkable URL state.
+**S5/S6. Traceability links and 3D investigation (P5, P6)** *(S5 = the navigation and deep-link bullet below, implemented; S6 = the 3D bullets, not started)*
+- Customer order → WOs → materials/inspections → shipment navigation in the drawer; deep-linkable URL state. *Implemented as: a customer-order drawer (lines, allocations, shipments, planned work orders) opened from the Dispatch and Material Shortages tabs and from the work-order drawer; planned work orders link back; Back returns to the previous entity; URLs `#/explorer/orders/<WO>` and `#/explorer/dispatch/<CO>`. The order-to-work-order link is a planning link; a work order's materials and inspections stay in its own drawer.*
 - 3D: an overlay mode selector (status / queue / utilization / blocked-by-shortage) driven by the same
   selectors as the tabs, and click-to-drawer in both directions (Explorer row highlights its object).
 - No-3D mode: Explorer and dashboard fully usable with the scene not loaded (see §F.5 and §G.1).
@@ -350,7 +350,7 @@ in the integration lane. M6a's `expected.json` should cover the S1 to S3 results
 | 2 | **S1b** work-order decomposition (A) and conditions (B) *(implemented)* | same | S1a not required, shares helpers | 0.1.0 |
 | 3 | **S2** quality and scrap *(implemented)* | §E.3 | none | 0.1.0 |
 | 4 | **S3** bottleneck explanation *(implemented)* | §E.3 | S1b helpers | 0.1.0 |
-| 5 | **S5/S6** order-to-work-order navigation, analytical Explorer/3D link, overlays | §E.3 | S1 to S3 | 0.1.0 |
+| 5 | **S5** order-to-work-order navigation and deep links *(implemented)*; **S6** analytical Explorer/3D link and overlays *(not started)* | §E.3 | S1 to S3 | 0.1.0 |
 | 6 | Legal/asset review, README, screenshots, hosting, **tag 0.1.0** | §G.1 | 1-5 | 0.1.0 |
 | A | **M3a** atomic reducer *(may land at any point; independent of steps 1-6)* | Rev3 §8, §7.6 | M0 (done) | 0.2.0 |
 | B | **M3b-core** batch projection (Rev3 §7.4a) | Rev3 §8 M3b, A1, A2 | M1, M3a | 0.2.0 |
