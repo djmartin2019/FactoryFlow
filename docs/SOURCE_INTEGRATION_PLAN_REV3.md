@@ -641,6 +641,23 @@ section 7.3 and is covered by the adversarial collision test. (4) `zod`'s issue 
 **M2. Simulation wire format, emitter, adapter** (split: 2a initial state/master, 2b events)
 - *Accept:* `adapter(emit(x))` deep-equals `x` for the initial state and every event; **conversions actually occur** (a test asserts the wire form differs: seconds vs minutes, status codes, key names, timestamp form); every wire record carries a `causal` ordinal and `stream`; generator `eventLogHash` and fixture hash `6ed76381` unchanged; `validate:data` green; provenance `origin: "simulated_event"`.
 
+*M2 outcome (2026-10-16).* Implemented as `src/sources/simulation/{wire,wireSpec,codec,emitter,adapter,index}.ts` and
+`tests/sources/simulationRoundTrip.test.ts`; no change to the generator, reducer, schema or fixtures. The wire format is
+**data**: `wireSpec.ts` holds one typed entry per domain entity and per event payload (a `satisfies EntitySpec<T>` over the domain
+interface, so a new domain field fails compilation until the wire says what to do with it), plus status codes and event kinds;
+`codec.ts` derives wire names (snake_case, `quantity` becomes `qty`, minutes become seconds `_s`), converts values by kind and
+decodes with `MappingIssue`s. Results: `adapter(emit(x))` equals `x` for the initial state and every event of the default
+dataset and the canonical fixture, **including JSON key order**, so `eventLogHash` (`1b408e8e`) and the fixture hash
+(`6ed76381`) are reproduced from adapted records; conversions are asserted (seconds, snake_case keys, `PLN`/`RUN`-style codes,
+`...Z` timestamps without `.000`); every record carries `seq` (a `causal` ordinal) and `stream: "sim"`; provenance origin is
+`simulated_event`. Notes: (1) the decoder walks the wire object in its own key order because the domain objects' key order is
+not the interface order (for example `Material`), and hashes depend on it; this is why the structural decode is the codec, not a
+zod object, while zod/mini still validates the envelope. (2) Ids are checked against the canonical-id predicate (the simulation
+namespace is passthrough) rather than resolved field by field; per-field resolution needs entity types on id fields and is left to
+the first non-passthrough adapter (M6). (3) `contentDigest` changed from a BigInt FNV-64 to two 32-bit lanes (about 10x faster,
+still audit-only), found by profiling the adapter. (4) Measured cost: about 136 ms added load work, wire 0.84x `events.json`
+(`PERFORMANCE.md`).
+
 **M3a. Atomic reducer (own PR; pinned contract)**
 - Implement §7.6: `prepareEvent` with `DeepReadonly`, `Commit`, `planMoves`/`commitMoves`, `CommitFailure`, dispatcher advancing `lastSequence`/`asOf`; `FactoryReplay` fault state; contributor checklist in `src/manufacturing/README.md`.
 - *Accept:*

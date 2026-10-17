@@ -110,6 +110,28 @@ and error model, tree-shakable) and does not re-export the `z` namespace. M2's 2
 proposal is to re-measure after M2 and keep the whole sources layer under about 20 kB gzip. Node-side cost is
 negligible (module load is a few ms; validation time is measured in M2 against the D7 load budget).
 
+## Simulation as a source (M2 of the source integration plan)
+
+Recorded 2026-10-16 with `node scripts/bench-load.ts` (same machine, Node and dataset as above; not asserted in CI).
+The wire format is `src/sources/simulation/`; the app does not use it yet (M4), so these are the costs M4 will add.
+
+| Operation | Time |
+| --- | --- |
+| `events.json` (domain) / wire events | 2.51 MB / 2.10 MB (0.84x; budget D7 is 1.5x) |
+| Emit wire events at the generator edge | ~15 ms |
+| `JSON.parse(wire events)` | ~10 ms |
+| Adapt all 4,651 events (envelope check, payload decode with unit/status/timestamp conversion, content key) | ~125 ms |
+| Adapt initial state and master data | < 1 ms |
+| **Added one-time load work (parse + adapt)** | **~136 ms** (D7 budget: parse + validate + adapt + ingest about 300 ms) |
+
+Bundle cost after M2 (Vite library build, minified, gzip -9): the adapter path (wire spec, codec, adapter, zod/mini
+envelope check) is about 13.9 kB; the whole `src/sources` barrel including the emitter and identity is about 17.5 kB,
+inside the proposed 20 kB budget. The emitter only runs at the generator edge and would not ship to the browser.
+
+Where the adapt time goes (profiled): content key (canonical JSON about 40 ms, digest about 10 ms after replacing a
+BigInt hash), payload decode about 23 ms, envelope validation about 60 ms. M3b adds ingest (sort plus one shadow replay,
+about 30 to 50 ms), so the total is expected to stay under budget.
+
 ## Demand calibration
 
 Baseline: 75 orders on 3 assembly stations gave 48-60% utilization (mean ~54%). Candidates on the 6-station

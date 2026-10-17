@@ -32,7 +32,7 @@ does not exist; do not assume it.
 | Incoming quality hold, partial receipts, substitutes | Proposed | Phase 3 |
 | Workforce, shifts, finite-capacity scheduling | Proposed | Phase 4 |
 | Scenario comparison, forecasts, planning outputs | Proposed | Phase 5, design §11 |
-| Source adapter, provenance, freshness, capability flags | Partial | contracts only: `src/sources/types.ts` (`CanonicalInput`, `InputProvenance`, `SourceCapabilities`, identity, canonical JSON); no adapter, ingest or app wiring yet (plan M2 to M5); design §6.2, §12 |
+| Source adapter, provenance, freshness, capability flags | Partial | `src/sources/`: contracts (`types.ts`), canonical JSON, identity, and the simulation as a source (`simulation/`: wire format, emitter, adapter; round trip is exact, hashes unchanged). Not wired into the app: the app still loads domain JSON directly (plan M4). No ingest, ordering or quarantine yet (M3b); design §6.2, §12 |
 | Runtime validation of external input shape | Partial | `src/sources/validation.ts` (zod/mini primitives, never throw, `MappingIssue` output) with negative tests; no adapter or app path uses it yet (M2) |
 | Database, message broker, authentication, backend | Proposed | deliberately absent; persistence is in memory |
 | Analytics warehouse / star schema | Proposed | design §10; reporting is computed from state and events |

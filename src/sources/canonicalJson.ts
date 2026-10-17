@@ -75,17 +75,31 @@ export function canonicalEqual(a: unknown, b: unknown): boolean {
   return canonicalJson(a) === canonicalJson(b);
 }
 
-const FNV_OFFSET = 0xcbf29ce484222325n;
-const FNV_PRIME = 0x100000001b3n;
-const MASK_64 = 0xffffffffffffffffn;
-
-/** 64-bit FNV-1a over UTF-8, as 16 hex digits. For `contentKey` display and audit only. */
+/**
+ * 64-bit content digest as 16 hex digits: two independent 32-bit lanes (FNV-1a, and a multiply-xorshift mix) over UTF-8.
+ * For `contentKey` display and audit only; it is not collision-proof and never decides equality. Integer-only (`Math.imul`),
+ * which keeps it fast enough to run on every record of a 4.6k-event log (a BigInt FNV-64 cost ~10x more).
+ */
 export function contentDigest(canonical: string): string {
-  let hash = FNV_OFFSET;
-  for (const byte of new TextEncoder().encode(canonical)) {
-    hash = ((hash ^ BigInt(byte)) * FNV_PRIME) & MASK_64;
+  let a = 0x811c9dc5;
+  let b = 0x9747b28c;
+  const mix = (byte: number): void => {
+    a = Math.imul(a ^ byte, 0x01000193);
+    b = Math.imul(b ^ byte, 0x5bd1e995);
+    b ^= b >>> 15;
+  };
+  for (let i = 0; i < canonical.length; i++) {
+    const c = canonical.charCodeAt(i);
+    if (c < 0x80) {
+      mix(c);
+    } else {
+      // Non-ASCII: hash the UTF-8 bytes of this code point (surrogate pairs together).
+      const cp = canonical.codePointAt(i)!;
+      if (cp > 0xffff) i++;
+      for (const byte of new TextEncoder().encode(String.fromCodePoint(cp))) mix(byte);
+    }
   }
-  return hash.toString(16).padStart(16, "0");
+  return (a >>> 0).toString(16).padStart(8, "0") + (b >>> 0).toString(16).padStart(8, "0");
 }
 
 /** `contentKey` of a normalized record. */
