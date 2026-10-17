@@ -23,7 +23,8 @@
     "vitest": "^5.0.4"
   },
   "dependencies": {
-    "three": "^0.186.1"
+    "three": "^0.186.1",
+    "zod": "4.6.5"
   },
   "engines": {
     "node": ">=22"

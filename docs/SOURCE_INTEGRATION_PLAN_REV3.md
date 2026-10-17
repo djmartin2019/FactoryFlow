@@ -626,6 +626,18 @@ change it deliberately with a fixture/migration note; it is pinned as `accept` i
 - Place `src/sources` under the **strict** tsconfig.
 - *Accept:* compiles under `typecheck`; negative tests (missing field, wrong unit, unknown status, bad timestamp) return issues, never throw; derived ids stable, collision-free for adversarial keys, never containing `::`; canonical JSON is invariant under key order and timestamp spelling; type-level test that `ingest` accepts all three input kinds; bundle-size impact of the chosen validator measured and recorded (budget in §14).
 
+*M1 outcome (2026-10-16).* Implemented as `src/sources/{types,canonicalJson,identity,validation,index}.ts` (placed under the
+strict `tsconfig.node.json`), `docs/REDUCER_RULES.md` with `tests/reducerRules.test.ts` keeping it in step with `state.ts`,
+and `tests/sources/*.test.ts`. No change to `src/manufacturing`, schema or fixtures. Notes: (1) `ingestedAt` is **not** in
+`InputProvenance`; it lives on `StampedProvenance`, added by ingest, so adapters need no clock (section 7.2). (2) D1 resolved
+as zod, using **`zod/mini`** without re-exporting `z` after measuring: classic zod costs about 27 kB gzip at minimum and a
+namespace re-export about 100 kB; the shipped sources layer is 11.6 kB gzip (`PERFORMANCE.md`). Zod is pinned exactly
+(`4.6.5`, over a month old when added). (3) Identity: an empty tenant or site means "none"; derived ids are
+`PREFIX.<source>.<key>[.<tenant>[.<site>]]` with `.` as the separator and every other byte `_HH`-escaped (the plan's
+`PREFIX-<sourceId>-...` form could collide with simulation ids such as `OP-WO-0013-50`); this is the only departure from
+section 7.3 and is covered by the adversarial collision test. (4) `zod`'s issue payload does not carry the offending input, so
+`MISSING_FIELD` versus `WRONG_TYPE` is decided by looking the path up in the raw record.
+
 **M2. Simulation wire format, emitter, adapter** (split: 2a initial state/master, 2b events)
 - *Accept:* `adapter(emit(x))` deep-equals `x` for the initial state and every event; **conversions actually occur** (a test asserts the wire form differs: seconds vs minutes, status codes, key names, timestamp form); every wire record carries a `causal` ordinal and `stream`; generator `eventLogHash` and fixture hash `6ed76381` unchanged; `validate:data` green; provenance `origin: "simulated_event"`.
 

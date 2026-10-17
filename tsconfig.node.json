@@ -5,5 +5,5 @@
     "strict": true,
     "noEmit": true
   },
-  "include": ["src/manufacturing", "src/data/factoryLayout.ts", "scripts", "tests", "examples"]
+  "include": ["src/manufacturing", "src/sources", "src/data/factoryLayout.ts", "scripts", "tests", "examples"]
 }

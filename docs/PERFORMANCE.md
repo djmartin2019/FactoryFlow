@@ -93,6 +93,23 @@ Notes:
 - Browser long tasks at load are unchanged by M0 (tests and docs only); the one-time parse cost above is a small part
   of the 290-1,400 ms observed at load, the rest being scene construction.
 
+## Validation library cost (M1 of the source integration plan)
+
+Measured 2026-10-16 with a Vite library build (`minify: true`, ES output) of the stated entry, then `gzip -9`. The app
+bundle itself is unchanged by M1 (nothing in `src/` imports `src/sources` yet): `dist` JS is 709 kB, ~183 kB gzip.
+
+| Entry | Raw | Gzip |
+| --- | --- | --- |
+| zod classic, one small schema (`import { z } from "zod"`) | 114 kB | 27.2 kB |
+| zod classic, `src/sources` with `z` re-exported (namespace defeats tree-shaking) | 489 kB | 99.7 kB |
+| **zod/mini**, the same small schema | 27.7 kB | 7.7 kB |
+| **`src/sources` as shipped** (zod/mini + canonical JSON + identity + contracts) | 38.9 kB | 11.6 kB |
+
+Decision D1 chose zod. Because the plan gates it on a measured budget, `src/sources` uses **`zod/mini`** (same engine
+and error model, tree-shakable) and does not re-export the `z` namespace. M2's 22 event schemas will add to this; the
+proposal is to re-measure after M2 and keep the whole sources layer under about 20 kB gzip. Node-side cost is
+negligible (module load is a few ms; validation time is measured in M2 against the D7 load budget).
+
 ## Demand calibration
 
 Baseline: 75 orders on 3 assembly stations gave 48-60% utilization (mean ~54%). Candidates on the 6-station
