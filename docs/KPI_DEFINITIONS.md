@@ -57,7 +57,7 @@ Equipment is a capacity limit, not yet a failure source. The bottleneck candidat
 
 The 3D plant draws the same queue (one box per queued order, amber pad on the bottleneck candidate) from `workCenterQueues`, so the view and the table share one definition.
 
-It marks where WIP waits, not why: a long queue can come from lane capacity, a failure upstream, or a burst of releases.
+It marks where WIP waits, not why: a long queue can come from lane capacity, a failure upstream, or a burst of releases. The contributing conditions around the flagged work center are listed in "Bottleneck explanation" below.
 
 ## N/A rules
 - Utilization: N/A until at least one scheduled shift minute has elapsed in the window (e.g. at simulation start, weekends only).
@@ -263,4 +263,27 @@ equal round-1 rework plus all scrap; and the per-product and per-station counts 
 
 **Limitations.** Quality is attributed at inspection time, not build time. One defect code per failed unit, so there is no multi-defect analysis. Cause is recorded only for
 some failures. Incoming (supplier) quality and customer returns are not modeled. Synthetic data: the dashboard and this tab are demonstration measurements.
+
+## Bottleneck explanation (slice S3, implemented)
+
+Implemented in `src/analytics/bottleneck.ts`, the "Why is ... the bottleneck candidate?" panel on the Explorer Work Centers tab, and `tests/bottleneck.test.ts`. It adds **no new
+definition of a bottleneck**: the candidate is still the work center with the largest queued standard minutes per serving station (see "Work-center load" above), and it is not
+flagged off shift or when nothing is queued (the panel then says so). The panel lists **contributing conditions** around that work center. They are the S1b "B" conditions applied
+to a work center instead of a work order, so the same rules hold: they are independent observations that can all be true at once, **never summed, never converted to shares of a
+delay, never ranked or weighted against each other, and never called root causes**. They are listed in a fixed order, which is not an order of importance.
+
+| Condition | Measure | Kind |
+|---|---|---|
+| Queue load | Queued orders, units and standard minutes; minutes per serving station; the rank among work centers that have a queue and the next-highest value for comparison; the longest wait so far in shift minutes | Current state at `asOf` |
+| Serving stations | How many are running now, and which are down now | Current state at `asOf` |
+| Equipment | Queued steps that cannot start because every unit of a required kind is held, and which kinds | Current state at `asOf` (no history is reconstructed) |
+| Station downtime | Shift minutes during which serving stations were down in the reporting period, summed over serving stations, and as a share of (serving stations x shift minutes). A station serving several work centers is counted in each | Period duration |
+| Utilization | Run time excluding failure holds ÷ (serving stations x shift minutes) in the period; identical to the Work Centers column | Period duration |
+| Changeovers | Setup minutes applied by steps that started in the period, how many followed a different product, and setup as a share of run time. Setup is part of run time, not extra | Period duration |
+| Material | Orders currently held before release by a material shortage. Plant-wide, not specific to the work center: they are not in any queue yet | Current state at `asOf` |
+
+**N/A rules.** Shares are N/A when their denominator is zero (no shift time elapsed, or no run time). The next-highest comparison is N/A when no other work center has a queue.
+**Not included:** a queue-over-time series (it would reconstruct history, owner decision L11), downtime attributed to the queue, quality holds (not modeled), and any prediction.
+**Verified** (`tests/bottleneck.test.ts`): an equipment wait, a station down now, and both together are shown side by side on the default dataset; a constructed outage adds exactly its
+in-shift minutes; utilization, setup and changeover figures equal the Work Centers table; across the run at most one work center is flagged, never off shift, and it always ranks first.
 

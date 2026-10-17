@@ -10,6 +10,8 @@ import {
   billsOfMaterials,
   dispatchReport,
   qualityReport,
+  bottleneckExplanations,
+  type BottleneckExplanation,
   type QualityGroup,
   type QualityReport,
   type DispatchReport,
@@ -27,7 +29,7 @@ import {
 } from "../../analytics";
 import { reportingSnapshot } from "../../simulation/reportingSnapshot";
 import type { SimulationController } from "../../simulation/SimulationController";
-import { nextShiftStart, weekdayShort } from "../../manufacturing/calendar";
+import { inShift as inShiftNow, nextShiftStart, weekdayShort } from "../../manufacturing/calendar";
 import { el, formatSimTime, setText } from "../dom";
 import { fmtDate, fmtDateTime, fmtDuration, fmtMoney, fmtRate, statusBadge, STATUS_TEXT } from "./format";
 import { ThroughputChart } from "./ThroughputChart";
@@ -188,6 +190,7 @@ export class OperationsExplorer {
         this.wcKey = wk;
         this.renderWorkCenters(workCenterLoad(snap, this.getPeriod()), snap.asOfMs);
         this.renderEquipment(equipmentLoad(snap, this.getPeriod()));
+        this.renderWhy(bottleneckExplanations(snap, this.getPeriod()).find((e) => e.flagged) ?? null, snap.asOfMs);
       }
     } else if (this.tab === "dispatch") {
       const dk = `${key}|${this.getPeriod()}|${Math.floor(snap.asOfMs / 60_000)}`;
@@ -555,17 +558,24 @@ export class OperationsExplorer {
     setText(this.dispatchNote, notes.join(" "));
 
     this.pastDueWrap.hidden = r.pastDue.orders.length === 0;
-    this.pastDueBody.replaceChildren(
-      ...r.pastDue.orders.slice(0, 50).map((o) => {
-        const tr = el("tr");
-        tr.append(el("td", undefined, o.orderId), el("td", undefined, o.customerName), el("td", undefined, o.partiallyDispatched ? "Partly dispatched" : "Open"));
-        tr.append(el("td", "num", fmtDate(o.dueMs)), el("td", "num", fmtDuration(o.pastDueMs!)), el("td", "num", String(o.unshippedQuantity)), this.workOrderLinks(o));
-        return tr;
-      }),
-    );
+    const pastRows = r.pastDue.orders.slice(0, 50).map((o) => {
+      const tr = el("tr");
+      tr.append(el("td", undefined, o.orderId), el("td", undefined, o.customerName), el("td", undefined, o.partiallyDispatched ? "Partly dispatched" : "Open"));
+      tr.append(el("td", "num", fmtDate(o.dueMs)), el("td", "num", fmtDuration(o.pastDueMs!)), el("td", "num", String(o.unshippedQuantity)), this.workOrderLinks(o));
+      return tr;
+    });
+    if (r.pastDue.orders.length > 50) {
+      const tr = el("tr");
+      const td = el("td", "hint", `Showing the 50 most overdue of ${r.pastDue.orders.length} past-due orders.`);
+      td.colSpan = 7;
+      tr.append(td);
+      pastRows.push(tr);
+    }
+    this.pastDueBody.replaceChildren(...pastRows);
 
-    const rows = r.orders.slice().sort((a, b) => b.dueMs - a.dueMs || b.orderId.localeCompare(a.orderId));
-    setText(this.ordersCount, rows.length > 100 ? `Showing 100 of ${rows.length} orders, latest due date first` : `${rows.length} orders, latest due date first`);
+    const rows = r.orders.slice().sort(compareByAttention);
+    const order = "past-due first, then open by earliest due date, then dispatched";
+    setText(this.ordersCount, rows.length > 100 ? `Showing 100 of ${rows.length} orders, ${order}` : `${rows.length} orders, ${order}`);
     const statusText: Record<string, string> = { OPEN: "Open", PARTIALLY_SHIPPED: "Partly dispatched", SHIPPED: "Dispatched", CANCELLED: "Cancelled" };
     this.ordersBody.replaceChildren(
       ...rows.slice(0, 100).map((o) => {
@@ -696,6 +706,7 @@ export class OperationsExplorer {
   private readonly wcBody = el("tbody");
   private readonly eqBody = el("tbody");
   private readonly eqSection = el("div");
+  private readonly whySection = el("section", "why-panel");
   private readonly wcShift = el("p", "hint shift-note");
   private wcKey = "";
 
@@ -736,9 +747,75 @@ export class OperationsExplorer {
         "hint",
         "Queued = steps ready to start (predecessors complete) that no station has picked up. The flagged work center has the most queued standard minutes per serving station, i.e. where WIP is waiting longest to be served. Utilization = run time ÷ (serving stations × shift minutes) in the reporting period; stations serving several work centers share capacity. Synthetic data.",
       ),
+      this.whySection,
       this.eqSection,
     );
     return panel;
+  }
+
+  /** Contributing conditions around the flagged work center. Independent observations: not ranked, not added up, not root causes. */
+  private renderWhy(e: BottleneckExplanation | null, asOfMs: number): void {
+    const items: HTMLElement[] = [];
+    if (!e) {
+      const off = !inShiftNow(asOfMs);
+      this.whySection.replaceChildren(
+        el("h3", undefined, "Why a bottleneck candidate?"),
+        el("p", "hint", off ? "The plant is off shift, so nothing can start and no work center is flagged." : "No work center has a queue right now, so none is flagged."),
+      );
+      return;
+    }
+    const c = e.current;
+    const p = e.period;
+    const pct = (x: number | null) => (x === null ? "N/A" : `${(x * 100).toFixed(0)}%`);
+    const li = (label: string, text: string, tag: "current" | "period" | "plant") => {
+      const row = el("li");
+      row.append(el("strong", undefined, label), " ", text, " ", el("span", "why-tag", tag === "current" ? "current state" : tag === "period" ? "this period" : "whole plant"));
+      items.push(row);
+    };
+    li(
+      "Queue load.",
+      `${c.queuedOrders} order${c.queuedOrders === 1 ? "" : "s"} (${c.queuedUnits} units, ${Math.round(c.queuedMinutes)} standard min) wait across ${c.stations} station${c.stations === 1 ? "" : "s"}: ${Math.round(c.queuedMinutesPerStation ?? 0)} min per station` +
+        (c.nextHighestPerStation !== null ? `, the next highest work center has ${Math.round(c.nextHighestPerStation)}` : "") +
+        (c.oldestWaitMinutes !== null ? `; the longest wait so far is ${c.oldestWaitMinutes} shift min.` : "."),
+      "current",
+    );
+    li(
+      "Serving stations.",
+      `${c.stationsRunningNow} of ${c.stations} running` + (c.stationsDownNow.length ? `; down now: ${c.stationsDownNow.map((s) => s.name).join(", ")}.` : "; none down."),
+      "current",
+    );
+    li(
+      "Equipment.",
+      c.waitingOnEquipment > 0 ? `${c.waitingOnEquipment} queued step${c.waitingOnEquipment === 1 ? "" : "s"} cannot start: no free unit of ${c.missingEquipmentKinds.join(", ")}.` : "no queued step is waiting for equipment.",
+      "current",
+    );
+    li(
+      "Station downtime.",
+      `serving stations were down for ${Math.round(p.stationDowntimeMinutes)} shift min (${pct(p.stationDowntimeShare)} of their shift time).`,
+      "period",
+    );
+    li("Utilization.", `serving stations ran ${pct(p.utilization)} of their shift time (run time excluding failure holds).`, "period");
+    li(
+      "Changeovers.",
+      `${Math.round(p.setupMinutes)} setup min across ${p.changeovers} changeover${p.changeovers === 1 ? "" : "s"}` + (p.setupShareOfBusy === null ? "." : `, ${pct(p.setupShareOfBusy)} of run time.`),
+      "period",
+    );
+    li(
+      "Material.",
+      e.plant.materialBlockedOrders > 0 ? `${e.plant.materialBlockedOrders} order${e.plant.materialBlockedOrders === 1 ? " is" : "s are"} held before release by a material shortage; they are not in this queue yet.` : "no order is held before release by a material shortage.",
+      "plant",
+    );
+    const list = el("ul", "why-list");
+    list.append(...items);
+    this.whySection.replaceChildren(
+      el("h3", undefined, `Why is ${e.name} the bottleneck candidate? Contributing conditions`),
+      list,
+      el(
+        "p",
+        "hint",
+        "These are independent observations around the flagged work center, listed in a fixed order, not by importance. They can all be true at once, so they must not be added up or read as shares of the delay, and they are indicative context rather than proven root causes. Current-state items describe the simulated moment shown above, not a history. The flag itself means only that this work center has the most queued standard minutes per serving station.",
+      ),
+    );
   }
 
   private renderEquipment(rows: ReturnType<typeof equipmentLoad>): void {

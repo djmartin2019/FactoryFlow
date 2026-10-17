@@ -7,3 +7,4 @@ export * from "./billOfMaterials.ts";
 export * from "./dispatch.ts";
 export * from "./workOrderTime.ts";
 export * from "./quality.ts";
+export * from "./bottleneck.ts";

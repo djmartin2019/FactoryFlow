@@ -95,6 +95,29 @@ const rate = (numerator: number, denominator: number): Rate => ({
   rate: denominator === 0 ? null : numerator / denominator,
 });
 
+const attentionGroup = (o: OrderDispatchView): number => {
+  if (o.pastDueMs !== null) return 0; // open or partly dispatched, already due
+  if (o.timeToDueMs !== null) return 1; // open, not yet due
+  if (o.status === "SHIPPED") return 2;
+  return 3; // cancelled, or anything else without a due-date consequence
+};
+
+/**
+ * Default presentation order for the customer-order table: most overdue unshipped first, then open orders by earliest
+ * due date, then dispatched orders newest due date first, then cancelled. A display order only; the report's own
+ * `orders` stay due-date ascending.
+ */
+export function compareByAttention(a: OrderDispatchView, b: OrderDispatchView): number {
+  const ga = attentionGroup(a);
+  const gb = attentionGroup(b);
+  if (ga !== gb) return ga - gb;
+  let d = 0;
+  if (ga === 0) d = b.pastDueMs! - a.pastDueMs!;
+  else if (ga === 1) d = a.dueMs - b.dueMs;
+  else d = b.dueMs - a.dueMs;
+  return d || a.orderId.localeCompare(b.orderId);
+}
+
 /** Shipments of each customer order, ordered by (dispatchedAt, id). */
 function shipmentsByOrder(shipments: Record<Id, Shipment>): Map<Id, Shipment[]> {
   const map = new Map<Id, Shipment[]>();

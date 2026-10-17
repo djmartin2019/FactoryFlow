@@ -43,8 +43,8 @@ codebase.
 
 | Audience | What they should get |
 | --- | --- |
-| The owner | A substantial project to learn from, explain, maintain and show |
-| Engineers and hiring reviewers | A readable, tested, documented architecture with honest statements of what works |
+| The owner | A substantial project to learn from, explain and maintain |
+| Engineers and contributors | A readable, tested, documented architecture with honest statements of what works |
 | Manufacturing and data practitioners | A worked example of work-order traceability, bottleneck, quality and dispatch analysis, with defined KPIs |
 | Data-platform engineers | A reference for feeding an external source (first example: Databricks) into the same analytics |
 
@@ -238,7 +238,7 @@ carries (no schema bump). "New domain" needs new entities/events, a `SCHEMA_VERS
 | P8 | **Individual-unit (serial) traceability** | What is the full history of unit X, including retests? | serialized units, per-attempt facts, BOM/routing revision captured on WO | Not modeled | New domain | High | L | unscheduled (first domain extension after 0.2.0) |
 | P9 | Incoming quality hold, partial receipts, substitutes | Why is material unavailable though received? | new receipt states and events | Not modeled | New domain | Med | M-L | unscheduled (optional) |
 | P10 | Capacity vs load view | Can we meet next week's demand? | routing standard minutes, calendar, equipment | Standard minutes + calendar exist; no demand projection | Incremental, flagged **forecast** | Med | M | unscheduled |
-| P11 | Workforce: availability, skills, assignments, overtime | Is labor the real limit? | staff, skills, shifts, absences, skill requirements on routing steps | Not modeled; deferred by design (Phase 4) | New domain | High (as a portfolio piece) | XL | **post-0.2, optional** |
+| P11 | Workforce: availability, skills, assignments, overtime | Is labor the real limit? | staff, skills, shifts, absences, skill requirements on routing steps | Not modeled; deferred by design (Phase 4) | New domain | High (large domain extension) | XL | **post-0.2, optional** |
 | P12 | Finite-capacity scheduling, scenario comparison | What if we add a station or shift? | P11 plus scenario isolation | Not modeled (Phase 5) | New domain | High | XL | research only |
 
 Cost key (my judgment, not measured): S = a few days, M = about a week or two, L = several weeks, XL = a project in itself.
@@ -349,7 +349,7 @@ in the integration lane. M6a's `expected.json` should cover the S1 to S3 results
 | 1 | **S1a** lead time, lateness, past-due unshipped, on-time in-full dispatch *(implemented)* | §E.3, KPI_DEFINITIONS (proposed) | none | 0.1.0 |
 | 2 | **S1b** work-order decomposition (A) and conditions (B) *(implemented)* | same | S1a not required, shares helpers | 0.1.0 |
 | 3 | **S2** quality and scrap *(implemented)* | §E.3 | none | 0.1.0 |
-| 4 | **S3** bottleneck explanation | §E.3 | S1b helpers | 0.1.0 |
+| 4 | **S3** bottleneck explanation *(implemented)* | §E.3 | S1b helpers | 0.1.0 |
 | 5 | **S5/S6** order-to-work-order navigation, analytical Explorer/3D link, overlays | §E.3 | S1 to S3 | 0.1.0 |
 | 6 | Legal/asset review, README, screenshots, hosting, **tag 0.1.0** | §G.1 | 1-5 | 0.1.0 |
 | A | **M3a** atomic reducer *(may land at any point; independent of steps 1-6)* | Rev3 §8, §7.6 | M0 (done) | 0.2.0 |
@@ -449,7 +449,7 @@ no document, release note or demo text may say or imply otherwise. The README st
 ### G.1 Release 0.1.0: Public Preview
 
 1. **Purpose and audience.** A polished, accessible, open-source manufacturing intelligence application on synthetic data, useful and technically
-   interesting before any external integration exists. Audience: first-time visitors, reviewers, manufacturing and analytics engineers, contributors.
+   interesting before any external integration exists. Audience: first-time visitors, manufacturing and analytics engineers, contributors.
 2. **Required capabilities.**
    - Public GitHub repository; Apache License 2.0 (subject to the ownership, dependency and asset review); hosted demo without login; reproducible local setup.
    - Existing deterministic simulation, domain model, dashboard and 3D visualization (as in `STATUS.md`).
@@ -476,7 +476,7 @@ no document, release note or demo text may say or imply otherwise. The README st
 ### G.2 Release 0.2.0: Source Independence
 
 1. **Purpose and audience.** Show that the manufacturing intelligence is not coupled to the synthetic simulation: the same analytics, UI and 3D run from independently
-   structured data. Audience: engineers evaluating the architecture, integration and data-platform engineers, reviewers.
+   structured data. Audience: engineers evaluating the architecture, integration and data-platform engineers.
 2. **Required capabilities.** Source identity, provenance, validation, deterministic ordering, quarantine and exact input accounting for a finite batch (Revision 3
    §7.4a); the app booting from the simulation **through** the boundary and from an independently authored MES-like fixture; reproducible parity and correctness tests; a
    documented adapter contract and a short how-to for writing a source; visible counts (accepted, quarantined, unprojected, adapter rejections) and the source name.

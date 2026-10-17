@@ -1031,3 +1031,22 @@ table.orders,
   border-radius: 2px;
   background: var(--accent);
 }
+
+/* Bottleneck "why" panel (Work Centers tab) */
+.why-panel {
+  margin: 12px 0;
+}
+.why-list {
+  margin: 6px 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+}
+.why-tag {
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px solid var(--muted);
+  border-radius: 8px;
+  padding: 0 6px;
+  white-space: nowrap;
+}
