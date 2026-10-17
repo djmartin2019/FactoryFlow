@@ -1,0 +1,301 @@
+[
+  {
+    "type": "PURCHASE_ORDER_CREATED",
+    "name": "duplicate purchase order",
+    "decision": "reject",
+    "message": "duplicate purchase order PO-0001",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "PURCHASE_ORDER_CREATED",
+    "name": "material not supplied by the PO's supplier",
+    "decision": "reject",
+    "message": "MAT-ENC-M is not supplied by SUP-002",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "MATERIAL_RECEIVED",
+    "name": "duplicate receipt",
+    "decision": "reject",
+    "message": "duplicate receipt RCV-0001",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "MATERIAL_RECEIVED",
+    "name": "second line exceeds ordered quantity",
+    "decision": "reject",
+    "message": "receipt exceeds ordered quantity on POL-0005-3",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "MATERIAL_RECEIVED",
+    "name": "malformed second line raises TypeError",
+    "decision": "reject",
+    "message": "TypeError: Cannot read properties of null (reading 'purchaseOrderLineId')",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "INVENTORY_TRANSFERRED",
+    "name": "transfer exceeds available stock",
+    "decision": "reject",
+    "message": "TRANSFER_OUT: on-hand of MAT-TB-25 at REC-003 would become -999999500",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "INVENTORY_TRANSFERRED",
+    "name": "unknown destination location",
+    "decision": "reject",
+    "message": "unknown location LOC-NOPE",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "CUSTOMER_ORDER_CREATED",
+    "name": "duplicate customer order",
+    "decision": "reject",
+    "message": "duplicate customer order CO-0001",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "CUSTOMER_ORDER_CREATED",
+    "name": "unknown product on a line",
+    "decision": "reject",
+    "message": "unknown product NOPE",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "CUSTOMER_ORDER_CANCELLED",
+    "name": "unknown customer order",
+    "decision": "reject",
+    "message": "unknown customer order CO-NOPE",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "CUSTOMER_ORDER_CANCELLED",
+    "name": "second allocated line cannot release its reservation",
+    "decision": "reject",
+    "message": "FG_ALLOCATION_RELEASED: reserved of NCP-200 at SHP-002 would become -1",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "PRODUCTION_ORDER_CREATED",
+    "name": "duplicate production order",
+    "decision": "reject",
+    "message": "duplicate production order WO-0001",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "PRODUCTION_ORDER_CREATED",
+    "name": "duplicate operation ids within one event (accepted today)",
+    "decision": "accept"
+  },
+  {
+    "type": "PRODUCTION_ORDER_RELEASED",
+    "name": "order already holds reservations",
+    "decision": "reject",
+    "message": "cannot release order WO-0001 in status WAITING",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "PRODUCTION_ORDER_RELEASED",
+    "name": "later material is short after earlier reservations were applied",
+    "decision": "reject",
+    "message": "RESERVATION: available of MAT-PSU-24 at INV-003 would become -1 (onHand 2, reserved 3)",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "PRODUCTION_ORDER_CANCELLED",
+    "name": "unknown production order",
+    "decision": "reject",
+    "message": "unknown production order WO-NOPE",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "PRODUCTION_ORDER_CANCELLED",
+    "name": "later reservation cannot be released",
+    "decision": "reject",
+    "message": "RESERVATION_RELEASED: reserved of MAT-ENC-M at INV-001 would become -1",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "PRODUCTION_BLOCKED",
+    "name": "claimed shortage does not match inventory",
+    "decision": "reject",
+    "message": "claimed shortage of MAT-PLC-CPU does not match inventory (need 7, available 1)",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "PRODUCTION_BLOCKED",
+    "name": "machine block on an order that is not RUNNING",
+    "decision": "reject",
+    "message": "machine block requires a RUNNING order, WO-0075 is WAITING",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "PRODUCTION_RESUMED",
+    "name": "workstation is not restored",
+    "decision": "reject",
+    "message": "workstation ASM-005 is not restored",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "MATERIAL_CONSUMED",
+    "name": "material was never reserved",
+    "decision": "reject",
+    "message": "MAT-NOPE was never reserved for WO-0001",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "MATERIAL_CONSUMED",
+    "name": "second consumption lands on a non-assembly location",
+    "decision": "reject",
+    "message": "consumed material becomes WIP at an assembly workstation",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "MATERIAL_CONSUMED",
+    "name": "duplicate consumption entries",
+    "decision": "reject",
+    "message": "CONSUMPTION: on-hand of MAT-ENC-M at INV-001 would become -3",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "PRODUCTION_STARTED",
+    "name": "workstation is down",
+    "decision": "reject",
+    "message": "workstation ASM-001 is down",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "OPERATION_STARTED",
+    "name": "operation is not PENDING",
+    "decision": "reject",
+    "message": "operation OP-WO-0001-10 is COMPLETED, not PENDING",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "OPERATION_STARTED",
+    "name": "second equipment unit is busy",
+    "decision": "reject",
+    "message": "equipment EQ-CRIMP-02 is not free",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "OPERATION_COMPLETED",
+    "name": "operation is not running on that workstation",
+    "decision": "reject",
+    "message": "unknown workstation ASM-NOPE",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "OPERATION_COMPLETED",
+    "name": "rework quantity underflow",
+    "decision": "reject",
+    "message": "rework quantity underflow",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "PRODUCTION_COMPLETED",
+    "name": "produced quantity differs from the order",
+    "decision": "reject",
+    "message": "produced quantity must equal order quantity",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "QUALITY_INSPECTION_COMPLETED",
+    "name": "passed + failed does not equal inspected",
+    "decision": "reject",
+    "message": "passed + failed must equal inspected",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "QUALITY_INSPECTION_COMPLETED",
+    "name": "duplicate inspection",
+    "decision": "reject",
+    "message": "duplicate inspection QI-0001",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "REWORK_REQUESTED",
+    "name": "quantity does not match the failed inspection",
+    "decision": "reject",
+    "message": "rework quantity must match the failed inspection",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "REWORK_REQUESTED",
+    "name": "retest operation reuses the rework operation id",
+    "decision": "reject",
+    "message": "duplicate operation OP-WO-0013-50",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "FINISHED_GOODS_RECEIVED",
+    "name": "quantity is not the QC-approved remainder",
+    "decision": "reject",
+    "message": "only QC-approved units may be received (approved 4)",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "FINISHED_GOODS_RECEIVED",
+    "name": "WIP does not close",
+    "decision": "reject",
+    "message": "order WO-0002 closes with 1 units unaccounted for",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "FINISHED_GOODS_ALLOCATED",
+    "name": "allocation exceeds open quantity",
+    "decision": "reject",
+    "message": "allocation exceeds open quantity of CO-0001-L1",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "SHIPMENT_DISPATCHED",
+    "name": "duplicate shipment",
+    "decision": "reject",
+    "message": "duplicate shipment SHIP-0001",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "SHIPMENT_DISPATCHED",
+    "name": "second line exceeds its allocation",
+    "decision": "reject",
+    "message": "shipment of 6 exceeds 5 allocated on CO-0005-L2",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "SHIPMENT_DISPATCHED",
+    "name": "two lines on the same order line exceed its allocation together",
+    "decision": "reject",
+    "message": "shipment of 1 exceeds 0 allocated on CO-0001-L1",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "SHIPMENT_DISPATCHED",
+    "name": "malformed second line raises TypeError",
+    "decision": "reject",
+    "message": "TypeError: Cannot read properties of null (reading 'customerOrderLineId')",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "MACHINE_FAILED",
+    "name": "workstation is already down",
+    "decision": "reject",
+    "message": "workstation ASM-001 is already down",
+    "mutatedBeforeThrow": false
+  },
+  {
+    "type": "MACHINE_FAILED",
+    "name": "station points at a missing operation",
+    "decision": "reject",
+    "message": "unknown production operation OP-MISSING",
+    "mutatedBeforeThrow": true
+  },
+  {
+    "type": "MACHINE_RESTORED",
+    "name": "unknown downtime",
+    "decision": "reject",
+    "message": "unknown or already restored downtime",
+    "mutatedBeforeThrow": false
+  }
+]

@@ -608,6 +608,15 @@ M5 <- M4; M6 <- M4 (M6a also <- M5); M7 <- M6.
 - Record the load-pipeline baseline in `docs/PERFORMANCE.md`: parse time of `events.json` (2.5 MB), `FactoryReplay` construction, full replay, plus the measured clone cost.
 - *Accept:* `npm test` green; no `src/` change; the harness enumerates which event types actually partially mutate (confirming or correcting §7.6); corpus covers all 22 types.
 
+*M0 outcome (2026-10-16).* Implemented as `tests/helpers/{snapshot,atomicity,atomicityCorpus}.ts`, `tests/atomicity.test.ts`,
+`tests/behaviorPinning.test.ts`, `tests/orderingCensus.test.ts`, `tests/legacy/state.ts`, `tests/fixtures/behavior/corpus-decisions.json`
+and `scripts/bench-load.ts`; no `src/` change. Results: the harness **confirms all 11** partially mutating event types of
+section 7.6 (it also shows `TypeError` from malformed payloads escapes mid-loop for `MATERIAL_RECEIVED` and
+`SHIPMENT_DISPATCHED`). **Correction:** `PRODUCTION_ORDER_CREATED` *accepts* two operations sharing one id inside a single event
+(the duplicate check reads state that is written only after the loop), so M3a must either keep that decision for parity or
+change it deliberately with a fixture/migration note; it is pinned as `accept` in the corpus. Appendix B tie figures (1,346 /
+1,145 / 4,450 / 20 / 42) reproduce exactly and are now asserted. The corpus has 15 `it.fails` entries; M3a flips them.
+
 **M1. Contracts, runtime-validation primitives, observation semantics, identity policy, rule classification**
 - `src/sources/types.ts`: `CanonicalInput` union, `InputProvenance` (with `streamId`, `sourceOrdinal`, `sourceVersion`, `contentKey`), `MappingIssue`, `QuarantineRecord`, `SourceCapabilities` (with `ordinal`, `versioning`, `timePrecision`), `ConflictResolution`, `OrderHint`, `SourceKey`, `IdentityResolver`, `IdentityMap`, `Known<T>`.
 - Canonical JSON serialization (sorted keys, normalized numbers/timestamps) used for content equality; digest for audit only.

@@ -5,16 +5,12 @@ import { assemblyLanes } from "../src/manufacturing/masterData.ts";
 import { generateDataset } from "../src/manufacturing/generator.ts";
 import { FactoryReplay } from "../src/manufacturing/replay.ts";
 import { validateDataset } from "../src/manufacturing/validation.ts";
-import type { FactoryEvent, InitialStateFile, ManufacturingDataset } from "../src/manufacturing/types.ts";
+import { initialFileOf, snapshotAt as sharedSnapshotAt } from "./helpers/snapshot.ts";
+import type { FactoryEvent, ManufacturingDataset } from "../src/manufacturing/types.ts";
 
 const ASSEMBLY_WCS = ["WC-KITTING", "WC-ASSEMBLY", "WC-WIRING", "WC-MOTOR", "WC-CONTROLS"];
 
-function snapshotAt(d: ManufacturingDataset, ms: number): ReportingSnapshot {
-  const initial: InitialStateFile = { schemaVersion: d.manifest.schemaVersion, master: d.master, state: d.initialState };
-  const r = new FactoryReplay(structuredClone(initial), d.events);
-  r.advanceToMs(ms);
-  return { asOfMs: ms, startMs: Date.parse(d.initialState.asOf), master: d.master, state: r.state, events: r.appliedEvents() };
-}
+const snapshotAt = (d: ManufacturingDataset, ms: number): ReportingSnapshot => sharedSnapshotAt(initialFileOf(d), d.events, ms);
 
 describe("assembly lanes", () => {
   it("cover every assembly work center for any station count", () => {

@@ -65,6 +65,34 @@ Correctness baseline: `npm test` (72 tests, including `tests/contract.test.ts` o
 fixture) and `npm run validate:data` must pass. Treat a >2x regression in any row above as worth
 investigating. The browser results in the tables above predate this run and were not re-measured.
 
+## Load-pipeline baseline (M0 of the source integration plan)
+
+Recorded 2026-10-16 with `node scripts/bench-load.ts`; deliberately **not** asserted in CI. Same machine and Node as the
+Phase 0 baseline (Node 22.22.3, i9-9880H), mean of 5 runs after one warm-up. Default dataset: seed `northstar-2026`,
+schema 1.3.0, 4,651 events, `events.json` 2.51 MB. These are the figures the integration milestones (D7 budgets) are
+measured against.
+
+| Operation | Time |
+| --- | --- |
+| `JSON.parse(events.json)` (2.51 MB) | ~12 ms |
+| `JSON.parse(initial_state.json)` | ~0.1 ms |
+| `new FactoryReplay(initial, events)` (clones the initial state) | ~0.9 ms |
+| Full replay (`FactoryReplay.step()` over all 4,651 events) | ~53 ms |
+| Seek to 100% then back to start (two resets and one full replay) | ~43 ms |
+| `structuredClone(final state)` (5,098 transactions, 223 orders, 1,088 operations) | ~23 ms |
+| `JSON.stringify(final state)` (3.6 MB) | ~8-11 ms |
+| Clone-per-event over the whole log, upper bound (final-size clone x 4,651) | ~106 s |
+
+Notes:
+
+- The full replay is ~53 ms for 4,651 events (the Phase 0 row of ~30 ms was for the 4,073-event dataset); per-event
+  cost is about 11 us. Any reducer change is compared against this, with the 2x rule from the top of this document.
+- The clone-per-event row is a ceiling (early states are smaller than the final one), but it is three orders of
+  magnitude above the in-place replay. That is why section 7.6 of the plan rejects `applyEvent`-style cloning for replay
+  and ingest, and keeps it only as a test oracle.
+- Browser long tasks at load are unchanged by M0 (tests and docs only); the one-time parse cost above is a small part
+  of the 290-1,400 ms observed at load, the rest being scene construction.
+
 ## Demand calibration
 
 Baseline: 75 orders on 3 assembly stations gave 48-60% utilization (mean ~54%). Candidates on the 6-station

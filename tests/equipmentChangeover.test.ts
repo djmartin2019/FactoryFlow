@@ -2,20 +2,16 @@ import { describe, expect, it } from "vitest";
 import { equipmentLoad, workCenterLoad, type ReportingSnapshot } from "../src/analytics/index.ts";
 import { HOUR } from "../src/manufacturing/calendar.ts";
 import { generateDataset } from "../src/manufacturing/generator.ts";
-import { FactoryReplay } from "../src/manufacturing/replay.ts";
 import { changeoverSetup, pickEquipment } from "../src/manufacturing/rules.ts";
 import { replayWithGuard } from "../src/manufacturing/state.ts";
 import { validateDataset } from "../src/manufacturing/validation.ts";
+import { snapshotAt as sharedSnapshotAt } from "./helpers/snapshot.ts";
 import type { FactoryEvent, InitialStateFile, ManufacturingDataset } from "../src/manufacturing/types.ts";
 
 const d = generateDataset();
 const initial: InitialStateFile = { schemaVersion: d.manifest.schemaVersion, master: d.master, state: d.initialState };
 
-function snapshotAt(data: ManufacturingDataset, ms: number): ReportingSnapshot {
-  const r = new FactoryReplay(structuredClone(initial), data.events);
-  r.advanceToMs(ms);
-  return { asOfMs: ms, startMs: Date.parse(data.initialState.asOf), master: data.master, state: r.state, events: r.appliedEvents() };
-}
+const snapshotAt = (data: ManufacturingDataset, ms: number): ReportingSnapshot => sharedSnapshotAt(initial, data.events, ms);
 
 /** Events up to (excluding) the first OPERATION_STARTED matching `pick`, plus that event for mutation. */
 function upToFirst(pick: (e: Extract<FactoryEvent, { type: "OPERATION_STARTED" }>) => boolean) {
