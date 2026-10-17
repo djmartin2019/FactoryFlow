@@ -17,6 +17,7 @@ import {
   workOrderCounts,
   workOrderDetail,
   workOrderSummaries,
+  workOrderTime,
   type PeriodId,
   type WorkOrderCategory,
   type WorkOrderSummary,
@@ -830,7 +831,7 @@ export class OperationsExplorer {
     const snap = reportingSnapshot(this.sim);
     const detail = workOrderDetail(snap, this.selectedId);
     this.drawerKey = this.dataKey;
-    if (detail) this.drawer.render(detail);
+    if (detail) this.drawer.render(detail, workOrderTime(snap, this.selectedId));
     else this.drawer.renderMissing(this.selectedId);
   }
 }

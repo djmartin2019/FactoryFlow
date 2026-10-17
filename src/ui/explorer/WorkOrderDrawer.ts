@@ -1,6 +1,6 @@
-import type { WorkOrderDetail } from "../../analytics";
+import { TIME_CATEGORIES, type TimeCategory, type WorkOrderDetail, type WorkOrderTime } from "../../analytics";
 import { el } from "../dom";
-import { fmtDateTime, statusBadge, STATUS_TEXT } from "./format";
+import { fmtDateTime, fmtDuration, statusBadge, STATUS_TEXT } from "./format";
 
 function table(headers: string[], rows: Array<Array<string | Node>>, numeric: number[] = []): HTMLElement {
   const wrap = el("div", "tbl-scroll");
@@ -49,6 +49,55 @@ const OUTCOME: Record<string, string> = {
   REWORK_AND_SCRAP: "Rework + scrap",
 };
 
+const CATEGORY_LABEL: Record<TimeCategory, string> = {
+  PRE_RELEASE: "Before release",
+  MATERIAL_BLOCKED: "Blocked: material shortage",
+  HELD_MACHINE_DOWN: "Held: machine down",
+  PROCESSING: "Processing",
+  QUEUE_WAIT: "Waiting to start (in shift)",
+  OFF_SHIFT: "Waiting to start (off shift)",
+  POST_PRODUCTION: "After last operation, before receipt",
+  UNCLASSIFIED: "Unclassified",
+};
+
+/** Elapsed-time breakdown (exclusive categories) and contributing conditions (overlapping, indicative). */
+function timeSections(t: WorkOrderTime): HTMLElement[] {
+  const pct = (ms: number) => (t.elapsedMs > 0 ? `${((100 * ms) / t.elapsedMs).toFixed(0)}%` : "N/A");
+  const rows = TIME_CATEGORIES.map((c): [string, string, string] => [CATEGORY_LABEL[c], fmtDuration(t.totalsMs[c]), pct(t.totalsMs[c])]);
+  rows.push(["Total elapsed", fmtDuration(t.elapsedMs), "100%"]);
+  const c = t.conditions;
+  const cond: Array<[string, string]> = [
+    ["Material shortage", c.materialShortageMs > 0 ? fmtDuration(c.materialShortageMs) : "none"],
+    ["A serving station was down while waiting", c.stationUnavailableMs > 0 ? fmtDuration(c.stationUnavailableMs) : "none"],
+    ["Off shift", fmtDuration(c.offShiftMs)],
+    ["Changeover setup (inside processing)", `${c.changeoverSetupMinutes} min across ${c.changeovers} changeover${c.changeovers === 1 ? "" : "s"}${c.setupShareOfProcessing === null ? "" : `, ${(c.setupShareOfProcessing * 100).toFixed(0)}% of processing`}`],
+  ];
+  const now = t.currentWait;
+  cond.push([
+    "Equipment (current state)",
+    now ? (now.missingEquipment.length ? `no free unit now of: ${now.missingEquipment.join(", ")}` : "available now") : "not waiting now",
+  ]);
+  cond.push([
+    "Work-center backlog (current state)",
+    now ? `${now.workCenterName}: position ${now.queuePosition} of ${now.queuedOrders} queued, ${Math.round(now.queuedMinutes)} std. min waiting` : "not waiting now",
+  ]);
+  const flow = kv([
+    ["Flow time (created to completed)", t.flowTimeMs === null ? "N/A (not completed)" : fmtDuration(t.flowTimeMs)],
+    ["Cycle time (released to completed)", t.cycleTimeMs === null ? "N/A" : fmtDuration(t.cycleTimeMs)],
+  ]);
+  const hints = [
+    "Every moment of the order's life is in exactly one category, so the rows sum to the total" + (t.open ? " (order still open: counted to the current simulated time)" : "") + ". Categories describe what state the order was in, not why.",
+  ];
+  return [
+    section("Elapsed time", flow, table(["Category", "Time", "Share"], rows, [1, 2]), el("p", "hint", hints.join(" "))),
+    section(
+      "Contributing conditions (indicative, may overlap, not additive)",
+      kv(cond),
+      el("p", "hint", "These conditions can hold at the same time as each other and as the categories above, so they must not be added up or read as shares of elapsed time. They are context, not proven root causes. Equipment and backlog are observations as of the current simulated time, not durations."),
+    ),
+  ];
+}
+
 /** Right-side detail drawer. Content is rebuilt only when `render` is called. */
 export class WorkOrderDrawer {
   readonly element = el("aside", "wo-drawer");
@@ -81,7 +130,7 @@ export class WorkOrderDrawer {
     );
   }
 
-  render(d: WorkOrderDetail): void {
+  render(d: WorkOrderDetail, time: WorkOrderTime | null = null): void {
     const scroll = this.body.scrollTop;
     this.element.hidden = false;
     const s = d.summary;
@@ -190,7 +239,7 @@ export class WorkOrderDrawer {
         : el("div", "empty-state", "No events yet."),
     );
 
-    this.body.replaceChildren(summary, routing, materials, quality, timeline);
+    this.body.replaceChildren(summary, ...(time ? timeSections(time) : []), routing, materials, quality, timeline);
     this.body.scrollTop = scroll;
   }
 }

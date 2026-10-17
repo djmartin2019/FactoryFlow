@@ -70,9 +70,9 @@ It marks where WIP waits, not why: a long queue can come from lane capacity, a f
 - Per-station queue length (`workstationViews`): for ASSEMBLY stations, orders whose next step belongs to a work center the station serves (orders with a ready step in a shared lane count at every station serving it); for INSPECTION stations, orders AWAITING_QC. It is not a dispatch assignment.
 - Dataset is synthetic; these are demonstration measurements, not operational data. The UI carries the label "Demo Mode — Synthetic Manufacturing Data".
 
-## Proposed, not implemented: dispatch, lead time and work-order time (slice S1)
+## Dispatch, lead time and work-order time (slice S1, implemented)
 
-**Status by part.** The *Order metrics (S1a)* and *On-Time In-Full Dispatch* tables below are **IMPLEMENTED** (`src/analytics/dispatch.ts`, Explorer "Dispatch" tab, `tests/dispatch.test.ts`). Everything else in this section (work-order flow and cycle time, the exclusive categories A, the conditions B, and the reconciliation with the drawer) is **PROPOSED / NOT IMPLEMENTED** (slice S1b). The section defines semantics before any card, tab or
+**Status by part.** All of this section is **IMPLEMENTED**. S1a (the *Order metrics* and *On-Time In-Full Dispatch* tables): `src/analytics/dispatch.ts`, the Explorer "Dispatch" tab, `tests/dispatch.test.ts`. S1b (work-order flow and cycle time, the exclusive categories A, the conditions B, and the reconciliation with the drawer): `src/analytics/workOrderTime.ts`, the "Elapsed time" and "Contributing conditions" sections of the work-order drawer, `tests/workOrderTime.test.ts`. The section defines semantics before any card, tab or
 chart exists (see `CLAUDE.md`). Scope is release 0.1.0 (`docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md` §E.3). Everything here
 reports **observed facts** from events and state. There is no forecast and no predicted delivery risk; "at risk" is not a
 term used by this section. Slices S1a and S1b are approved against these definitions (plan §L8); a part is marked implemented only when its code and tests exist.
@@ -126,7 +126,7 @@ Lead-time statistics (median, P90) cover `SHIPPED` orders whose final-dispatch i
 **Implementation notes (S1a).** Durations are kept in milliseconds internally and rounded only for display, so the segment identity is exact. The final-dispatch instant is derived by accumulating an order's shipments (ordered by dispatch time, then id) until every line is fully shipped; a `SHIPPED` order for which that cannot be derived is excluded from the cohort and reported as *indeterminate* (zero on the default dataset). Under the current reducer an order can only be cancelled while `OPEN` and unshipped, so a cancellation after a partial dispatch cannot occur; cancelled orders are excluded and counted regardless. The planned-work-orders list comes from `ProductionOrder.demandLineIds`.
 They exclude open orders, which biases them low while many orders are open; the view shows the open count beside them.
 
-### Work-order flow time versus cycle time versus order lead time (S1b, PROPOSED)
+### Work-order flow time versus cycle time versus order lead time (S1b, implemented)
 
 | Measure | Definition |
 |---|---|
@@ -134,7 +134,7 @@ They exclude open orders, which biases them low while many orders are open; the 
 | Work-order cycle time | `completedAt` - `releasedAt` (shop-floor time after material is reserved) |
 | Relationship | Neither is a component of order lead time. A customer order may be filled from stock with no work order, and its linked work orders are a planning link |
 
-### A. Mutually exclusive elapsed-time categories (work order, S1b, PROPOSED)
+### A. Mutually exclusive elapsed-time categories (work order, S1b, implemented)
 
 A decomposition of **one work order's** elapsed time in which every instant belongs to **exactly one** category, built from the
 event log and replayed state. It is **not** defined at customer-order level (planning-link note above). It is descriptive: it says
@@ -204,7 +204,7 @@ previous **completed** step's `completedAt` thereafter; `Processing` = rounded e
 4. *Processing and Hold:* for completed steps, Σ step `Processing` + Σ step `Hold` equals the `PROCESSING` + `HELD_MACHINE_DOWN` time of the same steps within rounding (<= 0.5 minute per step and per pause); `pausedMinutes` is rounded per pause by the reducer, so the exact event-derived `HELD_MACHINE_DOWN` may differ from it by that bound. Report any larger difference instead of adjusting either side.
 5. *Never asserted:* equality of the drawer's `Wait` with `QUEUE_WAIT` over the whole work-order life, or with any category that includes the open wait, off-shift time, `POST_PRODUCTION` or `UNCLASSIFIED`.
 
-### B. Overlapping contributing conditions (not a partition; S1b, PROPOSED)
+### B. Overlapping contributing conditions (not a partition; S1b, implemented)
 
 Conditions that may hold at the same time, during the same order's wait, and **must not be summed, stacked or presented as
 shares of elapsed time**. They are *descriptive indicators of context*, labelled *contributing conditions* or *indicative causes*, never
@@ -219,6 +219,10 @@ proven root causes. They do not change the A categories. A reader must be told t
 | Work-center backlog | queued standard minutes ahead of the step at its work center | **Current-state observation only**, as of `asOf`. Not a historical duration; no queue-over-time series in 0.1.0 |
 | Off shift | plant outside the working calendar | Event/calendar; also the exclusive `OFF_SHIFT` category in A, listed here only as a condition |
 | Quality hold | not modeled (incoming quality hold is design Phase 3) | **Deferred**; inspection queueing appears as `QUEUE_WAIT`/`PROCESSING`, not as a hold |
+
+**Implementation notes (S1b).** *Station unavailable* is the in-shift `QUEUE_WAIT` time during which **at least one** station serving the waiting step's work center (or, for sources without work centers, workstation kind) was down; it is a reduced-capacity indicator, not "all stations down". *Changeover* uses the applied `setupMinutes`, falling back to the standard setup when none was recorded (as the Work Centers tab does). Equipment and backlog are reported only for an open order whose next step is waiting in a work-center queue right now: its queue position, the number of queued orders, queued standard minutes, and the equipment kinds with no free unit. The reducer-state predicates are tracked from the order's own events (operation statuses, release, blocks, awaiting-QC and rework quantities); a work order with no `PRODUCTION_ORDER_CREATED` event in the log has no breakdown (shown as unavailable). A wait run is *closed* when it is followed by a `PROCESSING` interval and *open* otherwise.
+
+**Verified on the default dataset** (`tests/workOrderTime.test.ts`, at the end of the run and mid-run): the categories sum to elapsed time exactly for every non-cancelled order; `UNCLASSIFIED` and the tie count are zero; `POST_PRODUCTION` is zero, as predicted; the closed `QUEUE_WAIT` equals the drawer's unrounded step waits exactly (so the rework-request gap is zero) and the displayed waits are within 0.5 minute per step; Processing plus Hold are within rounding of `PROCESSING` plus `HELD_MACHINE_DOWN`.
 
 Current-state observations are labelled "current state at <asOf>". Historical equipment and backlog analysis may be added later only through a tested
 event-walk implementation, and only if justified.

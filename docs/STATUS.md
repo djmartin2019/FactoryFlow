@@ -59,7 +59,7 @@ does not exist; do not assume it.
 | 3D selection linked to work-order detail | Partial | station panel "Open WO detail" button opens the Explorer drawer for the station's current order; no unit-level link |
 | Bottleneck analysis and "why" explanations | Proposed | design §8.4, §9.3 |
 | Order dispatch and lead-time analytics (Order-to-Final-Dispatch Lead Time, Dispatch Lateness, Past-Due Unshipped Orders, On-Time In-Full Dispatch, Quantity Fill by Due Date) | Implemented | `analytics/dispatch.ts`, Explorer "Dispatch" tab, `tests/dispatch.test.ts`; dispatch basis (no customer-receipt data), observed facts only, no forecast; definitions in `KPI_DEFINITIONS.md` |
-| Work-order elapsed-time decomposition and contributing conditions (S1b) | Proposed | defined, **unimplemented**, in `KPI_DEFINITIONS.md`; release 0.1.0 scope in `OPEN_SOURCE_DEVELOPMENT_PLAN.md` |
+| Work-order elapsed-time decomposition, flow/cycle time and contributing conditions (S1b) | Implemented | `analytics/workOrderTime.ts`, work-order drawer sections, `tests/workOrderTime.test.ts`; exclusive categories sum exactly to elapsed time; conditions are indicative and overlapping; equipment and backlog are current-state observations only; open orders counted to the current simulated time |
 | Quality and scrap analytics (scrap and rework rate, defect Pareto) | Proposed | data exists (`QualityInspection.scrapQuantity`, `defects`); no view; release 0.1.0 scope |
 | Capability-aware UX (known / inferred / forecast) | Proposed | design §12.3 |
 
