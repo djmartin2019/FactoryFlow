@@ -14,10 +14,10 @@ import {
 import { DAY, HOUR } from "../src/manufacturing/calendar.ts";
 import { computeKpis } from "../src/manufacturing/dashboardMetrics.ts";
 import { generateDataset } from "../src/manufacturing/generator.ts";
-import { FactoryReplay } from "../src/manufacturing/replay.ts";
 import type { FactoryEvent, ManufacturingDataset } from "../src/manufacturing/types.ts";
 import { reportingSnapshot } from "../src/simulation/reportingSnapshot.ts";
 import { SimulationController } from "../src/simulation/SimulationController.ts";
+import { literalSnapshot, snapshotAt as sharedSnapshotAt } from "./helpers/snapshot.ts";
 
 let data: ManufacturingDataset;
 const initialFile = () => ({ schemaVersion: "1.0.0", master: data.master, state: data.initialState });
@@ -29,11 +29,7 @@ beforeAll(() => {
   data = generateDataset();
 });
 
-function snapshotAt(ms: number): ReportingSnapshot {
-  const r = new FactoryReplay(initialFile(), data.events);
-  r.advanceToMs(ms);
-  return { asOfMs: ms, startMs: startMs(), master: data.master, state: r.state, events: r.appliedEvents() };
-}
+const snapshotAt = (ms: number): ReportingSnapshot => sharedSnapshotAt(initialFile(), data.events, ms);
 
 describe("work order status", () => {
   it("maps domain status onto reporting categories", () => {
@@ -110,18 +106,16 @@ describe("reporting window boundaries", () => {
 
   it("includes an event at `now`, excludes one at the window start and after now", () => {
     const from = now - DAY;
-    const snap: ReportingSnapshot = {
+    const snap: ReportingSnapshot = literalSnapshot(initialFile(), {
       asOfMs: now,
       startMs: now - 10 * DAY,
-      master: data.master,
-      state: data.initialState,
       events: [
         fg(1, new Date(from).toISOString(), 5), // exactly at window start: excluded
         fg(2, new Date(from + 1).toISOString(), 3),
         fg(3, new Date(now).toISOString(), 2), // exactly now: included
         fg(4, new Date(now + 1).toISOString(), 100), // future: excluded
       ],
-    };
+    });
     const s = goodUnitsThroughput(snap, "24h");
     expect(s.total).toBe(5);
     expect(s.granularity).toBe("hour");

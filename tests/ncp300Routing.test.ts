@@ -1,18 +1,11 @@
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it } from "vitest";
-import { workOrderDetail, type ReportingSnapshot } from "../src/analytics/index.ts";
+import { workOrderDetail } from "../src/analytics/index.ts";
 import { generateDataset } from "../src/manufacturing/generator.ts";
-import { FactoryReplay } from "../src/manufacturing/replay.ts";
 import type { FactoryEvent, InitialStateFile, ManufacturingDataset } from "../src/manufacturing/types.ts";
+import { endSnapshot } from "./helpers/snapshot.ts";
 
 const NCP300_TYPES = ["KIT", "MOUNT", "WIRE", "CONFIGURE", "FINAL_TEST"];
-
-function endSnapshot(initial: InitialStateFile, events: FactoryEvent[]): ReportingSnapshot {
-  const r = new FactoryReplay(structuredClone(initial), events);
-  const last = Date.parse(events[events.length - 1].timestamp);
-  r.advanceToMs(last);
-  return { asOfMs: last, startMs: Date.parse(initial.state.asOf), master: initial.master, state: r.state, events: r.appliedEvents() };
-}
 
 describe("NCP-300 routing", () => {
   let data: ManufacturingDataset;
