@@ -105,7 +105,8 @@ export class WorkOrderDrawer {
     );
   }
 
-  render(d: WorkOrderDetail, time: WorkOrderTime | null = null): void {
+  /** `showInFactory` is set only when a 3D view exists and the work order maps to an object in it. */
+  render(d: WorkOrderDetail, time: WorkOrderTime | null = null, showInFactory: (() => void) | null = null): void {
     const scroll = this.body.scrollTop;
     this.element.hidden = false;
     const s = d.summary;
@@ -125,8 +126,16 @@ export class WorkOrderDrawer {
       customer.append(b, ` (${c.customerName})`);
     });
 
+    const where = el("p", "hint");
+    if (showInFactory) {
+      const b = el("button", "btn", "Show in factory");
+      b.title = "Select where this work order currently is (or last was) in the 3D plant";
+      b.addEventListener("click", showInFactory);
+      where.append(b);
+    }
     const summary = section(
       "Order summary",
+      ...(showInFactory ? [where] : []),
       kv([
         ["Product", `${s.productName} (${s.sku})`],
         ["Status", statusBadge(s.status, statusLabel)],

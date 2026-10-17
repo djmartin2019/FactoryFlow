@@ -311,3 +311,26 @@ independent and **shortfalls are never added across orders** (the by-material ta
 **Verified** (`tests/materialShortages.test.ts`): the KPI agreement above; required, available and short-by from the BOM and balances; each supply status, cumulative cover, partly received
 lines, ignored received orders and overdue supply from constructed purchase orders; and the customer-order links.
 
+## 3D overlays (slice S6, implemented)
+
+Implemented in `src/analytics/overlays.ts` (what is highlighted and how strongly; no Three.js), `FactoryVisualizer` (turns an intensity into a colour), the "Colour by" selector over
+the 3D view, and `tests/overlays.test.ts`. An overlay adds **no new measure**: each one recolours objects from a number an Explorer or dashboard table already shows, so the picture and the
+table cannot disagree. **Status** is the default and is not an overlay; it keeps the normal station colours (running, idle, blocked on material, down). With an overlay on, objects it does not
+highlight are drawn dark, and highlighted ones run from light blue (low) to a bright mode colour (high). The caption over the view always states the title, the meaning of low and high, and what dark means.
+
+| Overlay | Highlighted objects | Intensity (0..1) | Same number as |
+|---|---|---|---|
+| Queue | Workstations with at least one order waiting in front of them | queued orders ÷ the most queued at any station | the station table's queue column (`workstationViews`: assembly stations count orders whose next step a work center they serve; inspection stations count orders awaiting QC) |
+| Utilization | Workstations that have a utilization figure in the dashboard's reporting period | busy ÷ scheduled shift time, capped at 1 | the station table's utilization column (`stationMetrics`) |
+| Material shortage | Raw-storage locations holding a material that a blocked work order is short of | blocked work orders short of something stored there ÷ the most at any location | the Material Shortages tab (`materialShortages`) |
+
+Notes. Queue counts are per station, so stations serving the same work center show the same queue; this is the table's definition, not a new one. Utilization re-derives every simulated quarter
+hour (it depends on a trailing window) and when the reporting period changes. Overlays never colour by a forecast. Colours are a presentation of the value, never a separate score.
+**Explorer to 3D.** "Show in factory" buttons (work-order and customer-order drawers, and "Show racks" on the Material Shortages tab) select the object the existing mapping assigns to the record
+(`factoryObjectsForEntity`: a work order's current or last location, a customer order's finished-goods location, a material's storage rack); "Show racks" also switches to the shortage overlay. The
+buttons are absent when WebGL is unavailable, and the Explorer works fully without the 3D view.
+**Verified** (`tests/overlays.test.ts`): at sampled times across the run, each overlay's highlighted set equals the set recomputed independently from the matching analytics (queue from the ready
+operations, utilization from `stationMetrics` per period, shortage from `materialShortages` and the BOM storage racks), intensities are within 0..1 with the maximum at 1, every highlighted object exists
+in the 3D layout, and every work order, customer order, shipment, purchase order, material and product maps to objects that exist in the layout. **Not verified:** the rendered colours and the selector
+UI, which need a real WebGL browser.
+

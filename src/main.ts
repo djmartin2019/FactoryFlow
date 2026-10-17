@@ -47,6 +47,7 @@ async function main() {
   try {
     scene = new SceneManager(dashboard.layout.viewport, simulation, {
       onSelectionChange: (id) => dashboard.setSelected(id),
+      getPeriod: () => dashboard.reportingPeriod,
     });
     const s = scene;
     dashboard.attachSelection(s.details, (id) => s.select(id));
@@ -72,7 +73,17 @@ async function main() {
   const explorer = new OperationsExplorer(simulation, () => dashboard.reportingPeriod);
   container.append(explorer.element);
   dashboard.onRefresh(() => explorer.update());
-  dashboard.onPeriodChange(() => explorer.update(true));
+  dashboard.onPeriodChange(() => {
+    explorer.update(true);
+    scene?.refreshVisuals();
+  });
+  if (scene) {
+    const s = scene;
+    explorer.setFactoryLink((ids, mode) => {
+      show("overview");
+      s.focus(ids, mode);
+    });
+  }
 
   scene?.details.onOpenWorkOrder((id) => {
     show("explorer");

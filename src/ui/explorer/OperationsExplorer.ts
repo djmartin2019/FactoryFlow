@@ -13,6 +13,7 @@ import {
   qualityReport,
   materialShortages,
   customerOrderDetail,
+  type OverlayMode,
   type MaterialShortageReport,
   bottleneckExplanations,
   type BottleneckExplanation,
@@ -40,6 +41,7 @@ import { ThroughputChart } from "./ThroughputChart";
 import { CustomerOrderDrawer } from "./CustomerOrderDrawer";
 import { WorkOrderDrawer } from "./WorkOrderDrawer";
 import { entityTab, type EntityRef, type ExplorerTab } from "../route";
+import { factoryObjectsForEntity } from "../../manufacturing/mapping";
 
 const REFRESH_MS = 500;
 const PAGE_SIZE = 100;
@@ -133,6 +135,8 @@ export class OperationsExplorer {
   /** Entities the user navigated away from through drawer links; the drawers' Back button walks it. */
   private trail: EntityRef[] = [];
   private routeListener: (() => void) | null = null;
+  /** Set by the app when a 3D view exists: select these objects there, optionally with an overlay. Absent without WebGL, which hides the buttons. */
+  private showInFactory: ((ids: string[], mode?: OverlayMode) => void) | null = null;
   private readonly chart = new ThroughputChart();
   private readonly productSelect = el("select", "ctl");
   private drawerKey = "";
@@ -819,6 +823,14 @@ export class OperationsExplorer {
           tr.append(el("td", undefined, "No shortfall at current balances; release is pending"), el("td"), el("td"), el("td"), el("td"));
         }
         const cust = el("td");
+        if (first && this.showInFactory && o.lines.length > 0) {
+          const show = this.showInFactory;
+          const racks = [...new Set(o.lines.flatMap((l) => factoryObjectsForEntity({ kind: "material", id: l.materialId }, this.sim.state, this.sim.engine.master)))];
+          const b = el("button", "link-btn", "Show racks");
+          b.title = "Colour the plant by material shortage and select the first rack holding a short material";
+          b.addEventListener("click", () => show(racks, "shortage"));
+          cust.append(b, " · ");
+        }
         if (first) {
           if (o.customerOrderIds.length === 0) cust.append("–");
           o.customerOrderIds.forEach((cid, ci) => {
@@ -1224,6 +1236,11 @@ export class OperationsExplorer {
     return { tab: this.tab };
   }
 
+  /** Let the Explorer select objects in the 3D plant (the app passes null-equivalent by not calling this when WebGL is unavailable). */
+  setFactoryLink(fn: (ids: string[], mode?: OverlayMode) => void): void {
+    this.showInFactory = fn;
+  }
+
   /** Called whenever `route()` may have changed. */
   onRouteChange(listener: () => void): void {
     this.routeListener = listener;
@@ -1252,7 +1269,12 @@ export class OperationsExplorer {
     const snap = reportingSnapshot(this.sim);
     const detail = workOrderDetail(snap, this.selectedId);
     this.drawerKey = this.dataKey;
-    if (detail) this.drawer.render(detail, workOrderTime(snap, this.selectedId));
+    if (detail) {
+      const id = this.selectedId;
+      const ids = factoryObjectsForEntity({ kind: "productionOrder", id }, this.sim.state, snap.master);
+      const show = this.showInFactory;
+      this.drawer.render(detail, workOrderTime(snap, id), show && ids.length ? () => show(ids) : null);
+    }
     else this.drawer.renderMissing(this.selectedId);
   }
 
@@ -1262,7 +1284,12 @@ export class OperationsExplorer {
     const snap = reportingSnapshot(this.sim);
     const detail = customerOrderDetail(snap, this.selectedCoId);
     this.coDrawerKey = this.dataKey;
-    if (detail) this.coDrawer.render(detail);
+    if (detail) {
+      const id = this.selectedCoId;
+      const ids = factoryObjectsForEntity({ kind: "customerOrder", id }, this.sim.state, snap.master);
+      const show = this.showInFactory;
+      this.coDrawer.render(detail, show && ids.length ? () => show(ids) : null);
+    }
     else this.coDrawer.renderMissing(this.selectedCoId);
   }
 }

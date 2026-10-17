@@ -10,3 +10,4 @@ export * from "./quality.ts";
 export * from "./bottleneck.ts";
 export * from "./materialShortages.ts";
 export * from "./customerOrders.ts";
+export * from "./overlays.ts";

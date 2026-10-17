@@ -47,7 +47,8 @@ export class CustomerOrderDrawer {
     this.body.replaceChildren(el("div", "empty-state", `${id} does not exist at the selected simulation time. Seek forward to see it.`));
   }
 
-  render(d: CustomerOrderDetail): void {
+  /** `showInFactory` is set only when a 3D view exists and the order's finished goods map to an object in it. */
+  render(d: CustomerOrderDetail, showInFactory: (() => void) | null = null): void {
     const scroll = this.body.scrollTop;
     this.element.hidden = false;
     this.title.textContent = d.orderId;
@@ -66,8 +67,16 @@ export class CustomerOrderDrawer {
       ? `${fmtDuration(o.segments.toFirstAllocationMs)} to first allocation · ${fmtDuration(o.segments.allocationToFirstDispatchMs)} to first dispatch · ${fmtDuration(o.segments.firstToFinalDispatchMs)} to final dispatch`
       : "N/A";
 
+    const where = el("p", "hint");
+    if (showInFactory) {
+      const b = el("button", "btn", "Show finished-goods location");
+      b.title = "Select where this order's finished goods are stored in the 3D plant";
+      b.addEventListener("click", showInFactory);
+      where.append(b);
+    }
     const summary = section(
       "Order summary",
+      ...(showInFactory ? [where] : []),
       kv([
         ["Customer", `${d.customerName} (${d.customerId})`],
         ["Status", ORDER_STATUS[o.status] ?? o.status],

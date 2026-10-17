@@ -9,6 +9,10 @@ import StationDetails from "../ui/StationDetails";
 import { PerfOverlay } from "../ui/PerfOverlay";
 import { SceneLegend } from "../ui/SceneLegend";
 import { PRODUCT_COLORS } from "./WipBuffers";
+import { overlayFor, type Overlay, type OverlayMode } from "../analytics/overlays";
+import type { PeriodId } from "../analytics/periods";
+import { reportingSnapshot } from "../simulation/reportingSnapshot";
+import { OverlayControl } from "../ui/OverlayControl";
 
 export class SceneManager {
   private readonly scene: THREE.Scene;
@@ -23,6 +27,10 @@ export class SceneManager {
   private readonly perf: PerfOverlay;
   private lastVisualizedSequence = -1;
   private lastShiftOpen: boolean | null = null;
+  private lastVisualKey = "";
+  private overlayMode: OverlayMode = "status";
+  private overlayControl!: OverlayControl;
+  private readonly getPeriod: () => PeriodId;
   private active = true;
   private readonly resizeObserver: ResizeObserver;
   private readonly onSelectionChange?: (id: string | null) => void;
@@ -30,9 +38,10 @@ export class SceneManager {
   constructor(
     container: HTMLElement,
     simulation: SimulationController,
-    options: { onSelectionChange?: (id: string | null) => void } = {},
+    options: { onSelectionChange?: (id: string | null) => void; getPeriod?: () => PeriodId } = {},
   ) {
     this.onSelectionChange = options.onSelectionChange;
+    this.getPeriod = options.getPeriod ?? (() => "24h");
     this.simulation = simulation;
     this.scene = new THREE.Scene();
 
@@ -59,6 +68,8 @@ export class SceneManager {
     this.scene.add(this.factory.group);
     const factory = this.factory;
 
+    // Must exist before the first syncVisuals(), which reports the active overlay to it.
+    this.overlayControl = new OverlayControl(container, (mode) => this.setOverlayMode(mode));
     this.visualizer = new FactoryVisualizer(factory.objectsById, factory.group);
     this.syncVisuals();
 
@@ -91,6 +102,25 @@ export class SceneManager {
   public select(id: string | null): void {
     const mesh = id ? this.factory.objectsById.get(id) : undefined;
     this.interactionManager.select(mesh ?? null);
+  }
+
+  /** Colour the factory from an analytical overlay ("status" restores the normal status colours). */
+  public setOverlayMode(mode: OverlayMode): void {
+    if (this.overlayMode === mode) return;
+    this.overlayMode = mode;
+    this.refreshVisuals();
+  }
+
+  /** Re-derive the visuals now (e.g. after the reporting period changed). */
+  public refreshVisuals(): void {
+    this.lastVisualizedSequence = -1;
+    this.syncVisuals();
+  }
+
+  /** Bring objects into view from outside the scene: optionally switch the overlay, then select the first object. */
+  public focus(objectIds: readonly string[], mode?: OverlayMode): void {
+    if (mode) this.setOverlayMode(mode);
+    if (objectIds.length > 0) this.select(objectIds[0]);
   }
 
   private setupLighting(): void {
@@ -165,11 +195,17 @@ export class SceneManager {
     // Shift boundaries change what the queues mean without any event being applied.
     const shiftOpen = inShift(nowMs);
 
-    if (state.lastSequence === this.lastVisualizedSequence && shiftOpen === this.lastShiftOpen) return;
+    // Overlays that depend on a trailing window also move with the clock, so they are re-derived every simulated quarter hour.
+    const key = `${this.overlayMode}|${this.getPeriod()}|${this.overlayMode === "utilization" ? Math.floor(nowMs / 900_000) : 0}`;
+    if (state.lastSequence === this.lastVisualizedSequence && shiftOpen === this.lastShiftOpen && key === this.lastVisualKey) return;
     this.lastVisualizedSequence = state.lastSequence;
     this.lastShiftOpen = shiftOpen;
+    this.lastVisualKey = key;
 
-    this.visualizer.update(state, this.simulation.engine.master, nowMs);
+    let overlay: Overlay | null = null;
+    if (this.overlayMode !== "status") overlay = overlayFor(reportingSnapshot(this.simulation), this.overlayMode, this.getPeriod());
+    this.overlayControl.setMode(this.overlayMode, overlay);
+    this.visualizer.update(state, this.simulation.engine.master, nowMs, overlay);
   }
 
   private handleResize = (): void => {

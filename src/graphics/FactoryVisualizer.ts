@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import type { OperationalStatus } from "./FactoryObject";
 import type { FactoryObjectConfig } from "./FactoryObject";
+import type { Overlay } from "../analytics/overlays";
 import { inventoryByLocation, workstationViews } from "../manufacturing/selectors";
 import type { FactoryState, MasterData } from "../manufacturing/types";
 import { WipBuffers } from "./WipBuffers";
@@ -24,6 +25,15 @@ const FILL_COLORS = {
 /** Layout objects the dataset has no workstation for (e.g. unstaffed line). */
 const OFFLINE_COLOR = new THREE.Color("#334155");
 
+/** Analytical overlays: objects the overlay does not highlight are muted, highlighted ones run from a cool base to a mode colour. */
+const OVERLAY_MUTED = new THREE.Color("#1f2d44");
+const OVERLAY_COOL = new THREE.Color("#3b5b86");
+const OVERLAY_HOT: Record<Overlay["mode"], THREE.Color> = {
+  queue: new THREE.Color("#ffb454"),
+  utilization: new THREE.Color("#2ee6a6"),
+  shortage: new THREE.Color("#ff5c7a"),
+};
+
 const HIGH_FILL = 0.7;
 const FULL_FILL = 0.95;
 
@@ -32,6 +42,7 @@ export class FactoryVisualizer {
   private readonly objectsById: ReadonlyMap<string, THREE.Mesh>;
   private readonly parent: THREE.Object3D | null;
   private wip: WipBuffers | null = null;
+  private overlayColors: Map<string, THREE.Color> | null = null;
 
   constructor(objectsById: ReadonlyMap<string, THREE.Mesh>, parent: THREE.Object3D | null = null) {
     this.objectsById = objectsById;
@@ -39,10 +50,27 @@ export class FactoryVisualizer {
   }
 
   /** Single entry point: refresh every simulated object from state. */
-  public update(state: Readonly<FactoryState>, master: MasterData, nowMs?: number): void {
+  public update(state: Readonly<FactoryState>, master: MasterData, nowMs?: number, overlay: Overlay | null = null): void {
+    this.setOverlay(overlay);
     this.updateWorkstations(state, master);
     this.updateLocations(state, master);
     this.updateQueues(state, master, nowMs);
+  }
+
+  /** With an overlay, every station and location is recoloured from it (muted when not highlighted); null restores status colours. */
+  private setOverlay(overlay: Overlay | null): void {
+    if (!overlay) {
+      this.overlayColors = null;
+      return;
+    }
+    const hot = OVERLAY_HOT[overlay.mode];
+    this.overlayColors = new Map(overlay.cells.map((c) => [c.objectId, OVERLAY_COOL.clone().lerp(hot, c.intensity)]));
+  }
+
+  /** The colour to draw: the overlay's when one is active, otherwise the status colour. */
+  private shown(id: string, statusColor: THREE.Color): THREE.Color {
+    if (!this.overlayColors) return statusColor;
+    return this.overlayColors.get(id) ?? OVERLAY_MUTED;
   }
 
   /** Work-center queue buffers; built on first use because lanes come from master data. */
@@ -81,7 +109,7 @@ export class FactoryVisualizer {
         location.kind === "ASSEMBLY" || location.kind === "QUALITY";
 
       if (isProduction) {
-        this.apply(mesh, OFFLINE_COLOR, "idle", 0);
+        this.apply(mesh, this.shown(location.id, OFFLINE_COLOR), "idle", 0);
         continue;
       }
 
@@ -96,7 +124,7 @@ export class FactoryVisualizer {
       const status: OperationalStatus =
         fill <= 0 ? "idle" : fill >= FULL_FILL ? "blocked" : "running";
 
-      this.apply(mesh, color, status, fill);
+      this.apply(mesh, this.shown(location.id, color), status, fill);
     }
   }
 
@@ -110,7 +138,7 @@ export class FactoryVisualizer {
 
       this.apply(
         mesh,
-        STATUS_COLORS[view.objectStatus],
+        this.shown(view.workstationId, STATUS_COLORS[view.objectStatus]),
         view.objectStatus,
         view.utilization,
       );
