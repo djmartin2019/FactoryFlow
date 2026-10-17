@@ -348,7 +348,7 @@ in the integration lane. M6a's `expected.json` should cover the S1 to S3 results
 | 0 | **Truth alignment** (C.3 items 1-3, 5, 6; docs only) | new | none | 0.1.0 |
 | 1 | **S1a** lead time, lateness, past-due unshipped, on-time in-full dispatch *(implemented)* | §E.3, KPI_DEFINITIONS (proposed) | none | 0.1.0 |
 | 2 | **S1b** work-order decomposition (A) and conditions (B) *(implemented)* | same | S1a not required, shares helpers | 0.1.0 |
-| 3 | **S2** quality and scrap | §E.3 | none | 0.1.0 |
+| 3 | **S2** quality and scrap *(implemented)* | §E.3 | none | 0.1.0 |
 | 4 | **S3** bottleneck explanation | §E.3 | S1b helpers | 0.1.0 |
 | 5 | **S5/S6** order-to-work-order navigation, analytical Explorer/3D link, overlays | §E.3 | S1 to S3 | 0.1.0 |
 | 6 | Legal/asset review, README, screenshots, hosting, **tag 0.1.0** | §G.1 | 1-5 | 0.1.0 |

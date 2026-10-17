@@ -111,6 +111,7 @@ The dashboard refreshes on its own 250 ms timer; the render loop calls `simulati
 | Work-order list / drawer | `workOrderSummaries`, `workOrderDetail` (`analytics/workOrders.ts`) | production orders, operations, applied events |
 | Throughput chart | `goodUnitsThroughput` (`analytics/throughput.ts`) | production orders (`completedAt`, `finishedGoodsReceivedQuantity`) |
 | Work-order drawer: elapsed time and conditions | `workOrderTime` (`analytics/workOrderTime.ts`) | the order's events, operations, downtimes, work-center queues, calendar |
+| Quality tab (yield, rework, scrap, Pareto) | `qualityReport` (`analytics/quality.ts`) | quality inspections, work orders (product), workstations |
 | Dispatch tab (lead time, lateness, on-time in-full dispatch, past-due) | `dispatchReport` (`analytics/dispatch.ts`) | customer orders, shipments, `FINISHED_GOODS_ALLOCATED` events, `demandLineIds` |
 | 3D station colours / highlights | `FactoryVisualizer.update`, `factoryObjectsForEvent` | station status, events |
 | Playback time / progress | `SimulationController` | clock |

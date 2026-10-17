@@ -9,6 +9,9 @@ import {
   PERIODS,
   billsOfMaterials,
   dispatchReport,
+  qualityReport,
+  type QualityGroup,
+  type QualityReport,
   type DispatchReport,
   type OrderDispatchView,
   goodUnitsThroughput,
@@ -33,7 +36,7 @@ import { WorkOrderDrawer } from "./WorkOrderDrawer";
 const REFRESH_MS = 500;
 const PAGE_SIZE = 100;
 
-type Tab = "orders" | "dispatch" | "analytics" | "workcenters" | "bom" | "inventory";
+type Tab = "orders" | "dispatch" | "quality" | "analytics" | "workcenters" | "bom" | "inventory";
 type SortKey = "id" | "product" | "ordered" | "good" | "status" | "created" | "due" | "progress";
 
 interface Column {
@@ -127,7 +130,7 @@ export class OperationsExplorer {
     this.getPeriod = getPeriod;
     this.drawer = new WorkOrderDrawer(() => this.closeDetail());
 
-    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildDispatchPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element);
+    this.element.append(this.buildHeader(), this.buildTabs(), this.buildOrdersPanel(), this.buildDispatchPanel(), this.buildQualityPanel(), this.buildAnalyticsPanel(), this.buildWorkCentersPanel(), this.buildBomPanel(), this.buildInventoryPanel(), this.drawer.element);
     this.element.hidden = true;
     this.showTab("orders");
 
@@ -192,6 +195,12 @@ export class OperationsExplorer {
         this.dispatchKey = dk;
         this.renderDispatch(dispatchReport(snap, this.getPeriod()));
       }
+    } else if (this.tab === "quality") {
+      const qk = `${key}|${this.getPeriod()}|${Math.floor(snap.asOfMs / 60_000)}`;
+      if (qk !== this.qualityKey) {
+        this.qualityKey = qk;
+        this.renderQuality(qualityReport(snap, this.getPeriod()));
+      }
     } else if (this.tab === "analytics") {
       const ck = `${key}|${this.getPeriod()}|${this.productFilter}|${Math.floor(snap.asOfMs / 60_000)}`;
       if (ck !== this.chartKey) {
@@ -243,6 +252,7 @@ export class OperationsExplorer {
     const defs: Array<[Tab, string]> = [
       ["orders", "Work Orders"],
       ["dispatch", "Dispatch"],
+      ["quality", "Quality"],
       ["analytics", "Production Analytics"],
       ["workcenters", "Work Centers"],
       ["bom", "Bill of Materials"],
@@ -574,6 +584,113 @@ export class OperationsExplorer {
         return tr;
       }),
     );
+  }
+
+  // ---- quality (S2) -------------------------------------------------------
+  // Semantics: docs/KPI_DEFINITIONS.md "Quality, scrap and rework". Built from inspection records only.
+
+  private qualityKey = "";
+  private readonly qualityCards = el("div", "ex-kpis");
+  private readonly qualityNote = el("p", "hint");
+  private readonly paretoBody = el("tbody");
+  private readonly causeBody = el("tbody");
+  private readonly productBody = el("tbody");
+  private readonly stationBody = el("tbody");
+
+  private buildQualityPanel(): HTMLElement {
+    const panel = el("section", "ex-panel");
+    this.panels.set("quality", panel);
+    const tableOf = (headers: string[], body: HTMLElement, numFrom: number) => {
+      const tr = el("tr");
+      headers.forEach((h, i) => tr.append(el("th", i >= numFrom ? "num" : undefined, h)));
+      const thead = el("thead");
+      thead.append(tr);
+      const t = el("table", "mini-table");
+      t.append(thead, body);
+      const wrap = el("div", "tbl-scroll");
+      wrap.append(t);
+      return wrap;
+    };
+    const groupHeaders = ["", "Inspections", "Units first inspected", "First-pass yield", "Rework rate", "Scrap rate", "Scrap units", "Re-test pass rate"];
+    const prodHeaders = groupHeaders.slice();
+    prodHeaders[0] = "Product";
+    const stHeaders = groupHeaders.slice();
+    stHeaders[0] = "QC station";
+    panel.append(
+      this.qualityCards,
+      this.qualityNote,
+      el("h3", undefined, "Defect Pareto"),
+      tableOf(["Defect", "Defective units", "Share", "Cumulative", ""], this.paretoBody, 1),
+      el("h3", undefined, "Failed units by recorded cause"),
+      tableOf(["Cause", "Failed units", "Share"], this.causeBody, 1),
+      el("h3", undefined, "By product"),
+      tableOf(prodHeaders, this.productBody, 1),
+      el("h3", undefined, "By QC station"),
+      tableOf(stHeaders, this.stationBody, 1),
+      el(
+        "p",
+        "hint",
+        "First-pass yield = units passing the first inspection ÷ units first inspected (the dashboard definition). Rework rate = units sent to rework at the first inspection ÷ units first inspected. Scrap rate = units scrapped at any inspection in the period ÷ units first inspected in the period; a re-test scrap in the period may belong to units first inspected earlier. Each failed unit has one recorded defect code. Cause is shown only where the record states one; otherwise it is \"not recorded\", never inferred. Sample sizes are shown beside rates. Synthetic data.",
+      ),
+    );
+    return panel;
+  }
+
+  private renderQuality(r: QualityReport): void {
+    const o = r.overall;
+    const card = (label: string, value: string, scope: string, tip: string) => {
+      const c = el("article", "kpi");
+      c.title = tip;
+      c.append(el("div", "kpi-label", label), el("div", "kpi-value", value), el("div", "kpi-scope", scope));
+      return c;
+    };
+    const of = (x: { numerator: number; denominator: number }, unit: string) => `${x.numerator} / ${x.denominator} ${unit}`;
+    this.qualityCards.replaceChildren(
+      card("First-pass yield", fmtRate(o.firstPassYield.rate), of(o.firstPassYield, "units first inspected"), "Units passing the first inspection ÷ units first inspected in the period. Same definition as the dashboard KPI."),
+      card("Rework rate", fmtRate(o.reworkRate.rate), of(o.reworkRate, "units first inspected"), "Units sent to rework at the first inspection ÷ units first inspected in the period."),
+      card("Scrap rate", fmtRate(o.scrapRate.rate), `${o.scrapUnits} scrapped / ${o.firstInspected} units first inspected`, "Units scrapped at any inspection in the period ÷ units first inspected in the period."),
+      card("Re-test pass rate", fmtRate(o.retestPassRate.rate), of(o.retestPassRate, "units re-tested"), "Units passing the re-test after rework ÷ units re-tested in the period."),
+      card("Defective units", String(o.failedUnits), `${o.inspections} inspections in period`, "Units that failed any inspection in the period; each carries one defect code."),
+    );
+    setText(this.qualityNote, o.inspections === 0 ? "No inspections were recorded in this period." : "");
+
+    const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
+    this.paretoBody.replaceChildren(
+      ...r.pareto.map((p) => {
+        const tr = el("tr");
+        const bar = el("td");
+        const fill = el("span", "pareto-bar");
+        fill.style.width = `${Math.round(p.share * 100)}%`;
+        bar.append(fill);
+        tr.append(el("td", undefined, p.code.toLowerCase().replace(/_/g, " ")), el("td", "num", String(p.quantity)), el("td", "num", pct(p.share)), el("td", "num", pct(p.cumulativeShare)), bar);
+        return tr;
+      }),
+    );
+    const causeText: Record<string, string> = { MACHINE_FAILURE: "Machine failure", PROCESS_VARIATION: "Process variation", NOT_RECORDED: "Not recorded" };
+    this.causeBody.replaceChildren(
+      ...r.byCause.map((c) => {
+        const tr = el("tr");
+        tr.append(el("td", undefined, causeText[c.cause]), el("td", "num", String(c.quantity)), el("td", "num", o.failedUnits > 0 ? pct(c.quantity / o.failedUnits) : "N/A"));
+        return tr;
+      }),
+    );
+    const groupRows = (groups: QualityGroup[]) =>
+      groups.map((g) => {
+        const tr = el("tr");
+        tr.append(
+          el("td", undefined, g.label),
+          el("td", "num", String(g.inspections)),
+          el("td", "num", String(g.firstInspected)),
+          el("td", "num", fmtRate(g.firstPassYield.rate)),
+          el("td", "num", fmtRate(g.reworkRate.rate)),
+          el("td", "num", fmtRate(g.scrapRate.rate)),
+          el("td", "num", String(g.scrapUnits)),
+          el("td", "num", fmtRate(g.retestPassRate.rate)),
+        );
+        return tr;
+      });
+    this.productBody.replaceChildren(...groupRows(r.byProduct));
+    this.stationBody.replaceChildren(...groupRows(r.byStation));
   }
 
   private readonly wcBody = el("tbody");

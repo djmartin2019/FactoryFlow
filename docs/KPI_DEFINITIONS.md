@@ -233,3 +233,34 @@ Report: Order-to-Final-Dispatch Lead Time and milestone segments, Dispatch Laten
 Dispatch and Quantity Fill by Due Date (and, optionally, On-Time Dispatch Rate), work-order flow and cycle time, the exclusive decomposition A, and the
 conditions B marked available. **Deferred:** predicted delivery risk or any "will be late" indicator (needs a capacity model, design Phase 4), transit and
 customer-receipt time, order-level decomposition into work-order phases, quality-hold time, historical equipment and backlog durations.
+
+## Quality, scrap and rework (slice S2, implemented)
+
+Implemented in `src/analytics/quality.ts`, the Explorer "Quality" tab and `tests/quality.test.ts`. Built from `QualityInspection` records only,
+so it works for any source that supplies them. Observed facts; no forecast. Windows are the existing half-open `(from, to]` period windows applied to
+`inspectedAt`, so **First-pass yield here is the dashboard KPI**: same cohort (round-1 inspections), same window, same numerator and denominator (a test
+asserts exact agreement in every period).
+
+**Inspection model (from the reducer).** One inspection per round per work order. Round 1 inspects every unit that finished production; failed units are
+either sent to rework or scrapped. Round 2 re-tests only the reworked units, and any unit failing it is scrapped (never reworked twice). Every failed unit
+carries exactly one defect code, and `failed = rework + scrap`.
+
+| Measure | Definition |
+|---|---|
+| Units first inspected | Σ `inspectedQuantity` of round-1 inspections in the window |
+| **First-pass yield** | Σ round-1 `passedQuantity` ÷ units first inspected. **N/A** when no round-1 inspection is in the window |
+| **Rework rate** | Σ round-1 `reworkQuantity` ÷ units first inspected. N/A when units first inspected is 0 |
+| **Scrap rate** | Σ `scrapQuantity` of inspections of **any** round in the window ÷ units first inspected in the window. N/A when units first inspected is 0 (the scrap count is still shown). A retest scrap in the window can belong to units first inspected before it, so this is a flow ratio over the period, not a lot-level outcome |
+| **Re-test pass rate** | Σ round-2 `passedQuantity` ÷ Σ round-2 `inspectedQuantity`. N/A when nothing was re-tested in the window |
+| Defective units | Σ `failedQuantity`, all rounds |
+| **Defect Pareto** | Defective units by defect code (all rounds), largest first, ties by code; each row shows its share of all defective units and the cumulative share. The quantities sum to the defective units exactly. Empty (not zeros) when there are no defective units |
+| Failed units by recorded cause | Σ `failedQuantity` grouped by `QualityInspection.cause.kind` (`MACHINE_FAILURE`, `PROCESS_VARIATION`). Inspections with failures and **no recorded cause** are **Not recorded**; a cause is never inferred. The three rows sum to the defective units |
+| By product / by QC station | The measures above computed per group. Product comes from the inspection's work order; station is the inspecting workstation. A group appears only if it has at least one inspection in the window. Counts are shown beside every rate, so a rate over a handful of units is visible as such |
+
+**Reconciliation (tested).** For every period and snapshot: overall first-pass yield equals the dashboard KPI (numerator, denominator and value). Over all time: scrap units equal
+Σ work-order `scrappedQuantity`; inspections and defective units equal the inspection records; the Pareto and the cause rows each sum to the defective units; defective units
+equal round-1 rework plus all scrap; and the per-product and per-station counts add up to the overall counts.
+
+**Limitations.** Quality is attributed at inspection time, not build time. One defect code per failed unit, so there is no multi-defect analysis. Cause is recorded only for
+some failures. Incoming (supplier) quality and customer returns are not modeled. Synthetic data: the dashboard and this tab are demonstration measurements.
+

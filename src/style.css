@@ -1022,3 +1022,12 @@ table.orders,
 .link-btn:hover {
   text-decoration: underline;
 }
+
+/* Defect Pareto bar (Quality tab) */
+.pareto-bar {
+  display: block;
+  height: 8px;
+  min-width: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
