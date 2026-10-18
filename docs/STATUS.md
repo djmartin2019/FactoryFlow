@@ -46,7 +46,7 @@ does not exist; do not assume it.
 | Activity feed (bounded) | Implemented | `eventFormat.ts`, `ActivityFeed` |
 | Work-order list and detail drawer (timeline, routing, materials) | Implemented | `analytics/workOrders.ts`, `ui/explorer` |
 | Good-units throughput chart | Implemented | `analytics/throughput.ts` |
-| Inventory view in the Operations Explorer | Proposed | the Explorer "Inventory" tab is a "Coming soon" placeholder; `selectors.ts` has `inventoryByLocation` and the station panel shows stock at a location. (This row previously said Implemented, which the code did not support.) |
+| Inventory view in the Operations Explorer (stock by location with pallet fill, stock by item with on hand, reserved, available, on-order, short flag) | Implemented | `analytics/inventory.ts`, Explorer "Inventory" tab, `tests/inventory.test.ts`; composes `inventoryByLocation` and the Material Shortages rules; no days-of-supply or reorder figure exists in the model. (An earlier version of this row said Implemented while the tab was a placeholder; it is real now.) |
 | Material shortage impact (blocked work orders, short materials, open-PO supply cover) | Implemented | `analytics/materialShortages.ts`, Explorer "Material Shortages" tab, `tests/materialShortages.test.ts`; list equals the dashboard shortage KPI; observed facts, no release prediction, no allocation between orders |
 | Playback controls, accelerated time, seek | Implemented | `SimulationController`, `PlaybackToolbar` |
 | 3D factory with selection and status colouring | Implemented | `src/graphics/`; assembly band laid out as a west -> east process line (kitting, mechanical, wiring A/B, controls & motor, flex) |

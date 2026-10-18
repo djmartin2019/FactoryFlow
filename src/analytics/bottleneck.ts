@@ -132,3 +132,18 @@ export function bottleneckExplanations(snapshot: ReportingSnapshot, period: Peri
 export function flaggedBottleneck(snapshot: ReportingSnapshot, period: PeriodId): BottleneckExplanation | null {
   return bottleneckExplanations(snapshot, period).find((e) => e.flagged) ?? null;
 }
+
+/**
+ * What the "Why" panel shows: the flagged work center, or, when nothing is flagged because the plant is off shift, the work center with the
+ * largest queued minutes per station (ties by id), which `flagged: false` marks as NOT a bottleneck candidate. Null only when no work center has a queue.
+ * Off shift the queue says nothing about capacity, so the panel must say it is not flagged; it still shows the same conditions.
+ */
+export function explanationToShow(snapshot: ReportingSnapshot, period: PeriodId): BottleneckExplanation | null {
+  const all = bottleneckExplanations(snapshot, period);
+  const flagged = all.find((e) => e.flagged);
+  if (flagged) return flagged;
+  const queued = all
+    .filter((e) => e.current.queuedOrders > 0 && e.current.queuedMinutesPerStation !== null)
+    .sort((a, b) => b.current.queuedMinutesPerStation! - a.current.queuedMinutesPerStation! || a.workCenterId.localeCompare(b.workCenterId));
+  return queued[0] ?? null;
+}

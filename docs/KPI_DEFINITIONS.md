@@ -282,6 +282,8 @@ delay, never ranked or weighted against each other, and never called root causes
 | Changeovers | Setup minutes applied by steps that started in the period, how many followed a different product, and setup as a share of run time. Setup is part of run time, not extra | Period duration |
 | Material | Orders currently held before release by a material shortage. Plant-wide, not specific to the work center: they are not in any queue yet | Current state at `asOf` |
 
+**Presentation.** A card with a badge ("Bottleneck candidate" or "Not flagged: plant off shift") and a table of the seven conditions, grouped by what they are measured over (**Right now**, **Over the reporting period**, **Whole plant**) in a fixed order that is not an order of importance. Each row has a headline value and a detail line. A filled dot means a yes/no condition is present now (a station down, equipment waiting, changeovers occurred, orders held for material, downtime occurred); an empty dot means it is not; rows without a dot (queue load, utilization) are measures. The wording is produced by a pure function (`whyRows`) so it is tested: fixed order and grouping, dots equal the underlying measures, N/A is explained ("no scheduled shift time in the reporting period yet") rather than printed as "N/A of ...", and no row names a cause or combines conditions.
+**Off shift.** The candidate flag is never set off shift, but the panel still shows the conditions for the work center with the largest queued minutes per station (ties by id), headed "Largest queue now ... (not flagged: plant off shift)" with a note that a queue says nothing about capacity then; it is context, not a candidate (`explanationToShow`, tested). With no queue anywhere the panel says none is flagged.
 **N/A rules.** Shares are N/A when their denominator is zero (no shift time elapsed, or no run time). The next-highest comparison is N/A when no other work center has a queue.
 **Not included:** a queue-over-time series (it would reconstruct history, owner decision L11), downtime attributed to the queue, quality holds (not modeled), and any prediction.
 **Verified** (`tests/bottleneck.test.ts`): an equipment wait, a station down now, and both together are shown side by side on the default dataset; a constructed outage adds exactly its
@@ -333,4 +335,23 @@ buttons are absent when WebGL is unavailable, and the Explorer works fully witho
 operations, utilization from `stationMetrics` per period, shortage from `materialShortages` and the BOM storage racks), intensities are within 0..1 with the maximum at 1, every highlighted object exists
 in the 3D layout, and every work order, customer order, shipment, purchase order, material and product maps to objects that exist in the layout. **Not verified:** the rendered colours and the selector
 UI, which need a real WebGL browser.
+
+## Inventory by location and material (slice S7-lite, implemented)
+
+Implemented in `src/analytics/inventory.ts`, the Explorer "Inventory" tab and `tests/inventory.test.ts`. It composes existing definitions rather than recomputing stock: pallet fill is
+`inventoryByLocation` (the selector the 3D scene and station panel already use), and availability and the short flag follow the Material Shortages rules, so the tabs cannot disagree.
+Observed stock at the current simulated time. The model has no reorder point, safety stock or consumption forecast, so **no days-of-supply or reorder figure is shown**.
+
+| Measure | Definition |
+|---|---|
+| Pallets used, capacity, fill | Per location: each item's on-hand rounded up to whole pallets (`unitsPerPallet`), summed; capacity is the location's pallet capacity; fill = used ÷ capacity (N/A when capacity is 0; can exceed 100%) |
+| On hand, reserved | Σ over every location of the item's balance. Reserved is quantity promised to a production order (raw) or a customer order line (finished goods) |
+| Available | What can be reserved now. **Raw materials: on hand minus reserved in raw-storage locations only**, the release rule and the same number as "available now" on the Material Shortages tab (stock still on a receiving dock cannot be reserved). **Finished goods:** on hand minus reserved |
+| On order, earliest promised | Raw materials only: Σ (ordered - received) on open purchase orders, and the earliest promised delivery among them ("none on order" when zero). A supplier's promise, not a forecast. N/A for finished goods |
+| Short for blocked orders | True only when at least one blocked work order is short of the material right now (same set as the Material Shortages "by material" table), with the number of such orders. Not a stock-level judgement |
+| Items listed | Every master raw material and finished good, including items with nothing on hand |
+
+**Verified** (`tests/inventory.test.ts`, at sampled times across the run): location fill equals `inventoryByLocation`; on-hand and reserved equal the inventory balances; raw availability equals
+the Material Shortages "available now" for every short material; the short flag and order counts equal the shortage report; open-PO quantity and earliest promised date equal an independent recomputation;
+every master item appears exactly once.
 

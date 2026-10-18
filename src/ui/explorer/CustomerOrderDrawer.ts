@@ -64,7 +64,7 @@ export class CustomerOrderDrawer {
             ? `${fmtDuration(o.timeToDueMs)} until due`
             : "N/A";
     const seg = o.segments
-      ? `${fmtDuration(o.segments.toFirstAllocationMs)} to first allocation · ${fmtDuration(o.segments.allocationToFirstDispatchMs)} to first dispatch · ${fmtDuration(o.segments.firstToFinalDispatchMs)} to final dispatch`
+      ? `created → first allocation ${fmtDuration(o.segments.toFirstAllocationMs)} · allocation → first dispatch ${fmtDuration(o.segments.allocationToFirstDispatchMs)} · first → final dispatch ${fmtDuration(o.segments.firstToFinalDispatchMs)}`
       : "N/A";
 
     const where = el("p", "hint");

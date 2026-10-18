@@ -609,7 +609,7 @@ body {
 
 .ex-kpis {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 10px;
 }
 
@@ -1032,23 +1032,82 @@ table.orders,
   background: var(--accent);
 }
 
-/* Bottleneck "why" panel (Work Centers tab) */
+/* Bottleneck "why" panel (Work Centers tab): a card with a grouped conditions table */
 .why-panel {
-  margin: 12px 0;
+  margin: 16px 0;
+  padding: 14px 16px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
 }
-.why-list {
-  margin: 6px 0;
-  padding-left: 18px;
-  display: grid;
-  gap: 4px;
+.why-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 }
-.why-tag {
+.why-head h3 {
+  margin: 0;
+}
+.why-badge {
   font-size: 11px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
   color: var(--muted);
-  border: 1px solid var(--muted);
-  border-radius: 8px;
-  padding: 0 6px;
   white-space: nowrap;
+}
+.why-badge.flagged {
+  color: var(--warn);
+  border-color: var(--warn);
+  background: var(--warn-soft);
+}
+.why-table td {
+  vertical-align: top;
+  white-space: normal;
+}
+.why-table tr.why-group td {
+  padding-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 0;
+  background: transparent;
+}
+.why-table tbody tr:nth-child(even):not(.why-group) {
+  background: transparent;
+}
+.why-dot-cell {
+  width: 22px;
+  padding-right: 0;
+}
+.why-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-top: 3px;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+}
+.why-dot.on {
+  background: var(--warn);
+  border-color: var(--warn);
+}
+.why-label {
+  width: 150px;
+  color: var(--muted);
+}
+.why-value {
+  width: 190px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.why-detail {
+  color: var(--muted);
+}
+.why-note {
+  margin-top: 8px;
 }
 
 /* "Colour by" overlay selector over the 3D view */
@@ -1095,4 +1154,15 @@ table.orders,
 .overlay-legend {
   margin-top: 2px;
   color: var(--muted);
+}
+
+/* Analysis tables: keep labels and numbers close on wide screens, and make rows followable */
+.tbl-scroll.compact {
+  max-width: 1200px;
+}
+.mini-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+.mini-table tbody tr:hover {
+  background: var(--accent-soft);
 }

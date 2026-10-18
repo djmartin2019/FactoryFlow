@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { bottleneckExplanations, flaggedBottleneck, workCenterLoad, workCenterQueues, type ReportingSnapshot } from "../src/analytics/index.ts";
+import { bottleneckExplanations, explanationToShow, flaggedBottleneck, workCenterLoad, workCenterQueues, type ReportingSnapshot } from "../src/analytics/index.ts";
 import { HOUR, shiftMinutesBetween } from "../src/manufacturing/calendar.ts";
 import { generateDataset } from "../src/manufacturing/generator.ts";
 import { FactoryReplay } from "../src/manufacturing/replay.ts";
@@ -113,3 +113,36 @@ describe("bottleneck explanation: invariants over the run", () => {
     expect(JSON.stringify(s.state.workstations) + JSON.stringify(s.state.downtimes)).toBe(before);
   });
 });
+
+describe("bottleneck explanation shown by the Why panel", () => {
+  it("is the flagged work center in shift, and the largest queue (not flagged) off shift", () => {
+    const r = new FactoryReplay(structuredClone(initial), data.events);
+    let inShiftChecked = 0;
+    let offShiftChecked = 0;
+    for (let h = 6; h < 30 * 24; h += 6) {
+      const ms = START + h * HOUR;
+      r.advanceToMs(ms);
+      const s: ReportingSnapshot = { asOfMs: ms, startMs: START, master: initial.master, state: r.state, events: r.appliedEvents() };
+      const all = bottleneckExplanations(s, "7d");
+      const shown = explanationToShow(s, "7d");
+      const withQueue = all.filter((e) => e.current.queuedOrders > 0);
+      if (all[0].shiftOpen) {
+        expect(shown?.workCenterId).toBe(flaggedBottleneck(s, "7d")?.workCenterId);
+        if (shown) expect(shown.flagged).toBe(true);
+        inShiftChecked++;
+      } else if (withQueue.length > 0) {
+        expect(shown, new Date(ms).toISOString()).not.toBeNull();
+        expect(shown!.flagged).toBe(false);
+        const max = Math.max(...withQueue.map((e) => e.current.queuedMinutesPerStation ?? 0));
+        expect(shown!.current.queuedMinutesPerStation).toBe(max);
+        expect(flaggedBottleneck(s, "7d")).toBeNull();
+        offShiftChecked++;
+      } else {
+        expect(shown).toBeNull();
+      }
+    }
+    expect(inShiftChecked).toBeGreaterThan(10);
+    expect(offShiftChecked).toBeGreaterThan(3);
+  });
+});
+

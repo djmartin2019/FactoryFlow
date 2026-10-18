@@ -12,10 +12,12 @@ import {
   dispatchReport,
   qualityReport,
   materialShortages,
+  inventoryReport,
+  type InventoryReport,
   customerOrderDetail,
   type OverlayMode,
   type MaterialShortageReport,
-  bottleneckExplanations,
+  explanationToShow,
   type BottleneckExplanation,
   type QualityGroup,
   type QualityReport,
@@ -39,6 +41,8 @@ import { el, formatSimTime, setText } from "../dom";
 import { fmtDate, fmtDateTime, fmtDuration, fmtMoney, fmtRate, statusBadge, STATUS_TEXT } from "./format";
 import { ThroughputChart } from "./ThroughputChart";
 import { CustomerOrderDrawer } from "./CustomerOrderDrawer";
+import { exTable, shortList } from "./tables";
+import { WHY_GROUP_TITLE, whyRows, type WhyGroup } from "./whyRows";
 import { WorkOrderDrawer } from "./WorkOrderDrawer";
 import { entityTab, type EntityRef, type ExplorerTab } from "../route";
 import { factoryObjectsForEntity } from "../../manufacturing/mapping";
@@ -211,7 +215,7 @@ export class OperationsExplorer {
         this.wcKey = wk;
         this.renderWorkCenters(workCenterLoad(snap, this.getPeriod()), snap.asOfMs);
         this.renderEquipment(equipmentLoad(snap, this.getPeriod()));
-        this.renderWhy(bottleneckExplanations(snap, this.getPeriod()).find((e) => e.flagged) ?? null, snap.asOfMs);
+        this.renderWhy(explanationToShow(snap, this.getPeriod()), snap.asOfMs);
       }
     } else if (this.tab === "dispatch") {
       const dk = `${key}|${this.getPeriod()}|${Math.floor(snap.asOfMs / 60_000)}`;
@@ -225,6 +229,12 @@ export class OperationsExplorer {
       if (qk !== this.qualityKey) {
         this.qualityKey = qk;
         this.renderQuality(qualityReport(snap, this.getPeriod()));
+      }
+    } else if (this.tab === "inventory") {
+      const ik = `${key}|${Math.floor(snap.asOfMs / 60_000)}`;
+      if (ik !== this.inventoryKey) {
+        this.inventoryKey = ik;
+        this.renderInventory(inventoryReport(snap));
       }
     } else if (this.tab === "shortages") {
       const sk = `${key}|${Math.floor(snap.asOfMs / 60_000)}`;
@@ -271,7 +281,6 @@ export class OperationsExplorer {
     meta.append(
       item("Simulated time", this.clock),
       item("Reporting period", this.periodLabel),
-      el("span", "demo-badge", "Demo Mode — Synthetic Manufacturing Data"),
     );
     h.append(titles, meta);
     return h;
@@ -473,10 +482,10 @@ export class OperationsExplorer {
         el(
           "span",
           "hint",
-          `BOM ${b.bomId} rev ${b.version} · ${b.lines.length} components · standard cost ${fmtMoney(b.totalCostCents)} · list price ${fmtMoney(b.listPriceCents)} · longest lead time ${b.longestLeadTimeDays} d`,
+          `${b.bomId} rev ${b.version} · ${b.lines.length} components · standard cost ${fmtMoney(b.totalCostCents)} · list price ${fmtMoney(b.listPriceCents)} · longest lead time ${b.longestLeadTimeDays} d`,
         ),
       );
-      const wrap = el("div", "tbl-scroll");
+      const wrap = el("div", "tbl-scroll compact");
       const table = el("table", "mini-table");
       const headRow = el("tr");
       ["SKU", "Description", "UoM", "Qty per", "Unit cost", "Extended", "Supplier", "Lead time"].forEach((h, i) =>
@@ -512,30 +521,16 @@ export class OperationsExplorer {
   private readonly pastDueBody = el("tbody");
   private readonly pastDueWrap = el("div");
   private readonly ordersBody = el("tbody");
-  private readonly ordersCount = el("span", "hint");
+  private readonly ordersCount = el("p", "hint");
 
   private buildDispatchPanel(): HTMLElement {
     const panel = el("section", "ex-panel");
     this.panels.set("dispatch", panel);
-    const head = (labels: string[], numFrom: number) => {
-      const tr = el("tr");
-      labels.forEach((h, i) => tr.append(el("th", i >= numFrom ? "num" : undefined, h)));
-      const thead = el("thead");
-      thead.append(tr);
-      return thead;
-    };
     const cols = ["Customer order", "Customer", "Status", "Due", "Past due", "Unshipped qty", "Planned work orders"];
-    const pastTable = el("table", "mini-table");
-    pastTable.append(head(cols, 4), this.pastDueBody);
-    const pastScroll = el("div", "tbl-scroll");
-    pastScroll.append(pastTable);
-    this.pastDueWrap.append(el("h3", undefined, "Past-Due Unshipped Orders"), pastScroll);
+    this.pastDueWrap.append(el("h3", undefined, "Past-Due Unshipped Orders"), exTable(cols, "lllnnnl", this.pastDueBody));
 
     const allCols = ["Customer order", "Customer", "Status", "Created", "Due", "Final dispatch", "Lead time", "Lateness / status vs due", "Lead-time segments", "Planned work orders"];
-    const allTable = el("table", "mini-table");
-    allTable.append(head(allCols, 6), this.ordersBody);
-    const allScroll = el("div", "tbl-scroll");
-    allScroll.append(allTable);
+    const allScroll = exTable(allCols, "lllnnnnnll", this.ordersBody);
 
     panel.append(
       this.dispatchCards,
@@ -622,12 +617,12 @@ export class OperationsExplorer {
         else if (o.pastDueMs !== null) vsDue = `${fmtDuration(o.pastDueMs)} past due`;
         else if (o.timeToDueMs !== null) vsDue = `${fmtDuration(o.timeToDueMs)} to due`;
         const seg = o.segments
-          ? `${fmtDuration(o.segments.toFirstAllocationMs)} to allocation · ${fmtDuration(o.segments.allocationToFirstDispatchMs)} to dispatch · ${fmtDuration(o.segments.firstToFinalDispatchMs)} to final`
+          ? `created → first allocation ${fmtDuration(o.segments.toFirstAllocationMs)} · allocation → first dispatch ${fmtDuration(o.segments.allocationToFirstDispatchMs)} · first → final dispatch ${fmtDuration(o.segments.firstToFinalDispatchMs)}`
           : "N/A";
         tr.append(el("td", undefined, o.orderId), el("td", undefined, o.customerName), el("td", undefined, statusText[o.status] ?? o.status));
         tr.append(el("td", "num", fmtDate(o.createdAtMs)), el("td", "num", fmtDate(o.dueMs)));
         tr.append(el("td", "num", o.finalDispatchMs === null ? "–" : fmtDateTime(o.finalDispatchMs)), el("td", "num", o.leadTimeMs === null ? "–" : fmtDuration(o.leadTimeMs)));
-        tr.append(el("td", "num", vsDue), el("td", "num", seg), this.workOrderLinks(o));
+        tr.append(el("td", "num", vsDue), el("td", undefined, seg), this.workOrderLinks(o));
         return tr;
       }),
     );
@@ -647,17 +642,6 @@ export class OperationsExplorer {
   private buildQualityPanel(): HTMLElement {
     const panel = el("section", "ex-panel");
     this.panels.set("quality", panel);
-    const tableOf = (headers: string[], body: HTMLElement, numFrom: number) => {
-      const tr = el("tr");
-      headers.forEach((h, i) => tr.append(el("th", i >= numFrom ? "num" : undefined, h)));
-      const thead = el("thead");
-      thead.append(tr);
-      const t = el("table", "mini-table");
-      t.append(thead, body);
-      const wrap = el("div", "tbl-scroll");
-      wrap.append(t);
-      return wrap;
-    };
     const groupHeaders = ["", "Inspections", "Units first inspected", "First-pass yield", "Rework rate", "Scrap rate", "Scrap units", "Re-test pass rate"];
     const prodHeaders = groupHeaders.slice();
     prodHeaders[0] = "Product";
@@ -667,13 +651,13 @@ export class OperationsExplorer {
       this.qualityCards,
       this.qualityNote,
       el("h3", undefined, "Defect Pareto"),
-      tableOf(["Defect", "Defective units", "Share", "Cumulative", ""], this.paretoBody, 1),
+      exTable(["Defect", "Defective units", "Share", "Cumulative", ""], "lnnnl", this.paretoBody, { compact: true }),
       el("h3", undefined, "Failed units by recorded cause"),
-      tableOf(["Cause", "Failed units", "Share"], this.causeBody, 1),
+      exTable(["Cause", "Failed units", "Share"], "lnn", this.causeBody, { compact: true }),
       el("h3", undefined, "By product"),
-      tableOf(prodHeaders, this.productBody, 1),
+      exTable(prodHeaders, "lnnnnnnn", this.productBody, { compact: true }),
       el("h3", undefined, "By QC station"),
-      tableOf(stHeaders, this.stationBody, 1),
+      exTable(stHeaders, "lnnnnnnn", this.stationBody, { compact: true }),
       el(
         "p",
         "hint",
@@ -752,24 +736,13 @@ export class OperationsExplorer {
   private buildShortagesPanel(): HTMLElement {
     const panel = el("section", "ex-panel");
     this.panels.set("shortages", panel);
-    const tableOf = (headers: string[], body: HTMLElement, numFrom: number) => {
-      const tr = el("tr");
-      headers.forEach((h, i) => tr.append(el("th", i >= numFrom ? "num" : undefined, h)));
-      const thead = el("thead");
-      thead.append(tr);
-      const t = el("table", "mini-table");
-      t.append(thead, body);
-      const wrap = el("div", "tbl-scroll");
-      wrap.append(t);
-      return wrap;
-    };
     panel.append(
       this.shortageCards,
       this.shortageNote,
       el("h3", undefined, "Work orders blocked by a material shortage"),
-      tableOf(["Work order", "Product", "Units", "Blocked since", "Short material", "Required", "Available now", "Short by", "Supply on order", "Customer orders"], this.shortageOrdersBody, 2),
+      exTable(["Work order", "Product", "Units", "Blocked since", "Short material", "Required", "Available now", "Short by", "Supply on order", "Customer orders", "Factory"], "llnllnnnlll", this.shortageOrdersBody),
       el("h3", undefined, "By material"),
-      tableOf(["Material", "Blocked work orders", "Available now", "Outstanding on open POs", "Open POs", "Earliest promised", "POs past promised date"], this.shortageMaterialsBody, 1),
+      exTable(["Material", "Blocked work orders", "Available now", "Outstanding on open POs", "Open POs", "Earliest promised", "POs past promised date"], "lnnnnnn", this.shortageMaterialsBody, { compact: true }),
       el(
         "p",
         "hint",
@@ -816,32 +789,36 @@ export class OperationsExplorer {
           b.addEventListener("click", () => this.openWorkOrder(o.orderId));
           wo.append(b);
         }
-        tr.append(wo, el("td", undefined, first ? o.sku : ""), el("td", "num", first ? String(o.quantity) : ""), el("td", "num", first && o.blockedAtMs !== null ? fmtDateTime(o.blockedAtMs) : first ? "–" : ""));
+        tr.append(wo, el("td", undefined, first ? o.sku : ""), el("td", "num", first ? String(o.quantity) : ""), el("td", undefined, first && o.blockedAtMs !== null ? `${fmtDateTime(o.blockedAtMs)} (blocked ${fmtDuration(r.asOfMs - o.blockedAtMs)})` : first ? "–" : ""));
         if (l) {
           tr.append(el("td", undefined, `${l.description} (${l.sku})`), el("td", "num", `${l.required} ${l.uom}`), el("td", "num", String(l.availableNow)), el("td", "num", String(l.shortfall)), el("td", undefined, supplyText(l)));
         } else {
           tr.append(el("td", undefined, "No shortfall at current balances; release is pending"), el("td"), el("td"), el("td"), el("td"));
         }
         const cust = el("td");
+        if (first) {
+          if (o.customerOrderIds.length === 0) cust.append("–");
+          const list = shortList(o.customerOrderIds);
+          o.customerOrderIds.slice(0, 3).forEach((cid, ci) => {
+            if (ci > 0) cust.append(", ");
+            const b = el("button", "link-btn", cid);
+            b.addEventListener("click", () => this.openEntity({ kind: "customer-order", id: cid }, false));
+            cust.append(b);
+          });
+          if (o.customerOrderIds.length > 3) cust.append(` +${o.customerOrderIds.length - 3}`);
+          const due = o.earliestCustomerDueMs !== null ? `Earliest customer due date ${fmtDate(o.earliestCustomerDueMs)}. ` : "";
+          cust.title = `${due}${list.title}`;
+        }
+        const factory = el("td");
         if (first && this.showInFactory && o.lines.length > 0) {
           const show = this.showInFactory;
           const racks = [...new Set(o.lines.flatMap((l) => factoryObjectsForEntity({ kind: "material", id: l.materialId }, this.sim.state, this.sim.engine.master)))];
           const b = el("button", "link-btn", "Show racks");
           b.title = "Colour the plant by material shortage and select the first rack holding a short material";
           b.addEventListener("click", () => show(racks, "shortage"));
-          cust.append(b, " · ");
+          factory.append(b);
         }
-        if (first) {
-          if (o.customerOrderIds.length === 0) cust.append("–");
-          o.customerOrderIds.forEach((cid, ci) => {
-            if (ci > 0) cust.append(", ");
-            const b = el("button", "link-btn", cid);
-            b.addEventListener("click", () => this.openEntity({ kind: "customer-order", id: cid }, false));
-            cust.append(b);
-          });
-          if (o.earliestCustomerDueMs !== null) cust.title = `Earliest customer due date ${fmtDate(o.earliestCustomerDueMs)}`;
-        }
-        tr.append(cust);
+        tr.append(cust, factory);
         rows.push(tr);
       });
     }
@@ -869,12 +846,13 @@ export class OperationsExplorer {
   private readonly eqSection = el("div");
   private readonly whySection = el("section", "why-panel");
   private readonly wcShift = el("p", "hint shift-note");
+  private readonly wcNoShift = el("p", "hint shift-note");
   private wcKey = "";
 
   private buildWorkCentersPanel(): HTMLElement {
     const panel = el("section", "ex-panel");
     this.panels.set("workcenters", panel);
-    const wrap = el("div", "tbl-scroll");
+    const wrap = el("div", "tbl-scroll compact");
     const t = el("table", "mini-table");
     const head = el("tr");
     const headers = ["Work center", "Stations", "In process (units)", "Queued orders", "Queued units", "Queued std. min / station", "Waiting on equipment", "Oldest wait (shift time)", "Setup min (changeovers)", "Utilization"];
@@ -884,15 +862,17 @@ export class OperationsExplorer {
     t.append(thead, this.wcBody);
     wrap.append(t);
     this.wcShift.hidden = true;
+    this.wcNoShift.hidden = true;
     const eqHead = el("tr");
     ["Equipment", "Kind", "Held by", "Utilization", "Steps waiting"].forEach((h, i) => eqHead.append(el("th", i >= 3 ? "num" : undefined, h)));
     const eqThead = el("thead");
     eqThead.append(eqHead);
     const eqTable = el("table", "mini-table");
     eqTable.append(eqThead, this.eqBody);
-    const eqWrap = el("div", "tbl-scroll");
+    const eqWrap = el("div", "tbl-scroll compact");
     eqWrap.append(eqTable);
     this.eqSection.append(
+      el("h3", undefined, "Equipment"),
       eqWrap,
       el(
         "p",
@@ -902,6 +882,7 @@ export class OperationsExplorer {
     );
     panel.append(
       this.wcShift,
+      this.wcNoShift,
       wrap,
       el(
         "p",
@@ -916,67 +897,54 @@ export class OperationsExplorer {
 
   /** Contributing conditions around the flagged work center. Independent observations: not ranked, not added up, not root causes. */
   private renderWhy(e: BottleneckExplanation | null, asOfMs: number): void {
-    const items: HTMLElement[] = [];
     if (!e) {
       const off = !inShiftNow(asOfMs);
       this.whySection.replaceChildren(
         el("h3", undefined, "Why a bottleneck candidate?"),
-        el("p", "hint", off ? "The plant is off shift, so nothing can start and no work center is flagged." : "No work center has a queue right now, so none is flagged."),
+        el("p", "hint", off ? "The plant is off shift and no work center has a queue, so none is flagged." : "No work center has a queue right now, so none is flagged."),
       );
       return;
     }
-    const c = e.current;
-    const p = e.period;
-    const pct = (x: number | null) => (x === null ? "N/A" : `${(x * 100).toFixed(0)}%`);
-    const li = (label: string, text: string, tag: "current" | "period" | "plant") => {
-      const row = el("li");
-      row.append(el("strong", undefined, label), " ", text, " ", el("span", "why-tag", tag === "current" ? "current state" : tag === "period" ? "this period" : "whole plant"));
-      items.push(row);
-    };
-    li(
-      "Queue load.",
-      `${c.queuedOrders} order${c.queuedOrders === 1 ? "" : "s"} (${c.queuedUnits} units, ${Math.round(c.queuedMinutes)} standard min) wait across ${c.stations} station${c.stations === 1 ? "" : "s"}: ${Math.round(c.queuedMinutesPerStation ?? 0)} min per station` +
-        (c.nextHighestPerStation !== null ? `, the next highest work center has ${Math.round(c.nextHighestPerStation)}` : "") +
-        (c.oldestWaitMinutes !== null ? `; the longest wait so far is ${c.oldestWaitMinutes} shift min.` : "."),
-      "current",
+    const rows = whyRows(e);
+    const body = el("tbody");
+    let group: WhyGroup | null = null;
+    for (const r of rows) {
+      if (r.group !== group) {
+        group = r.group;
+        const gr = el("tr", "why-group");
+        const gt = el("td", undefined, WHY_GROUP_TITLE[r.group]);
+        gt.colSpan = 4;
+        gr.append(gt);
+        body.append(gr);
+      }
+      const tr = el("tr");
+      const dot = el("td", "why-dot-cell");
+      if (r.present !== null) {
+        const d = el("span", r.present ? "why-dot on" : "why-dot");
+        d.title = r.present ? "Present now" : "Not present";
+        d.setAttribute("role", "img");
+        d.setAttribute("aria-label", r.present ? "present" : "not present");
+        dot.append(d);
+      }
+      tr.append(dot, el("td", "why-label", r.label), el("td", "why-value", r.value), el("td", "why-detail", r.detail));
+      body.append(tr);
+    }
+    const table = el("table", "mini-table why-table");
+    table.append(body);
+    const wrap = el("div", "tbl-scroll compact");
+    wrap.append(table);
+
+    const head = el("div", "why-head");
+    head.append(
+      el("h3", undefined, e.flagged ? `Why ${e.name} is the bottleneck candidate` : `Largest queue now: ${e.name}`),
+      el("span", e.flagged ? "why-badge flagged" : "why-badge", e.flagged ? "Bottleneck candidate" : "Not flagged: plant off shift"),
     );
-    li(
-      "Serving stations.",
-      `${c.stationsRunningNow} of ${c.stations} running` + (c.stationsDownNow.length ? `; down now: ${c.stationsDownNow.map((s) => s.name).join(", ")}.` : "; none down."),
-      "current",
-    );
-    li(
-      "Equipment.",
-      c.waitingOnEquipment > 0 ? `${c.waitingOnEquipment} queued step${c.waitingOnEquipment === 1 ? "" : "s"} cannot start: no free unit of ${c.missingEquipmentKinds.join(", ")}.` : "no queued step is waiting for equipment.",
-      "current",
-    );
-    li(
-      "Station downtime.",
-      `serving stations were down for ${Math.round(p.stationDowntimeMinutes)} shift min (${pct(p.stationDowntimeShare)} of their shift time).`,
-      "period",
-    );
-    li("Utilization.", `serving stations ran ${pct(p.utilization)} of their shift time (run time excluding failure holds).`, "period");
-    li(
-      "Changeovers.",
-      `${Math.round(p.setupMinutes)} setup min across ${p.changeovers} changeover${p.changeovers === 1 ? "" : "s"}` + (p.setupShareOfBusy === null ? "." : `, ${pct(p.setupShareOfBusy)} of run time.`),
-      "period",
-    );
-    li(
-      "Material.",
-      e.plant.materialBlockedOrders > 0 ? `${e.plant.materialBlockedOrders} order${e.plant.materialBlockedOrders === 1 ? " is" : "s are"} held before release by a material shortage; they are not in this queue yet.` : "no order is held before release by a material shortage.",
-      "plant",
-    );
-    const list = el("ul", "why-list");
-    list.append(...items);
-    this.whySection.replaceChildren(
-      el("h3", undefined, `Why is ${e.name} the bottleneck candidate? Contributing conditions`),
-      list,
-      el(
-        "p",
-        "hint",
-        "These are independent observations around the flagged work center, listed in a fixed order, not by importance. They can all be true at once, so they must not be added up or read as shares of the delay, and they are indicative context rather than proven root causes. Current-state items describe the simulated moment shown above, not a history. The flag itself means only that this work center has the most queued standard minutes per serving station.",
-      ),
-    );
+    const sub = e.flagged
+      ? "Most queued standard minutes per serving station. These conditions are context around it."
+      : "Off shift nothing can start, so a queue says nothing about capacity. Shown for context only.";
+    const note = el("p", "hint why-note", "Independent observations in a fixed order, not by importance. They can all be true at once, so they are not added up, ranked or read as causes. “Right now” rows describe this simulated moment, not a history.");
+    note.title = "A filled dot means the condition is present now. Rows without a dot are measures, not yes/no conditions. Utilization and downtime use shift time only.";
+    this.whySection.replaceChildren(head, el("p", "hint", sub), wrap, note);
   }
 
   private renderEquipment(rows: ReturnType<typeof equipmentLoad>): void {
@@ -1001,6 +969,9 @@ export class OperationsExplorer {
         `Off shift: nothing starts until ${weekdayShort(next)} ${new Date(next).toISOString().slice(0, 10)} 06:00 UTC. Queued steps are waiting for the shift, not for a station, so no bottleneck is flagged.`,
       );
     }
+    const noShiftTime = rows.length > 0 && rows.every((r) => r.utilization === null);
+    this.wcNoShift.hidden = !noShiftTime;
+    if (noShiftTime) setText(this.wcNoShift, "Utilization is N/A because the reporting period (see the header) contains no scheduled shift time yet, for example the last 24 hours on a Sunday or early Monday. Choose a longer period to see it.");
     const fmtWait = (m: number | null) => (m === null ? "–" : m >= 120 ? `${(m / 60).toFixed(1)} h` : `${m} min`);
     this.wcBody.replaceChildren(
       ...rows.map((r) => {
@@ -1026,13 +997,98 @@ export class OperationsExplorer {
     );
   }
 
+  // ---- inventory (S7-lite) ---------------------------------------------------
+  // Semantics: docs/KPI_DEFINITIONS.md "Inventory by location and material". Observed stock now; no forecast.
+
+  private inventoryKey = "";
+  private readonly inventoryCards = el("div", "ex-kpis");
+  private readonly inventoryLocationBody = el("tbody");
+  private readonly inventoryItemBody = el("tbody");
+
   private buildInventoryPanel(): HTMLElement {
     const panel = el("section", "ex-panel");
     this.panels.set("inventory", panel);
-    const box = el("div", "empty-state big");
-    box.append(el("strong", undefined, "Coming soon"), el("p", undefined, "Inventory reporting is planned for a future release."));
-    panel.append(box);
+    panel.append(
+      this.inventoryCards,
+      el("h3", undefined, "Stock by location"),
+      exTable(["Location", "Type", "Pallets used", "Capacity", "Fill", "", "Items stocked", "Factory"], "llnnnlnl", this.inventoryLocationBody, { compact: true }),
+      el("h3", undefined, "Stock by item"),
+      exTable(["Item", "Type", "On hand", "Reserved", "Available", "On order (open POs)", "Earliest promised", "Short for blocked orders", "Where"], "llnnnnnll", this.inventoryItemBody, { compact: true }),
+      el(
+        "p",
+        "hint",
+        "On hand and reserved are summed over every location. Available is what can be reserved right now: for raw materials, on hand minus reserved in raw-storage locations only (the release rule, the same figure as the Material Shortages tab; stock still on a receiving dock cannot be reserved); for finished goods, on hand minus reserved (reserved = allocated to a customer order line). On order is the outstanding quantity (ordered minus received) on open purchase orders; the promised date is the supplier's promise, not a forecast. Pallets used rounds each item up to whole pallets. A material is marked short only when a blocked work order is short of it now. There is no days-of-supply or reorder figure. Synthetic data.",
+      ),
+    );
     return panel;
+  }
+
+  private renderInventory(r: InventoryReport): void {
+    const card = (label: string, value: string, scope: string, tip: string) => {
+      const c = el("article", "kpi");
+      c.title = tip;
+      c.append(el("div", "kpi-label", label), el("div", "kpi-value", value), el("div", "kpi-scope", scope));
+      return c;
+    };
+    const raw = r.items.filter((i) => i.kind === "RAW_MATERIAL");
+    const fg = r.items.filter((i) => i.kind === "FINISHED_GOOD");
+    const used = r.locations.reduce((n, l) => n + l.palletsUsed, 0);
+    const cap = r.locations.reduce((n, l) => n + l.palletCapacity, 0);
+    this.inventoryCards.replaceChildren(
+      card("Raw materials short for blocked orders", String(raw.filter((i) => i.short).length), `of ${raw.length} materials`, "Materials that at least one blocked work order is short of right now."),
+      card("Finished goods available", String(fg.reduce((n, i) => n + i.available, 0)), `${fg.reduce((n, i) => n + i.onHand, 0)} on hand, ${fg.reduce((n, i) => n + i.reserved, 0)} reserved for customer orders`, "Finished-goods units not yet reserved for a customer order."),
+      card("Pallet positions in use", cap > 0 ? `${((used / cap) * 100).toFixed(0)}%` : "N/A", `${used} / ${cap} across all locations`, "Pallets used (each item rounded up to whole pallets) over pallet capacity."),
+    );
+
+    const kindText: Record<string, string> = { RECEIVING: "Receiving", RAW_STORAGE: "Raw storage", ASSEMBLY: "Assembly", QUALITY: "Quality", SHIPPING: "Shipping / finished goods" };
+    this.inventoryLocationBody.replaceChildren(
+      ...r.locations.map((l) => {
+        const tr = el("tr");
+        const bar = el("td");
+        const fill = el("span", "pareto-bar");
+        fill.style.width = `${Math.min(100, Math.round(l.fill * 100))}%`;
+        bar.append(fill);
+        const factory = el("td");
+        if (this.showInFactory) {
+          const show = this.showInFactory;
+          const b = el("button", "link-btn", "Show");
+          b.title = "Select this location in the 3D plant";
+          b.addEventListener("click", () => show([l.locationId]));
+          factory.append(b);
+        }
+        tr.append(el("td", undefined, `${l.name} (${l.locationId})`), el("td", undefined, kindText[l.kind] ?? l.kind), el("td", "num", String(l.palletsUsed)), el("td", "num", String(l.palletCapacity)), el("td", "num", l.palletCapacity > 0 ? fmtRate(l.fill) : "N/A"), bar, el("td", "num", String(l.itemsStocked)), factory);
+        return tr;
+      }),
+    );
+
+    this.inventoryItemBody.replaceChildren(
+      ...r.items.map((i) => {
+        const tr = el("tr");
+        const shortCell = el("td");
+        if (i.short) {
+          const b = el("button", "link-btn", `Short: ${i.blockedOrders} blocked work order${i.blockedOrders === 1 ? "" : "s"}`);
+          b.title = "Open the Material Shortages tab";
+          b.addEventListener("click", () => {
+            this.showTab("shortages");
+            this.update(true);
+          });
+          shortCell.append(b);
+        } else shortCell.append(i.kind === "RAW_MATERIAL" ? "–" : "n/a");
+        const where = el("td", undefined, i.locations.length ? i.locations.map((x) => `${x.locationId} ${x.onHand}`).join(", ") : "nothing on hand");
+        tr.append(
+          el("td", undefined, `${i.description} (${i.sku})`),
+          el("td", undefined, i.kind === "RAW_MATERIAL" ? "Raw material" : "Finished good"),
+          el("td", "num", `${i.onHand} ${i.uom}`),
+          el("td", "num", String(i.reserved)),
+          el("td", "num", String(i.available)),
+          el("td", "num", i.openPurchaseOrderQuantity === null ? "n/a" : String(i.openPurchaseOrderQuantity)),
+          el("td", "num", i.kind === "FINISHED_GOOD" ? "n/a" : i.earliestPromisedMs === null ? "none on order" : fmtDate(i.earliestPromisedMs)),
+          shortCell,
+          where,
+        );
+        return tr;
+      }),
+    );
   }
 
   // ---- work order table --------------------------------------------------
@@ -1063,7 +1119,8 @@ export class OperationsExplorer {
   }
 
   private rowCells(s: WorkOrderSummary): { sig: string; fill: (cells: HTMLTableCellElement[]) => void } {
-    const customer = s.customerOrderIds.length ? s.customerOrderIds.join(", ") : "N/A";
+    const customerList = shortList(s.customerOrderIds);
+    const customer = s.customerOrderIds.length ? customerList.text : "N/A";
     const statusText =
       s.status === "BLOCKED"
         ? s.blockReason === "MATERIAL_SHORTAGE"
@@ -1081,6 +1138,7 @@ export class OperationsExplorer {
         setText(c[0], s.id);
         setText(c[1], `${s.productName} · ${s.sku}`);
         setText(c[2], customer);
+        c[2].title = customerList.title;
         setText(c[3], String(s.orderedQuantity));
         setText(c[4], String(s.goodQuantity));
         c[5].replaceChildren(statusBadge(s.status, statusText));

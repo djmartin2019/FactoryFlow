@@ -113,6 +113,7 @@ The dashboard refreshes on its own 250 ms timer; the render loop calls `simulati
 | Work-order drawer: elapsed time and conditions | `workOrderTime` (`analytics/workOrderTime.ts`) | the order's events, operations, downtimes, work-center queues, calendar |
 | 3D "Colour by" overlays (queue, utilization, shortage) | `overlayFor` (`analytics/overlays.ts`) → `FactoryVisualizer` | `workstationViews`, `stationMetrics`, `materialShortages`; the renderer only maps intensity to colour |
 | Customer-order drawer (lines, allocations, shipments, planned work orders) | `customerOrderDetail` (`analytics/customerOrders.ts`) | customer orders, shipments, `FINISHED_GOODS_ALLOCATED` events, `demandLineIds` |
+| Inventory tab (stock by location and item) | `inventoryReport` (`analytics/inventory.ts`) | inventory balances via `inventoryByLocation`, open purchase orders, `materialShortages` |
 | Material Shortages tab | `materialShortages` (`analytics/materialShortages.ts`) | blocked work orders, BOM, inventory balances, open purchase orders, customer orders |
 | Work Centers "Why" panel | `bottleneckExplanations` (`analytics/bottleneck.ts`) | work-center queues and load, workstation runtime, downtimes, orders |
 | Quality tab (yield, rework, scrap, Pareto) | `qualityReport` (`analytics/quality.ts`) | quality inspections, work orders (product), workstations |
