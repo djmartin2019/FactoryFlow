@@ -189,6 +189,7 @@ public/                      Static assets; public/data is a symlink to data/gen
 
 | Document | What it is |
 | --- | --- |
+| [`docs/PLANT_MANAGER_GUIDE.md`](docs/PLANT_MANAGER_GUIDE.md) | How the plant works step by step, what each screen is for, and how every number and event is calculated, written for plant managers and manufacturer reviewers |
 | [`docs/STATUS.md`](docs/STATUS.md) | What is implemented, partial or proposed today |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | The data path, layers, IDs, events and where each number comes from |
 | [`docs/KPI_DEFINITIONS.md`](docs/KPI_DEFINITIONS.md) | Definition of every metric, with limitations |
