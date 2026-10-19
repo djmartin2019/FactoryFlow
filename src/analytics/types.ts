@@ -143,6 +143,8 @@ export interface ThroughputPoint {
   startMs: number;
   endMs: number;
   units: number;
+  /** Good units in this bucket by product id; sums to `units`. Products with no units are absent. */
+  byProduct: Record<Id, number>;
 }
 
 export interface ThroughputSeries {
@@ -153,4 +155,6 @@ export interface ThroughputSeries {
   productId: Id | null;
   points: ThroughputPoint[];
   total: number;
+  /** Good units over the whole window by product id; sums to `total`. */
+  totalsByProduct: Record<Id, number>;
 }

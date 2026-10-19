@@ -24,6 +24,8 @@ import {
   type DispatchReport,
   type OrderDispatchView,
   goodUnitsThroughput,
+  productionSummary,
+  type ProductionSummary,
   equipmentLoad,
   workCenterLoad,
   workOrderCounts,
@@ -38,6 +40,7 @@ import { reportingSnapshot } from "../../simulation/reportingSnapshot";
 import type { SimulationController } from "../../simulation/SimulationController";
 import { inShift as inShiftNow, nextShiftStart, weekdayShort } from "../../manufacturing/calendar";
 import { el, formatSimTime, setText } from "../dom";
+import { productColor } from "./productColors";
 import { fmtDate, fmtDateTime, fmtDuration, fmtMoney, fmtRate, statusBadge, STATUS_TEXT } from "./format";
 import { ThroughputChart } from "./ThroughputChart";
 import { CustomerOrderDrawer } from "./CustomerOrderDrawer";
@@ -246,6 +249,7 @@ export class OperationsExplorer {
       const ck = `${key}|${this.getPeriod()}|${this.productFilter}|${Math.floor(snap.asOfMs / 60_000)}`;
       if (ck !== this.chartKey) {
         this.chartKey = ck;
+        this.renderProduction(productionSummary(snap, this.getPeriod()), snap.master.products.map((p) => p.id));
         const series = goodUnitsThroughput(snap, this.getPeriod(), this.productFilter === "ALL" ? null : this.productFilter);
         const product = snap.master.products.find((p) => p.id === this.productFilter);
         this.chart.update(
@@ -423,9 +427,60 @@ export class OperationsExplorer {
     return panel;
   }
 
+  private readonly prodCards = el("div", "ex-kpis");
+  private readonly prodBody = el("tbody");
+
+  private renderProduction(sum: ProductionSummary, productIds: string[]): void {
+    const unit = sum.granularity === "hour" ? "hour" : "day";
+    const num = (n: number) => n.toLocaleString("en-US");
+    const card = (label: string, value: string, scope: string, tip: string) => {
+      const c = el("article", "kpi");
+      c.title = tip;
+      c.append(el("div", "kpi-label", label), el("div", "kpi-value", value), el("div", "kpi-scope", scope));
+      return c;
+    };
+    const top = sum.byProduct[0];
+    const topName = top && top.units > 0 ? this.sim.engine.master.products.find((p) => p.id === top.productId)?.name ?? top.productId : "–";
+    this.prodCards.replaceChildren(
+      card("Good units", num(sum.total), "Reporting period", "QC-approved units received into finished goods in the reporting period."),
+      card("Average per day", (Math.round(sum.perDay * 10) / 10).toLocaleString("en-US"), "Calendar days, incl. off-shift", "Good units divided by the elapsed days of the reporting window (calendar time, not shift time)."),
+      card(
+        `Busiest ${unit}`,
+        sum.peak ? `${num(sum.peak.units)} units` : "–",
+        sum.peak ? `${fmtDateTime(sum.peak.startMs)} UTC` : "Nothing produced yet",
+        `The ${unit} with the most good units in the reporting period.`,
+      ),
+      card(`Active ${unit}s`, `${sum.activeBuckets} of ${sum.buckets}`, `${unit}s with output`, `Buckets with at least one good unit, out of all ${unit} buckets in the window.`),
+      card("Top product", topName, top && top.units > 0 ? `${fmtRate(top.share)} of good units` : "Nothing produced yet", "The product with the most good units in the reporting period."),
+    );
+    const maxShare = Math.max(0.0001, ...sum.byProduct.map((r) => r.share));
+    this.prodBody.replaceChildren(
+      ...sum.byProduct.map((r) => {
+        const product = this.sim.engine.master.products.find((p) => p.id === r.productId);
+        const color = productColor(productIds.indexOf(r.productId));
+        const tr = el("tr");
+        const name = el("td");
+        const sw = el("span", "legend-swatch");
+        sw.style.background = color;
+        sw.style.marginRight = "8px";
+        name.append(sw, product ? product.name : r.productId);
+        const bar = el("span", "share-bar");
+        bar.style.background = color;
+        bar.style.width = `${Math.round((r.share / maxShare) * 100)}%`;
+        const barTd = el("td");
+        barTd.style.width = "30%";
+        barTd.append(bar);
+        tr.append(name, el("td", undefined, product?.sku ?? ""), el("td", "num", num(r.units)), el("td", "num", fmtRate(r.share)), el("td", "num", (Math.round(r.perDay * 10) / 10).toLocaleString("en-US")), barTd);
+        return tr;
+      }),
+    );
+  }
+
   private buildAnalyticsPanel(): HTMLElement {
     const panel = el("section", "ex-panel");
     this.panels.set("analytics", panel);
+    this.chart.setProducts(this.sim.engine.master.products.map((p) => ({ id: p.id, name: p.name })));
+    panel.append(el("h3", "panel-title", "Production summary"), this.prodCards);
     panel.append(el("h3", "panel-title", "Good units produced over time"));
 
     const controls = el("div", "ex-controls");
@@ -447,6 +502,8 @@ export class OperationsExplorer {
     panel.append(
       controls,
       this.chart.element,
+      el("h3", "panel-title", "Output by product"),
+      exTable(["Product", "SKU", "Good units", "Share", "Per day", ""], "llnnnl", this.prodBody),
       el(
         "p",
         "hint",

@@ -2,6 +2,7 @@ import { beforeAll, describe, expect, it } from "vitest";
 import {
   categoryOf,
   goodUnitsThroughput,
+  productionSummary,
   granularityFor,
   inWindow,
   periodWindow,
@@ -75,6 +76,18 @@ describe("good-unit aggregation", () => {
     expect(all.points.reduce((a, p) => a + p.units, 0)).toBe(all.total);
     const per = data.master.products.map((p) => goodUnitsThroughput(snap, "all", p.id).total);
     expect(per.reduce((a, b) => a + b, 0)).toBe(all.total);
+  });
+
+  it("product splits sum to bucket and window totals, and the summary agrees", () => {
+    const snap = snapshotAt(endMs());
+    const all = goodUnitsThroughput(snap, "all");
+    for (const p of all.points) expect(Object.values(p.byProduct).reduce((a, b) => a + b, 0)).toBe(p.units);
+    expect(Object.values(all.totalsByProduct).reduce((a, b) => a + b, 0)).toBe(all.total);
+    const sum = productionSummary(snap, "all");
+    expect(sum.total).toBe(all.total);
+    expect(sum.byProduct.reduce((a, r) => a + r.units, 0)).toBe(all.total);
+    expect(sum.byProduct.length).toBe(data.master.products.length);
+    expect(sum.peak?.units).toBe(Math.max(...all.points.map((p) => p.units)));
   });
 
   it("is empty before any production", () => {

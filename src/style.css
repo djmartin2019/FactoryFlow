@@ -759,8 +759,9 @@ table.orders,
 }
 
 .chart-svg {
+  display: block;
   width: 100%;
-  max-width: 900px;
+  max-width: 80%; /* 20% smaller than full panel width */
   height: auto;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -779,16 +780,49 @@ table.orders,
 
 .chart-svg .axis-text {
   fill: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .chart-svg .axis-title {
   fill: var(--text);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .chart-svg .fill {
-  fill: var(--accent);
+  fill: var(--accent); /* fallback; stacked bars set a per-product inline fill */
+}
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 10px 2px 0;
+  font-size: 13px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.ex-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+.share-bar {
+  display: inline-block;
+  height: 8px;
+  min-width: 2px;
+  border-radius: 4px;
+  vertical-align: middle;
 }
 
 .chart-svg .hit {
@@ -1156,13 +1190,36 @@ table.orders,
   color: var(--muted);
 }
 
-/* Analysis tables: keep labels and numbers close on wide screens, and make rows followable */
-.tbl-scroll.compact {
-  max-width: 1200px;
-}
+/* Analysis tables fill the page width; rows get zebra striping and a hover highlight to stay followable */
 .mini-table tbody tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.02);
 }
 .mini-table tbody tr:hover {
   background: var(--accent-soft);
+}
+
+/* Production Analytics: breathing room between titles, cards, chart and tables */
+.ex-panel .panel-title {
+  margin: 28px 0 12px;
+}
+.ex-panel .panel-title:first-child {
+  margin-top: 8px;
+}
+.ex-panel .ex-controls + .chart-wrap,
+.ex-panel .chart-wrap {
+  margin-top: 4px;
+}
+.chart-total {
+  margin: 8px 0 12px;
+}
+.chart-legend {
+  margin: 14px 2px 4px;
+}
+.mini-table .legend-swatch {
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.chart-wrap .empty-state {
+  margin: 16px 0;
 }

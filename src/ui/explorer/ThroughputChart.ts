@@ -1,5 +1,6 @@
 import type { ThroughputSeries } from "../../analytics";
 import { el, setText } from "../dom";
+import { productColor } from "./productColors";
 
 const NS = "http://www.w3.org/2000/svg";
 const svgEl = (tag: string, attrs: Record<string, string | number> = {}) => {
@@ -8,8 +9,8 @@ const svgEl = (tag: string, attrs: Record<string, string | number> = {}) => {
   return n;
 };
 
-const W = 760;
-const H = 280;
+const W = 1200;
+const H = 340;
 const M = { top: 12, right: 12, bottom: 48, left: 48 };
 
 const niceMax = (v: number) => {
@@ -35,16 +36,24 @@ export class ThroughputChart {
   private readonly total = el("div", "chart-total");
   private readonly host = el("div", "chart-host");
   private readonly empty = el("div", "empty-state", "No good units were produced in the selected period.");
+  private readonly legend = el("div", "chart-legend");
   private lastKey = "";
+  private products: Array<{ id: string; name: string }> = [];
 
   constructor() {
-    this.element.append(this.total, this.host, this.empty);
+    this.element.append(this.total, this.host, this.legend, this.empty);
+  }
+
+  /** Products in master order; a product's colour is its index here. */
+  setProducts(products: Array<{ id: string; name: string }>): void {
+    this.products = products;
+    this.lastKey = "";
   }
 
   update(series: ThroughputSeries, periodLabel: string, productLabel: string): void {
     setText(this.total, `${series.total.toLocaleString("en-US")} good units — ${periodLabel}, ${productLabel}`);
     this.empty.hidden = series.total > 0;
-    const key = `${series.granularity}|${series.fromMs}|${series.toMs}|${series.productId}|${series.points.map((p) => p.units).join(",")}`;
+    const key = `${series.granularity}|${series.fromMs}|${series.toMs}|${series.productId}|${series.points.map((p) => p.units).join(",")}|${this.products.length}`;
     if (key === this.lastKey) return;
     this.lastKey = key;
     this.render(series);
@@ -56,7 +65,18 @@ export class ThroughputChart {
     const plotW = W - M.left - M.right;
     const plotH = H - M.top - M.bottom;
     const slot = plotW / points.length;
-    const barW = Math.max(2, Math.min(28, slot - 2));
+    const barW = Math.max(2, Math.min(40, slot - 2));
+
+    const shown = this.products.map((p, i) => ({ ...p, color: productColor(i) })).filter((p) => (series.totalsByProduct[p.id] ?? 0) > 0);
+    this.legend.replaceChildren(
+      ...shown.map((p) => {
+        const item = el("span", "legend-item");
+        const sw = el("span", "legend-swatch");
+        sw.style.background = p.color;
+        item.append(sw, `${p.name} · ${(series.totalsByProduct[p.id] ?? 0).toLocaleString("en-US")}`);
+        return item;
+      }),
+    );
 
     const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, class: "chart-svg", role: "img" });
     svg.setAttribute("aria-label", `Good units produced per ${granularity}`);
@@ -73,13 +93,22 @@ export class ThroughputChart {
     const labelEvery = Math.max(1, Math.ceil(points.length / 10));
     points.forEach((p, i) => {
       const x = M.left + i * slot + (slot - barW) / 2;
-      const h = (p.units / max) * plotH;
       const when = granularity === "hour" ? hourLabel(p.startMs) : dayLabel(p.startMs);
       const g = svgEl("g", { class: "bar" });
       const title = svgEl("title");
-      title.textContent = `${when} UTC: ${p.units} good unit${p.units === 1 ? "" : "s"}`;
+      const split = shown.filter((q) => (p.byProduct[q.id] ?? 0) > 0).map((q) => `${q.name} ${p.byProduct[q.id]}`);
+      title.textContent = `${when} UTC: ${p.units} good unit${p.units === 1 ? "" : "s"}${split.length > 1 ? ` (${split.join(", ")})` : ""}`;
       g.append(title, svgEl("rect", { x: M.left + i * slot, y: M.top, width: slot, height: plotH, class: "hit" }));
-      if (p.units > 0) g.append(svgEl("rect", { x, y: M.top + plotH - h, width: barW, height: h, rx: 2, class: "fill" }));
+      let top = M.top + plotH;
+      for (const q of shown) {
+        const u = p.byProduct[q.id] ?? 0;
+        if (u <= 0) continue;
+        const sh = (u / max) * plotH;
+        top -= sh;
+        const r = svgEl("rect", { x, y: top, width: barW, height: sh, class: "fill", stroke: "var(--panel-solid)", "stroke-width": 0.75 });
+        r.style.fill = q.color; // inline style: the stylesheet's .fill rule would override a fill attribute
+        g.append(r);
+      }
       svg.append(g);
       if (i % labelEvery === 0) {
         const t = svgEl("text", { x: M.left + i * slot + slot / 2, y: H - M.bottom + 16, "text-anchor": "middle", class: "axis-text" });
