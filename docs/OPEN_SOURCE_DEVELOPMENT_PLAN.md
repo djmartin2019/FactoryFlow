@@ -6,6 +6,12 @@ Lakehouse Reference).** Scope changes R1 to R8 were accepted earlier the same da
 (M3b-core contract, legacy-reducer timing) and proposed S1 metric definitions to `KPI_DEFINITIONS.md`. Written against `main` at
 `de87e12`. No roadmap item has been implemented.
 
+**Revision 2026-10-20: investigation-first direction.** Product emphasis moves from "more dashboards" to an *investigation tool*: a manager
+finds out what is actually happening in the plant, follows the evidence, and sees how part delivery times and shipping affect customer dates. This adds
+capabilities P13 to P16 (§E), slices S7 to S12 (§E.3), a "Domain" lane for the one schema change (§F.1), a new release **0.1.x Investigation** and shipping
+in 0.2.0 (§G.1a, §G.2), and decisions L12 to L15 (§L). Release **0.1.0 is unchanged**: still observed facts only, no forecasts. Nothing in this revision is
+implemented; `STATUS.md` still governs what exists.
+
 **Authority.** This document defines release scope, order and readiness. It does not duplicate specifications:
 `SOURCE_INTEGRATION_PLAN_REV3.md` is authoritative for source-integration behavior (including §7.4a, the M3b-core contract);
 `KPI_DEFINITIONS.md` is authoritative for analytical metric semantics; `STATUS.md` is authoritative for what exists today;
@@ -21,9 +27,9 @@ Docs convention: this repository keeps planning and reference documents flat in 
 - B. Engineering principles
 - C. Current state (verified)
 - D. Target reference architecture
-- E. Product capability roadmap
+- E. Product capability roadmap (E.4: investigation, part lead time, ETA and shipping slices)
 - F. Technical development roadmap
-- G. Release roadmap: 0.1.0, 0.2.0, 0.3.0 (G.0 definitions and maturity levels)
+- G. Release roadmap: 0.1.0, 0.1.x Investigation, 0.2.0, 0.3.0 (G.0 definitions and maturity levels)
 - H. Databricks reference integration (release 0.3.0)
 - I. Deferred and out-of-scope work
 - J. Definition of done by release
@@ -47,6 +53,17 @@ codebase.
 | Engineers and contributors | A readable, tested, documented architecture with honest statements of what works |
 | Manufacturing and data practitioners | A worked example of work-order traceability, bottleneck, quality and dispatch analysis, with defined KPIs |
 | Data-platform engineers | A reference for feeding an external source (first example: Databricks) into the same analytics |
+
+### Product direction: an investigation tool
+
+The dashboard should help someone *discover* what is happening, not only display it. Three principles guide every new slice:
+
+1. **Surface, then explain, then trace.** An exceptions list says what deserves attention; each entry carries a one-line evidence statement; each statement links
+   to the records behind it (order, work order, work center, material, shipment, 3D object) and keeps the path back.
+2. **Observed first, forecast second, never mixed.** Observed facts (what happened) and forecasts (what we expect) are separate, separately labelled, and
+   each forecast states its inputs. A forecast ships only after the observed figures it depends on exist.
+3. **Part delivery time is a first-class input.** Per-part lead time (standard and observed) is a metric in its own right and the input to the
+   material-delay term of a work-order ETA (§E.3, S9 and S10).
 
 ### Goals (in priority order for the first release, 0.1.0)
 
@@ -139,7 +156,7 @@ You supplied "M0, M1, M2 complete". The repository supports that:
 
 | # | Where | Discrepancy |
 | --- | --- | --- |
-| 1 | `public/roadmap/index.html` | Says Phases 2 and 3 are **"In progress"** and is dated 2026-10-15. `STATUS.md` lists serialized units, revision capture and incoming-quality hold as *Proposed* and shows no Phase 2 work. It also predates M0-M2 and does not mention source integration. The public page overstates progress. |
+| 1 | `public/roadmap/index.html` | Says Phases 2 and 3 are **"In progress"** and is dated 2026-10-15. `STATUS.md` lists serialized units, revision capture and incoming-quality hold as *Proposed* and shows no Phase 2 work. It also predates M0-M2 and does not mention source integration. The public page overstates progress. **Resolved 2026-10-20:** the page was rewritten from this plan and `STATUS.md` (releases 0.1.0, 0.1.x, 0.2.0, 0.3.0; pilot language removed). |
 | 2 | `docs/PERFORMANCE.md` | "`npm test` (72 tests ...)" in the Phase 0 section. Current suite is 252 (237 + 15 expected-fail). Stale. |
 | 3 | `README.md` "Connecting real data" | Describes feeding domain events straight to `FactoryReplay`. It predates the `src/sources` boundary and Rev3, and does not mention either. README also has no license, no demo link, no screenshots, no status section. |
 | 4 | Rev3 §8 M0 vs M7, and the header of `tests/legacy/state.ts` | Three different deletion triggers ("once M3a has merged"; M7; "after M3a has merged and M7 closes"). **Resolved by Amendment A2:** the legacy reducer is retained through M4 and removed before the 0.2.0 tag on stated evidence. The file header still carries the old wording; correcting that comment is part of the M3a PR (not done here: this task is documentation only). |
@@ -237,7 +254,11 @@ carries (no schema bump). "New domain" needs new entities/events, a `SCHEMA_VERS
 | P7 | **Work-center utilization and queue visibility** | How loaded is each work center over time? | exists | Implemented (Work Centers tab) | Existing | n/a | n/a | done; add history chart in P3 |
 | P8 | **Individual-unit (serial) traceability** | What is the full history of unit X, including retests? | serialized units, per-attempt facts, BOM/routing revision captured on WO | Not modeled | New domain | High | L | unscheduled (first domain extension after 0.2.0) |
 | P9 | Incoming quality hold, partial receipts, substitutes | Why is material unavailable though received? | new receipt states and events | Not modeled | New domain | Med | M-L | unscheduled (optional) |
-| P10 | Capacity vs load view | Can we meet next week's demand? | routing standard minutes, calendar, equipment | Standard minutes + calendar exist; no demand projection | Incremental, flagged **forecast** | Med | M | unscheduled |
+| P10 | Capacity vs load view | Can we meet next week's demand? | routing standard minutes, calendar, equipment | Standard minutes + calendar exist; no demand projection | Incremental, flagged **forecast** | Med | M | unscheduled (S10's work-time estimate is the per-order seed of this) |
+| P13 | **Exceptions inbox and investigation trail** | What deserves my attention right now, and how did I get from the symptom to the evidence? | existing analytics outputs (dispatch, shortages, work centers, quality), deep links | Separate tabs; no cross-cutting list or breadcrumb | Incremental | High | M (S7, S8) | **0.1.x** |
+| P14 | **Part delivery lead time** | How long does each part really take to arrive, and how reliable is each supplier? | `Material.leadTimeDays`, `PurchaseOrder.createdAt` / `promisedDeliveryAt`, `SupplierReceipt.receivedAt` / `daysLate` / `delayReason` | Standard lead time on master data; no analytics | Incremental | High | S-M (S9) | **0.1.x** |
+| P15 | **Work-order ETA with material delay** | When can this work order finish, given that part X is short? | P14, `workCenters` queues, routing standard minutes, shift calendar, open POs (S4) | Not modeled; S4 shows PO cover dates only | Incremental, flagged **forecast** | High | M (S10) | **0.1.x** (after S9) |
+| P16 | **Shipping and delivery tracking** | When did finished goods leave, when did they arrive, and did the customer get them by the promised date? | New: shipment lifecycle (delivered event, transit time, delay reason); existing dispatch data | Dispatch only; no delivery, transit or ETA | **New domain** (`SCHEMA_VERSION` bump) | High | M-L (S11, S12) | 0.2.0 (schema change ships alone) |
 | P11 | Workforce: availability, skills, assignments, overtime | Is labor the real limit? | staff, skills, shifts, absences, skill requirements on routing steps | Not modeled; deferred by design (Phase 4) | New domain | High (large domain extension) | XL | **post-0.2, optional** |
 | P12 | Finite-capacity scheduling, scenario comparison | What if we add a station or shift? | P11 plus scenario isolation | Not modeled (Phase 5) | New domain | High | XL | research only |
 
@@ -255,8 +276,15 @@ Cost key (my judgment, not measured): S = a few days, M = about a week or two, L
   any release goal that P1-P8 do not. If pursued, do it as a self-contained experiment branch with its own
   design note, after 0.2.0.
 - **0.1.0 reports observed facts, not predictions.** No predicted delivery-risk model, no "at risk" flag. Lateness, past-due
-  open orders and time-to-due-date are arithmetic over recorded facts. A forecast needs a capacity model (P10) and must be labelled
-  *forecast* when it arrives.
+  open orders and time-to-due-date are arithmetic over recorded facts. A forecast must be labelled *forecast* when it arrives.
+- **The first forecast is deliberately narrow (revised 2026-10-20).** S10 estimates one thing: when a *work order* can finish, as
+  `material-ready time + remaining standard work`. It uses recorded inputs (part lead times, open PO dates, routing minutes, the shift calendar), states each
+  input beside the result, and makes no customer promise and no "at risk" claim. A full capacity model (P10) is not required for this narrower estimate, but
+  S10 must say that it ignores queue contention (it is an *earliest feasible* date, not an expected date) until queue time is added and validated.
+- **P16 is the one schema change in this revision** and the only reason the fixtures and hashes move. It ships alone (F.1 rule) and before M6a's
+  `expected.json` is finalized, so the second source reports deliveries too.
+- **P8 (serial units) follows P14 to P16**, still the first domain extension after the investigation work; it is the prerequisite for the order-to-work-order
+  lead-time decomposition that remains deferred.
 
 ### E.3 Slice specifications (release 0.1.0)
 
@@ -323,6 +351,71 @@ time and work-order time"), which is authoritative. Summary only:
   matching analytics function; cross-highlight covered by `mapping.ts` unit tests. Rendering itself remains
   manually verified (§G.4 smoke list).
 
+### E.4 Slice specifications (release 0.1.x Investigation and 0.2.0 shipping; proposed, none implemented)
+
+Same method as E.3: definition first in `KPI_DEFINITIONS.md` (marked "Proposed, not implemented" until built), then analytics with unit tests over a
+`ReportingSnapshot`, then UI, then the 3D link. S7 to S10 need **no schema change**.
+
+**S7. Exceptions inbox (P13)**
+- A single ranked list on the dashboard (and an Explorer tab) of *currently observed* conditions that deserve attention, assembled from analytics that already exist:
+  past-due unshipped customer orders (`dispatch`), work orders blocked by material (`materialShortages`), the bottleneck candidate and queues over a stated
+  threshold (`workCenters`, `bottleneck`), stations down (`workCenters`), and quality outliers (`quality`, only where the sample size rule is met).
+- Each row: a **type**, the **entity** (deep link), a **one-line evidence statement made only of recorded numbers** ("blocked 3 d 4 h; short PLC-300 by 12; next PO due 2026-10-24"),
+  and the **threshold** that put it on the list. Thresholds are named constants shown in the UI, not hidden heuristics.
+- Not predictions: no "at risk" rows. A row appears or disappears only because a recorded state changed; ranking is by a documented, simple key (type priority, then age), not a score.
+- Accept: every row's entity set equals the set the owning tab already counts (tested per type, so the inbox cannot disagree with its source tab); a hand-built fixture
+  produces the expected rows and order; an empty plant shows an explicit "nothing to report", not a blank; the evidence text is generated from fields, with a test that no
+  number appears that is not in the source record.
+
+**S8. Investigation trail and time comparison (P13)**
+- A breadcrumb that records the chain of entities the user opened (inbox row → customer order → work order → work center → material → 3D object) with Back and jump-to-any-step. It extends the
+  existing route parser and Back behaviour; the URL still records what is on screen, not simulated time.
+- **Compare windows:** pick two simulated-time windows (default: current shift against the previous shift) and show the change in the headline observed figures (good units, queue
+  depth per work center, blocked orders, downtime minutes, dispatches). Differences are arithmetic over the same definitions; no significance claims.
+- Accept: route round-trip tests for trails; a comparison of identical windows is all zeros; windows that straddle the simulation start or end are clamped and say so; each compared figure equals
+  the single-window figure computed independently (tested).
+
+**S9. Part delivery lead time (P14)**: observed and standard, per part and per supplier. *Definitions belong in `KPI_DEFINITIONS.md` before code.*
+- **Standard lead time** (master data, not observed): `Material.leadTimeDays`, today copied from the supplier. Shown labelled "standard".
+- **Observed lead time of a delivery**: calendar days from `PurchaseOrder.createdAt` to the `SupplierReceipt.receivedAt` that first receives that PO line. Units are days (fractions kept
+  internally), because the plan's other durations are minutes but supplier lead times are quoted in days; the conversion is one constant, tested. Short shipments: the *first* receipt counts as the delivery, the remainder is
+  reported as "short-shipped" and not averaged in. A PO line with no receipt yet is **open** and excluded from observed statistics but shown as "waiting N days of M standard".
+- **Per material** and **per supplier**: deliveries count, observed mean and P50/P90, standard, **delta to standard**, observed on-time rate (receipts with `daysLate = 0` ÷ receipts), mean days late, and the recorded `DelayReason` mix.
+  Percentiles need a **minimum sample** (documented constant, default 5); below it show the count and "not enough data", never a statistic. A material with no receipt shows "no deliveries observed".
+- **Expected lead time basis (an explicit choice, never implicit):** `STANDARD` (default) or `OBSERVED_P50` / `OBSERVED_P90` when the sample rule is met. Every consumer (S10) states which basis it used.
+- Visuals: a per-material strip showing standard against observed P50/P90 with individual deliveries as dots; a supplier reliability table; open PO lines as bars from created date to promised date with "today" marked. Data only; no new charting library (§F.6).
+- Accept: figures recompute from a hand-built snapshot (on-time, late, short-shipped, open, partial first receipt, sample below the minimum, material with no PO); supplier-level figures equal the weighted
+  aggregation of their materials (no averaging of averages); the seeded dataset's observed on-time rate per supplier is within sampling noise of the master `onTimeRate` and any gap is explained in the doc, not tuned away; no schema, fixture or hash change.
+
+**S10. Work-order ETA with material delay (P15)**: *forecast*, always labelled.
+- **Definition (proposed):** `ETA = materialReadyAt + remainingWork`, where:
+  - `materialReadyAt` is *now* if the order is not short of material; otherwise the **latest** over its short materials of the earliest of: (a) the promised date of the open PO lines that cover the shortfall (the S4 cover date), plus the observed mean days late for
+    that supplier when the basis is observed; or (b) when **no supply is on order**, `now + expected lead time` of that material (the stated basis from S9), i.e. the earliest a new order could arrive. Materials are waited for in parallel, so the wait is the maximum, not the sum.
+  - `remainingWork` is the sum of the remaining routing steps' standard minutes plus changeover where known, laid out on the shift calendar starting at `materialReadyAt` (so off-shift time is included, not ignored).
+  - Example from the owner: a part missing with a 2-day lead time and 6 hours of work gives an ETA of about 2 days plus 6 working hours, rolled forward over the shift calendar.
+- **What it is not:** it ignores queueing behind other orders and resource contention, so it is an **earliest feasible** date. It does not allocate scarce stock or supply between competing orders (the same limitation as S4); where several orders are short of one
+  material the UI says so. It is not a customer promise, not an "at risk" flag, and shows no confidence band until enough history exists to compute one honestly.
+- **Display:** the order's bar split into *waiting for parts* / *work* with the ETA marked, the basis and inputs listed beside it ("lead time basis: standard 2 d; covering PO PO-0042 promised 2026-10-24; remaining routing 6 h 20 m"), and a distinct visual style (hatched/dashed)
+  from observed bars. The same order's *observed* segments, once recorded, replace the estimate; the estimate is retained for comparison ("estimated vs. actual").
+- **Evaluating it:** a backtest table over the seeded dataset (ETA computed at the moment each order was blocked, compared with actual release/completion). Reported honestly, including that it is biased early because queueing is ignored. If the error is large, the doc says so; the estimate is not tuned to look good.
+- Accept: hand-built fixtures for no shortage, shortage with covering PO, partial cover, no supply on order (uses lead time), two short materials (maximum), shortage ending mid-shift and off-shift roll-forward; labelled "forecast" in every UI surface and in the evidence text; the S7 inbox may show the ETA only as a labelled estimate beside an observed row, never as its own row; no schema change.
+
+**S11. Shipment lifecycle in the domain (P16): the schema change**
+- **New facts** (proposed; to be confirmed in a design note before code): an event for delivery (`SHIPMENT_DELIVERED`, with `deliveredAt`), carrier transit-time master data per carrier and region (so transit times differ and are explainable), an optional recorded delay reason (reusing the vocabulary style of `DelayReason`),
+  and an explicit **shipment status** (`DISPATCHED`, `DELIVERED`). Delivery is a recorded fact, not an inference; a shipment with no delivery event is "in transit" or "delivery not reported", depending on the source's declared capability (design §12.3).
+- **Contracts:** `SCHEMA_VERSION` bump (`1.4.0`), canonical fixture and hashes updated deliberately in a PR that contains nothing else, migration note, `REDUCER_RULES.md` rows for the new event, generator and wire-format (`src/sources/simulation/`) updated together, contract tests.
+- **Reducer rules** to define: delivery cannot precede dispatch; a shipment is delivered at most once; delivery of an unknown shipment is rejected (the reducer stays strict, Rev3 D6); customer-order status is *not* changed by delivery (shipped ≠ delivered).
+- Accept: round trip through the wire format is exact; validation and determinism checks pass; the old dataset is still readable through a documented migration or the fixture is regenerated and the old hash recorded in the migration note.
+
+**S12. Shipping tracking and delivery visuals (P16)**
+- Explorer "Shipping" tab. Metrics (definitions first): **Dispatch-to-Delivery Transit Time** (observed, per carrier and region), **Delivered On Time** (delivery on or before the customer promise date; defined only for orders with a recorded promise date, with the
+  synthetic `dueDate` documented as a *delivery-by* assumption here, distinct from the dispatch-by assumption of S1), **In Transit** now (count and age), **Delivery Delay** (days past promise), and the order's end-to-end timeline: ordered → built → dispatched → delivered, extending S1a's milestone segments by a fourth, observed segment.
+- Visuals: a lane per shipment (dispatched → delivered) against the promised date with today marked, late deliveries highlighted; a transit-time distribution per carrier; an "In transit" list sorted by age. A map or animated marker view is **optional and last**: it adds no new
+  information beyond the lane view and does not block the slice.
+- The customer-order drawer gains the delivery state of each shipment; S7's inbox gains "in transit longer than the carrier's observed P90" (observed, with threshold shown) and "delivered late".
+- 3D: shipping bays show in-transit shipments awaiting pickup or departure as markers only if the event data supports it; no invented movement between the plant and the customer.
+- Accept: figures recompute from a hand-built snapshot (delivered on time, late, in transit, delivered on the promise instant, shipment with two lines, order shipped in two shipments); On-Time In-Full Dispatch (S1a) is unchanged; "delivered" never appears for a dispatch-only source (capability-aware wording).
+
 ---
 
 ## F. Technical development roadmap
@@ -336,6 +429,7 @@ Revision 3's technical intent and acceptance criteria are kept (with Amendments 
 | --- | --- | --- | --- |
 | **Intelligence** | S1a, S1b, S2, S3, S5/S6, optionally S4 | `src/analytics/`, `src/ui/`, `src/graphics/`, `KPI_DEFINITIONS.md` | Never changes event shapes, reducer rules or pinned fixtures |
 | **Integration** | M3a, M3b-core, M4, M5, M6a | `src/manufacturing/state.ts`, `src/sources/`, `src/simulation/`, tests | Pinned-contract changes (reducer, fixtures, hashes) ship alone, never bundled with a lane-1 PR |
+| **Domain** | S11 (shipment lifecycle) | `src/manufacturing/`, `src/sources/simulation/`, fixtures, `REDUCER_RULES.md` | A `SCHEMA_VERSION` bump with migration note; ships alone; S12 (Intelligence lane) follows it. S7 to S10 belong to the Intelligence lane and must not need this lane |
 | **Release** | truth alignment, legal and asset review, README, hosting, screenshots | docs, repo metadata, `deploy/` | Docs-only unless stated |
 
 Rev3 dependencies hold: M3b needs M1 and M3a; M4 needs M2 and M3b-core; M5 needs M4; M6a needs M4 and M5. S1 to S3 depend on nothing
@@ -352,7 +446,13 @@ in the integration lane. M6a's `expected.json` should cover the S1 to S3 results
 | 4 | **S3** bottleneck explanation *(implemented)* | §E.3 | S1b helpers | 0.1.0 |
 | 5 | **S5** order-to-work-order navigation and deep links *(implemented)*; **S6** analytical Explorer/3D link and overlays *(implemented; rendering not yet verified in a WebGL browser)* | §E.3 | S1 to S3 | 0.1.0 |
 | 6 | Legal/asset review, README, screenshots, hosting, **tag 0.1.0** | §G.1 | 1-5 | 0.1.0 |
-| A | **M3a** atomic reducer *(may land at any point; independent of steps 1-6)* | Rev3 §8, §7.6 | M0 (done) | 0.2.0 |
+| 7 | **S7** exceptions inbox | §E.4 | S1 to S4 (done) | 0.1.x |
+| 8 | **S8** investigation trail and time comparison | §E.4 | S5, S7 | 0.1.x |
+| 9 | **S9** part delivery lead time (per part and supplier; defines the lead-time basis) | §E.4 | S4 (done) | 0.1.x |
+| 10 | **S10** work-order ETA with material delay (*forecast*, labelled) | §E.4 | S9, S4 | 0.1.x |
+| 11 | **S11** shipment lifecycle in the domain (schema bump; ships alone) | §E.4 | none; do before M6a | 0.2.0 |
+| 12 | **S12** shipping tracking and delivery visuals | §E.4 | S11 | 0.2.0 |
+| A | **M3a** atomic reducer *(may land at any point; independent of steps 1-12)* | Rev3 §8, §7.6 | M0 (done) | 0.2.0 |
 | B | **M3b-core** batch projection (Rev3 §7.4a) | Rev3 §8 M3b, A1, A2 | M1, M3a | 0.2.0 |
 | C | **M4** app boots through the boundary | Rev3 §8 M4 | M2, M3b-core | 0.2.0 |
 | D | **M5** OperationalView, import and module-graph boundaries | Rev3 §8 M5, A1 | M4 | 0.2.0 |
@@ -360,7 +460,8 @@ in the integration lane. M6a's `expected.json` should cover the S1 to S3 results
 | F | 0.2.0 bookkeeping, legacy-reducer removal, adapter how-to, **tag 0.2.0** | Rev3 M7 (A1, A2) | A-E | 0.2.0 |
 | G | Databricks reference (§H) | §H | 0.2.0 | 0.3.0 |
 
-Steps A to E may be interleaved with 1 to 5 or done first. If M3a lands before 0.1.0 it is marked complete in `STATUS.md` and not
+Steps 7 to 10 (the investigation sequence) follow tagging 0.1.0 and need no schema change; S11 is sequenced before M6a so the second source reports deliveries (otherwise
+`expected.json` would have to be revised). Steps A to E may be interleaved with 1 to 5 or done first. If M3a lands before 0.1.0 it is marked complete in `STATUS.md` and not
 repeated for 0.2.0.
 
 ### F.3 Milestone notes (constraints on top of Revision 3)
@@ -473,6 +574,16 @@ no document, release note or demo text may say or imply otherwise. The README st
    center in the 3D plant, seeing its queue and overlay. Then clone the repository and run the same thing locally with `npm install && npm run dev`.
 8. **Definition of done.** §J, release 0.1.0.
 
+### G.1a Release 0.1.x: Investigation (proposed 2026-10-20)
+
+1. **Purpose and audience.** Turn the 0.1.0 analytics into an investigation workflow, and add the first labelled forecast. Audience: plant-manager-style users and engineers evaluating the product idea.
+2. **Required capabilities.** S7 exceptions inbox, S8 trail and time comparison, S9 part lead time, S10 work-order ETA with material delay (labelled *forecast*, earliest-feasible, basis shown). A `0.1.1`, `0.1.2`, … sequence is acceptable (slices may ship as they land); each is a tag with a `STATUS.md` update, not a promise of the whole list.
+3. **Dependencies.** 0.1.0 tagged (or at least S1 to S6 implemented). No schema change, no fixture or hash change: **if any slice here needs one, it is out of this release** and moves to 0.2.0 with S11.
+4. **Non-goals.** Delivery or transit data (S11/S12), "at risk" flags or probabilities, confidence bands, customer promise dates generated by the app, queue-contention modelling, any claim that the ETA is accurate beyond its backtest, and everything 0.1.0 excludes that is not listed above.
+5. **Acceptance.** E.4 acceptance criteria for S7 to S10; the inbox agrees with the tabs it summarises; every ETA shows its basis and inputs and the word "forecast"; the backtest table is published in the docs with its biases; hashes unchanged.
+6. **Demonstration scenario (about two minutes).** Open the inbox, pick a blocked work order short of a part, see the short part's standard and observed lead time, open the covering PO, read the labelled ETA and its inputs, follow the trail back to the customer order and the 3D rack, then compare this shift with the last.
+7. **Definition of done.** Release 0.1.x checklist in §J.1a.
+
 ### G.2 Release 0.2.0: Source Independence
 
 1. **Purpose and audience.** Show that the manufacturing intelligence is not coupled to the synthetic simulation: the same analytics, UI and 3D run from independently
@@ -484,6 +595,7 @@ no document, release note or demo text may say or imply otherwise. The README st
    (including the messy variant); 0.2.0 bookkeeping from M7 (STATUS, PERFORMANCE results against the D7 budgets); removal of `tests/legacy/` on the Amendment A2 evidence.
 4. **Dependencies.** M3a needs M0 (done). M3b-core needs M1 (done) and M3a. M4 needs M2 (done) and M3b-core. M5 needs M4. M6a needs M4 and M5. S1 to S3 should exist before M6a's
    `expected.json` is finalized so the second source exercises them; 0.1.0 itself is not a technical prerequisite.
+   **Added 2026-10-20:** the shipment lifecycle (S11 schema change, S12 shipping tab) is part of this release, sequenced before M6a so the MES-like source and its `expected.json` include deliveries and the messy variant covers delivery-before-dispatch and duplicate-delivery cases. S11 ships as its own PR (pinned contracts).
 5. **Non-goals.** M3b-full (published log, pending changes, `reproject`, incremental ledger); M6b ERP-like snapshot-only source; typed rejection codes and advanced
    reconciliation guidance; declarative mapping; live append or streaming; data-health UI; Databricks; claims about real MES/ERP systems.
 6. **Acceptance criteria.** Revision 3 as amended: M3a criteria; §7.4a guarantees and accounting identities; simulation parity (identical ids, sequences, hash, zero quarantine);
@@ -649,7 +761,9 @@ governance showcase; PySpark port of the reducer; other platforms; production-sc
 | Checkpointing for large logs | Deferred until a dataset needs it |
 | Commercial pilots, customer security review, SLAs | Out of scope; annotated in the design doc |
 | Production enterprise deployment (security, HA, monitoring, governance, volume validation, domain validation) | Not provided by any release (G.0.1, L3) |
-| Predictive dispatch/delivery risk, "at risk" flags | Deferred until a capacity model exists (P10); 0.1.0 reports observed facts only |
+| Predictive dispatch/delivery risk, "at risk" flags, confidence bands | Deferred until a capacity model exists (P10); 0.1.0 reports observed facts only. From 0.1.x only the narrow, labelled work-order ETA (S10) exists |
+| Shipment map or animated vehicle tracking | Optional last step of S12; no real carrier or GPS data exists, so any movement would be illustrative and must say so |
+| Carrier APIs, live tracking numbers | Out of scope (no integration, no backend) |
 | Order-level lead-time decomposition into work-order phases, transit/receipt time, quality-hold time | Deferred (need unit/lot traceability, a receipt event, incoming-quality modeling); see `KPI_DEFINITIONS.md` |
 
 ---
@@ -685,6 +799,15 @@ A release is **ready for publication** only when every box for that release is c
 - [ ] Known limitations section lists the gaps in §C.4 that remain (including: no source-independent ingestion yet, no unit-level traceability, no workforce or scheduling).
 - [ ] Short (under 2 minutes) walkthrough script in the README or docs; `PERFORMANCE.md` re-measured and dated for the release build.
 
+### J.1a Release 0.1.x: Investigation
+
+- [ ] Everything in J.1 still true (hashes `6ed76381` / `1b408e8e` unchanged; synthetic label on every view).
+- [ ] For each slice shipped: its definitions moved from "proposed" to implemented in `KPI_DEFINITIONS.md`; a `STATUS.md` row with a pointer; unit tests recompute every displayed number.
+- [ ] S7: inbox rows equal the owning tabs' sets (tested per type); thresholds visible in the UI.
+- [ ] S9: lead-time basis, minimum-sample rule and open/short-shipped handling documented and tested.
+- [ ] S10: "forecast" label, basis and inputs on every surface; backtest published with its known bias; no "at risk" wording anywhere.
+- [ ] README "what works" section updated; the roadmap page reconciled.
+
 ### J.2 Release 0.2.0: Source Independence
 
 - [ ] Everything in J.1 still true, with docs updated for the new capabilities and the README promoting integration from "planned" to "implemented" only for what `STATUS.md` marks so.
@@ -718,9 +841,12 @@ Ordered by dependency and value. Each is a separate PR; the two lanes are indepe
 2. **S1a: Order-to-Final-Dispatch Lead Time, Dispatch Lateness, Past-Due Unshipped Orders, On-Time In-Full Dispatch** (Intelligence lane). First step on the 0.1.0 critical path; its definitions are now complete in `KPI_DEFINITIONS.md`, needs no schema change.
 3. **M3a: atomic reducer** (Integration lane, in parallel; not on the 0.1.0 critical path). Fully specified, guarded by the M0 harness; it also corrects the legacy header comment.
 4. **S1b, S2, S3, S5/S6** in that order, then legal/asset review, README and screenshots, then tag 0.1.0.
-5. **M3b-core** (Revision 3 §7.4a) once M3a has merged, then M4, M5, M6a for 0.2.0.
+5. **Tag 0.1.0** once the legal, README and screenshot work is done.
+6. **Investigation sequence (0.1.x, Intelligence lane):** **S7** exceptions inbox → **S9** part delivery lead time → **S10** work-order ETA → **S8** trail and time comparison. (S9 before S10 because S10 consumes its lead-time basis; S7 first because it is the visible entry point and needs nothing new. S8 last because it reuses the inbox and the drawers.) Definitions in `KPI_DEFINITIONS.md` first, each as its own PR.
+7. **S11 shipment lifecycle** (Domain lane, alone; design note first), then **S12** shipping tab (0.2.0).
+8. **M3b-core** (Revision 3 §7.4a) once M3a has merged, then M4, M5, M6a for 0.2.0 (M6a after S11).
 
-**The next implementation milestone I recommend: S1a** (it moves 0.1.0 forward and restores balance with the intelligence work). **M3a** is the next integration milestone and can be developed on its own branch at the same time.
+**The next implementation milestone I recommend (revised 2026-10-20): tag 0.1.0, then S7** (exceptions inbox), since S1 to S6 are implemented. **S9** is the first slice that carries the owner's lead-time idea and can run right behind it. **M3a** remains the next integration milestone and can be developed on its own branch at the same time.
 
 ---
 
@@ -739,3 +865,7 @@ Ordered by dependency and value. Each is a separate PR; the two lanes are indepe
 | L9 | Legacy reducer | **Closed 2026-10-17.** Retained through M4 as a differential-testing oracle, not a second supported reducer; removed before the 0.2.0 tag only after the evidence in Revision 3 Amendment A2 is recorded |
 | L10 | Identity failures | **Closed 2026-10-17.** Identity failures with enough source identity and provenance to form a `RecordRef` and a raw locator enter the ingestion boundary as explicit quarantine outcomes (counted in I1 as quarantined physical inputs). A record that cannot be represented as a canonical input (malformed, or missing source identity) is an adapter-boundary rejection with its raw locator (counted in I4). Every physical source record has an attributable disposition. Clarified in Revision 3 §7.4a; I1 to I4 unchanged |
 | L11 | Equipment and backlog conditions in 0.1.0 | **Closed 2026-10-17.** Current-state observations only, labelled "current state at <asOf>"; no historical durations, no reconstructed history. A tested event-walk implementation may come later if justified |
+| L12 | Investigation-first direction (P13 to P16) | **Closed 2026-10-20 (owner).** Sequence: investigation (S7, S8), then part lead time and ETA (S9, S10), then shipping (S11, S12) |
+| L13 | Meaning of "lead time" for the ETA | **Closed 2026-10-20 (owner).** Part-delivery lead time, per part, used in the material-delay term of a work-order ETA (`ETA = material-ready time + remaining work`). Order-to-dispatch lead time (S1a) is a different, already implemented metric and keeps its name |
+| L14 | Lead-time basis and the first forecast | **Open, recommended: `STANDARD` by default, observed P50/P90 where the sample rule is met, basis always shown.** The first forecast (S10) is an earliest-feasible work-order date, labelled *forecast*, with a published backtest; it replaces the 0.1.0 "no forecasts" rule only from 0.1.x |
+| L15 | Release placement of the new work | **Open, recommended: 0.1.x for S7 to S10 (no schema change); shipping (S11/S12) in 0.2.0 before M6a.** Alternative: a separate 0.2.0 "Investigation" and renumber Source Independence to 0.3.0 and Lakehouse to 0.4.0, which touches the Rev3 plan, §H and §J references |

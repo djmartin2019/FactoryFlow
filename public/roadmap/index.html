@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     <title>FactoryFlow Roadmap</title>
-    <meta name="description" content="Where FactoryFlow is today and the milestones planned toward a manufacturer pilot." />
+    <meta name="description" content="Where FactoryFlow is today and the planned releases: investigation tools, part lead times, shipping tracking and source independence." />
     <style>
       :root {
         --bg: #050b16;
@@ -121,89 +121,79 @@
         <a class="back" href="/">&larr; Back to FactoryFlow</a>
         <h1>FactoryFlow roadmap</h1>
         <p class="lede">
-          A manufacturing operations intelligence platform: what is happening, why, what happens next, and
-          which decisions could improve outcomes.
+          A manufacturing intelligence tool for investigating what is actually happening in a plant, why, and what it means for customer dates.
         </p>
       </header>
 
       <div class="note">
-        FactoryFlow currently runs on <strong>synthetic</strong> data from a deterministic simulation of a fictional
-        control-panel manufacturer. The goal is a pilot with a real manufacturer once the milestones below are met.
+        FactoryFlow runs on <strong>synthetic</strong> data from a deterministic simulation of a fictional
+        control-panel manufacturer. It is an engineering reference implementation, not a production system.
         Order and scope may change.
       </div>
 
-            <div class="summary">
-        <span style="--c:var(--done)"><span class="dot"></span>Completed: foundation, reporting and Phase 0</span>
-        <span style="--c:var(--progress)"><span class="dot"></span>In progress: Phases 1&ndash;3</span>
-        <span style="--c:var(--planned)"><span class="dot"></span>Planned: Phases 4&ndash;6</span>
+      <div class="summary">
+        <span style="--c:var(--done)"><span class="dot"></span>Completed: foundation</span>
+        <span style="--c:var(--progress)"><span class="dot"></span>In progress: 0.1.0 Public Preview</span>
+        <span style="--c:var(--planned)"><span class="dot"></span>Planned: 0.1.x, 0.2.0, 0.3.0</span>
       </div>
-<ol>
+      <ol>
         <li data-status="done">
-          <div class="row"><span class="id">Phase 0</span><h2>Architecture and contracts</h2><span class="badge">Completed</span></div>
-          <p>Establish clear boundaries between simulation, analytics, and rendering, and define what every metric means.</p>
+          <div class="row"><span class="id">Foundation</span><h2>Domain core, simulation and analytics</h2><span class="badge">Completed</span></div>
+          <p>A deterministic, event-sourced model of a fictional control-panel plant, with every number traceable to events and state.</p>
           <div class="cols">
-            <div><h3>Built</h3><ul><li>Domain core with no UI or 3D dependencies</li><li>Seeded, replayable event history with validation</li><li>KPI dictionary and reporting layer</li><li>Test suite covering determinism and invariants</li><li>Placeholder files removed</li><li>Contributor and agent guidance</li><li>Documented data-to-screen path and implemented versus proposed features</li><li>Canonical fixture with contract tests and a recorded performance baseline</li></ul></div>
-            <div><h3>Remaining</h3><ul><li>Nothing for this phase</li></ul></div>
+            <div><h3>Built</h3><ul><li>Domain core with no UI or 3D dependencies; seeded, replayable event history with validation</li><li>Separate routings per product, work centers distinct from stations, shifts, equipment pools, changeovers</li><li>Quality inspection, rework, machine downtime; supplier purchase orders, receipts and material-shortage blocking</li><li>Customer orders and shipments (dispatch)</li><li>KPI dictionary, contract tests on a canonical fixture, recorded performance baseline</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Nothing for this stage</li></ul></div>
           </div>
           <p class="exit"><strong>Done when:</strong> the path from data to every on-screen number is documented and the repository matches its docs.</p>
         </li>
         <li data-status="progress">
-          <div class="row"><span class="id">Phase 1</span><h2>Production routing realism</h2><span class="badge">In progress</span></div>
-          <p>Replace one generic assembly timer with product-specific operations that draw on different resources.</p>
+          <div class="row"><span class="id">0.1.0</span><h2>Public Preview</h2><span class="badge">In progress</span></div>
+          <p>Manufacturing intelligence on synthetic data that anyone can open and run: no login, no backend. Observed facts only, no forecasts.</p>
           <div class="cols">
-            <div><h3>Built</h3><ul><li>Separate routings for NCP-100, NCP-200, and NCP-300</li><li>Work centers distinct from workstations; orders hop between stations</li><li>Work-center queues, shifts, and a bottleneck candidate</li><li>Equipment requirements from a shared pool</li><li>Sequence-dependent setup (changeover) times</li><li>Quality inspection, rework, and machine downtime events</li></ul></div>
-            <div><h3>Remaining</h3><ul><li>Starved and blocked station states</li><li>Per-product processing time distributions</li></ul></div>
+            <div><h3>Built</h3><ul><li>Operations Explorer: work orders, work centers, bill of materials, inventory, throughput</li><li>Dispatch and order lead-time analytics: lateness, past-due unshipped orders, on-time in-full dispatch</li><li>Work-order time breakdown and indicative contributing conditions</li><li>Quality and scrap analytics; bottleneck &ldquo;why&rdquo; panel; material shortage impact</li><li>Order-to-work-order navigation, deep links, and 3D overlays linked to the Explorer</li><li>README and a plant manager guide</li></ul></div>
+            <div><h3>Remaining</h3><ul><li>Licence, dependency and asset review</li><li>Hosted demo and screenshots</li><li>Manual check of 3D overlays in a WebGL browser</li><li>Tag 0.1.0</li></ul></div>
           </div>
-          <p class="exit"><strong>Done when:</strong> different product mixes create observable, explainable bottlenecks, reproducibly.</p>
-        </li>
-        <li data-status="progress">
-          <div class="row"><span class="id">Phase 2</span><h2>Work-order and unit traceability</h2><span class="badge">In progress</span></div>
-          <p>Reconstruct what happened to any order or individual unit, including failures and retests.</p>
-          <div class="cols">
-            <div><h3>Built</h3><ul><li>Work-order list and detail drawer with timeline, routing, and materials</li><li>Throughput chart in the Operations Explorer</li></ul></div>
-            <div><h3>Remaining</h3><ul><li>Serialized manufactured units</li><li>Per-attempt operation history (first failure and retest)</li><li>BOM and routing revision captured on each work order</li><li>Link 3D selection to the same detail view</li></ul></div>
-          </div>
-          <p class="exit"><strong>Done when:</strong> selecting a unit shows its full manufacturing history without guessing.</p>
-        </li>
-        <li data-status="progress">
-          <div class="row"><span class="id">Phase 3</span><h2>Procurement and material constraints</h2><span class="badge">In progress</span></div>
-          <p>Make material availability and supplier delays change what production can actually do.</p>
-          <div class="cols">
-            <div><h3>Built</h3><ul><li>Supplier purchase orders and receipts</li><li>Orders blocked by material shortage, with a KPI</li></ul></div>
-            <div><h3>Remaining</h3><ul><li>Reservations distinct from consumption</li><li>Incoming quality hold and partial receipts</li><li>Shortage root cause and downstream impact</li></ul></div>
-          </div>
-          <p class="exit"><strong>Done when:</strong> a supplier delay visibly changes the executable schedule.</p>
+          <p class="exit"><strong>Done when:</strong> a visitor can follow a late order to its work orders, see where the time went, and find the work center in the 3D plant, in about two minutes.</p>
         </li>
         <li data-status="planned">
-          <div class="row"><span class="id">Phase 4</span><h2>Workforce and finite-capacity scheduling</h2><span class="badge">Planned</span></div>
-          <p>Model who can do the work and when, so capacity reflects people and skills, not only stations.</p>
+          <div class="row"><span class="id">0.1.x</span><h2>Investigation</h2><span class="badge">Planned</span></div>
+          <p>Turn the dashboard into an investigation tool: surface what deserves attention, explain it with recorded evidence, and trace it to the records behind it.</p>
           <div class="cols">
             <div><h3>Built</h3><ul><li>Nothing yet</li></ul></div>
-            <div><h3>Remaining</h3><ul><li>Skill matrix, shifts, and absences</li><li>Workload versus capacity</li><li>Projected completion with stated assumptions</li></ul></div>
+            <div><h3>Planned</h3><ul><li>Exceptions inbox: past-due orders, blocked work orders, queue build-ups, stations down, each with its evidence and threshold</li><li>Part delivery lead time, per part and per supplier: standard versus observed, reliability, open orders against their promised dates</li><li>Work-order ETA with material delay: material-ready time plus remaining work, labelled <strong>forecast</strong> (earliest feasible) with its inputs shown, so a part with a 2-day lead time adds 2 days to the estimate</li><li>Investigation trail (order &rarr; work order &rarr; work center &rarr; material &rarr; 3D) and comparison of two time windows</li></ul></div>
           </div>
-          <p class="exit"><strong>Done when:</strong> adding a station does not raise throughput when skills are the limit, and the app explains why.</p>
+          <p class="exit"><strong>Done when:</strong> a manager can go from a symptom to the records behind it, and every estimate shows what it is built from.</p>
         </li>
         <li data-status="planned">
-          <div class="row"><span class="id">Phase 5</span><h2>Scenario comparison</h2><span class="badge">Planned</span></div>
-          <p>Compare proposed changes under the same demand and random seed without touching baseline data.</p>
+          <div class="row"><span class="id">0.2.0</span><h2>Source Independence and Shipping</h2><span class="badge">Planned</span></div>
+          <p>Show the analytics are not tied to the simulation, and extend the model past the dock door.</p>
           <div class="cols">
             <div><h3>Built</h3><ul><li>Nothing yet</li></ul></div>
-            <div><h3>Remaining</h3><ul><li>Isolated baseline snapshots and what-if branches</li><li>Compare capacity, labor, defect rate, supply, and demand mix</li><li>Throughput, WIP, flow time, and on-time delivery side by side</li></ul></div>
+            <div><h3>Planned</h3><ul><li>Shipment lifecycle: delivery events, carrier transit times, delivered-on-time and in-transit views, shipment timelines against the promised date (a schema change, shipped on its own)</li><li>The same app, unchanged, from a second independently structured data source, with provenance, validation and quarantine of bad records</li><li>Atomic reducer and a documented way to write a source adapter</li></ul></div>
           </div>
-          <p class="exit"><strong>Done when:</strong> a manager can defensibly compare two changes.</p>
+          <p class="exit"><strong>Done when:</strong> the same screens run over two independent data sources without changes to analytics, UI or 3D code.</p>
         </li>
         <li data-status="planned">
-          <div class="row"><span class="id">Phase 6</span><h2>Real-data readiness</h2><span class="badge">Planned</span></div>
-          <p>Prove the same views work over a second, imperfect data source, as a step toward a manufacturer pilot.</p>
+          <div class="row"><span class="id">0.3.0</span><h2>Lakehouse Reference</h2><span class="badge">Planned</span></div>
+          <p>A reproducible example of data prepared in Databricks feeding FactoryFlow, with reconciliation.</p>
           <div class="cols">
             <div><h3>Built</h3><ul><li>Nothing yet</li></ul></div>
-            <div><h3>Remaining</h3><ul><li>Second adapter from an external-style dataset</li><li>Source provenance, freshness, and capability states</li><li>Backend, authentication, and data-governance decisions, driven by the pilot</li></ul></div>
+            <div><h3>Planned</h3><ul><li>Public-safe synthetic source data and example transformations</li><li>Export and ingest workflow with reconciliation report</li><li>Parity checks against the local run</li></ul></div>
           </div>
-          <p class="exit"><strong>Done when:</strong> the same screens run over two independent data sources without rewrites.</p>
+          <p class="exit"><strong>Done when:</strong> the default demo still works without Databricks, and the reconciliation report explains every record&rsquo;s fate.</p>
+        </li>
+        <li data-status="planned">
+          <div class="row"><span class="id">Later</span><h2>Optional research</h2><span class="badge">Not scheduled</span></div>
+          <p>Larger domain extensions that are not on a release.</p>
+          <div class="cols">
+            <div><h3>Built</h3><ul><li>Nothing yet</li></ul></div>
+            <div><h3>Planned</h3><ul><li>Serialized units and per-attempt history (first after 0.2.0)</li><li>Incoming quality hold, partial receipts, substitutes</li><li>Capacity versus load</li><li>Workforce, skills, finite scheduling and scenario comparison</li></ul></div>
+          </div>
+          <p class="exit"><strong>Done when:</strong> each has its own design note first.</p>
         </li>
       </ol>
 
-      <footer>Status reflects a code audit on 2026-10-15. Phases are delivered as thin vertical slices; the next slice is the NCP-300 routing with a traceable work order.</footer>
+      <footer>Status as of 2026-10-20, reconciled with docs/STATUS.md and docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md. Items marked planned do not exist yet. Forecasts, when they arrive, are always labelled as forecasts.</footer>
     </div>
   </body>
 </html>
