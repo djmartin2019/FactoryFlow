@@ -11,10 +11,10 @@ const initial: InitialStateFile = initialFileOf(data);
 const START = Date.parse(initial.state.asOf);
 const at = (iso: string) => Date.parse(iso);
 
-// Instants found by scanning the default dataset hourly (seed northstar-2026); the scan test below guards the assumption.
-const WITH_EQUIPMENT_WAIT = at("2026-09-01T15:00:00.000Z");
-const WITH_STATION_DOWN = at("2026-09-08T11:00:00.000Z");
-const WITH_BOTH = at("2026-09-10T17:00:00.000Z");
+// Instants found by scanning the default dataset hourly (seed larkhaven-2026); the scan test below guards the assumption.
+const WITH_EQUIPMENT_WAIT = at("2026-09-02T13:00:00.000Z");
+const WITH_STATION_DOWN = at("2026-09-14T14:00:00.000Z");
+const WITH_BOTH = at("2026-09-16T10:00:00.000Z");
 
 const flagged = (s: ReportingSnapshot) => bottleneckExplanations(s, "all").find((e) => e.flagged);
 
@@ -47,7 +47,7 @@ describe("bottleneck explanation: contributing conditions", () => {
   });
 
   it("measures station downtime in the period as shift minutes, from a constructed outage", () => {
-    const base = snapshotAt(initial, data.events, WITH_EQUIPMENT_WAIT + 2 * HOUR); // a Tuesday inside the shift
+    const base = snapshotAt(initial, data.events, WITH_EQUIPMENT_WAIT + 2 * HOUR); // a Wednesday inside the shift
     const wc = flagged(base)!;
     const station = base.master.workstations.find((w) => w.workCenterIds?.includes(wc.workCenterId))!;
     const state = structuredClone(base.state);

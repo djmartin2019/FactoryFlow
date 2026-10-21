@@ -63,7 +63,7 @@ describe("pinned decisions", () => {
     expect(decisions.every((x) => x === "accept")).toBe(true);
     expect(decisions).toHaveLength(d.events.length);
     expect(state).toEqual(d.finalState);
-    expect(fnv1a(JSON.stringify(state))).toBe("5c4c0223");
+    expect(fnv1a(JSON.stringify(state))).toBe("0af251dc");
   });
 });
 

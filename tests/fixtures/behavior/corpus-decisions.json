@@ -24,7 +24,7 @@
     "type": "MATERIAL_RECEIVED",
     "name": "second line exceeds ordered quantity",
     "decision": "reject",
-    "message": "receipt exceeds ordered quantity on POL-0005-3",
+    "message": "receipt exceeds ordered quantity on POL-0005-2",
     "mutatedBeforeThrow": true
   },
   {
@@ -38,7 +38,7 @@
     "type": "INVENTORY_TRANSFERRED",
     "name": "transfer exceeds available stock",
     "decision": "reject",
-    "message": "TRANSFER_OUT: on-hand of MAT-TB-25 at REC-003 would become -999999500",
+    "message": "TRANSFER_OUT: on-hand of MAT-ENC-S at REC-001 would become -999999980",
     "mutatedBeforeThrow": false
   },
   {
@@ -99,7 +99,7 @@
     "type": "PRODUCTION_ORDER_RELEASED",
     "name": "later material is short after earlier reservations were applied",
     "decision": "reject",
-    "message": "RESERVATION: available of MAT-PSU-24 at INV-003 would become -1 (onHand 2, reserved 3)",
+    "message": "RESERVATION: available of MAT-PSU-24 at INV-003 would become -1 (onHand 1, reserved 2)",
     "mutatedBeforeThrow": true
   },
   {
@@ -120,14 +120,14 @@
     "type": "PRODUCTION_BLOCKED",
     "name": "claimed shortage does not match inventory",
     "decision": "reject",
-    "message": "claimed shortage of MAT-PLC-CPU does not match inventory (need 7, available 1)",
+    "message": "claimed shortage of MAT-PLC-CPU does not match inventory (need 5, available 1)",
     "mutatedBeforeThrow": false
   },
   {
     "type": "PRODUCTION_BLOCKED",
     "name": "machine block on an order that is not RUNNING",
     "decision": "reject",
-    "message": "machine block requires a RUNNING order, WO-0075 is WAITING",
+    "message": "machine block requires a RUNNING order, WO-0027 is WAITING",
     "mutatedBeforeThrow": false
   },
   {
@@ -155,7 +155,7 @@
     "type": "MATERIAL_CONSUMED",
     "name": "duplicate consumption entries",
     "decision": "reject",
-    "message": "CONSUMPTION: on-hand of MAT-ENC-M at INV-001 would become -3",
+    "message": "CONSUMPTION: on-hand of MAT-ENC-M at INV-001 would become -2",
     "mutatedBeforeThrow": true
   },
   {
@@ -225,14 +225,14 @@
     "type": "REWORK_REQUESTED",
     "name": "retest operation reuses the rework operation id",
     "decision": "reject",
-    "message": "duplicate operation OP-WO-0013-50",
+    "message": "duplicate operation OP-WO-0001-60",
     "mutatedBeforeThrow": true
   },
   {
     "type": "FINISHED_GOODS_RECEIVED",
     "name": "quantity is not the QC-approved remainder",
     "decision": "reject",
-    "message": "only QC-approved units may be received (approved 4)",
+    "message": "only QC-approved units may be received (approved 2)",
     "mutatedBeforeThrow": false
   },
   {
@@ -260,7 +260,7 @@
     "type": "SHIPMENT_DISPATCHED",
     "name": "second line exceeds its allocation",
     "decision": "reject",
-    "message": "shipment of 6 exceeds 5 allocated on CO-0005-L2",
+    "message": "shipment of 3 exceeds 2 allocated on CO-0004-L2",
     "mutatedBeforeThrow": true
   },
   {
@@ -281,7 +281,7 @@
     "type": "MACHINE_FAILED",
     "name": "workstation is already down",
     "decision": "reject",
-    "message": "workstation ASM-001 is already down",
+    "message": "workstation ASM-005 is already down",
     "mutatedBeforeThrow": false
   },
   {

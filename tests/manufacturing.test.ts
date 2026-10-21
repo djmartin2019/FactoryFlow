@@ -80,6 +80,26 @@ describe("generation", () => {
   });
 });
 
+describe("planning links (work order -> customer order lines)", () => {
+  // Regression: every new work order used to be linked to every open line of its product (up to 52 lines per order).
+  it("links each work order only to lines of its product that existing stock and orders did not already cover", () => {
+    const lineProduct = new Map<string, string>();
+    for (const e of data.events) if (e.type === "CUSTOMER_ORDER_CREATED") for (const l of e.payload.customerOrder.lines) lineProduct.set(l.id, l.productId);
+    const ordersPerLine = new Map<string, number>();
+    for (const e of data.events) {
+      if (e.type !== "PRODUCTION_ORDER_CREATED") continue;
+      const wo = e.payload.productionOrder;
+      expect(wo.demandLineIds.length, wo.id).toBeGreaterThan(0);
+      for (const id of wo.demandLineIds) {
+        expect(lineProduct.get(id), `${wo.id} -> ${id}`).toBe(wo.productId);
+        ordersPerLine.set(id, (ordersPerLine.get(id) ?? 0) + 1);
+      }
+    }
+    // A line is linked to the order that covers it, plus at most one more when an earlier order covered it only in part.
+    expect(Math.max(...ordersPerLine.values())).toBeLessThanOrEqual(2);
+  });
+});
+
 describe("validation of the default dataset", () => {
   it("has no failing checks", () => {
     const report = validateDataset(data);

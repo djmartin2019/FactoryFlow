@@ -1,98 +1,98 @@
 [
   {
     "id": "DT-0001",
-    "workstationId": "ASM-001",
-    "failureCode": "CONVEYOR_JAM",
-    "failedAt": "2026-09-07T07:38:00.000Z",
-    "expectedRepairMinutes": 147,
-    "restoredAt": "2026-09-07T10:05:00.000Z"
+    "workstationId": "ASM-005",
+    "failureCode": "TORQUE_TOOL_FAILURE",
+    "failedAt": "2026-09-04T11:45:00.000Z",
+    "expectedRepairMinutes": 69,
+    "restoredAt": "2026-09-04T12:54:00.000Z"
   },
   {
     "id": "DT-0002",
     "workstationId": "ASM-003",
     "failureCode": "CONVEYOR_JAM",
-    "failedAt": "2026-09-07T11:05:00.000Z",
-    "expectedRepairMinutes": 124,
-    "restoredAt": "2026-09-07T13:09:00.000Z"
+    "failedAt": "2026-09-07T07:17:00.000Z",
+    "expectedRepairMinutes": 240,
+    "restoredAt": "2026-09-07T11:17:00.000Z"
   },
   {
     "id": "DT-0003",
-    "workstationId": "ASM-006",
+    "workstationId": "ASM-005",
     "failureCode": "CONVEYOR_JAM",
-    "failedAt": "2026-09-08T07:49:00.000Z",
-    "expectedRepairMinutes": 284,
-    "restoredAt": "2026-09-08T12:33:00.000Z"
+    "failedAt": "2026-09-07T07:51:00.000Z",
+    "expectedRepairMinutes": 93,
+    "restoredAt": "2026-09-07T09:24:00.000Z"
   },
   {
     "id": "DT-0004",
-    "workstationId": "ASM-002",
-    "failureCode": "POWER_SUPPLY_TRIP",
-    "failedAt": "2026-09-08T08:47:00.000Z",
-    "expectedRepairMinutes": 268,
-    "restoredAt": "2026-09-08T13:15:00.000Z"
+    "workstationId": "ASM-003",
+    "failureCode": "TORQUE_TOOL_FAILURE",
+    "failedAt": "2026-09-10T08:00:00.000Z",
+    "expectedRepairMinutes": 258,
+    "restoredAt": "2026-09-10T12:18:00.000Z"
   },
   {
     "id": "DT-0005",
-    "workstationId": "ASM-005",
+    "workstationId": "ASM-002",
     "failureCode": "CONVEYOR_JAM",
-    "failedAt": "2026-09-10T15:42:00.000Z",
-    "expectedRepairMinutes": 225,
-    "restoredAt": "2026-09-10T19:27:00.000Z"
+    "failedAt": "2026-09-14T10:52:00.000Z",
+    "expectedRepairMinutes": 255,
+    "restoredAt": "2026-09-14T15:07:00.000Z"
   },
   {
     "id": "DT-0006",
-    "workstationId": "ASM-006",
-    "failureCode": "CONVEYOR_JAM",
-    "failedAt": "2026-09-14T12:34:00.000Z",
-    "expectedRepairMinutes": 107,
-    "restoredAt": "2026-09-14T14:21:00.000Z"
+    "workstationId": "ASM-001",
+    "failureCode": "SERVO_FAULT",
+    "failedAt": "2026-09-16T06:31:00.000Z",
+    "expectedRepairMinutes": 156,
+    "restoredAt": "2026-09-16T09:07:00.000Z"
   },
   {
     "id": "DT-0007",
-    "workstationId": "ASM-005",
-    "failureCode": "POWER_SUPPLY_TRIP",
-    "failedAt": "2026-09-15T12:51:00.000Z",
-    "expectedRepairMinutes": 293,
-    "restoredAt": "2026-09-15T17:44:00.000Z"
+    "workstationId": "ASM-006",
+    "failureCode": "SERVO_FAULT",
+    "failedAt": "2026-09-16T08:59:00.000Z",
+    "expectedRepairMinutes": 171,
+    "restoredAt": "2026-09-16T11:50:00.000Z"
   },
   {
     "id": "DT-0008",
-    "workstationId": "ASM-004",
-    "failureCode": "TORQUE_TOOL_FAILURE",
-    "failedAt": "2026-09-16T10:26:00.000Z",
-    "expectedRepairMinutes": 168,
-    "restoredAt": "2026-09-16T13:14:00.000Z"
+    "workstationId": "ASM-002",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-18T12:15:00.000Z",
+    "expectedRepairMinutes": 91,
+    "restoredAt": "2026-09-18T13:46:00.000Z"
   },
   {
     "id": "DT-0009",
     "workstationId": "ASM-004",
     "failureCode": "CONVEYOR_JAM",
-    "failedAt": "2026-09-21T12:18:00.000Z",
-    "expectedRepairMinutes": 242,
-    "restoredAt": "2026-09-21T16:20:00.000Z"
+    "failedAt": "2026-09-18T15:25:00.000Z",
+    "expectedRepairMinutes": 128,
+    "restoredAt": "2026-09-18T17:33:00.000Z"
   },
   {
     "id": "DT-0010",
-    "workstationId": "ASM-001",
-    "failureCode": "POWER_SUPPLY_TRIP",
-    "failedAt": "2026-09-24T12:32:00.000Z",
-    "expectedRepairMinutes": 221,
-    "restoredAt": "2026-09-24T16:13:00.000Z"
+    "workstationId": "ASM-004",
+    "failureCode": "CONVEYOR_JAM",
+    "failedAt": "2026-09-24T11:33:00.000Z",
+    "expectedRepairMinutes": 95,
+    "restoredAt": "2026-09-24T13:08:00.000Z"
   },
   {
     "id": "DT-0011",
-    "workstationId": "ASM-003",
-    "failureCode": "CONVEYOR_JAM",
-    "failedAt": "2026-09-25T12:10:00.000Z",
-    "expectedRepairMinutes": 269,
-    "restoredAt": "2026-09-25T16:39:00.000Z"
+    "workstationId": "ASM-001",
+    "failureCode": "SERVO_FAULT",
+    "failedAt": "2026-09-24T15:04:00.000Z",
+    "expectedRepairMinutes": 231,
+    "restoredAt": "2026-09-24T18:55:00.000Z"
   },
   {
     "id": "DT-0012",
-    "workstationId": "ASM-002",
-    "failureCode": "SERVO_FAULT",
-    "failedAt": "2026-09-25T15:42:00.000Z",
-    "expectedRepairMinutes": 94,
-    "restoredAt": "2026-09-25T17:16:00.000Z"
+    "workstationId": "ASM-006",
+    "failureCode": "TORQUE_TOOL_FAILURE",
+    "failedAt": "2026-09-25T10:11:00.000Z",
+    "expectedRepairMinutes": 292,
+    "restoredAt": "2026-09-25T15:03:00.000Z"
   }
 ]

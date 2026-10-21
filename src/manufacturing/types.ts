@@ -1,5 +1,5 @@
 /**
- * Northstar Components – manufacturing domain model.
+ * Larkhaven Controls – manufacturing domain model.
  *
  * Conventions
  *  - Pure data. No Three.js / DOM dependencies anywhere in src/manufacturing.

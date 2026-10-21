@@ -394,14 +394,14 @@ class Simulation {
   /** Unallocated customer demand and in-flight supply for one product. */
   private position(productId: Id) {
     let demand = 0;
-    const lines: Array<{ id: Id; due: string }> = [];
+    const lines: Array<{ id: Id; due: string; need: number }> = [];
     for (const order of this.openOrders()) {
       for (const line of order.lines) {
         if (line.productId !== productId) continue;
         const need = line.quantity - line.allocatedQuantity - line.shippedQuantity;
         if (need > 0) {
           demand += need;
-          lines.push({ id: line.id, due: order.dueDate });
+          lines.push({ id: line.id, due: order.dueDate, need });
         }
       }
     }
@@ -422,9 +422,27 @@ class Simulation {
       if (shortfall <= 0) continue;
       const yieldAllowance = shortfall >= 6 ? Math.ceil(shortfall * 0.05) : 0;
       const quantity = Math.max(this.config.minProductionLot, shortfall + yieldAllowance);
-      const order = this.createProductionOrder(product.id, quantity, lines, now);
+      const order = this.createProductionOrder(product.id, quantity, this.uncoveredLines(lines, supply + onShelf), now);
       this.tryRelease(order, now);
     }
+  }
+
+  /**
+   * The demand lines a new work order is planned for: those that stock on the shelf and in-flight orders do not already
+   * cover, taking lines in the same priority order as allocation (oldest customer order first). A line that is only
+   * partly covered is linked to the new order as well. Without this, every new order was linked to every open line.
+   */
+  private uncoveredLines(lines: Array<{ id: Id; due: string; need: number }>, cover: number): Array<{ id: Id; due: string }> {
+    const uncovered: Array<{ id: Id; due: string }> = [];
+    for (const line of lines) {
+      if (cover >= line.need) {
+        cover -= line.need;
+        continue;
+      }
+      cover = 0;
+      uncovered.push({ id: line.id, due: line.due });
+    }
+    return uncovered;
   }
 
   private createProductionOrder(productId: Id, quantity: number, lines: Array<{ id: Id; due: string }>, now: number): ProductionOrder {

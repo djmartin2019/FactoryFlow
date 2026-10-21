@@ -1,5 +1,5 @@
 /**
- * Generate the synthetic Northstar Components dataset.
+ * Generate the synthetic Larkhaven Controls dataset.
  *   npm run generate:data -- --seed=my-seed --days=30 --customerOrders=75
  */
 import { mkdirSync, writeFileSync } from "node:fs";

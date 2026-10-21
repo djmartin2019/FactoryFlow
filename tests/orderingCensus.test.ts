@@ -45,12 +45,13 @@ describe("tie census of the default dataset", () => {
     });
   });
 
+  // Appendix B "re-measured" column (seed larkhaven-2026, 0.1.0); the original column is the earlier northstar-2026 log.
   it("matches the Appendix B figures", () => {
-    expect(events).toHaveLength(4651);
-    expect(groups).toHaveLength(1346);
-    expect(ties).toHaveLength(1145);
-    expect(ties.reduce((n, g) => n + g.length, 0)).toBe(4450);
-    expect(Math.max(...groups.map((g) => g.length))).toBe(20);
+    expect(events).toHaveLength(4455);
+    expect(groups).toHaveLength(1299);
+    expect(ties).toHaveLength(1106);
+    expect(ties.reduce((n, g) => n + g.length, 0)).toBe(4262);
+    expect(Math.max(...groups.map((g) => g.length))).toBe(21);
   });
 
   it("has event-type pairs that occur in both orders within ties, so no global type rank reproduces the order", () => {
@@ -61,7 +62,7 @@ describe("tie census of the default dataset", () => {
       if (a < b && pairs.has(`${b}>${a}`)) both.push(k);
     }
     expect(both.length).toBeGreaterThan(0);
-    expect(both.length).toBe(42);
+    expect(both.length).toBe(41);
 
     // The two counts from Appendix B for one such pair.
     expect(pairs.get("OPERATION_COMPLETED>OPERATION_STARTED")).toBeGreaterThan(0);

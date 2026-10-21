@@ -18,7 +18,7 @@ import type {
 } from "./types.ts";
 
 export const DEFAULT_CONFIG: GeneratorConfig = {
-  seed: "northstar-2026",
+  seed: "larkhaven-2026",
   startDate: "2026-09-01T00:00:00.000Z",
   days: 30,
   // Calibrated for the 6-assembly / 3-QC facility: 180 orders lifts average

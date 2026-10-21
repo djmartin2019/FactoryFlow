@@ -2,7 +2,7 @@
 
 > **Status:** Living design document
 > **Audience:** Developers, architects, and AI coding agents (including Claude Code)
-> **Reference implementation:** Northstar Components, a fictional industrial electrical control-panel manufacturer
+> **Reference implementation:** Larkhaven Controls, a fictional industrial electrical control-panel manufacturer
 > **Last updated:** 2026-10-17 (Phases 4 to 6 re-scoped for the open-source plan, `docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md`)
 > **Suggested repository location:** `docs/FACTORYFLOW_DESIGN.md`
 
@@ -29,7 +29,7 @@
 
 ## 1. Product vision
 
-FactoryFlow is a **manufacturing operations intelligence and decision-support platform** with a 3D spatial view of plant activity. Its initial data is produced by a deterministic, accelerated discrete-event simulation of Northstar Components. Its long-term architecture must allow manufacturers to connect actual ERP, MES, inventory, quality, workforce, maintenance, and equipment data without rebuilding the application.
+FactoryFlow is a **manufacturing operations intelligence and decision-support platform** with a 3D spatial view of plant activity. Its initial data is produced by a deterministic, accelerated discrete-event simulation of Larkhaven Controls. Its long-term architecture must allow manufacturers to connect actual ERP, MES, inventory, quality, workforce, maintenance, and equipment data without rebuilding the application.
 
 The product is **not** primarily a 3D animation, a general-purpose ERP replacement, or a physics-accurate factory simulator. The 3D factory is one useful presentation layer over an operational domain model.
 
@@ -72,7 +72,7 @@ A plant manager should be able to:
 **Based on project discussions; verify in repository before treating as implemented:**
 
 - A Three.js-based 3D factory dashboard with a modular distinction among simulation, analytics, and rendering.
-- Northstar Components makes NCP-100, NCP-200, and NCP-300 control panels.
+- Larkhaven Controls makes NCP-100, NCP-200, and NCP-300 control panels.
 - Simulated receiving docks, raw-material racks, assembly workstations, quality/inspection cells, and shipping bays.
 - Existing UI indicates good units, WIP, active production orders, utilization, first-pass yield, material shortage blocking, workstation status, and manufacturing activity.
 - Adjustable simulation speed/time controls, including accelerated playback; factory objects can be inspected.
@@ -83,9 +83,9 @@ A plant manager should be able to:
 
 ---
 
-## 3. Reference manufacturer: Northstar Components
+## 3. Reference manufacturer: Larkhaven Controls
 
-Northstar is a fictional **make-to-order / configure-to-order** industrial electrical control-panel builder. It may also replenish common subassemblies or standard configurations to stock. Customers include OEM machinery builders, system integrators, process plants, infrastructure operators, and industrial facilities.
+Larkhaven is a fictional **make-to-order / configure-to-order** industrial electrical control-panel builder. It may also replenish common subassemblies or standard configurations to stock. Customers include OEM machinery builders, system integrators, process plants, infrastructure operators, and industrial facilities.
 
 | Product | Typical application | Simulated legacy assembly time | Relative complexity |
 |---|---|---:|---|
@@ -131,7 +131,7 @@ One operation may require **multiple simultaneous resources** (e.g., wiring benc
 
 ## 4. End-to-end manufacturing lifecycle
 
-**Important vocabulary:** A *customer purchase order* is received by Northstar and normally represented internally as a **sales order**. Northstar's **supplier purchase orders** purchase parts/materials. These must not share a single ambiguous `purchase_order` entity.
+**Important vocabulary:** A *customer purchase order* is received by Larkhaven and normally represented internally as a **sales order**. Larkhaven's **supplier purchase orders** purchase parts/materials. These must not share a single ambiguous `purchase_order` entity.
 
 ### 4.1 Planned business flow
 
@@ -327,7 +327,7 @@ Prefer an append-friendly operational history **where supported** plus reconcile
   "event_id": "evt-000184",
   "event_type": "operation.completed",
   "schema_version": 1,
-  "tenant_id": "northstar-demo",
+  "tenant_id": "larkhaven-demo",
   "site_id": "site-01",
   "source_system": "factoryflow-simulator",
   "source_record_id": "sim-op-184",

@@ -777,7 +777,7 @@ section 7.3 and is covered by the adversarial collision test. (4) `zod`'s issue 
 interface, so a new domain field fails compilation until the wire says what to do with it), plus status codes and event kinds;
 `codec.ts` derives wire names (snake_case, `quantity` becomes `qty`, minutes become seconds `_s`), converts values by kind and
 decodes with `MappingIssue`s. Results: `adapter(emit(x))` equals `x` for the initial state and every event of the default
-dataset and the canonical fixture, **including JSON key order**, so `eventLogHash` (`1b408e8e`) and the fixture hash
+dataset and the canonical fixture, **including JSON key order**, so `eventLogHash` (`8cf64c93` since 0.1.0; `1b408e8e` when this plan was written) and the fixture hash
 (`6ed76381`) are reproduced from adapted records; conversions are asserted (seconds, snake_case keys, `PLN`/`RUN`-style codes,
 `...Z` timestamps without `.000`); every record carries `seq` (a `causal` ordinal) and `stream: "sim"`; provenance origin is
 `simulated_event`. Notes: (1) the decoder walks the wire object in its own key order because the domain objects' key order is
@@ -1076,8 +1076,15 @@ A recording path is therefore not a small relaxation; it needs its own acceptanc
 
 ## Appendix B. Evidence from the current event log
 
-Measured on `data/generated/events.json` (seed `northstar-2026`, schema 1.3.0, 4,651 events) by reading the file only.
+Measured on `data/generated/events.json` (seed `northstar-2026`, the default before the 0.1.0 rename; schema 1.3.0, 4,651 events) by reading the file only.
 Re-run in M0 to keep these numbers honest.
+
+**Re-measured for 0.1.0 (2026-10-21)** on the regenerated default dataset (seed `larkhaven-2026`, demand lines pegged to
+work orders, schema 1.3.0, 4,455 events); `tests/orderingCensus.test.ts` pins these figures. The conclusions are unchanged:
+1,299 distinct timestamps; 1,106 tie groups; 4,262 of 4,455 events (95.7%) inside ties; largest tie group 21 events;
+41 event-type pairs observed in both orders (e.g. `OPERATION_COMPLETED`/`OPERATION_STARTED` 784 vs 22). Final state: 4,793
+inventory transactions, 210 production orders, 1,033 operations; `final_state.json` 3.3 MB, `events.json` 2.4 MB. The table
+below is the original measurement.
 
 | Measure | Value |
 | --- | --- |

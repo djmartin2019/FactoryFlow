@@ -3,59 +3,19 @@
     "id": "RCV-0001",
     "purchaseOrderId": "PO-0005",
     "supplierId": "SUP-001",
-    "receivedAt": "2026-09-07T07:00:00.000Z",
+    "receivedAt": "2026-09-07T10:00:00.000Z",
     "locationId": "REC-001",
     "lines": [
       {
         "id": "RCV-0001-L1",
         "purchaseOrderLineId": "POL-0005-1",
         "materialId": "MAT-ENC-S",
-        "quantity": 30
+        "quantity": 20
       },
       {
         "id": "RCV-0001-L2",
         "purchaseOrderLineId": "POL-0005-2",
-        "materialId": "MAT-ENC-M",
-        "quantity": 20
-      },
-      {
-        "id": "RCV-0001-L3",
-        "purchaseOrderLineId": "POL-0005-3",
         "materialId": "MAT-ENC-L",
-        "quantity": 15
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0002",
-    "purchaseOrderId": "PO-0007",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-07T07:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0002-L1",
-        "purchaseOrderLineId": "POL-0007-1",
-        "materialId": "MAT-TB-25",
-        "quantity": 500
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0003",
-    "purchaseOrderId": "PO-0001",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-07T08:00:00.000Z",
-    "locationId": "REC-001",
-    "lines": [
-      {
-        "id": "RCV-0003-L1",
-        "purchaseOrderLineId": "POL-0001-1",
-        "materialId": "MAT-ENC-M",
         "quantity": 10
       }
     ],
@@ -63,23 +23,75 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0004",
-    "purchaseOrderId": "PO-0012",
+    "id": "RCV-0002",
+    "purchaseOrderId": "PO-0010",
     "supplierId": "SUP-003",
-    "receivedAt": "2026-09-07T12:00:00.000Z",
+    "receivedAt": "2026-09-07T14:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0002-L1",
+        "purchaseOrderLineId": "POL-0010-1",
+        "materialId": "MAT-TB-25",
+        "quantity": 500
+      },
+      {
+        "id": "RCV-0002-L2",
+        "purchaseOrderLineId": "POL-0010-2",
+        "materialId": "MAT-WIRE-KIT",
+        "quantity": 40
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0003",
+    "purchaseOrderId": "PO-0008",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-08T12:00:00.000Z",
+    "locationId": "REC-001",
+    "lines": [
+      {
+        "id": "RCV-0003-L1",
+        "purchaseOrderLineId": "POL-0008-1",
+        "materialId": "MAT-ENC-S",
+        "quantity": 30
+      },
+      {
+        "id": "RCV-0003-L2",
+        "purchaseOrderLineId": "POL-0008-2",
+        "materialId": "MAT-ENC-M",
+        "quantity": 10
+      },
+      {
+        "id": "RCV-0003-L3",
+        "purchaseOrderLineId": "POL-0008-3",
+        "materialId": "MAT-ENC-L",
+        "quantity": 5
+      },
+      {
+        "id": "RCV-0003-L4",
+        "purchaseOrderLineId": "POL-0008-4",
+        "materialId": "MAT-DIN-35",
+        "quantity": 50
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0004",
+    "purchaseOrderId": "PO-0015",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-08T14:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0004-L1",
-        "purchaseOrderLineId": "POL-0012-1",
+        "purchaseOrderLineId": "POL-0015-1",
         "materialId": "MAT-TB-25",
-        "quantity": 1000
-      },
-      {
-        "id": "RCV-0004-L2",
-        "purchaseOrderLineId": "POL-0012-2",
-        "materialId": "MAT-WIRE-KIT",
-        "quantity": 80
+        "quantity": 500
       }
     ],
     "daysLate": 0,
@@ -89,61 +101,50 @@
     "id": "RCV-0005",
     "purchaseOrderId": "PO-0002",
     "supplierId": "SUP-002",
-    "receivedAt": "2026-09-08T10:00:00.000Z",
+    "receivedAt": "2026-09-09T07:00:00.000Z",
     "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0005-L1",
         "purchaseOrderLineId": "POL-0002-1",
         "materialId": "MAT-BRK-1P",
-        "quantity": 150
+        "quantity": 90
       },
       {
         "id": "RCV-0005-L2",
         "purchaseOrderLineId": "POL-0002-2",
         "materialId": "MAT-BRK-3P",
-        "quantity": 125
+        "quantity": 75
       },
       {
         "id": "RCV-0005-L3",
         "purchaseOrderLineId": "POL-0002-3",
         "materialId": "MAT-RLY-24",
-        "quantity": 200
+        "quantity": 120
       },
       {
         "id": "RCV-0005-L4",
         "purchaseOrderLineId": "POL-0002-4",
         "materialId": "MAT-CTR-25",
-        "quantity": 80
+        "quantity": 48
       }
     ],
-    "daysLate": 0,
-    "shortShipment": false
+    "daysLate": 1,
+    "delayReason": "CUSTOMS_HOLD",
+    "shortShipment": true
   },
   {
     "id": "RCV-0006",
-    "purchaseOrderId": "PO-0010",
+    "purchaseOrderId": "PO-0013",
     "supplierId": "SUP-001",
-    "receivedAt": "2026-09-08T14:00:00.000Z",
+    "receivedAt": "2026-09-09T12:00:00.000Z",
     "locationId": "REC-001",
     "lines": [
       {
         "id": "RCV-0006-L1",
-        "purchaseOrderLineId": "POL-0010-1",
-        "materialId": "MAT-ENC-S",
+        "purchaseOrderLineId": "POL-0013-1",
+        "materialId": "MAT-ENC-M",
         "quantity": 10
-      },
-      {
-        "id": "RCV-0006-L2",
-        "purchaseOrderLineId": "POL-0010-2",
-        "materialId": "MAT-ENC-L",
-        "quantity": 15
-      },
-      {
-        "id": "RCV-0006-L3",
-        "purchaseOrderLineId": "POL-0010-3",
-        "materialId": "MAT-DIN-35",
-        "quantity": 100
       }
     ],
     "daysLate": 0,
@@ -151,28 +152,34 @@
   },
   {
     "id": "RCV-0007",
-    "purchaseOrderId": "PO-0015",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-09T12:00:00.000Z",
-    "locationId": "REC-001",
+    "purchaseOrderId": "PO-0009",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-10T10:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0007-L1",
-        "purchaseOrderLineId": "POL-0015-1",
-        "materialId": "MAT-ENC-S",
-        "quantity": 20
+        "purchaseOrderLineId": "POL-0009-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 100
       },
       {
         "id": "RCV-0007-L2",
-        "purchaseOrderLineId": "POL-0015-2",
-        "materialId": "MAT-ENC-M",
-        "quantity": 20
+        "purchaseOrderLineId": "POL-0009-2",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 100
       },
       {
         "id": "RCV-0007-L3",
-        "purchaseOrderLineId": "POL-0015-3",
-        "materialId": "MAT-DIN-35",
-        "quantity": 50
+        "purchaseOrderLineId": "POL-0009-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 150
+      },
+      {
+        "id": "RCV-0007-L4",
+        "purchaseOrderLineId": "POL-0009-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 60
       }
     ],
     "daysLate": 0,
@@ -180,15 +187,15 @@
   },
   {
     "id": "RCV-0008",
-    "purchaseOrderId": "PO-0004",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-09T13:00:00.000Z",
-    "locationId": "REC-003",
+    "purchaseOrderId": "PO-0014",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-11T10:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0008-L1",
-        "purchaseOrderLineId": "POL-0004-1",
-        "materialId": "MAT-PSU-24",
+        "purchaseOrderLineId": "POL-0014-1",
+        "materialId": "MAT-RLY-24",
         "quantity": 100
       }
     ],
@@ -197,147 +204,38 @@
   },
   {
     "id": "RCV-0009",
-    "purchaseOrderId": "PO-0011",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-10T11:00:00.000Z",
-    "locationId": "REC-002",
+    "purchaseOrderId": "PO-0007",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-11T13:00:00.000Z",
+    "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0009-L1",
-        "purchaseOrderLineId": "POL-0011-1",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 75
-      },
-      {
-        "id": "RCV-0009-L2",
-        "purchaseOrderLineId": "POL-0011-2",
-        "materialId": "MAT-RLY-24",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0009-L3",
-        "purchaseOrderLineId": "POL-0011-3",
-        "materialId": "MAT-CTR-25",
-        "quantity": 40
+        "purchaseOrderLineId": "POL-0007-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 12
       }
     ],
-    "daysLate": 0,
-    "shortShipment": false
+    "daysLate": 1,
+    "delayReason": "CUSTOMS_HOLD",
+    "shortShipment": true
   },
   {
     "id": "RCV-0010",
-    "purchaseOrderId": "PO-0014",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-11T10:00:00.000Z",
+    "purchaseOrderId": "PO-0018",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-11T15:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0010-L1",
-        "purchaseOrderLineId": "POL-0014-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 50
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0011",
-    "purchaseOrderId": "PO-0016",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-11T10:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0011-L1",
-        "purchaseOrderLineId": "POL-0016-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0011-L2",
-        "purchaseOrderLineId": "POL-0016-2",
-        "materialId": "MAT-RLY-24",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0011-L3",
-        "purchaseOrderLineId": "POL-0016-3",
-        "materialId": "MAT-CTR-25",
-        "quantity": 20
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0012",
-    "purchaseOrderId": "PO-0028",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-14T07:00:00.000Z",
-    "locationId": "REC-001",
-    "lines": [
-      {
-        "id": "RCV-0012-L1",
-        "purchaseOrderLineId": "POL-0028-1",
-        "materialId": "MAT-ENC-S",
-        "quantity": 10
-      },
-      {
-        "id": "RCV-0012-L2",
-        "purchaseOrderLineId": "POL-0028-2",
-        "materialId": "MAT-ENC-M",
-        "quantity": 10
-      },
-      {
-        "id": "RCV-0012-L3",
-        "purchaseOrderLineId": "POL-0028-3",
-        "materialId": "MAT-DIN-35",
-        "quantity": 50
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0013",
-    "purchaseOrderId": "PO-0030",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-14T07:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0013-L1",
-        "purchaseOrderLineId": "POL-0030-1",
-        "materialId": "MAT-TB-25",
-        "quantity": 1000
-      },
-      {
-        "id": "RCV-0013-L2",
-        "purchaseOrderLineId": "POL-0030-2",
-        "materialId": "MAT-WIRE-KIT",
-        "quantity": 40
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0014",
-    "purchaseOrderId": "PO-0035",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-14T07:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0014-L1",
-        "purchaseOrderLineId": "POL-0035-1",
+        "purchaseOrderLineId": "POL-0018-1",
         "materialId": "MAT-TB-25",
         "quantity": 500
       },
       {
-        "id": "RCV-0014-L2",
-        "purchaseOrderLineId": "POL-0035-2",
+        "id": "RCV-0010-L2",
+        "purchaseOrderLineId": "POL-0018-2",
         "materialId": "MAT-WIRE-KIT",
         "quantity": 60
       }
@@ -346,49 +244,114 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0015",
-    "purchaseOrderId": "PO-0023",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-14T09:00:00.000Z",
-    "locationId": "REC-001",
+    "id": "RCV-0011",
+    "purchaseOrderId": "PO-0002",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-14T07:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
-        "id": "RCV-0015-L1",
-        "purchaseOrderLineId": "POL-0023-1",
-        "materialId": "MAT-ENC-S",
-        "quantity": 20
+        "id": "RCV-0011-L1",
+        "purchaseOrderLineId": "POL-0002-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 60
       },
       {
-        "id": "RCV-0015-L2",
-        "purchaseOrderLineId": "POL-0023-2",
-        "materialId": "MAT-ENC-L",
-        "quantity": 20
-      },
-      {
-        "id": "RCV-0015-L3",
-        "purchaseOrderLineId": "POL-0023-3",
-        "materialId": "MAT-DIN-35",
+        "id": "RCV-0011-L2",
+        "purchaseOrderLineId": "POL-0002-2",
+        "materialId": "MAT-BRK-3P",
         "quantity": 50
+      },
+      {
+        "id": "RCV-0011-L3",
+        "purchaseOrderLineId": "POL-0002-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 80
+      },
+      {
+        "id": "RCV-0011-L4",
+        "purchaseOrderLineId": "POL-0002-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 32
+      }
+    ],
+    "daysLate": 6,
+    "delayReason": "SUPPLIER_STOCKOUT",
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0012",
+    "purchaseOrderId": "PO-0030",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-14T07:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0012-L1",
+        "purchaseOrderLineId": "POL-0030-1",
+        "materialId": "MAT-TB-25",
+        "quantity": 1500
+      },
+      {
+        "id": "RCV-0012-L2",
+        "purchaseOrderLineId": "POL-0030-2",
+        "materialId": "MAT-WIRE-KIT",
+        "quantity": 80
       }
     ],
     "daysLate": 0,
     "shortShipment": false
   },
   {
-    "id": "RCV-0016",
+    "id": "RCV-0013",
+    "purchaseOrderId": "PO-0021",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-14T10:00:00.000Z",
+    "locationId": "REC-001",
+    "lines": [
+      {
+        "id": "RCV-0013-L1",
+        "purchaseOrderLineId": "POL-0021-1",
+        "materialId": "MAT-ENC-S",
+        "quantity": 20
+      },
+      {
+        "id": "RCV-0013-L2",
+        "purchaseOrderLineId": "POL-0021-2",
+        "materialId": "MAT-ENC-M",
+        "quantity": 10
+      },
+      {
+        "id": "RCV-0013-L3",
+        "purchaseOrderLineId": "POL-0021-3",
+        "materialId": "MAT-ENC-L",
+        "quantity": 20
+      },
+      {
+        "id": "RCV-0013-L4",
+        "purchaseOrderLineId": "POL-0021-4",
+        "materialId": "MAT-DIN-35",
+        "quantity": 100
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0014",
     "purchaseOrderId": "PO-0003",
     "supplierId": "SUP-004",
-    "receivedAt": "2026-09-14T10:00:00.000Z",
+    "receivedAt": "2026-09-14T11:00:00.000Z",
     "locationId": "REC-002",
     "lines": [
       {
-        "id": "RCV-0016-L1",
+        "id": "RCV-0014-L1",
         "purchaseOrderLineId": "POL-0003-1",
         "materialId": "MAT-PLC-CPU",
         "quantity": 50
       },
       {
-        "id": "RCV-0016-L2",
+        "id": "RCV-0014-L2",
         "purchaseOrderLineId": "POL-0003-2",
         "materialId": "MAT-HMI-7",
         "quantity": 50
@@ -398,23 +361,81 @@
     "shortShipment": false
   },
   {
+    "id": "RCV-0015",
+    "purchaseOrderId": "PO-0006",
+    "supplierId": "SUP-004",
+    "receivedAt": "2026-09-14T12:00:00.000Z",
+    "locationId": "REC-002",
+    "lines": [
+      {
+        "id": "RCV-0015-L1",
+        "purchaseOrderLineId": "POL-0006-1",
+        "materialId": "MAT-PLC-CPU",
+        "quantity": 5
+      },
+      {
+        "id": "RCV-0015-L2",
+        "purchaseOrderLineId": "POL-0006-2",
+        "materialId": "MAT-HMI-7",
+        "quantity": 5
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0016",
+    "purchaseOrderId": "PO-0017",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-14T12:00:00.000Z",
+    "locationId": "REC-002",
+    "lines": [
+      {
+        "id": "RCV-0016-L1",
+        "purchaseOrderLineId": "POL-0017-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 100
+      },
+      {
+        "id": "RCV-0016-L2",
+        "purchaseOrderLineId": "POL-0017-2",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 75
+      },
+      {
+        "id": "RCV-0016-L3",
+        "purchaseOrderLineId": "POL-0017-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 50
+      },
+      {
+        "id": "RCV-0016-L4",
+        "purchaseOrderLineId": "POL-0017-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 60
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
     "id": "RCV-0017",
-    "purchaseOrderId": "PO-0025",
+    "purchaseOrderId": "PO-0023",
     "supplierId": "SUP-003",
-    "receivedAt": "2026-09-14T10:00:00.000Z",
+    "receivedAt": "2026-09-14T12:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0017-L1",
-        "purchaseOrderLineId": "POL-0025-1",
+        "purchaseOrderLineId": "POL-0023-1",
         "materialId": "MAT-TB-25",
-        "quantity": 500
+        "quantity": 1000
       },
       {
         "id": "RCV-0017-L2",
-        "purchaseOrderLineId": "POL-0025-2",
+        "purchaseOrderLineId": "POL-0023-2",
         "materialId": "MAT-WIRE-KIT",
-        "quantity": 40
+        "quantity": 60
       }
     ],
     "daysLate": 0,
@@ -422,152 +443,140 @@
   },
   {
     "id": "RCV-0018",
-    "purchaseOrderId": "PO-0006",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-14T11:00:00.000Z",
-    "locationId": "REC-002",
+    "purchaseOrderId": "PO-0026",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-14T12:00:00.000Z",
+    "locationId": "REC-001",
     "lines": [
       {
         "id": "RCV-0018-L1",
-        "purchaseOrderLineId": "POL-0006-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 60
+        "purchaseOrderLineId": "POL-0026-1",
+        "materialId": "MAT-ENC-S",
+        "quantity": 10
       },
       {
         "id": "RCV-0018-L2",
-        "purchaseOrderLineId": "POL-0006-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 45
-      },
-      {
-        "id": "RCV-0018-L3",
-        "purchaseOrderLineId": "POL-0006-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 90
-      },
-      {
-        "id": "RCV-0018-L4",
-        "purchaseOrderLineId": "POL-0006-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 36
-      }
-    ],
-    "daysLate": 5,
-    "delayReason": "CARRIER_DELAY",
-    "shortShipment": true
-  },
-  {
-    "id": "RCV-0019",
-    "purchaseOrderId": "PO-0008",
-    "supplierId": "SUP-004",
-    "receivedAt": "2026-09-14T11:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0019-L1",
-        "purchaseOrderLineId": "POL-0008-1",
-        "materialId": "MAT-PLC-CPU",
-        "quantity": 15
-      },
-      {
-        "id": "RCV-0019-L2",
-        "purchaseOrderLineId": "POL-0008-2",
-        "materialId": "MAT-HMI-7",
-        "quantity": 15
+        "purchaseOrderLineId": "POL-0026-2",
+        "materialId": "MAT-ENC-M",
+        "quantity": 10
       }
     ],
     "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0019",
+    "purchaseOrderId": "PO-0007",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-14T13:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0019-L1",
+        "purchaseOrderLineId": "POL-0007-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 8
+      }
+    ],
+    "daysLate": 4,
+    "delayReason": "SUPPLIER_STOCKOUT",
     "shortShipment": false
   },
   {
     "id": "RCV-0020",
-    "purchaseOrderId": "PO-0019",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-14T11:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0020-L1",
-        "purchaseOrderLineId": "POL-0019-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0020-L2",
-        "purchaseOrderLineId": "POL-0019-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0020-L3",
-        "purchaseOrderLineId": "POL-0019-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0020-L4",
-        "purchaseOrderLineId": "POL-0019-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 60
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0021",
-    "purchaseOrderId": "PO-0009",
+    "purchaseOrderId": "PO-0004",
     "supplierId": "SUP-005",
     "receivedAt": "2026-09-14T14:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
-        "id": "RCV-0021-L1",
-        "purchaseOrderLineId": "POL-0009-1",
+        "id": "RCV-0020-L1",
+        "purchaseOrderLineId": "POL-0004-1",
         "materialId": "MAT-PSU-24",
-        "quantity": 36
+        "quantity": 100
       }
     ],
-    "daysLate": 4,
+    "daysLate": 5,
+    "delayReason": "CARRIER_DELAY",
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0021",
+    "purchaseOrderId": "PO-0001",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-14T15:00:00.000Z",
+    "locationId": "REC-001",
+    "lines": [
+      {
+        "id": "RCV-0021-L1",
+        "purchaseOrderLineId": "POL-0001-1",
+        "materialId": "MAT-ENC-M",
+        "quantity": 6
+      }
+    ],
+    "daysLate": 7,
     "delayReason": "CUSTOMS_HOLD",
     "shortShipment": true
   },
   {
     "id": "RCV-0022",
-    "purchaseOrderId": "PO-0020",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-14T14:00:00.000Z",
-    "locationId": "REC-003",
+    "purchaseOrderId": "PO-0016",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-14T15:00:00.000Z",
+    "locationId": "REC-001",
     "lines": [
       {
         "id": "RCV-0022-L1",
-        "purchaseOrderLineId": "POL-0020-1",
-        "materialId": "MAT-TB-25",
-        "quantity": 1000
+        "purchaseOrderLineId": "POL-0016-1",
+        "materialId": "MAT-ENC-M",
+        "quantity": 10
       },
       {
         "id": "RCV-0022-L2",
-        "purchaseOrderLineId": "POL-0020-2",
-        "materialId": "MAT-WIRE-KIT",
-        "quantity": 80
+        "purchaseOrderLineId": "POL-0016-2",
+        "materialId": "MAT-ENC-L",
+        "quantity": 15
+      },
+      {
+        "id": "RCV-0022-L3",
+        "purchaseOrderLineId": "POL-0016-3",
+        "materialId": "MAT-DIN-35",
+        "quantity": 100
       }
     ],
-    "daysLate": 3,
-    "delayReason": "CUSTOMS_HOLD",
+    "daysLate": 0,
     "shortShipment": false
   },
   {
     "id": "RCV-0023",
-    "purchaseOrderId": "PO-0017",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-14T15:00:00.000Z",
-    "locationId": "REC-003",
+    "purchaseOrderId": "PO-0022",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-15T07:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0023-L1",
-        "purchaseOrderLineId": "POL-0017-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 30
+        "purchaseOrderLineId": "POL-0022-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 50
+      },
+      {
+        "id": "RCV-0023-L2",
+        "purchaseOrderLineId": "POL-0022-2",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 75
+      },
+      {
+        "id": "RCV-0023-L3",
+        "purchaseOrderLineId": "POL-0022-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 150
+      },
+      {
+        "id": "RCV-0023-L4",
+        "purchaseOrderLineId": "POL-0022-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 60
       }
     ],
     "daysLate": 0,
@@ -575,20 +584,37 @@
   },
   {
     "id": "RCV-0024",
-    "purchaseOrderId": "PO-0039",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-15T08:00:00.000Z",
-    "locationId": "REC-003",
+    "purchaseOrderId": "PO-0011",
+    "supplierId": "SUP-004",
+    "receivedAt": "2026-09-15T12:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0024-L1",
-        "purchaseOrderLineId": "POL-0039-1",
-        "materialId": "MAT-TB-25",
-        "quantity": 500
+        "purchaseOrderLineId": "POL-0011-1",
+        "materialId": "MAT-PLC-CPU",
+        "quantity": 10
       },
       {
         "id": "RCV-0024-L2",
-        "purchaseOrderLineId": "POL-0039-2",
+        "purchaseOrderLineId": "POL-0011-2",
+        "materialId": "MAT-HMI-7",
+        "quantity": 10
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0025",
+    "purchaseOrderId": "PO-0035",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-15T14:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0025-L1",
+        "purchaseOrderLineId": "POL-0035-1",
         "materialId": "MAT-WIRE-KIT",
         "quantity": 40
       }
@@ -597,26 +623,96 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0025",
-    "purchaseOrderId": "PO-0033",
+    "id": "RCV-0026",
+    "purchaseOrderId": "PO-0012",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-15T15:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0026-L1",
+        "purchaseOrderLineId": "POL-0012-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 36
+      }
+    ],
+    "daysLate": 4,
+    "delayReason": "SUPPLIER_STOCKOUT",
+    "shortShipment": true
+  },
+  {
+    "id": "RCV-0027",
+    "purchaseOrderId": "PO-0020",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-15T15:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0027-L1",
+        "purchaseOrderLineId": "POL-0020-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 60
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0028",
+    "purchaseOrderId": "PO-0028",
     "supplierId": "SUP-001",
-    "receivedAt": "2026-09-15T09:00:00.000Z",
+    "receivedAt": "2026-09-15T15:00:00.000Z",
     "locationId": "REC-001",
     "lines": [
       {
-        "id": "RCV-0025-L1",
-        "purchaseOrderLineId": "POL-0033-1",
+        "id": "RCV-0028-L1",
+        "purchaseOrderLineId": "POL-0028-1",
         "materialId": "MAT-ENC-S",
-        "quantity": 30
+        "quantity": 20
       },
       {
-        "id": "RCV-0025-L2",
-        "purchaseOrderLineId": "POL-0033-2",
+        "id": "RCV-0028-L2",
+        "purchaseOrderLineId": "POL-0028-2",
         "materialId": "MAT-ENC-M",
         "quantity": 20
       },
       {
-        "id": "RCV-0025-L3",
+        "id": "RCV-0028-L3",
+        "purchaseOrderLineId": "POL-0028-3",
+        "materialId": "MAT-ENC-L",
+        "quantity": 15
+      },
+      {
+        "id": "RCV-0028-L4",
+        "purchaseOrderLineId": "POL-0028-4",
+        "materialId": "MAT-DIN-35",
+        "quantity": 100
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0029",
+    "purchaseOrderId": "PO-0033",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-16T07:00:00.000Z",
+    "locationId": "REC-001",
+    "lines": [
+      {
+        "id": "RCV-0029-L1",
+        "purchaseOrderLineId": "POL-0033-1",
+        "materialId": "MAT-ENC-M",
+        "quantity": 10
+      },
+      {
+        "id": "RCV-0029-L2",
+        "purchaseOrderLineId": "POL-0033-2",
+        "materialId": "MAT-ENC-L",
+        "quantity": 10
+      },
+      {
+        "id": "RCV-0029-L3",
         "purchaseOrderLineId": "POL-0033-3",
         "materialId": "MAT-DIN-35",
         "quantity": 100
@@ -626,73 +722,15 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0026",
-    "purchaseOrderId": "PO-0013",
-    "supplierId": "SUP-004",
-    "receivedAt": "2026-09-15T10:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0026-L1",
-        "purchaseOrderLineId": "POL-0013-1",
-        "materialId": "MAT-PLC-CPU",
-        "quantity": 15
-      },
-      {
-        "id": "RCV-0026-L2",
-        "purchaseOrderLineId": "POL-0013-2",
-        "materialId": "MAT-HMI-7",
-        "quantity": 15
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0027",
-    "purchaseOrderId": "PO-0024",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-15T10:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0027-L1",
-        "purchaseOrderLineId": "POL-0024-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0027-L2",
-        "purchaseOrderLineId": "POL-0024-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0027-L3",
-        "purchaseOrderLineId": "POL-0024-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0027-L4",
-        "purchaseOrderLineId": "POL-0024-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 40
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0028",
-    "purchaseOrderId": "PO-0022",
+    "id": "RCV-0030",
+    "purchaseOrderId": "PO-0025",
     "supplierId": "SUP-005",
-    "receivedAt": "2026-09-15T12:00:00.000Z",
+    "receivedAt": "2026-09-16T08:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
-        "id": "RCV-0028-L1",
-        "purchaseOrderLineId": "POL-0022-1",
+        "id": "RCV-0030-L1",
+        "purchaseOrderLineId": "POL-0025-1",
         "materialId": "MAT-PSU-24",
         "quantity": 60
       }
@@ -701,28 +739,16 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0029",
-    "purchaseOrderId": "PO-0029",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-16T09:00:00.000Z",
-    "locationId": "REC-002",
+    "id": "RCV-0031",
+    "purchaseOrderId": "PO-0027",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-17T08:00:00.000Z",
+    "locationId": "REC-003",
     "lines": [
       {
-        "id": "RCV-0029-L1",
-        "purchaseOrderLineId": "POL-0029-1",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0029-L2",
-        "purchaseOrderLineId": "POL-0029-2",
-        "materialId": "MAT-RLY-24",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0029-L3",
-        "purchaseOrderLineId": "POL-0029-3",
-        "materialId": "MAT-CTR-25",
+        "id": "RCV-0031-L1",
+        "purchaseOrderLineId": "POL-0027-1",
+        "materialId": "MAT-PSU-24",
         "quantity": 20
       }
     ],
@@ -730,91 +756,143 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0030",
-    "purchaseOrderId": "PO-0037",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-16T11:00:00.000Z",
-    "locationId": "REC-001",
+    "id": "RCV-0032",
+    "purchaseOrderId": "PO-0029",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-17T08:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
-        "id": "RCV-0030-L1",
-        "purchaseOrderLineId": "POL-0037-1",
-        "materialId": "MAT-ENC-S",
-        "quantity": 30
+        "id": "RCV-0032-L1",
+        "purchaseOrderLineId": "POL-0029-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 100
       },
       {
-        "id": "RCV-0030-L2",
-        "purchaseOrderLineId": "POL-0037-2",
-        "materialId": "MAT-ENC-L",
-        "quantity": 10
+        "id": "RCV-0032-L2",
+        "purchaseOrderLineId": "POL-0029-2",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 100
+      },
+      {
+        "id": "RCV-0032-L3",
+        "purchaseOrderLineId": "POL-0029-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 200
+      },
+      {
+        "id": "RCV-0032-L4",
+        "purchaseOrderLineId": "POL-0029-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 80
       }
     ],
     "daysLate": 0,
     "shortShipment": false
   },
   {
-    "id": "RCV-0031",
-    "purchaseOrderId": "PO-0006",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-17T11:00:00.000Z",
-    "locationId": "REC-002",
+    "id": "RCV-0033",
+    "purchaseOrderId": "PO-0001",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-17T15:00:00.000Z",
+    "locationId": "REC-001",
     "lines": [
       {
-        "id": "RCV-0031-L1",
-        "purchaseOrderLineId": "POL-0006-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 40
-      },
-      {
-        "id": "RCV-0031-L2",
-        "purchaseOrderLineId": "POL-0006-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 30
-      },
-      {
-        "id": "RCV-0031-L3",
-        "purchaseOrderLineId": "POL-0006-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 60
-      },
-      {
-        "id": "RCV-0031-L4",
-        "purchaseOrderLineId": "POL-0006-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 24
+        "id": "RCV-0033-L1",
+        "purchaseOrderLineId": "POL-0001-1",
+        "materialId": "MAT-ENC-M",
+        "quantity": 4
       }
     ],
-    "daysLate": 8,
+    "daysLate": 10,
     "delayReason": "SUPPLIER_STOCKOUT",
     "shortShipment": false
   },
   {
-    "id": "RCV-0032",
+    "id": "RCV-0034",
+    "purchaseOrderId": "PO-0012",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-17T15:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0034-L1",
+        "purchaseOrderLineId": "POL-0012-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 24
+      }
+    ],
+    "daysLate": 6,
+    "delayReason": "SUPPLIER_STOCKOUT",
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0035",
+    "purchaseOrderId": "PO-0032",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-18T08:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0035-L1",
+        "purchaseOrderLineId": "POL-0032-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 60
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0036",
+    "purchaseOrderId": "PO-0040",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-18T10:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0036-L1",
+        "purchaseOrderLineId": "POL-0040-1",
+        "materialId": "MAT-TB-25",
+        "quantity": 1500
+      },
+      {
+        "id": "RCV-0036-L2",
+        "purchaseOrderLineId": "POL-0040-2",
+        "materialId": "MAT-WIRE-KIT",
+        "quantity": 60
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0037",
     "purchaseOrderId": "PO-0034",
     "supplierId": "SUP-002",
-    "receivedAt": "2026-09-17T11:00:00.000Z",
+    "receivedAt": "2026-09-18T14:00:00.000Z",
     "locationId": "REC-002",
     "lines": [
       {
-        "id": "RCV-0032-L1",
+        "id": "RCV-0037-L1",
         "purchaseOrderLineId": "POL-0034-1",
         "materialId": "MAT-BRK-1P",
-        "quantity": 100
+        "quantity": 50
       },
       {
-        "id": "RCV-0032-L2",
+        "id": "RCV-0037-L2",
         "purchaseOrderLineId": "POL-0034-2",
         "materialId": "MAT-BRK-3P",
-        "quantity": 75
+        "quantity": 50
       },
       {
-        "id": "RCV-0032-L3",
+        "id": "RCV-0037-L3",
         "purchaseOrderLineId": "POL-0034-3",
         "materialId": "MAT-RLY-24",
         "quantity": 100
       },
       {
-        "id": "RCV-0032-L4",
+        "id": "RCV-0037-L4",
         "purchaseOrderLineId": "POL-0034-4",
         "materialId": "MAT-CTR-25",
         "quantity": 40
@@ -824,146 +902,23 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0033",
-    "purchaseOrderId": "PO-0018",
+    "id": "RCV-0038",
+    "purchaseOrderId": "PO-0043",
     "supplierId": "SUP-001",
-    "receivedAt": "2026-09-17T12:00:00.000Z",
+    "receivedAt": "2026-09-21T07:00:00.000Z",
     "locationId": "REC-001",
     "lines": [
       {
-        "id": "RCV-0033-L1",
-        "purchaseOrderLineId": "POL-0018-1",
-        "materialId": "MAT-ENC-S",
-        "quantity": 20
-      },
-      {
-        "id": "RCV-0033-L2",
-        "purchaseOrderLineId": "POL-0018-2",
-        "materialId": "MAT-ENC-M",
-        "quantity": 20
-      },
-      {
-        "id": "RCV-0033-L3",
-        "purchaseOrderLineId": "POL-0018-3",
-        "materialId": "MAT-ENC-L",
-        "quantity": 5
-      },
-      {
-        "id": "RCV-0033-L4",
-        "purchaseOrderLineId": "POL-0018-4",
-        "materialId": "MAT-DIN-35",
-        "quantity": 100
-      }
-    ],
-    "daysLate": 3,
-    "delayReason": "CARRIER_DELAY",
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0034",
-    "purchaseOrderId": "PO-0009",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-17T14:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0034-L1",
-        "purchaseOrderLineId": "POL-0009-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 24
-      }
-    ],
-    "daysLate": 7,
-    "delayReason": "SUPPLIER_STOCKOUT",
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0035",
-    "purchaseOrderId": "PO-0032",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-17T15:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0035-L1",
-        "purchaseOrderLineId": "POL-0032-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 30
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0036",
-    "purchaseOrderId": "PO-0038",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-18T11:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0036-L1",
-        "purchaseOrderLineId": "POL-0038-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0036-L2",
-        "purchaseOrderLineId": "POL-0038-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0036-L3",
-        "purchaseOrderLineId": "POL-0038-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0036-L4",
-        "purchaseOrderLineId": "POL-0038-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 40
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0037",
-    "purchaseOrderId": "PO-0044",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-18T12:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0037-L1",
-        "purchaseOrderLineId": "POL-0044-1",
-        "materialId": "MAT-TB-25",
-        "quantity": 1000
-      },
-      {
-        "id": "RCV-0037-L2",
-        "purchaseOrderLineId": "POL-0044-2",
-        "materialId": "MAT-WIRE-KIT",
-        "quantity": 60
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0038",
-    "purchaseOrderId": "PO-0036",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-18T14:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
         "id": "RCV-0038-L1",
-        "purchaseOrderLineId": "POL-0036-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 50
+        "purchaseOrderLineId": "POL-0043-1",
+        "materialId": "MAT-ENC-M",
+        "quantity": 90
+      },
+      {
+        "id": "RCV-0038-L2",
+        "purchaseOrderLineId": "POL-0043-2",
+        "materialId": "MAT-DIN-35",
+        "quantity": 150
       }
     ],
     "daysLate": 0,
@@ -971,112 +926,20 @@
   },
   {
     "id": "RCV-0039",
-    "purchaseOrderId": "PO-0041",
-    "supplierId": "SUP-005",
+    "purchaseOrderId": "PO-0045",
+    "supplierId": "SUP-003",
     "receivedAt": "2026-09-21T07:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0039-L1",
-        "purchaseOrderLineId": "POL-0041-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 50
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0040",
-    "purchaseOrderId": "PO-0053",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-21T07:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0040-L1",
-        "purchaseOrderLineId": "POL-0053-1",
+        "purchaseOrderLineId": "POL-0045-1",
         "materialId": "MAT-TB-25",
-        "quantity": 2500
+        "quantity": 1000
       },
       {
-        "id": "RCV-0040-L2",
-        "purchaseOrderLineId": "POL-0053-2",
-        "materialId": "MAT-WIRE-KIT",
-        "quantity": 140
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0041",
-    "purchaseOrderId": "PO-0026",
-    "supplierId": "SUP-004",
-    "receivedAt": "2026-09-21T09:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0041-L1",
-        "purchaseOrderLineId": "POL-0026-1",
-        "materialId": "MAT-PLC-CPU",
-        "quantity": 15
-      },
-      {
-        "id": "RCV-0041-L2",
-        "purchaseOrderLineId": "POL-0026-2",
-        "materialId": "MAT-HMI-7",
-        "quantity": 15
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0042",
-    "purchaseOrderId": "PO-0051",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-21T09:00:00.000Z",
-    "locationId": "REC-001",
-    "lines": [
-      {
-        "id": "RCV-0042-L1",
-        "purchaseOrderLineId": "POL-0051-1",
-        "materialId": "MAT-ENC-S",
-        "quantity": 20
-      },
-      {
-        "id": "RCV-0042-L2",
-        "purchaseOrderLineId": "POL-0051-2",
-        "materialId": "MAT-ENC-M",
-        "quantity": 110
-      },
-      {
-        "id": "RCV-0042-L3",
-        "purchaseOrderLineId": "POL-0051-3",
-        "materialId": "MAT-DIN-35",
-        "quantity": 250
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0043",
-    "purchaseOrderId": "PO-0058",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-21T09:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0043-L1",
-        "purchaseOrderLineId": "POL-0058-1",
-        "materialId": "MAT-TB-25",
-        "quantity": 1500
-      },
-      {
-        "id": "RCV-0043-L2",
-        "purchaseOrderLineId": "POL-0058-2",
+        "id": "RCV-0039-L2",
+        "purchaseOrderLineId": "POL-0045-2",
         "materialId": "MAT-WIRE-KIT",
         "quantity": 80
       }
@@ -1085,53 +948,156 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0044",
-    "purchaseOrderId": "PO-0027",
+    "id": "RCV-0040",
+    "purchaseOrderId": "PO-0038",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-21T08:00:00.000Z",
+    "locationId": "REC-001",
+    "lines": [
+      {
+        "id": "RCV-0040-L1",
+        "purchaseOrderLineId": "POL-0038-1",
+        "materialId": "MAT-ENC-S",
+        "quantity": 30
+      },
+      {
+        "id": "RCV-0040-L2",
+        "purchaseOrderLineId": "POL-0038-2",
+        "materialId": "MAT-ENC-M",
+        "quantity": 10
+      },
+      {
+        "id": "RCV-0040-L3",
+        "purchaseOrderLineId": "POL-0038-3",
+        "materialId": "MAT-ENC-L",
+        "quantity": 15
+      },
+      {
+        "id": "RCV-0040-L4",
+        "purchaseOrderLineId": "POL-0038-4",
+        "materialId": "MAT-DIN-35",
+        "quantity": 50
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0041",
+    "purchaseOrderId": "PO-0037",
     "supplierId": "SUP-005",
-    "receivedAt": "2026-09-21T11:00:00.000Z",
+    "receivedAt": "2026-09-21T10:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
-        "id": "RCV-0044-L1",
-        "purchaseOrderLineId": "POL-0027-1",
+        "id": "RCV-0041-L1",
+        "purchaseOrderLineId": "POL-0037-1",
         "materialId": "MAT-PSU-24",
-        "quantity": 30
+        "quantity": 40
       }
     ],
-    "daysLate": 5,
-    "delayReason": "CUSTOMS_HOLD",
-    "shortShipment": true
+    "daysLate": 0,
+    "shortShipment": false
   },
   {
-    "id": "RCV-0045",
-    "purchaseOrderId": "PO-0043",
+    "id": "RCV-0042",
+    "purchaseOrderId": "PO-0053",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-21T13:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0042-L1",
+        "purchaseOrderLineId": "POL-0053-1",
+        "materialId": "MAT-TB-25",
+        "quantity": 1500
+      },
+      {
+        "id": "RCV-0042-L2",
+        "purchaseOrderLineId": "POL-0053-2",
+        "materialId": "MAT-WIRE-KIT",
+        "quantity": 100
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0043",
+    "purchaseOrderId": "PO-0039",
     "supplierId": "SUP-002",
-    "receivedAt": "2026-09-21T12:00:00.000Z",
+    "receivedAt": "2026-09-21T14:00:00.000Z",
     "locationId": "REC-002",
     "lines": [
       {
-        "id": "RCV-0045-L1",
-        "purchaseOrderLineId": "POL-0043-1",
+        "id": "RCV-0043-L1",
+        "purchaseOrderLineId": "POL-0039-1",
         "materialId": "MAT-BRK-1P",
-        "quantity": 50
+        "quantity": 100
       },
       {
-        "id": "RCV-0045-L2",
-        "purchaseOrderLineId": "POL-0043-2",
+        "id": "RCV-0043-L2",
+        "purchaseOrderLineId": "POL-0039-2",
         "materialId": "MAT-BRK-3P",
         "quantity": 75
       },
       {
-        "id": "RCV-0045-L3",
-        "purchaseOrderLineId": "POL-0043-3",
+        "id": "RCV-0043-L3",
+        "purchaseOrderLineId": "POL-0039-3",
         "materialId": "MAT-RLY-24",
-        "quantity": 150
+        "quantity": 100
       },
       {
-        "id": "RCV-0045-L4",
-        "purchaseOrderLineId": "POL-0043-4",
+        "id": "RCV-0043-L4",
+        "purchaseOrderLineId": "POL-0039-4",
         "materialId": "MAT-CTR-25",
         "quantity": 60
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0044",
+    "purchaseOrderId": "PO-0049",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-21T14:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0044-L1",
+        "purchaseOrderLineId": "POL-0049-1",
+        "materialId": "MAT-TB-25",
+        "quantity": 1500
+      },
+      {
+        "id": "RCV-0044-L2",
+        "purchaseOrderLineId": "POL-0049-2",
+        "materialId": "MAT-WIRE-KIT",
+        "quantity": 80
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0045",
+    "purchaseOrderId": "PO-0047",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-21T15:00:00.000Z",
+    "locationId": "REC-001",
+    "lines": [
+      {
+        "id": "RCV-0045-L1",
+        "purchaseOrderLineId": "POL-0047-1",
+        "materialId": "MAT-ENC-M",
+        "quantity": 70
+      },
+      {
+        "id": "RCV-0045-L2",
+        "purchaseOrderLineId": "POL-0047-2",
+        "materialId": "MAT-DIN-35",
+        "quantity": 200
       }
     ],
     "daysLate": 0,
@@ -1139,21 +1105,39 @@
   },
   {
     "id": "RCV-0046",
-    "purchaseOrderId": "PO-0049",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-21T13:00:00.000Z",
-    "locationId": "REC-003",
+    "purchaseOrderId": "PO-0019",
+    "supplierId": "SUP-004",
+    "receivedAt": "2026-09-22T08:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0046-L1",
-        "purchaseOrderLineId": "POL-0049-1",
-        "materialId": "MAT-TB-25",
-        "quantity": 1000
+        "purchaseOrderLineId": "POL-0019-1",
+        "materialId": "MAT-PLC-CPU",
+        "quantity": 15
       },
       {
         "id": "RCV-0046-L2",
-        "purchaseOrderLineId": "POL-0049-2",
-        "materialId": "MAT-WIRE-KIT",
+        "purchaseOrderLineId": "POL-0019-2",
+        "materialId": "MAT-HMI-7",
+        "quantity": 15
+      }
+    ],
+    "daysLate": 1,
+    "delayReason": "SUPPLIER_STOCKOUT",
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0047",
+    "purchaseOrderId": "PO-0042",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-22T10:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0047-L1",
+        "purchaseOrderLineId": "POL-0042-1",
+        "materialId": "MAT-PSU-24",
         "quantity": 60
       }
     ],
@@ -1161,50 +1145,85 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0047",
-    "purchaseOrderId": "PO-0021",
-    "supplierId": "SUP-004",
-    "receivedAt": "2026-09-21T14:00:00.000Z",
+    "id": "RCV-0048",
+    "purchaseOrderId": "PO-0044",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-22T12:00:00.000Z",
     "locationId": "REC-002",
     "lines": [
       {
-        "id": "RCV-0047-L1",
-        "purchaseOrderLineId": "POL-0021-1",
-        "materialId": "MAT-PLC-CPU",
-        "quantity": 5
+        "id": "RCV-0048-L1",
+        "purchaseOrderLineId": "POL-0044-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 100
       },
       {
-        "id": "RCV-0047-L2",
-        "purchaseOrderLineId": "POL-0021-2",
-        "materialId": "MAT-HMI-7",
-        "quantity": 5
+        "id": "RCV-0048-L2",
+        "purchaseOrderLineId": "POL-0044-2",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 150
+      },
+      {
+        "id": "RCV-0048-L3",
+        "purchaseOrderLineId": "POL-0044-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 250
+      },
+      {
+        "id": "RCV-0048-L4",
+        "purchaseOrderLineId": "POL-0044-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 160
       }
     ],
     "daysLate": 0,
     "shortShipment": false
   },
   {
-    "id": "RCV-0048",
-    "purchaseOrderId": "PO-0042",
+    "id": "RCV-0049",
+    "purchaseOrderId": "PO-0057",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-22T13:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0049-L1",
+        "purchaseOrderLineId": "POL-0057-1",
+        "materialId": "MAT-TB-25",
+        "quantity": 3000
+      },
+      {
+        "id": "RCV-0049-L2",
+        "purchaseOrderLineId": "POL-0057-2",
+        "materialId": "MAT-WIRE-KIT",
+        "quantity": 140
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0050",
+    "purchaseOrderId": "PO-0051",
     "supplierId": "SUP-001",
-    "receivedAt": "2026-09-21T14:00:00.000Z",
+    "receivedAt": "2026-09-22T14:00:00.000Z",
     "locationId": "REC-001",
     "lines": [
       {
-        "id": "RCV-0048-L1",
-        "purchaseOrderLineId": "POL-0042-1",
+        "id": "RCV-0050-L1",
+        "purchaseOrderLineId": "POL-0051-1",
         "materialId": "MAT-ENC-S",
         "quantity": 20
       },
       {
-        "id": "RCV-0048-L2",
-        "purchaseOrderLineId": "POL-0042-2",
+        "id": "RCV-0050-L2",
+        "purchaseOrderLineId": "POL-0051-2",
         "materialId": "MAT-ENC-M",
-        "quantity": 40
+        "quantity": 70
       },
       {
-        "id": "RCV-0048-L3",
-        "purchaseOrderLineId": "POL-0042-3",
+        "id": "RCV-0050-L3",
+        "purchaseOrderLineId": "POL-0051-3",
         "materialId": "MAT-DIN-35",
         "quantity": 150
       }
@@ -1213,69 +1232,23 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0049",
-    "purchaseOrderId": "PO-0031",
+    "id": "RCV-0051",
+    "purchaseOrderId": "PO-0036",
     "supplierId": "SUP-004",
-    "receivedAt": "2026-09-21T15:00:00.000Z",
+    "receivedAt": "2026-09-23T10:00:00.000Z",
     "locationId": "REC-002",
     "lines": [
       {
-        "id": "RCV-0049-L1",
-        "purchaseOrderLineId": "POL-0031-1",
+        "id": "RCV-0051-L1",
+        "purchaseOrderLineId": "POL-0036-1",
         "materialId": "MAT-PLC-CPU",
-        "quantity": 5
-      },
-      {
-        "id": "RCV-0049-L2",
-        "purchaseOrderLineId": "POL-0031-2",
-        "materialId": "MAT-HMI-7",
-        "quantity": 5
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0050",
-    "purchaseOrderId": "PO-0047",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-21T15:00:00.000Z",
-    "locationId": "REC-001",
-    "lines": [
-      {
-        "id": "RCV-0050-L1",
-        "purchaseOrderLineId": "POL-0047-1",
-        "materialId": "MAT-ENC-M",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0050-L2",
-        "purchaseOrderLineId": "POL-0047-2",
-        "materialId": "MAT-ENC-L",
         "quantity": 10
       },
       {
-        "id": "RCV-0050-L3",
-        "purchaseOrderLineId": "POL-0047-3",
-        "materialId": "MAT-DIN-35",
-        "quantity": 100
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0051",
-    "purchaseOrderId": "PO-0046",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-22T07:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0051-L1",
-        "purchaseOrderLineId": "POL-0046-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 60
+        "id": "RCV-0051-L2",
+        "purchaseOrderLineId": "POL-0036-2",
+        "materialId": "MAT-HMI-7",
+        "quantity": 10
       }
     ],
     "daysLate": 0,
@@ -1283,57 +1256,40 @@
   },
   {
     "id": "RCV-0052",
-    "purchaseOrderId": "PO-0062",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-22T07:00:00.000Z",
-    "locationId": "REC-003",
+    "purchaseOrderId": "PO-0024",
+    "supplierId": "SUP-004",
+    "receivedAt": "2026-09-23T11:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0052-L1",
-        "purchaseOrderLineId": "POL-0062-1",
-        "materialId": "MAT-TB-25",
-        "quantity": 1500
+        "purchaseOrderLineId": "POL-0024-1",
+        "materialId": "MAT-PLC-CPU",
+        "quantity": 20
       },
       {
         "id": "RCV-0052-L2",
-        "purchaseOrderLineId": "POL-0062-2",
-        "materialId": "MAT-WIRE-KIT",
-        "quantity": 100
+        "purchaseOrderLineId": "POL-0024-2",
+        "materialId": "MAT-HMI-7",
+        "quantity": 20
       }
     ],
-    "daysLate": 0,
+    "daysLate": 2,
+    "delayReason": "CUSTOMS_HOLD",
     "shortShipment": false
   },
   {
     "id": "RCV-0053",
-    "purchaseOrderId": "PO-0048",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-22T15:00:00.000Z",
-    "locationId": "REC-002",
+    "purchaseOrderId": "PO-0046",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-23T11:00:00.000Z",
+    "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0053-L1",
-        "purchaseOrderLineId": "POL-0048-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0053-L2",
-        "purchaseOrderLineId": "POL-0048-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 125
-      },
-      {
-        "id": "RCV-0053-L3",
-        "purchaseOrderLineId": "POL-0048-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 200
-      },
-      {
-        "id": "RCV-0053-L4",
-        "purchaseOrderLineId": "POL-0048-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 120
+        "purchaseOrderLineId": "POL-0046-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 80
       }
     ],
     "daysLate": 0,
@@ -1341,16 +1297,34 @@
   },
   {
     "id": "RCV-0054",
-    "purchaseOrderId": "PO-0050",
-    "supplierId": "SUP-005",
+    "purchaseOrderId": "PO-0048",
+    "supplierId": "SUP-002",
     "receivedAt": "2026-09-23T13:00:00.000Z",
-    "locationId": "REC-003",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0054-L1",
-        "purchaseOrderLineId": "POL-0050-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 60
+        "purchaseOrderLineId": "POL-0048-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 50
+      },
+      {
+        "id": "RCV-0054-L2",
+        "purchaseOrderLineId": "POL-0048-2",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 175
+      },
+      {
+        "id": "RCV-0054-L3",
+        "purchaseOrderLineId": "POL-0048-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 250
+      },
+      {
+        "id": "RCV-0054-L4",
+        "purchaseOrderLineId": "POL-0048-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 140
       }
     ],
     "daysLate": 0,
@@ -1360,123 +1334,30 @@
     "id": "RCV-0055",
     "purchaseOrderId": "PO-0052",
     "supplierId": "SUP-002",
-    "receivedAt": "2026-09-23T13:00:00.000Z",
+    "receivedAt": "2026-09-24T10:00:00.000Z",
     "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0055-L1",
         "purchaseOrderLineId": "POL-0052-1",
         "materialId": "MAT-BRK-1P",
-        "quantity": 150
+        "quantity": 100
       },
       {
         "id": "RCV-0055-L2",
         "purchaseOrderLineId": "POL-0052-2",
         "materialId": "MAT-BRK-3P",
-        "quantity": 250
+        "quantity": 150
       },
       {
         "id": "RCV-0055-L3",
         "purchaseOrderLineId": "POL-0052-3",
         "materialId": "MAT-RLY-24",
-        "quantity": 350
+        "quantity": 250
       },
       {
         "id": "RCV-0055-L4",
         "purchaseOrderLineId": "POL-0052-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 220
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0056",
-    "purchaseOrderId": "PO-0060",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-23T13:00:00.000Z",
-    "locationId": "REC-001",
-    "lines": [
-      {
-        "id": "RCV-0056-L1",
-        "purchaseOrderLineId": "POL-0060-1",
-        "materialId": "MAT-ENC-S",
-        "quantity": 20
-      },
-      {
-        "id": "RCV-0056-L2",
-        "purchaseOrderLineId": "POL-0060-2",
-        "materialId": "MAT-ENC-M",
-        "quantity": 80
-      },
-      {
-        "id": "RCV-0056-L3",
-        "purchaseOrderLineId": "POL-0060-3",
-        "materialId": "MAT-ENC-L",
-        "quantity": 10
-      },
-      {
-        "id": "RCV-0056-L4",
-        "purchaseOrderLineId": "POL-0060-4",
-        "materialId": "MAT-DIN-35",
-        "quantity": 200
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0057",
-    "purchaseOrderId": "PO-0040",
-    "supplierId": "SUP-004",
-    "receivedAt": "2026-09-23T14:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0057-L1",
-        "purchaseOrderLineId": "POL-0040-1",
-        "materialId": "MAT-PLC-CPU",
-        "quantity": 5
-      },
-      {
-        "id": "RCV-0057-L2",
-        "purchaseOrderLineId": "POL-0040-2",
-        "materialId": "MAT-HMI-7",
-        "quantity": 5
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0058",
-    "purchaseOrderId": "PO-0057",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-24T08:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0058-L1",
-        "purchaseOrderLineId": "POL-0057-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0058-L2",
-        "purchaseOrderLineId": "POL-0057-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 150
-      },
-      {
-        "id": "RCV-0058-L3",
-        "purchaseOrderLineId": "POL-0057-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 250
-      },
-      {
-        "id": "RCV-0058-L4",
-        "purchaseOrderLineId": "POL-0057-4",
         "materialId": "MAT-CTR-25",
         "quantity": 160
       }
@@ -1485,79 +1366,206 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0059",
-    "purchaseOrderId": "PO-0027",
+    "id": "RCV-0056",
+    "purchaseOrderId": "PO-0050",
     "supplierId": "SUP-005",
-    "receivedAt": "2026-09-24T11:00:00.000Z",
+    "receivedAt": "2026-09-24T15:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
-        "id": "RCV-0059-L1",
-        "purchaseOrderLineId": "POL-0027-1",
+        "id": "RCV-0056-L1",
+        "purchaseOrderLineId": "POL-0050-1",
         "materialId": "MAT-PSU-24",
-        "quantity": 20
-      }
-    ],
-    "daysLate": 8,
-    "delayReason": "SUPPLIER_STOCKOUT",
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0060",
-    "purchaseOrderId": "PO-0055",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-24T13:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0060-L1",
-        "purchaseOrderLineId": "POL-0055-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 140
+        "quantity": 80
       }
     ],
     "daysLate": 0,
     "shortShipment": false
   },
   {
-    "id": "RCV-0061",
-    "purchaseOrderId": "PO-0056",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-24T13:00:00.000Z",
-    "locationId": "REC-001",
+    "id": "RCV-0057",
+    "purchaseOrderId": "PO-0054",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-25T11:00:00.000Z",
+    "locationId": "REC-003",
     "lines": [
       {
-        "id": "RCV-0061-L1",
-        "purchaseOrderLineId": "POL-0056-1",
-        "materialId": "MAT-ENC-M",
-        "quantity": 42
-      },
-      {
-        "id": "RCV-0061-L2",
-        "purchaseOrderLineId": "POL-0056-2",
-        "materialId": "MAT-DIN-35",
+        "id": "RCV-0057-L1",
+        "purchaseOrderLineId": "POL-0054-1",
+        "materialId": "MAT-PSU-24",
         "quantity": 90
       }
     ],
-    "daysLate": 2,
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0058",
+    "purchaseOrderId": "PO-0056",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-25T13:00:00.000Z",
+    "locationId": "REC-002",
+    "lines": [
+      {
+        "id": "RCV-0058-L1",
+        "purchaseOrderLineId": "POL-0056-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 200
+      },
+      {
+        "id": "RCV-0058-L2",
+        "purchaseOrderLineId": "POL-0056-2",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 275
+      },
+      {
+        "id": "RCV-0058-L3",
+        "purchaseOrderLineId": "POL-0056-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 450
+      },
+      {
+        "id": "RCV-0058-L4",
+        "purchaseOrderLineId": "POL-0056-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 260
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0059",
+    "purchaseOrderId": "PO-0062",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-25T14:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0059-L1",
+        "purchaseOrderLineId": "POL-0062-1",
+        "materialId": "MAT-WIRE-KIT",
+        "quantity": 40
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0060",
+    "purchaseOrderId": "PO-0031",
+    "supplierId": "SUP-004",
+    "receivedAt": "2026-09-28T07:00:00.000Z",
+    "locationId": "REC-002",
+    "lines": [
+      {
+        "id": "RCV-0060-L1",
+        "purchaseOrderLineId": "POL-0031-1",
+        "materialId": "MAT-PLC-CPU",
+        "quantity": 15
+      },
+      {
+        "id": "RCV-0060-L2",
+        "purchaseOrderLineId": "POL-0031-2",
+        "materialId": "MAT-HMI-7",
+        "quantity": 15
+      }
+    ],
+    "daysLate": 6,
+    "delayReason": "SUPPLIER_STOCKOUT",
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0061",
+    "purchaseOrderId": "PO-0061",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-28T07:00:00.000Z",
+    "locationId": "REC-002",
+    "lines": [
+      {
+        "id": "RCV-0061-L1",
+        "purchaseOrderLineId": "POL-0061-1",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 50
+      },
+      {
+        "id": "RCV-0061-L2",
+        "purchaseOrderLineId": "POL-0061-2",
+        "materialId": "MAT-CTR-25",
+        "quantity": 20
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0062",
+    "purchaseOrderId": "PO-0041",
+    "supplierId": "SUP-004",
+    "receivedAt": "2026-09-28T10:00:00.000Z",
+    "locationId": "REC-002",
+    "lines": [
+      {
+        "id": "RCV-0062-L1",
+        "purchaseOrderLineId": "POL-0041-1",
+        "materialId": "MAT-PLC-CPU",
+        "quantity": 10
+      },
+      {
+        "id": "RCV-0062-L2",
+        "purchaseOrderLineId": "POL-0041-2",
+        "materialId": "MAT-HMI-7",
+        "quantity": 10
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0063",
+    "purchaseOrderId": "PO-0055",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-28T10:00:00.000Z",
+    "locationId": "REC-001",
+    "lines": [
+      {
+        "id": "RCV-0063-L1",
+        "purchaseOrderLineId": "POL-0055-1",
+        "materialId": "MAT-ENC-M",
+        "quantity": 72
+      },
+      {
+        "id": "RCV-0063-L2",
+        "purchaseOrderLineId": "POL-0055-2",
+        "materialId": "MAT-ENC-L",
+        "quantity": 9
+      },
+      {
+        "id": "RCV-0063-L3",
+        "purchaseOrderLineId": "POL-0055-3",
+        "materialId": "MAT-DIN-35",
+        "quantity": 180
+      }
+    ],
+    "daysLate": 5,
     "delayReason": "CUSTOMS_HOLD",
     "shortShipment": true
   },
   {
-    "id": "RCV-0062",
+    "id": "RCV-0064",
     "purchaseOrderId": "PO-0067",
     "supplierId": "SUP-003",
-    "receivedAt": "2026-09-25T07:00:00.000Z",
+    "receivedAt": "2026-09-28T10:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
-        "id": "RCV-0062-L1",
+        "id": "RCV-0064-L1",
         "purchaseOrderLineId": "POL-0067-1",
         "materialId": "MAT-TB-25",
-        "quantity": 500
+        "quantity": 1000
       },
       {
-        "id": "RCV-0062-L2",
+        "id": "RCV-0064-L2",
         "purchaseOrderLineId": "POL-0067-2",
         "materialId": "MAT-WIRE-KIT",
         "quantity": 40
@@ -1567,34 +1575,16 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0063",
-    "purchaseOrderId": "PO-0061",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-25T09:00:00.000Z",
-    "locationId": "REC-002",
+    "id": "RCV-0065",
+    "purchaseOrderId": "PO-0059",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-28T11:00:00.000Z",
+    "locationId": "REC-003",
     "lines": [
       {
-        "id": "RCV-0063-L1",
-        "purchaseOrderLineId": "POL-0061-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 150
-      },
-      {
-        "id": "RCV-0063-L2",
-        "purchaseOrderLineId": "POL-0061-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 175
-      },
-      {
-        "id": "RCV-0063-L3",
-        "purchaseOrderLineId": "POL-0061-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 300
-      },
-      {
-        "id": "RCV-0063-L4",
-        "purchaseOrderLineId": "POL-0061-4",
-        "materialId": "MAT-CTR-25",
+        "id": "RCV-0065-L1",
+        "purchaseOrderLineId": "POL-0059-1",
+        "materialId": "MAT-PSU-24",
         "quantity": 160
       }
     ],
@@ -1602,51 +1592,17 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0064",
-    "purchaseOrderId": "PO-0066",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-28T07:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0064-L1",
-        "purchaseOrderLineId": "POL-0066-1",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 50
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0065",
-    "purchaseOrderId": "PO-0080",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-28T07:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0065-L1",
-        "purchaseOrderLineId": "POL-0080-1",
-        "materialId": "MAT-WIRE-KIT",
-        "quantity": 40
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
     "id": "RCV-0066",
-    "purchaseOrderId": "PO-0064",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-28T08:00:00.000Z",
-    "locationId": "REC-003",
+    "purchaseOrderId": "PO-0060",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-28T11:00:00.000Z",
+    "locationId": "REC-001",
     "lines": [
       {
         "id": "RCV-0066-L1",
-        "purchaseOrderLineId": "POL-0064-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 100
+        "purchaseOrderLineId": "POL-0060-1",
+        "materialId": "MAT-ENC-S",
+        "quantity": 20
       }
     ],
     "daysLate": 0,
@@ -1654,61 +1610,20 @@
   },
   {
     "id": "RCV-0067",
-    "purchaseOrderId": "PO-0059",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-28T09:00:00.000Z",
+    "purchaseOrderId": "PO-0076",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-28T11:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0067-L1",
-        "purchaseOrderLineId": "POL-0059-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 80
-      }
-    ],
-    "daysLate": 3,
-    "delayReason": "SUPPLIER_STOCKOUT",
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0068",
-    "purchaseOrderId": "PO-0054",
-    "supplierId": "SUP-004",
-    "receivedAt": "2026-09-28T10:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0068-L1",
-        "purchaseOrderLineId": "POL-0054-1",
-        "materialId": "MAT-PLC-CPU",
-        "quantity": 5
-      },
-      {
-        "id": "RCV-0068-L2",
-        "purchaseOrderLineId": "POL-0054-2",
-        "materialId": "MAT-HMI-7",
-        "quantity": 5
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0069",
-    "purchaseOrderId": "PO-0072",
-    "supplierId": "SUP-003",
-    "receivedAt": "2026-09-28T10:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0069-L1",
-        "purchaseOrderLineId": "POL-0072-1",
+        "purchaseOrderLineId": "POL-0076-1",
         "materialId": "MAT-TB-25",
         "quantity": 500
       },
       {
-        "id": "RCV-0069-L2",
-        "purchaseOrderLineId": "POL-0072-2",
+        "id": "RCV-0067-L2",
+        "purchaseOrderLineId": "POL-0076-2",
         "materialId": "MAT-WIRE-KIT",
         "quantity": 40
       }
@@ -1717,35 +1632,57 @@
     "shortShipment": false
   },
   {
-    "id": "RCV-0070",
-    "purchaseOrderId": "PO-0070",
+    "id": "RCV-0068",
+    "purchaseOrderId": "PO-0071",
+    "supplierId": "SUP-003",
+    "receivedAt": "2026-09-28T12:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
+      {
+        "id": "RCV-0068-L1",
+        "purchaseOrderLineId": "POL-0071-1",
+        "materialId": "MAT-WIRE-KIT",
+        "quantity": 20
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0069",
+    "purchaseOrderId": "PO-0069",
     "supplierId": "SUP-001",
-    "receivedAt": "2026-09-28T11:00:00.000Z",
+    "receivedAt": "2026-09-28T14:00:00.000Z",
     "locationId": "REC-001",
     "lines": [
       {
-        "id": "RCV-0070-L1",
-        "purchaseOrderLineId": "POL-0070-1",
+        "id": "RCV-0069-L1",
+        "purchaseOrderLineId": "POL-0069-1",
         "materialId": "MAT-ENC-S",
-        "quantity": 20
+        "quantity": 10
       },
       {
-        "id": "RCV-0070-L2",
-        "purchaseOrderLineId": "POL-0070-2",
-        "materialId": "MAT-ENC-M",
-        "quantity": 20
-      },
-      {
-        "id": "RCV-0070-L3",
-        "purchaseOrderLineId": "POL-0070-3",
+        "id": "RCV-0069-L2",
+        "purchaseOrderLineId": "POL-0069-2",
         "materialId": "MAT-ENC-L",
-        "quantity": 5
-      },
+        "quantity": 10
+      }
+    ],
+    "daysLate": 0,
+    "shortShipment": false
+  },
+  {
+    "id": "RCV-0070",
+    "purchaseOrderId": "PO-0064",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-29T07:00:00.000Z",
+    "locationId": "REC-003",
+    "lines": [
       {
-        "id": "RCV-0070-L4",
-        "purchaseOrderLineId": "POL-0070-4",
-        "materialId": "MAT-DIN-35",
-        "quantity": 100
+        "id": "RCV-0070-L1",
+        "purchaseOrderLineId": "POL-0064-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 30
       }
     ],
     "daysLate": 0,
@@ -1755,7 +1692,7 @@
     "id": "RCV-0071",
     "purchaseOrderId": "PO-0074",
     "supplierId": "SUP-001",
-    "receivedAt": "2026-09-28T11:00:00.000Z",
+    "receivedAt": "2026-09-29T09:00:00.000Z",
     "locationId": "REC-001",
     "lines": [
       {
@@ -1763,6 +1700,18 @@
         "purchaseOrderLineId": "POL-0074-1",
         "materialId": "MAT-ENC-S",
         "quantity": 20
+      },
+      {
+        "id": "RCV-0071-L2",
+        "purchaseOrderLineId": "POL-0074-2",
+        "materialId": "MAT-ENC-L",
+        "quantity": 5
+      },
+      {
+        "id": "RCV-0071-L3",
+        "purchaseOrderLineId": "POL-0074-3",
+        "materialId": "MAT-DIN-35",
+        "quantity": 50
       }
     ],
     "daysLate": 0,
@@ -1770,14 +1719,14 @@
   },
   {
     "id": "RCV-0072",
-    "purchaseOrderId": "PO-0076",
+    "purchaseOrderId": "PO-0080",
     "supplierId": "SUP-003",
-    "receivedAt": "2026-09-28T11:00:00.000Z",
+    "receivedAt": "2026-09-29T09:00:00.000Z",
     "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0072-L1",
-        "purchaseOrderLineId": "POL-0076-1",
+        "purchaseOrderLineId": "POL-0080-1",
         "materialId": "MAT-TB-25",
         "quantity": 500
       }
@@ -1787,22 +1736,34 @@
   },
   {
     "id": "RCV-0073",
-    "purchaseOrderId": "PO-0045",
-    "supplierId": "SUP-004",
-    "receivedAt": "2026-09-28T12:00:00.000Z",
+    "purchaseOrderId": "PO-0066",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-29T10:00:00.000Z",
     "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0073-L1",
-        "purchaseOrderLineId": "POL-0045-1",
-        "materialId": "MAT-PLC-CPU",
-        "quantity": 10
+        "purchaseOrderLineId": "POL-0066-1",
+        "materialId": "MAT-BRK-1P",
+        "quantity": 100
       },
       {
         "id": "RCV-0073-L2",
-        "purchaseOrderLineId": "POL-0045-2",
-        "materialId": "MAT-HMI-7",
-        "quantity": 10
+        "purchaseOrderLineId": "POL-0066-2",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 50
+      },
+      {
+        "id": "RCV-0073-L3",
+        "purchaseOrderLineId": "POL-0066-3",
+        "materialId": "MAT-RLY-24",
+        "quantity": 150
+      },
+      {
+        "id": "RCV-0073-L4",
+        "purchaseOrderLineId": "POL-0066-4",
+        "materialId": "MAT-CTR-25",
+        "quantity": 60
       }
     ],
     "daysLate": 0,
@@ -1810,40 +1771,39 @@
   },
   {
     "id": "RCV-0074",
-    "purchaseOrderId": "PO-0056",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-28T13:00:00.000Z",
-    "locationId": "REC-001",
+    "purchaseOrderId": "PO-0058",
+    "supplierId": "SUP-004",
+    "receivedAt": "2026-09-30T09:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0074-L1",
-        "purchaseOrderLineId": "POL-0056-1",
-        "materialId": "MAT-ENC-M",
-        "quantity": 28
+        "purchaseOrderLineId": "POL-0058-1",
+        "materialId": "MAT-PLC-CPU",
+        "quantity": 15
       },
       {
         "id": "RCV-0074-L2",
-        "purchaseOrderLineId": "POL-0056-2",
-        "materialId": "MAT-DIN-35",
-        "quantity": 60
+        "purchaseOrderLineId": "POL-0058-2",
+        "materialId": "MAT-HMI-7",
+        "quantity": 15
       }
     ],
-    "daysLate": 6,
-    "delayReason": "SUPPLIER_STOCKOUT",
+    "daysLate": 0,
     "shortShipment": false
   },
   {
     "id": "RCV-0075",
-    "purchaseOrderId": "PO-0065",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-28T15:00:00.000Z",
-    "locationId": "REC-001",
+    "purchaseOrderId": "PO-0068",
+    "supplierId": "SUP-005",
+    "receivedAt": "2026-09-30T10:00:00.000Z",
+    "locationId": "REC-003",
     "lines": [
       {
         "id": "RCV-0075-L1",
-        "purchaseOrderLineId": "POL-0065-1",
-        "materialId": "MAT-ENC-S",
-        "quantity": 20
+        "purchaseOrderLineId": "POL-0068-1",
+        "materialId": "MAT-PSU-24",
+        "quantity": 40
       }
     ],
     "daysLate": 0,
@@ -1851,16 +1811,16 @@
   },
   {
     "id": "RCV-0076",
-    "purchaseOrderId": "PO-0069",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-29T07:00:00.000Z",
-    "locationId": "REC-003",
+    "purchaseOrderId": "PO-0070",
+    "supplierId": "SUP-002",
+    "receivedAt": "2026-09-30T10:00:00.000Z",
+    "locationId": "REC-002",
     "lines": [
       {
         "id": "RCV-0076-L1",
-        "purchaseOrderLineId": "POL-0069-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 30
+        "purchaseOrderLineId": "POL-0070-1",
+        "materialId": "MAT-BRK-3P",
+        "quantity": 25
       }
     ],
     "daysLate": 0,
@@ -1868,150 +1828,28 @@
   },
   {
     "id": "RCV-0077",
-    "purchaseOrderId": "PO-0071",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-29T08:00:00.000Z",
-    "locationId": "REC-002",
+    "purchaseOrderId": "PO-0078",
+    "supplierId": "SUP-001",
+    "receivedAt": "2026-09-30T15:00:00.000Z",
+    "locationId": "REC-001",
     "lines": [
       {
         "id": "RCV-0077-L1",
-        "purchaseOrderLineId": "POL-0071-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 100
-      },
-      {
-        "id": "RCV-0077-L2",
-        "purchaseOrderLineId": "POL-0071-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0077-L3",
-        "purchaseOrderLineId": "POL-0071-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 150
-      },
-      {
-        "id": "RCV-0077-L4",
-        "purchaseOrderLineId": "POL-0071-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 40
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0078",
-    "purchaseOrderId": "PO-0078",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-29T09:00:00.000Z",
-    "locationId": "REC-001",
-    "lines": [
-      {
-        "id": "RCV-0078-L1",
         "purchaseOrderLineId": "POL-0078-1",
-        "materialId": "MAT-ENC-M",
-        "quantity": 10
-      },
-      {
-        "id": "RCV-0078-L2",
-        "purchaseOrderLineId": "POL-0078-2",
-        "materialId": "MAT-ENC-L",
-        "quantity": 10
-      },
-      {
-        "id": "RCV-0078-L3",
-        "purchaseOrderLineId": "POL-0078-3",
-        "materialId": "MAT-DIN-35",
-        "quantity": 50
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0079",
-    "purchaseOrderId": "PO-0075",
-    "supplierId": "SUP-002",
-    "receivedAt": "2026-09-30T07:00:00.000Z",
-    "locationId": "REC-002",
-    "lines": [
-      {
-        "id": "RCV-0079-L1",
-        "purchaseOrderLineId": "POL-0075-1",
-        "materialId": "MAT-BRK-1P",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0079-L2",
-        "purchaseOrderLineId": "POL-0075-2",
-        "materialId": "MAT-BRK-3P",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0079-L3",
-        "purchaseOrderLineId": "POL-0075-3",
-        "materialId": "MAT-RLY-24",
-        "quantity": 50
-      },
-      {
-        "id": "RCV-0079-L4",
-        "purchaseOrderLineId": "POL-0075-4",
-        "materialId": "MAT-CTR-25",
-        "quantity": 40
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0080",
-    "purchaseOrderId": "PO-0083",
-    "supplierId": "SUP-001",
-    "receivedAt": "2026-09-30T10:00:00.000Z",
-    "locationId": "REC-001",
-    "lines": [
-      {
-        "id": "RCV-0080-L1",
-        "purchaseOrderLineId": "POL-0083-1",
         "materialId": "MAT-ENC-S",
         "quantity": 10
       },
       {
-        "id": "RCV-0080-L2",
-        "purchaseOrderLineId": "POL-0083-2",
+        "id": "RCV-0077-L2",
+        "purchaseOrderLineId": "POL-0078-2",
         "materialId": "MAT-ENC-M",
-        "quantity": 10
+        "quantity": 20
       },
       {
-        "id": "RCV-0080-L3",
-        "purchaseOrderLineId": "POL-0083-3",
-        "materialId": "MAT-ENC-L",
-        "quantity": 10
-      },
-      {
-        "id": "RCV-0080-L4",
-        "purchaseOrderLineId": "POL-0083-4",
+        "id": "RCV-0077-L3",
+        "purchaseOrderLineId": "POL-0078-3",
         "materialId": "MAT-DIN-35",
         "quantity": 50
-      }
-    ],
-    "daysLate": 0,
-    "shortShipment": false
-  },
-  {
-    "id": "RCV-0081",
-    "purchaseOrderId": "PO-0073",
-    "supplierId": "SUP-005",
-    "receivedAt": "2026-09-30T13:00:00.000Z",
-    "locationId": "REC-003",
-    "lines": [
-      {
-        "id": "RCV-0081-L1",
-        "purchaseOrderLineId": "POL-0073-1",
-        "materialId": "MAT-PSU-24",
-        "quantity": 40
       }
     ],
     "daysLate": 0,

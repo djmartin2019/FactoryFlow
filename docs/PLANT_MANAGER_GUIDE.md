@@ -4,7 +4,7 @@ How the plant in FactoryFlow works, step by step, what each screen is for, and h
 is calculated. Written for someone who runs or reviews a manufacturing operation, not for a programmer.
 
 > **Everything in this guide describes a synthetic plant.** FactoryFlow runs a deterministic simulation of
-> a fictional manufacturer (Northstar Components). The figures, durations, failure rates and supplier
+> a fictional manufacturer (Larkhaven Controls). The figures, durations, failure rates and supplier
 > behaviour are invented to be plausible, not measured. FactoryFlow is an engineering reference
 > implementation, not a production-certified MES, ERP, scheduling or control system. Its purpose in a review
 > is to make the **logic** visible so you can tell us where it differs from a real plant.
@@ -26,14 +26,14 @@ Labels used below:
 | **Assumed** | A synthetic parameter chosen by us, not measured; a real plant would supply its own |
 | **Not modeled** | The app has no data or logic for it; do not infer anything about it from the screens |
 
-Worked examples use the default dataset (seed `northstar-2026`, 30 days from Tuesday 2026-09-01). Anyone can
+Worked examples use the default dataset (seed `larkhaven-2026`, 30 days from Tuesday 2026-09-01). Anyone can
 reproduce them: the dataset is deterministic. All times are UTC.
 
 ---
 
 ## Part 1. The plant in one page
 
-Northstar Components assembles three industrial control panels from purchased parts:
+Larkhaven Controls assembles three industrial control panels from purchased parts:
 
 | Product | What it is | Typical build |
 | --- | --- | --- |
@@ -153,6 +153,12 @@ shortfall.
 If the shortfall is 6 or more, 5% (rounded up) is added as a yield allowance. The order is never smaller than the
 minimum lot (2 units). Planning runs whenever a customer order is created and whenever finished goods are received. If demand disappears (an order is
 cancelled), work orders that have not started and are no longer needed are cancelled (`PRODUCTION_ORDER_CANCELLED`).
+
+**Which order lines it is planned for.** Open order lines are taken oldest customer order first, the same order
+stock is allocated in. Stock on the shelf and quantities already in work orders cover the first lines; the new work
+order is linked only to the lines that cover does not reach (a line that is only partly covered is linked to both
+the earlier work order and the new one). So a work order usually serves one or two lines, and an order line is
+linked to at most two work orders.
 
 **What changes.** The Work Orders tab shows a new row in status *Planned*. The work order's due date is the
 earliest due date among the order lines it was planned for.
@@ -449,7 +455,7 @@ Per product: components, quantity per unit, unit cost, extended cost, supplier a
 
 - Customer order to its work orders and back, from either drawer; a Back button returns to the previous record.
 - **Show in factory** (work-order and customer-order drawers), **Show racks** (Material Shortages) and **Show** (Inventory) select the object in the 3D plant.
-- The address bar records the view, tab and selected record, for example `#/explorer/orders/WO-0044` or `#/explorer/dispatch/CO-0040`, so a link can be shared. It does not record the
+- The address bar records the view, tab and selected record, for example `#/explorer/orders/WO-0040` or `#/explorer/dispatch/CO-0008`, so a link can be shared. It does not record the
   simulated time, so a record that does not exist yet at the current time shows "does not exist at the selected simulation time".
 
 ---
@@ -511,20 +517,20 @@ cause is shown only where the record states one, otherwise "not recorded".
 
 ### 5.6 Worked examples (default dataset)
 
-**Example 1: one customer order's lead time (CO-0040).** Fernhill HVAC Systems ordered 5 × NCP-100 and 3 × NCP-200, created Tue 2026-09-08 11:04, due Tue 2026-09-22 17:00. Finished goods were first allocated at 16:14 the same day
-and everything dispatched Wed 2026-09-09 15:00. Lead time = 1,676 min (1 day 3 h 56 min), split 310 min (creation to allocation) + 1,366 min (allocation to dispatch) + 0 (single shipment) = 1,676. Dispatched 13 days before the due date, so lateness is 0 and the order counts as on time and in full. The drawer lists six work orders "planned for" it
-(WO-0050, 0051, 0052, 0054, 0055, 0057), but other orders share them: a planning link, not a unit trace.
+**Example 1: one customer order's lead time (CO-0008).** Birchwood Water Utilities ordered 4 × NCP-300 and 6 × NCP-100, created Wed 2026-09-02 09:09, due Mon 2026-09-14 17:00. Finished goods were first allocated at 15:34 the same day
+and everything dispatched Thu 2026-09-03 15:00. Lead time = 1,791 min (1 day 5 h 51 min), split 385 min (creation to allocation) + 1,406 min (allocation to dispatch) + 0 (single shipment) = 1,791. Dispatched 11 days before the due date, so lateness is 0 and the order counts as on time and in full. The drawer lists two work orders "planned for" it,
+one per line: WO-0007 (7 × NCP-100 for line 2) and WO-0008 (4 × NCP-300 for line 1). It is still a planning link, not a unit trace: the units came from the shared finished-goods shelf.
 
-**Example 2: one work order's time (WO-0044, 3 × NCP-300).** Created Mon 2026-09-07 11:37 and completed Tue 2026-09-15 08:32: flow time 11,335 min. Of that, 10,049 min was *Blocked: material* (waiting for PLC CPUs and HMI displays), 107 min *Held: machine down*,
-501 min *Processing*, 62 min *Waiting to start (in shift)* and 616 min *Waiting to start (off shift)*; 0 elsewhere. 10,049 + 107 + 501 + 62 + 616 = 11,335. Its cycle time (released to completed) is only 1,286 min (21 h 26 min). The routing view shows
-kit 47 min wait / 42 run / 107 hold, mount 76 run, wire 122, controls configuration 124, test 66; one of three units failed first-pass test, so rework (15 wait / 46 run) and a re-test (25) followed and that unit passed. The drawer's step waits (47 + 15 = 62 min) match *Waiting to start (in shift)*; its processing
-steps add to 501.
+**Example 2: one work order's time (WO-0040, 7 × NCP-300).** Created Mon 2026-09-07 16:42 and completed Tue 2026-09-15 16:40: flow time 11,518 min. Of that, 9,810 min was *Blocked: material* (waiting for PLC CPUs and HMI displays, Example 3),
+1,055 min *Processing*, 153 min *Waiting to start (in shift)* and 500 min *Waiting to start (off shift)*; 0 elsewhere, including *Held: machine down*. 9,810 + 1,055 + 153 + 500 = 11,518. Its cycle time (released to completed) is only 1,708 min (28 h 28 min). The routing view shows
+kit 80 min, mount 53 min wait / 173 run, wire 262, controls configuration 296, test 172; one of seven units failed first-pass test (loose termination), so rework (83 wait / 43 run) and a re-test (17 wait / 29 run) followed and that unit passed. The drawer's step waits (53 + 83 + 17 = 153 min) match *Waiting to start (in shift)*; its processing
+steps add to 1,055.
 
-**Example 3: a shortage (WO-0041 at Thu 2026-09-10 20:41).** A 7-unit NCP-300 order needs 7 PLC CPUs and 7 HMI displays (one each per panel); the rack holds 1 of each, so it is short by 6 of each. Purchase order PO-0003 covers both, promised Mon 2026-09-14 10:00, so the status is
-"Covered by Mon 2026-09-14 (PO-0003)". Seven other NCP-300 work orders are blocked on the same two parts, which is why shortfalls must not be added.
+**Example 3: a shortage (WO-0040 at Fri 2026-09-11 17:00).** The 7-unit NCP-300 order needs 7 PLC CPUs and 7 HMI displays (one each per panel); the rack holds 1 of each, so it is short by 6 of each. Purchase order PO-0003 covers both, promised Mon 2026-09-14 10:00, so the status is
+"Covered by Mon 2026-09-14 (PO-0003)". Twelve other work orders are blocked on the same two parts at that moment, which is why shortfalls must not be added.
 
-**Example 4: whole-run figures (Since start, end of the 30 days).** Good units 838. Utilization 49.2% = 70,160 busy min ÷ 142,560 (9 stations × 15,840 shift min; the 22 working days of September at 720 min). Wiring and Termination A reached 81% (12,846 ÷ 15,840) and the second test cell 15%.
-First-pass yield 96.0% = 819 ÷ 853 units; rework rate 3.4% (29 units); scrap rate 0.7% (6 units). On-Time In-Full Dispatch 86.7% (117 of 135 orders due); quantity fill 90.2% (682 of 756 units); median lead time 3 d 2 h 42 min, P90 12 d 1 h 8 min; 9 orders past due and unshipped at the end.
+**Example 4: whole-run figures (Since start, end of the 30 days).** Good units 797. Utilization 47.0% = 66,952 busy min ÷ 142,560 (9 stations × 15,840 shift min; the 22 working days of September at 720 min). Controls & Motor Setup reached 74% (11,682 ÷ 15,840), Wiring & Termination A 72%, and the second test cell 10%.
+First-pass yield 96.0% = 768 ÷ 800 units; rework rate 3.6% (29 units); scrap rate 0.4% (3 units). On-Time In-Full Dispatch 89.6% (112 of 125 orders due); quantity fill 88.5% (586 of 662 units); median lead time 3 d 2 h 44 min, P90 11 d 6 h 31 min; 7 orders past due and unshipped at the end.
 
 ---
 
@@ -630,8 +636,8 @@ suggests where such a record would typically originate; this is orientation, not
 
 | Term | Meaning |
 | --- | --- |
-| Work order | A production order: a batch of one product built to cover demand (`WO-0044`) |
-| Customer order | An order from a customer, with lines and a due date (`CO-0040`); lines carry the quantities |
+| Work order | A production order: a batch of one product built to cover demand (`WO-0040`) |
+| Customer order | An order from a customer, with lines and a due date (`CO-0008`); lines carry the quantities |
 | Purchase order | An order to a supplier (`PO-0003`) |
 | Work center | A capability (wiring, test) served by one or more stations |
 | Station | One machine or bench that runs one job at a time (`ASM-003`, `QC-001`) |

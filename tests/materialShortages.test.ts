@@ -10,8 +10,8 @@ import { initialFileOf, snapshotAt } from "./helpers/snapshot.ts";
 const data = generateDataset();
 const initial: InitialStateFile = initialFileOf(data);
 const START = Date.parse(initial.state.asOf);
-// First hour of the default dataset (seed northstar-2026) with a work order blocked on material; the scan test guards this.
-const BLOCKED_AT = Date.parse("2026-09-07T10:00:00.000Z");
+// First hour of the default dataset (seed larkhaven-2026) with a work order blocked on material; the scan test guards this.
+const BLOCKED_AT = Date.parse("2026-09-07T14:00:00.000Z");
 
 const base = snapshotAt(initial, data.events, BLOCKED_AT);
 const report = materialShortages(base);

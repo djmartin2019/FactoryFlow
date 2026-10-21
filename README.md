@@ -68,7 +68,7 @@ npm test             # Vitest suite
 To regenerate or check the data:
 
 ```bash
-npm run generate:data                       # default seed "northstar-2026", 30 days
+npm run generate:data                       # default seed "larkhaven-2026", 30 days
 npm run generate:data -- --seed=abc --days=45 --customerOrders=120
 npm run validate:data                       # re-validate on disk and prove determinism
 ```
@@ -138,7 +138,7 @@ Four layers with a strict dependency direction (details in [`docs/ARCHITECTURE.m
 ### The event-sourced model
 
 The dataset is two files: `initial_state.json` (master data plus opening balances) and `events.json` (an
-ordered log of about 4,650 events such as `PURCHASE_ORDER_CREATED`, `OPERATION_STARTED`,
+ordered log of about 4,450 events such as `PURCHASE_ORDER_CREATED`, `OPERATION_STARTED`,
 `QUALITY_INSPECTION_COMPLETED`, `SHIPMENT_DISPATCHED`, `MACHINE_FAILED`). `FactoryState` is produced only
 by applying events, in sequence, to the initial state, and an invalid transition throws an
 `InvariantViolation`. Consequences:
@@ -171,7 +171,7 @@ and its milestones are in [`docs/SOURCE_INTEGRATION_PLAN_REV3.md`](docs/SOURCE_I
 
 ## The synthetic company and dataset
 
-The fictional **Northstar Components** assembles three control panels, each with its own routing:
+The fictional **Larkhaven Controls** assembles three control panels, each with its own routing:
 
 | Product | Routing (work centers) |
 | --- | --- |
@@ -180,7 +180,7 @@ The fictional **Northstar Components** assembles three control panels, each with
 | NCP-300 Advanced Automation Panel | as NCP-100, plus controls (PLC/HMI) configuration |
 
 Thirteen raw materials come from five suppliers and ten customers place orders. Defaults: seed
-`northstar-2026`, start 2026-09-01, 30 days, 180 customer orders, a demand surge on days 12 to 16, and two
+`larkhaven-2026`, start 2026-09-01, 30 days, 180 customer orders, a demand surge on days 12 to 16, and two
 machine failures per assembly station. The plant has 6 assembly stations, 3 inspection cells, 4 raw-material
 racks, 3 receiving docks and 3 shipping bays, with sequence-dependent changeovers and shared equipment.
 
@@ -252,9 +252,8 @@ browser tests yet.
 - Everything is synthetic. The numbers demonstrate the definitions; they are not operational data.
 - Dispatch metrics use dispatch time because the model has no customer-receipt data, and the link from a
   customer order to its work orders is a planning link (finished goods are allocated from stock), not
-  traced unit flow. The synthetic planner nets each work order against every open order line for that
-  product, so one customer order can list many planned work orders (a median of 4 lines per work order,
-  up to about 50 during the demand surge).
+  traced unit flow. Each new work order is linked to the order lines that stock and earlier work orders do
+  not already cover, so an order line is linked to at most two work orders.
 - No source-independent ingestion yet: `src/sources/` is built and tested but the app does not use it.
 - Work Centers utilization is N/A when the reporting period contains no scheduled shift time (for example the
   last 24 hours early on a Monday); choose a longer period.
@@ -265,7 +264,7 @@ browser tests yet.
 - The dataset is a fixed 30-day run; the progress bar ends at the last event.
 - Automated UI tests do not exist yet; the Explorer-to-3D links were checked with a scripted browser run for this
   release (see [`docs/RELEASE_0.1.0.md`](docs/RELEASE_0.1.0.md)).
-- The fictional company name "Northstar Components" has not had a trademark check.
+- The fictional company name "Larkhaven Controls" was checked only by web search (no company of that name found), not by a trademark search.
 
 ## Hosting your own copy
 

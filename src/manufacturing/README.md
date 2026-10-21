@@ -1,4 +1,4 @@
-# Northstar Components – manufacturing data model
+# Larkhaven Controls – manufacturing data model
 
 Synthetic, deterministic, event-sourced manufacturing history for FactoryFlow.
 Pure TypeScript: no Three.js, no DOM, no backend, no extra runtime dependencies.
@@ -26,7 +26,7 @@ quotas – at defaults you get ≈47 POs (target 50 sets the supplier review cyc
 ```
 types.ts       domain interfaces, event payloads, config, manifest
 rng.ts         seeded RNG (xmur3 → mulberry32) with forkable streams
-masterData.ts  Northstar products/BOMs/routings/suppliers/customers/locations/workstations
+masterData.ts  Larkhaven products/BOMs/routings/suppliers/customers/locations/workstations
 state.ts       FactoryState + applyEvent (pure) / applyEventInPlace – ALL business rules live here
 events.ts      event envelope + entity-ref derivation
 generator.ts   discrete-event simulation that proposes events through the reducer

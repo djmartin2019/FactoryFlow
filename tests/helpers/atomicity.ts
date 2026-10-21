@@ -40,7 +40,7 @@ export interface CorpusEntry {
 export type Corpus = Record<EventType, CorpusEntry[]>;
 
 let cached: ManufacturingDataset | undefined;
-/** The default dataset (seed northstar-2026), generated once per test file. */
+/** The default dataset (seed larkhaven-2026), generated once per test file. */
 export function dataset(): ManufacturingDataset {
   return (cached ??= generateDataset());
 }

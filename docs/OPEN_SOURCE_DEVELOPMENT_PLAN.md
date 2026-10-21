@@ -467,7 +467,7 @@ repeated for 0.2.0.
 ### F.3 Milestone notes (constraints on top of Revision 3)
 
 - **M3a** (atomic reducer). Keep all eight acceptance criteria. The 15 `it.fails` entries must flip. Fixture hash `6ed76381` and log hash
-  `1b408e8e` stay pinned. **The frozen reducer in `tests/legacy/` is kept** (Amendment A2) and its header comment is corrected in the
+  `8cf64c93` stay pinned. **The frozen reducer in `tests/legacy/` is kept** (Amendment A2) and its header comment is corrected in the
   same PR. One decision: `PRODUCTION_ORDER_CREATED` currently accepts duplicate operation ids within one event (M0 outcome). Keep parity
   in M3a; change it, if at all, in a separate reviewed behavior change that also ends the legacy oracle's usefulness (A2 removal trigger).
 - **M3b-core.** The contract is Revision 3 §7.4a: a deterministic finite-batch projection with exact input accounting, not a published log.
@@ -566,7 +566,7 @@ no document, release note or demo text may say or imply otherwise. The README st
    skills, scheduling or scenarios; automated UI tests; any claim of real-system compatibility.
 6. **Acceptance criteria.** S1a, S1b, S2, S3 acceptance as specified in §E.3 and `KPI_DEFINITIONS.md`; every added number traceable to events and state and
    defined before it was built; navigation order to work order to work center to 3D object works in both directions (manual smoke, recorded); the Explorer and
-   dashboard are fully usable without relying on the 3D scene; the synthetic-data label is visible on every view; fixture hash `6ed76381` and log hash `1b408e8e`
+   dashboard are fully usable without relying on the 3D scene; the synthetic-data label is visible on every view; fixture hash `6ed76381` and log hash `8cf64c93`
    unchanged (or changed deliberately with a `SCHEMA_VERSION` bump and migration note); README claims match `STATUS.md`.
 7. **Demonstration scenario (about two minutes).** Open the hosted demo, no login. In the Dispatch tab find a late or past-due customer order and read its lead
    time and milestone segments. Open its linked work orders (shown as "planned to satisfy"). In a work order's drawer read the exclusive time breakdown and the
@@ -779,7 +779,7 @@ A release is **ready for publication** only when every box for that release is c
 
 **Build and correctness**
 - [x] `npm run typecheck`, `typecheck:app`, `npm test`, `validate:data` and `npm run build` pass in CI on the release commit.
-- [x] Fixture hash `6ed76381` and log hash `1b408e8e` unchanged, or changed deliberately with a `SCHEMA_VERSION` bump, regenerated fixture and migration note (`CLAUDE.md`).
+- [x] Fixture hash `6ed76381` unchanged; log hash changed deliberately from `1b408e8e` to `8cf64c93` (planning-link fix and seed rename, no event-shape change so no `SCHEMA_VERSION` bump; migration note in `RELEASE_0.1.0.md`).
 
 **Product**
 - [x] S1a, S1b, S2, S3 shipped; definitions moved from "proposed" to implemented in `KPI_DEFINITIONS.md` (the "Proposed / Not Implemented" label removed only for what exists); unit tests recompute every
@@ -791,7 +791,7 @@ A release is **ready for publication** only when every box for that release is c
 
 **Repository, documentation, legal**
 - [x] `LICENSE` (Apache-2.0) present after the owner confirms ownership; dependency license scan from `package-lock.json` recorded; asset provenance list covers `public/og-v2.png`,
-  `design/og.html`, favicon and icons, fonts, and the fictional name "Northstar Components" (trademark check). Done 2026-10-21, recorded in `RELEASE_0.1.0.md`; the Northstar name check found no exact match but similar real names (L6 stays open).
+  `design/og.html`, favicon and icons, fonts, and the fictional name "Northstar Components" (trademark check). Done 2026-10-21, recorded in `RELEASE_0.1.0.md`; the company was renamed to Larkhaven Controls (L6 closed).
 - [x] Git history and tracked files scanned for secrets and personal infrastructure details; `deploy/` sanitized or relocated with placeholders; `SKILL.md` and `docs/DashboardInspo.webp` still untracked.
 - [x] README rewritten: purpose, synthetic-data notice, hosted-demo link, 3 to 4 screenshots, 60-second quick start verified on a clean clone with Node 22, a "what works / what is planned" section linking
   `STATUS.md`, the maturity statement (G.0.1: reference implementation, not production-certified), and an explicit statement that external-source integration is **planned, not part of this release**.
@@ -803,7 +803,7 @@ A release is **ready for publication** only when every box for that release is c
 
 ### J.1a Release 0.1.x: Investigation
 
-- [ ] Everything in J.1 still true (hashes `6ed76381` / `1b408e8e` unchanged; synthetic label on every view).
+- [ ] Everything in J.1 still true (hashes `6ed76381` / `8cf64c93` unchanged; synthetic label on every view).
 - [ ] For each slice shipped: its definitions moved from "proposed" to implemented in `KPI_DEFINITIONS.md`; a `STATUS.md` row with a pointer; unit tests recompute every displayed number.
 - [ ] S7: inbox rows equal the owning tabs' sets (tested per type); thresholds visible in the UI.
 - [ ] S9: lead-time basis, minimum-sample rule and open/short-shipped handling documented and tested.
@@ -861,7 +861,7 @@ Ordered by dependency and value. Each is a separate PR; the two lanes are indepe
 | L3 | M6b and most of M7 unscheduled (R3/R4) | **Closed: accepted 2026-10-17** |
 | L4 | Hosted-demo target | **Closed 2026-10-17.** Use the existing static hosting as the initial publishing target. GitHub Pages for forks is optional and does not block 0.1.0 (it would need Vite `base` work) |
 | L5 | Independent MES source in the public demo | **Closed 2026-10-17.** The default public demo stays simulation-based. For 0.2.0, document how to run the MES-like fixture locally; no public UI source selector is required |
-| L6 | Fictional company name "Northstar Components" | **Open.** Kept provisionally. A web search (2026-10-21) found no exact match but real manufacturers named Northstar, one close in business (`RELEASE_0.1.0.md` §6); not a trademark clearance. Renaming would regenerate the dataset and both hashes |
+| L6 | Fictional company name | **Closed 2026-10-21 (owner).** Renamed from "Northstar Components" (similar real manufacturers exist) to **Larkhaven Controls**, seed `larkhaven-2026`. A web search found no company of that name; this is not a trademark clearance. Dataset regenerated in the same change as the planning-link fix (`RELEASE_0.1.0.md`) |
 | L7 | Edit design doc and Rev3 per R1-R8 | **Closed: done 2026-10-17** |
 | L8 | Analytical definitions (`KPI_DEFINITIONS.md`) | **Closed 2026-10-17.** **S1a approved** with explicit dispatch terminology (`dueDate` is dispatch-by for the synthetic manufacturer only; On-Time In-Full Dispatch, Order-to-Final-Dispatch Lead Time, Past-Due Unshipped Orders). **S1b approved** after the corrections were incorporated and checked against the reducer's operation, inspection, rework and receipt transitions and the generator's event timing: eligibility-based `QUEUE_WAIT`/`POST_PRODUCTION`, and a partial reconciliation with the drawer's step `Wait`. No unresolved contradiction was found; limitations are documented there (rounding, a possible rework-request gap, `POST_PRODUCTION` expected to be zero-length on simulated data). All metrics remain **Proposed / Not implemented** |
 | L9 | Legacy reducer | **Closed 2026-10-17.** Retained through M4 as a differential-testing oracle, not a second supported reducer; removed before the 0.2.0 tag only after the evidence in Revision 3 Amendment A2 is recorded |

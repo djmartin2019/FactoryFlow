@@ -14,18 +14,18 @@ frame-rate limiting disabled. Not asserted in CI.
 
 | | Result |
 | --- | --- |
-| Main bundle | 823.9 kB minified, 214.3 kB gzip (one chunk; Three.js is not code-split) |
+| Main bundle | 824.9 kB minified, 214.7 kB gzip (one chunk; Three.js is not code-split) |
 | CSS | 15.6 kB, 4.0 kB gzip |
 | Default quality after load | Desktop starts `high`, stepped down to `medium` by the automatic check (as designed for this GPU) |
-| Frame time, default quality, playback running | 4.9-5.0 ms median (about 200 FPS), worst frame in a 1 s window 13-15 ms; 127 draw calls, 3,751 triangles, 107 meshes. Sampled in an off-shift window, so no events were being applied |
-| Slider seek in browser | 17-19 ms |
-| Full replay, Node (`scripts/bench-load.ts`, 4,651 events) | 49.6 ms mean |
-| Seek to 100% incl. reset, Node | 51.4 ms mean |
-| `JSON.parse(events.json)` (2.51 MB), Node | 13.4 ms mean |
-| Simulation-as-a-source adapt (not used by the app yet) | ~125 ms one-time |
+| Frame time, default quality, playback running | 4.9-5.4 ms median (about 185-200 FPS), worst frame in a 1 s window 13-15 ms; 127 draw calls, about 3,740 triangles, 107 meshes. Sampled in an off-shift window, so no events were being applied |
+| Slider seek in browser | 14-19 ms |
+| Full replay, Node (`scripts/bench-load.ts`, 4,455 events, seed `larkhaven-2026`) | 53.5 ms mean |
+| Seek to 100% incl. reset, Node | 54.4 ms mean |
+| `JSON.parse(events.json)` (2.36 MB), Node | 14.2 ms mean |
+| Simulation-as-a-source adapt (not used by the app yet) | ~143 ms one-time |
 
-Tests at release: 30 files, 339 passing and 15 expected failures (`it.fails`, the M3a atomicity corpus).
-Event-log hash `1b408e8e`, canonical fixture hash `6ed76381`, both unchanged.
+Tests at release: 30 files, 340 passing and 15 expected failures (`it.fails`, the M3a atomicity corpus).
+Event-log hash `8cf64c93` (regenerated for 0.1.0, see `RELEASE_0.1.0.md`); canonical fixture hash `6ed76381` unchanged.
 
 ## Optional overlay
 
@@ -109,7 +109,7 @@ Observations:
 
 Recorded 2026-10-15 for later comparison; deliberately **not** asserted in CI, because wall-clock timings are
 flaky across machines. Node 22.22.3, Intel Core i9-9880H @ 2.30 GHz, macOS. Default dataset (seed
-`northstar-2026`, 30 days, 4,073 events), mean of 5 runs after one warm-up, single process.
+`northstar-2026`, the default before the 0.1.0 rename; 30 days, 4,073 events), mean of 5 runs after one warm-up, single process.
 
 | Operation | Time |
 | --- | --- |
@@ -127,7 +127,7 @@ investigating. The browser results in the tables above predate this run and were
 ## Load-pipeline baseline (M0 of the source integration plan)
 
 Recorded 2026-10-16 with `node scripts/bench-load.ts`; deliberately **not** asserted in CI. Same machine and Node as the
-Phase 0 baseline (Node 22.22.3, i9-9880H), mean of 5 runs after one warm-up. Default dataset: seed `northstar-2026`,
+Phase 0 baseline (Node 22.22.3, i9-9880H), mean of 5 runs after one warm-up. Default dataset at the time: seed `northstar-2026` (renamed `larkhaven-2026` in 0.1.0),
 schema 1.3.0, 4,651 events, `events.json` 2.51 MB. These are the figures the integration milestones (D7 budgets) are
 measured against.
 
