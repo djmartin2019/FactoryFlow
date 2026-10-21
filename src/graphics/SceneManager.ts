@@ -3,13 +3,13 @@ import { CameraController } from "./CameraController";
 import { Factory } from "./Factory";
 import { InteractionManager } from "./InteractionManager";
 import type { SimulationController } from "../simulation/SimulationController";
-import { FactoryVisualizer } from "./FactoryVisualizer";
+import { FactoryVisualizer, overlayAccent } from "./FactoryVisualizer";
 import { inShift } from "../manufacturing/calendar";
 import StationDetails from "../ui/StationDetails";
 import { PerfOverlay } from "../ui/PerfOverlay";
 import { SceneLegend } from "../ui/SceneLegend";
 import { PRODUCT_COLORS } from "./WipBuffers";
-import { overlayFor, type Overlay, type OverlayMode } from "../analytics/overlays";
+import { highlightedIds, overlayFor, type Overlay, type OverlayMode } from "../analytics/overlays";
 import type { PeriodId } from "../analytics/periods";
 import { reportingSnapshot } from "../simulation/reportingSnapshot";
 import { OverlayControl } from "../ui/OverlayControl";
@@ -31,6 +31,10 @@ export class SceneManager {
   private lastShiftOpen: boolean | null = null;
   private lastVisualKey = "";
   private overlayMode: OverlayMode = "status";
+  /** Objects the active overlay highlights (null without an overlay) and the current selection, for label emphasis. */
+  private highlighted: ReadonlySet<string> | null = null;
+  private highlightAccent: string | null = null;
+  private selectedId: string | null = null;
   private overlayControl!: OverlayControl;
   private readonly getPeriod: () => PeriodId;
   private active = true;
@@ -86,6 +90,8 @@ export class SceneManager {
       factory.selectableObjects,
       (selectedObject) => {
         this.stationDetails.render(selectedObject);
+        this.selectedId = selectedObject?.id ?? null;
+        this.factory.setLabelEmphasis(this.highlighted, this.highlightAccent, this.selectedId);
         this.onSelectionChange?.(selectedObject?.id ?? null);
       },
     );
@@ -196,6 +202,9 @@ export class SceneManager {
     if (this.overlayMode !== "status") overlay = overlayFor(reportingSnapshot(this.simulation), this.overlayMode, this.getPeriod());
     this.overlayControl.setMode(this.overlayMode, overlay);
     this.visualizer.update(state, this.simulation.engine.master, nowMs, overlay);
+    this.highlighted = overlay ? highlightedIds(overlay) : null;
+    this.highlightAccent = overlay ? overlayAccent(overlay.mode) : null;
+    this.factory.setLabelEmphasis(this.highlighted, this.highlightAccent, this.selectedId);
     // Queue boxes may have appeared or moved; shadows are otherwise static.
     this.pipeline.invalidateShadows();
   }

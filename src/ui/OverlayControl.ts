@@ -44,6 +44,6 @@ export class OverlayControl {
     this.legend.textContent =
       overlay.cells.length === 0
         ? `Nothing to highlight at this simulated time (${overlay.legend.muted}).`
-        : `Light blue = ${overlay.legend.low} → bright = ${overlay.legend.high}. Dark = ${overlay.legend.muted}.`;
+        : `Light blue = ${overlay.legend.low} → bright = ${overlay.legend.high}. Dark = ${overlay.legend.muted}. Highlighted objects have outlined labels; other labels are faded.`;
   }
 }

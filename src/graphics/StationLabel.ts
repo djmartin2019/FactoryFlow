@@ -29,9 +29,17 @@ const SCREEN_HEIGHT_PX = 38;
 const MAX_WORLD_HEIGHT = 4;
 /** Gap between the top of the equipment and the bottom of the label. */
 const LABEL_CLEARANCE = 0.3;
+/** Opacity of a label an analytical overlay does not highlight, so highlighted equipment behind it shows through. */
+const DIMMED_OPACITY = 0.25;
 
 export class StationLabel {
   public readonly sprite: THREE.Sprite;
+  public readonly objectId: string;
+
+  private readonly config: FactoryObjectConfig;
+  private readonly accent: number;
+  private readonly texture: THREE.CanvasTexture;
+  private outline: string | null = null;
 
   private readonly worldPosition = new THREE.Vector3();
 
@@ -40,7 +48,11 @@ export class StationLabel {
    *   cover one another on screen.
    */
   constructor(config: FactoryObjectConfig, accent: number, lift = 0) {
+    this.objectId = config.id;
+    this.config = config;
+    this.accent = accent;
     const texture = new THREE.CanvasTexture(drawLabel(config, accent));
+    this.texture = texture;
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 4;
 
@@ -72,6 +84,19 @@ export class StationLabel {
   }
 
   /**
+   * Overlay emphasis. `dimmed` fades the label (labels are drawn on top of everything, so a full-strength one can hide
+   * equipment behind it). `outline` draws a coloured border, so a highlighted object is visible from its label even when
+   * the equipment itself is hidden behind something else. The texture is redrawn only when the outline changes.
+   */
+  public setEmphasis(dimmed: boolean, outline: string | null): void {
+    this.sprite.material.opacity = dimmed ? DIMMED_OPACITY : 1;
+    if (outline === this.outline) return;
+    this.outline = outline;
+    drawLabel(this.config, this.accent, outline, this.texture.image as HTMLCanvasElement);
+    this.texture.needsUpdate = true;
+  }
+
+  /**
    * Keeps the label at a roughly constant on-screen size as the camera
    * dollies, so it stays legible zoomed out and does not swallow the
    * scene zoomed in. Sprites already billboard towards the camera.
@@ -88,12 +113,17 @@ export class StationLabel {
   }
 }
 
-function drawLabel(config: FactoryObjectConfig, accent: number): HTMLCanvasElement {
-  const canvas = document.createElement("canvas");
+function drawLabel(
+  config: FactoryObjectConfig,
+  accent: number,
+  outline: string | null = null,
+  canvas: HTMLCanvasElement = document.createElement("canvas"),
+): HTMLCanvasElement {
   canvas.width = CANVAS_W;
   canvas.height = CANVAS_H;
   const ctx = canvas.getContext("2d");
   if (!ctx) return canvas;
+  ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
 
   const accentCss = `#${accent.toString(16).padStart(6, "0")}`;
 
@@ -102,8 +132,8 @@ function drawLabel(config: FactoryObjectConfig, accent: number): HTMLCanvasEleme
   ctx.beginPath();
   ctx.roundRect(4, 4, CANVAS_W - 8, CANVAS_H - 8, 16);
   ctx.fill();
-  ctx.strokeStyle = "rgba(148, 163, 184, 0.55)";
-  ctx.lineWidth = 3;
+  ctx.strokeStyle = outline ?? "rgba(148, 163, 184, 0.55)";
+  ctx.lineWidth = outline ? 8 : 3;
   ctx.stroke();
   ctx.fillStyle = accentCss;
   ctx.beginPath();

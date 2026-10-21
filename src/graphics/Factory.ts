@@ -60,11 +60,23 @@ export class Factory {
           other !== config &&
           Math.abs(other.position[0] - config.position[0]) < 6 &&
           other.position[2] > config.position[2] &&
-          other.position[2] - config.position[2] < 7,
+          other.position[2] - config.position[2] <= 7,
       );
       const label = new StationLabel(config, accent, hasSouthNeighbour ? 1.1 : 0);
       this.labels.push(label);
       this.group.add(label.sprite);
+    }
+  }
+
+  /**
+   * With an analytical overlay, outline the labels of the objects it highlights (in `accent`) and fade the others, so
+   * highlighted objects stay identifiable even when their equipment is hidden behind another label or rack. `null`
+   * restores every label. The selected object's label is never faded.
+   */
+  public setLabelEmphasis(highlighted: ReadonlySet<string> | null, accent: string | null, selectedId: string | null): void {
+    for (const label of this.labels) {
+      const on = highlighted !== null && highlighted.has(label.objectId);
+      label.setEmphasis(highlighted !== null && !on && label.objectId !== selectedId, on ? accent : null);
     }
   }
 

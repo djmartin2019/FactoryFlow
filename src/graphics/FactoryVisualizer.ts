@@ -37,6 +37,9 @@ const OVERLAY_HOT: Record<Overlay["mode"], THREE.Color> = {
 const HIGH_FILL = 0.7;
 const FULL_FILL = 0.95;
 
+/** The colour that marks an object as highlighted by an overlay of this mode (used for label outlines). */
+export const overlayAccent = (mode: Overlay["mode"]): string => `#${OVERLAY_HOT[mode].getHexString()}`;
+
 /** Translates manufacturing state into visual changes on the scene. */
 export class FactoryVisualizer {
   private readonly objectsById: ReadonlyMap<string, THREE.Mesh>;
