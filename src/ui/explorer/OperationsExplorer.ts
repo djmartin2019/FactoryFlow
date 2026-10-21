@@ -203,7 +203,11 @@ export class OperationsExplorer {
     }
 
     if (this.tab === "orders") {
-      if (changed || this.tableDirty) this.renderTable();
+      // Own key, like the other tabs: data that changed while another tab was open must still reach the table.
+      if (key !== this.tableKey || this.tableDirty) {
+        this.tableKey = key;
+        this.renderTable();
+      }
       this.renderDrawer(changed);
     } else if (this.tab === "bom") {
       // Master data: render once per master, not per event.
@@ -1151,6 +1155,7 @@ export class OperationsExplorer {
   // ---- work order table --------------------------------------------------
 
   private tableDirty = true;
+  private tableKey = "";
   private dirtyTable(): void {
     this.tableDirty = true;
     this.update(true);
