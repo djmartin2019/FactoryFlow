@@ -25,9 +25,11 @@ export class FactoryBuilding {
 
     const floor = new THREE.Mesh(
       new THREE.BoxGeometry(width, 0.2, depth),
-      new THREE.MeshStandardMaterial({ color: "#374151", roughness: 0.9 }),
+      // Sealed concrete: light enough for shadows to read, dark enough for the floor markings.
+      new THREE.MeshStandardMaterial({ color: "#4b5361", roughness: 0.7 }),
     );
     floor.position.set((minX + maxX) / 2, -0.1, (minZ + maxZ) / 2);
+    floor.receiveShadow = true;
 
     const wallMaterial = new THREE.MeshStandardMaterial({
       color: "#64748b",
@@ -43,6 +45,8 @@ export class FactoryBuilding {
       ]),
       wallMaterial,
     );
+    // Walls cast but do not receive: at grazing light angles they only show shadow acne.
+    walls.castShadow = true;
 
     this.group.add(floor, walls, this.createGrid(config), this.createDoors(config, doors));
     makeNonInteractive(this.group);

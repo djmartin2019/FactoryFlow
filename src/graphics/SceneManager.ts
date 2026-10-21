@@ -13,6 +13,7 @@ import { overlayFor, type Overlay, type OverlayMode } from "../analytics/overlay
 import type { PeriodId } from "../analytics/periods";
 import { reportingSnapshot } from "../simulation/reportingSnapshot";
 import { OverlayControl } from "../ui/OverlayControl";
+import { RenderPipeline } from "./RenderPipeline";
 
 export class SceneManager {
   private readonly scene: THREE.Scene;
@@ -25,6 +26,7 @@ export class SceneManager {
   private readonly factory: Factory;
   private readonly visualizer: FactoryVisualizer;
   private readonly perf: PerfOverlay;
+  private readonly pipeline: RenderPipeline;
   private lastVisualizedSequence = -1;
   private lastShiftOpen: boolean | null = null;
   private lastVisualKey = "";
@@ -63,7 +65,8 @@ export class SceneManager {
       container.clientHeight,
     );
 
-    this.setupLighting();
+    this.pipeline = new RenderPipeline(this.renderer, this.scene, this.cameraController.camera);
+    this.pipeline.setSize(container.clientWidth, container.clientHeight);
     this.factory = new Factory();
     this.scene.add(this.factory.group);
     const factory = this.factory;
@@ -123,20 +126,6 @@ export class SceneManager {
     if (objectIds.length > 0) this.select(objectIds[0]);
   }
 
-  private setupLighting(): void {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
-
-    this.scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-
-    // Off to the south-east, above the building, so benches and racks get
-    // clear top/side shading across the whole 80 x 44 m floor.
-    directionalLight.position.set(20, 40, 25);
-
-    this.scene.add(directionalLight);
-  }
-
   private animate = (): void => {
     const deltaSeconds = this.clock.getDelta();
 
@@ -154,7 +143,7 @@ export class SceneManager {
       this.renderer.domElement.clientHeight,
     );
 
-    this.renderer.render(this.scene, this.cameraController.camera);
+    this.pipeline.render(deltaSeconds * 1000, this.cameraController.isMoving());
 
     if (this.perf.isEnabled) {
       const info = this.renderer.info.render;
@@ -165,6 +154,7 @@ export class SceneManager {
         this.simulation.eventsApplied,
         this.simulation.epoch,
         this.simulation.lastSeekMs,
+        this.pipeline.currentQuality,
       );
     }
   };
@@ -206,6 +196,8 @@ export class SceneManager {
     if (this.overlayMode !== "status") overlay = overlayFor(reportingSnapshot(this.simulation), this.overlayMode, this.getPeriod());
     this.overlayControl.setMode(this.overlayMode, overlay);
     this.visualizer.update(state, this.simulation.engine.master, nowMs, overlay);
+    // Queue boxes may have appeared or moved; shadows are otherwise static.
+    this.pipeline.invalidateShadows();
   }
 
   private handleResize = (): void => {
@@ -221,6 +213,7 @@ export class SceneManager {
     this.cameraController.resize(width, height);
 
     this.renderer.setSize(width, height);
+    this.pipeline.setSize(width, height);
   };
 
   public dispose(): void {
@@ -230,6 +223,7 @@ export class SceneManager {
 
     this.cameraController.dispose();
     this.interactionManager.dispose();
+    this.pipeline.dispose();
 
     this.scene.traverse((object) => {
       if (object instanceof THREE.Mesh) {

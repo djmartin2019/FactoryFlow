@@ -12,6 +12,44 @@ Open the app with `?perf` (or press **P**) for FPS, frame time, draw calls, tria
 processed per second. Disabled, it costs one boolean check per frame. `window.__ffPerf()` returns the latest
 sample for scripted benchmarks.
 
+## Render quality tiers (rendering pass, 2026-10-21)
+
+Production build in headless Chrome, Intel UHD Graphics 630 (ANGLE/Metal), 1600x900, vsync and frame-rate
+limiting disabled, playback running at 3600x. Median of 5 samples taken 0.6 s apart; each configuration run twice,
+second (warm) run shown, after a first run that included shader compilation. Choose a tier with `?quality=`; the
+perf overlay shows the tier in use.
+
+| | Frame time | FPS | Draw calls | Triangles |
+| --- | --- | --- | --- | --- |
+| Before (`main` at cc57d83: flat ambient + one light) | 3.7 ms | ~270 | 126 | 3,703 |
+| `low`: tone mapping + environment light, no shadows | 4.0 ms | ~247 | 126 | 3,703 |
+| `medium`: + shadows, re-rendered only when objects move | 4.4 ms | ~230 | 126 | 3,703 |
+| `high`: + ambient occlusion (GTAO) | 27.7 ms | ~36 | ~318 | ~10,500 |
+
+Where the `high` cost goes (dev build, same machine): the post-processing chain alone (half-float target with 4x
+MSAA, output pass) is about 12 ms, and GTAO with its denoiser adds about 15 ms. Fewer AO or denoise samples save only
+2-5 ms. The `high` row is a still camera: while the camera moves, AO is skipped (plain render, same lights and
+shadows) and it fades back in over 250 ms once the camera has been still for 150 ms. The main bundle grows from about
+199 kB to about 211 kB gzip (post-processing passes and `RoomEnvironment`).
+
+**Retina (device pixel ratio 2), same machine, dev build, camera orbited by a scripted pointer drag:**
+
+| | Still | Dragging the camera |
+| --- | --- | --- |
+| Before (`main`) | 14.5 ms | 14.5-17.5 ms |
+| `medium` | 16.8 ms | 16.7-17.3 ms |
+| `high`, AO on every frame (first version of this change) | ~200 ms | ~190 ms |
+| `high`, AO only at rest (current) | ~200 ms at rest | 17.0 ms |
+| Default (no `?quality=`) | steps down to `medium` 0.8 s after load | 16.4 ms |
+
+At 2x the Intel GPU is already near the 60 Hz budget before any of this work; Retina pixel count, not the scene, is
+the base cost there. AO at 2x is far too slow for this GPU, which the automatic step-down handles: it is timed in
+wall-clock windows (median frame per 1 s window after 0.5 s warm-up, threshold 22 ms, checked continuously, desktop
+only, skipped when `?quality=` is set). The first version counted frames, so at 5 fps it needed about 36 s to react.
+
+Rendering only when something changes (camera, an applied event, selection, overlay, resize) would cut idle GPU use,
+but would not make camera movement cheaper, because every frame must be drawn while the camera moves. Not implemented.
+
 ## Results
 
 | | Baseline | Expanded |

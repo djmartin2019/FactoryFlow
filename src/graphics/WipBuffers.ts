@@ -64,6 +64,8 @@ export class WipBuffers {
       capacity,
     );
     this.boxes.count = 0;
+    this.boxes.castShadow = true;
+    this.boxes.receiveShadow = true;
     this.group.add(this.boxes);
     makeNonInteractive(this.group);
   }

@@ -82,6 +82,8 @@ export class FactoryObject {
     this.group.traverse((child) => {
       child.userData.factoryObject = config;
       child.userData.statusMesh = this.mesh;
+      child.castShadow = true;
+      child.receiveShadow = true;
     });
   }
 }

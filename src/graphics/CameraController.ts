@@ -6,6 +6,9 @@ export class CameraController {
 
   private readonly controls: OrbitControls;
 
+  /** performance.now() of the last camera change (drag, zoom or damping ease-out). */
+  private lastChangeMs = -Infinity;
+
   constructor(canvas: HTMLCanvasElement, width: number, height: number) {
     this.camera = new THREE.PerspectiveCamera(45, width / height, 0.5, 600);
 
@@ -25,7 +28,16 @@ export class CameraController {
 
     this.controls.maxPolarAngle = Math.PI / 2 - 0.05;
 
+    this.controls.addEventListener("change", () => {
+      this.lastChangeMs = performance.now();
+    });
+
     this.controls.update();
+  }
+
+  /** True while the camera moved within the last `settleMs` (lets the renderer skip costly passes). */
+  public isMoving(settleMs = 150): boolean {
+    return performance.now() - this.lastChangeMs < settleMs;
   }
 
   public update(): void {

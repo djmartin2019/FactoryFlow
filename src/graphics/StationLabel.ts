@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import type { FactoryObjectConfig, FactoryObjectType } from "./FactoryObject";
 import { makeNonInteractive } from "./geometryUtils";
+import { LABEL_LAYER } from "./RenderPipeline";
 
 /**
  * Floating station labels are canvas-texture sprites rather than
@@ -56,6 +57,8 @@ export class StationLabel {
     // Anchor the bottom-centre so the label sits above the station.
     this.sprite.center.set(0.5, 0);
     this.sprite.renderOrder = 20;
+    // Drawn in a separate pass after post-processing (see RenderPipeline).
+    this.sprite.layers.set(LABEL_LAYER);
     this.sprite.name = `${config.id}-label`;
 
     // Positioned from the station's own envelope, not global coordinates.

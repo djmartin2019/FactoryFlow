@@ -54,6 +54,7 @@ does not exist; do not assume it.
 | Bill of materials per product (Explorer "Bill of Materials" tab) | Implemented | `analytics/billOfMaterials.ts`; master data, quantities per finished unit, standard cost totals reconcile to `Product.standardCostCents` |
 | Work-center queue buffers and bottleneck highlight in 3D | Implemented | `WipBuffers`, `data/queueBuffers.ts`; drawn at each work center's lead station from `workCenterQueues`, the same definition as the Work Centers tab; capped at 6 boxes per work center (counts in the tab) |
 | Performance overlay (`?perf` / `P`) | Implemented | `PerfOverlay`; baselines in `docs/PERFORMANCE.md` |
+| 3D render quality tiers (`?quality=high\|medium\|low`) | Implemented | `RenderPipeline`: tone mapping, generated environment light, on-demand shadows (medium), plus ambient occlusion (high). AO is drawn only while the camera is at rest and fades in when it stops, so orbiting costs the same as medium. Desktop starts high and steps down to medium when the median frame in a 1 s window exceeds 22 ms (checked continuously after a 0.5 s warm-up); touch devices start low. Rendering only, no data or contract change. Costs in `docs/PERFORMANCE.md` |
 | Static hosting and release tooling | Implemented | `deploy/`, `.github/workflows/ci.yml` |
 | Public roadmap page | Implemented | `public/roadmap/index.html` |
 | Material-movement animation in 3D | Proposed | `factoryObjectsForEvent` already returns `flows`; nothing animates them yet |

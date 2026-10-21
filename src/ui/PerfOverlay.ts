@@ -10,6 +10,8 @@ export interface PerfSample {
   eventsPerSec: number;
   totalEvents: number;
   lastSeekMs: number | null;
+  /** 3D render quality tier in use (it can step down automatically). */
+  quality: string;
 }
 
 /** Re-derive the DOM at this interval; per-frame work is just a few additions. */
@@ -92,6 +94,7 @@ export class PerfOverlay {
     eventCursor: number,
     epoch: number,
     lastSeekMs: number | null,
+    quality = "",
   ): void {
     if (epoch !== this.windowEpoch || eventCursor < this.windowStartEvents) {
       this.reset(eventCursor, epoch);
@@ -113,6 +116,7 @@ export class PerfOverlay {
       eventsPerSec: this.countedEvents / seconds,
       totalEvents: eventCursor,
       lastSeekMs,
+      quality,
     };
     this.latest = sample;
     this.body.textContent = format(sample);
@@ -129,5 +133,6 @@ function format(s: PerfSample): string {
     `Meshes       ${s.meshes}`,
     `Events/s     ${s.eventsPerSec.toFixed(0)}  (total ${s.totalEvents})`,
     `Last seek    ${s.lastSeekMs === null ? "-" : s.lastSeekMs.toFixed(1) + " ms"}`,
+    `Quality      ${s.quality || "-"}`,
   ].join("\n");
 }
