@@ -1,7 +1,13 @@
 {
   "name": "factoryflow",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Open-source manufacturing intelligence reference implementation on deterministic synthetic data.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djmartin2019/FactoryFlow.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

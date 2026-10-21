@@ -1,5 +1,8 @@
 # Source independence for FactoryFlow: integration boundary plan
 
+> **Archived. Superseded by [`SOURCE_INTEGRATION_PLAN_REV3.md`](SOURCE_INTEGRATION_PLAN_REV3.md), which governs.** Kept for the
+> history of the design decisions only; do not implement from this file.
+
 Status: **proposal for approval. No code has been changed.**
 
 ## Context

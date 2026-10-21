@@ -6,6 +6,27 @@ vsync disabled so frame time is the real CPU+GPU cost, not the 60 Hz cap. Each b
 twice; ranges are shown. Node numbers are single-process `FactoryReplay` timings (mean of 5).
 Treat absolute FPS as indicative only: a laptop on battery or a projector at a demo will differ.
 
+## Release 0.1.0 (2026-10-21, re-measured on the release build)
+
+Same machine as the sections below (Intel i9-9880H, Intel UHD Graphics 630), Node 22.22.3, production build
+served by `vite preview`, headless Chrome (ANGLE/Metal), 1600x900 viewport at device pixel ratio 1, vsync and
+frame-rate limiting disabled. Not asserted in CI.
+
+| | Result |
+| --- | --- |
+| Main bundle | 823.9 kB minified, 214.3 kB gzip (one chunk; Three.js is not code-split) |
+| CSS | 15.6 kB, 4.0 kB gzip |
+| Default quality after load | Desktop starts `high`, stepped down to `medium` by the automatic check (as designed for this GPU) |
+| Frame time, default quality, playback running | 4.9-5.0 ms median (about 200 FPS), worst frame in a 1 s window 13-15 ms; 127 draw calls, 3,751 triangles, 107 meshes. Sampled in an off-shift window, so no events were being applied |
+| Slider seek in browser | 17-19 ms |
+| Full replay, Node (`scripts/bench-load.ts`, 4,651 events) | 49.6 ms mean |
+| Seek to 100% incl. reset, Node | 51.4 ms mean |
+| `JSON.parse(events.json)` (2.51 MB), Node | 13.4 ms mean |
+| Simulation-as-a-source adapt (not used by the app yet) | ~125 ms one-time |
+
+Tests at release: 30 files, 339 passing and 15 expected failures (`it.fails`, the M3a atomicity corpus).
+Event-log hash `1b408e8e`, canonical fixture hash `6ed76381`, both unchanged.
+
 ## Optional overlay
 
 Open the app with `?perf` (or press **P**) for FPS, frame time, draw calls, triangles, mesh count and events
@@ -99,7 +120,7 @@ flaky across machines. Node 22.22.3, Intel Core i9-9880H @ 2.30 GHz, macOS. Defa
 | Seek to 100% including reset | ~28 ms |
 | `computeKpis` + station metrics, all-time window | ~4 ms |
 
-Correctness baseline: `npm test` (72 tests, including `tests/contract.test.ts` on the committed canonical
+Correctness baseline at the time: `npm test` (72 tests then; 354 at release 0.1.0, of which 15 are expected failures, see below; including `tests/contract.test.ts` on the committed canonical
 fixture) and `npm run validate:data` must pass. Treat a >2x regression in any row above as worth
 investigating. The browser results in the tables above predate this run and were not re-measured.
 

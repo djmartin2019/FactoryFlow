@@ -1,8 +1,9 @@
 # Implemented versus proposed
 
 `docs/FACTORYFLOW_DESIGN.md` describes where FactoryFlow is going. This file records what exists in the
-repository **today**, as of the Phase 1 equipment and changeover slice (2026-10-16). If the two disagree, the code and this file are
-the current truth; the design doc is intent.
+repository **today**: release **0.1.0** (Public Preview), dated 2026-10-21, on top of commit `c5d9c66`. If the two disagree, the code and this
+file are the current truth; the design doc is intent. The release record (checks, license and asset review, browser smoke test) is
+[`RELEASE_0.1.0.md`](RELEASE_0.1.0.md).
 
 Legend: **Implemented** works and is tested or validated. **Partial** exists in reduced form. **Proposed**
 does not exist; do not assume it.
@@ -58,8 +59,8 @@ does not exist; do not assume it.
 | Static hosting and release tooling | Implemented | `deploy/`, `.github/workflows/ci.yml` |
 | Public roadmap page | Implemented | `public/roadmap/index.html` |
 | Material-movement animation in 3D | Proposed | `factoryObjectsForEvent` already returns `flows`; nothing animates them yet |
-| 3D selection linked to work-order detail | Implemented (both directions) | 3D to Explorer: station panel "Open WO detail" opens the drawer for the station's current order. Explorer to 3D: "Show in factory" on work-order and customer-order drawers and "Show racks" on the Material Shortages tab select the mapped object (`mapping.ts`). Link is by record, not unit-level. The rendered result and the buttons have not been exercised in a WebGL browser |
-| Analytical 3D overlays ("Colour by": queue, utilization, material shortage) | Implemented | `analytics/overlays.ts`, `FactoryVisualizer`, `ui/OverlayControl.ts`, `tests/overlays.test.ts`; each recolours from a number an Explorer/dashboard table already shows; highlighted sets tested against the matching analytics; rendered colours not verified in a WebGL browser |
+| 3D selection linked to work-order detail | Implemented (both directions) | 3D to Explorer: station panel "Open WO detail" opens the drawer for the station's current order. Explorer to 3D: "Show in factory" on work-order and customer-order drawers and "Show racks" on the Material Shortages tab select the mapped object (`mapping.ts`). Link is by record, not unit-level. Exercised both ways in Chrome with WebGL on the 0.1.0 build (scripted smoke test, `RELEASE_0.1.0.md`) |
+| Analytical 3D overlays ("Colour by": queue, utilization, material shortage) | Implemented | `analytics/overlays.ts`, `FactoryVisualizer`, `ui/OverlayControl.ts`, `tests/overlays.test.ts`; each recolours from a number an Explorer/dashboard table already shows; highlighted sets tested against the matching analytics; the material-shortage overlay's rendered colours checked by screenshot against the computed cells on the 0.1.0 build (queue and utilization colours by eye only) |
 | Customer-order detail drawer and order-to-work-order navigation (customer order lines, allocations, shipments, planned work orders; work order links back; Back button) | Implemented | `analytics/customerOrders.ts`, `ui/explorer/CustomerOrderDrawer.ts`, `tests/customerOrderDetail.test.ts`; the link is a planning link (`demandLineIds`), not proven unit flow; dispatch basis |
 | Deep links to a view, Explorer tab, work order or customer order (`#/explorer/orders/WO-0001`, `#/explorer/dispatch/CO-0042`) | Implemented | `src/ui/route.ts` (pure parser, `tests/route.test.ts`), `main.ts`; the URL records what is on screen, not simulated time |
 | Bottleneck contributing conditions ("why" panel on the Work Centers tab) | Implemented | `analytics/bottleneck.ts`, `tests/bottleneck.test.ts`; independent, indicative observations (queue load, stations down, equipment, downtime, utilization, changeovers, material), not root-cause analysis; equipment and backlog are current-state only |
@@ -74,6 +75,7 @@ does not exist; do not assume it.
 | Capability | Status | Where / note |
 | --- | --- | --- |
 | Unit and simulation tests | Implemented | `tests/*.test.ts` |
+| License | Implemented | Apache-2.0 (`LICENSE`); dependency and asset review in `RELEASE_0.1.0.md` |
 | Contract tests on a committed canonical fixture | Implemented | `tests/contract.test.ts`, `tests/fixtures/canonical/` |
 | Recorded performance baseline | Implemented | `docs/PERFORMANCE.md` (numbers, not a CI gate) |
 | CI: typecheck, test, validate, build | Implemented | `.github/workflows/ci.yml` |
@@ -89,4 +91,6 @@ does not exist; do not assume it.
 - Utilization counts run time after shift end against the shift and is capped at 100% per station.
 - The progress bar ends at the last event; the dataset is a fixed 30-day synthetic run.
 - All data is synthetic and must stay labelled as such.
+- The customer-order → work-order link is a planning link with wide fan-out: the generator nets each work order against
+  every open line for its product (median 4 lines per work order, up to 52), so one order can list many planned work orders.
 - The production bundle is about 650 kB (mostly Three.js) and is not code-split.

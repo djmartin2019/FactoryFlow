@@ -157,12 +157,12 @@ You supplied "M0, M1, M2 complete". The repository supports that:
 | # | Where | Discrepancy |
 | --- | --- | --- |
 | 1 | `public/roadmap/index.html` | Says Phases 2 and 3 are **"In progress"** and is dated 2026-10-15. `STATUS.md` lists serialized units, revision capture and incoming-quality hold as *Proposed* and shows no Phase 2 work. It also predates M0-M2 and does not mention source integration. The public page overstates progress. **Resolved 2026-10-20:** the page was rewritten from this plan and `STATUS.md` (releases 0.1.0, 0.1.x, 0.2.0, 0.3.0; pilot language removed). |
-| 2 | `docs/PERFORMANCE.md` | "`npm test` (72 tests ...)" in the Phase 0 section. Current suite is 252 (237 + 15 expected-fail). Stale. |
-| 3 | `README.md` "Connecting real data" | Describes feeding domain events straight to `FactoryReplay`. It predates the `src/sources` boundary and Rev3, and does not mention either. README also has no license, no demo link, no screenshots, no status section. |
+| 2 | `docs/PERFORMANCE.md` | "`npm test` (72 tests ...)" in the Phase 0 section. Current suite is 252 (237 + 15 expected-fail). Stale. **Resolved 2026-10-21:** marked historical; release figures (354 = 339 + 15 expected-fail) added in a dated section. |
+| 3 | `README.md` "Connecting real data" | Describes feeding domain events straight to `FactoryReplay`. It predates the `src/sources` boundary and Rev3, and does not mention either. README also has no license, no demo link, no screenshots, no status section. **Resolved:** README rewritten for 0.1.0 (status section, demo link, screenshots, license). |
 | 4 | Rev3 §8 M0 vs M7, and the header of `tests/legacy/state.ts` | Three different deletion triggers ("once M3a has merged"; M7; "after M3a has merged and M7 closes"). **Resolved by Amendment A2:** the legacy reducer is retained through M4 and removed before the 0.2.0 tag on stated evidence. The file header still carries the old wording; correcting that comment is part of the M3a PR (not done here: this task is documentation only). |
-| 5 | `docs/SOURCE_INTEGRATION_PLAN.md`, `_REV2.md` | Superseded revisions sit beside the live plan with no marker. A new reader cannot tell which governs. |
-| 6 | `STATUS.md` header | Dated "as of the Phase 1 equipment and changeover slice" but also contains M1/M2 rows. Header should state a date and commit. |
-| 7 | `deploy/*`, local `SKILL.md` | `deploy/apache-factoryflow.conf` and `deploy/ROLLBACK_AND_SMOKE.md` reference the owner's personal domain/VPS layout. `SKILL.md` (private hosting notes) is gitignored and untracked, which is correct, but must stay out of the public repo. |
+| 5 | `docs/SOURCE_INTEGRATION_PLAN.md`, `_REV2.md` | Superseded revisions sit beside the live plan with no marker. A new reader cannot tell which governs. **Resolved 2026-10-21:** archive banners added; `docs/README.md` index lists them as archived. |
+| 6 | `STATUS.md` header | Dated "as of the Phase 1 equipment and changeover slice" but also contains M1/M2 rows. Header should state a date and commit. **Resolved 2026-10-21.** |
+| 7 | `deploy/*`, local `SKILL.md` | `deploy/apache-factoryflow.conf` and `deploy/ROLLBACK_AND_SMOKE.md` reference the owner's personal domain/VPS layout. `SKILL.md` (private hosting notes) is gitignored and untracked, which is correct, but must stay out of the public repo. **Resolved 2026-10-21:** `deploy/` uses placeholders; history not rewritten (no secrets found). |
 
 ### C.4 Known limitations that matter for a public release
 
@@ -176,7 +176,7 @@ You supplied "M0, M1, M2 complete". The repository supports that:
 - **Integration is built but unused**: M0-M2 deliver no user-visible behavior yet.
 - **No UI/3D automated tests**; app code outside `manufacturing/`, scripts, tests, examples and `sources/` is not strict-typed; no lint/format config.
 - **Production bundle ~650 kB (about 709 kB after M1/M2 per `PERFORMANCE.md`), Three.js loaded eagerly**; initial load is the only noticeable slowdown.
-- **No LICENSE file**; `package.json` has `"private": true` and no license field.
+- ~~No LICENSE file~~ **Resolved 2026-10-21:** Apache-2.0 `LICENSE` added and `package.json` `license` set.
 
 ---
 
@@ -445,7 +445,7 @@ in the integration lane. M6a's `expected.json` should cover the S1 to S3 results
 | 3 | **S2** quality and scrap *(implemented)* | §E.3 | none | 0.1.0 |
 | 4 | **S3** bottleneck explanation *(implemented)* | §E.3 | S1b helpers | 0.1.0 |
 | 5 | **S5** order-to-work-order navigation and deep links *(implemented)*; **S6** analytical Explorer/3D link and overlays *(implemented; rendering not yet verified in a WebGL browser)* | §E.3 | S1 to S3 | 0.1.0 |
-| 6 | Legal/asset review, README, screenshots, hosting, **tag 0.1.0** | §G.1 | 1-5 | 0.1.0 |
+| 6 | Legal/asset review, README, screenshots, hosting, **tag 0.1.0** *(done 2026-10-21)* | §G.1 | 1-5 | 0.1.0 |
 | 7 | **S7** exceptions inbox | §E.4 | S1 to S4 (done) | 0.1.x |
 | 8 | **S8** investigation trail and time comparison | §E.4 | S5, S7 | 0.1.x |
 | 9 | **S9** part delivery lead time (per part and supplier; defines the lead-time basis) | §E.4 | S4 (done) | 0.1.x |
@@ -775,29 +775,31 @@ A release is **ready for publication** only when every box for that release is c
 
 ### J.1 Release 0.1.0: Public Preview
 
+**Status (2026-10-21): complete, evidence in [`RELEASE_0.1.0.md`](RELEASE_0.1.0.md); tagged `v0.1.0` locally. Remaining manual steps: push the tag, deploy the build.**
+
 **Build and correctness**
-- [ ] `npm run typecheck`, `typecheck:app`, `npm test`, `validate:data` and `npm run build` pass in CI on the release commit.
-- [ ] Fixture hash `6ed76381` and log hash `1b408e8e` unchanged, or changed deliberately with a `SCHEMA_VERSION` bump, regenerated fixture and migration note (`CLAUDE.md`).
+- [x] `npm run typecheck`, `typecheck:app`, `npm test`, `validate:data` and `npm run build` pass in CI on the release commit.
+- [x] Fixture hash `6ed76381` and log hash `1b408e8e` unchanged, or changed deliberately with a `SCHEMA_VERSION` bump, regenerated fixture and migration note (`CLAUDE.md`).
 
 **Product**
-- [ ] S1a, S1b, S2, S3 shipped; definitions moved from "proposed" to implemented in `KPI_DEFINITIONS.md` (the "Proposed / Not Implemented" label removed only for what exists); unit tests recompute every
+- [x] S1a, S1b, S2, S3 shipped; definitions moved from "proposed" to implemented in `KPI_DEFINITIONS.md` (the "Proposed / Not Implemented" label removed only for what exists); unit tests recompute every
   displayed number; the exclusive decomposition reconciles to elapsed time in tests.
-- [ ] Reported figures are observed facts on a dispatch basis; no predicted-risk indicator exists anywhere in the UI or docs.
-- [ ] Order to work order to work center to 3D object path works in both directions (manual smoke, recorded); the order-to-work-order link is labelled as a planning link.
-- [ ] The dashboard and Explorer are fully usable without relying on the 3D scene.
-- [ ] Synthetic-data label visible on every view.
+- [x] Reported figures are observed facts on a dispatch basis; no predicted-risk indicator exists anywhere in the UI or docs.
+- [x] Order to work order to work center to 3D object path works in both directions (manual smoke, recorded); the order-to-work-order link is labelled as a planning link.
+- [x] The dashboard and Explorer are fully usable without relying on the 3D scene.
+- [x] Synthetic-data label visible on every view.
 
 **Repository, documentation, legal**
-- [ ] `LICENSE` (Apache-2.0) present after the owner confirms ownership; dependency license scan from `package-lock.json` recorded; asset provenance list covers `public/og-v2.png`,
-  `design/og.html`, favicon and icons, fonts, and the fictional name "Northstar Components" (trademark check). None of this has been verified yet.
-- [ ] Git history and tracked files scanned for secrets and personal infrastructure details; `deploy/` sanitized or relocated with placeholders; `SKILL.md` and `docs/DashboardInspo.webp` still untracked.
-- [ ] README rewritten: purpose, synthetic-data notice, hosted-demo link, 3 to 4 screenshots, 60-second quick start verified on a clean clone with Node 22, a "what works / what is planned" section linking
+- [x] `LICENSE` (Apache-2.0) present after the owner confirms ownership; dependency license scan from `package-lock.json` recorded; asset provenance list covers `public/og-v2.png`,
+  `design/og.html`, favicon and icons, fonts, and the fictional name "Northstar Components" (trademark check). Done 2026-10-21, recorded in `RELEASE_0.1.0.md`; the Northstar name check found no exact match but similar real names (L6 stays open).
+- [x] Git history and tracked files scanned for secrets and personal infrastructure details; `deploy/` sanitized or relocated with placeholders; `SKILL.md` and `docs/DashboardInspo.webp` still untracked.
+- [x] README rewritten: purpose, synthetic-data notice, hosted-demo link, 3 to 4 screenshots, 60-second quick start verified on a clean clone with Node 22, a "what works / what is planned" section linking
   `STATUS.md`, the maturity statement (G.0.1: reference implementation, not production-certified), and an explicit statement that external-source integration is **planned, not part of this release**.
-- [ ] `STATUS.md` dated and matching the code at the release commit; `public/roadmap/index.html` reconciled with it; stale items from C.3 fixed.
-- [ ] `ARCHITECTURE.md` updated; Rev1 and Rev2 archived with a banner; `docs/README.md` index exists; `CONTRIBUTING.md` present and its commands succeed.
-- [ ] Hosted demo reachable without login; a fork-hosting path documented (static `dist/`).
-- [ ] Known limitations section lists the gaps in §C.4 that remain (including: no source-independent ingestion yet, no unit-level traceability, no workforce or scheduling).
-- [ ] Short (under 2 minutes) walkthrough script in the README or docs; `PERFORMANCE.md` re-measured and dated for the release build.
+- [x] `STATUS.md` dated and matching the code at the release commit; `public/roadmap/index.html` reconciled with it; stale items from C.3 fixed.
+- [x] `ARCHITECTURE.md` updated; Rev1 and Rev2 archived with a banner; `docs/README.md` index exists; `CONTRIBUTING.md` present and its commands succeed.
+- [x] Hosted demo reachable without login; a fork-hosting path documented (static `dist/`).
+- [x] Known limitations section lists the gaps in §C.4 that remain (including: no source-independent ingestion yet, no unit-level traceability, no workforce or scheduling).
+- [x] Short (under 2 minutes) walkthrough script in the README or docs; `PERFORMANCE.md` re-measured and dated for the release build.
 
 ### J.1a Release 0.1.x: Investigation
 
@@ -846,7 +848,7 @@ Ordered by dependency and value. Each is a separate PR; the two lanes are indepe
 7. **S11 shipment lifecycle** (Domain lane, alone; design note first), then **S12** shipping tab (0.2.0).
 8. **M3b-core** (Revision 3 §7.4a) once M3a has merged, then M4, M5, M6a for 0.2.0 (M6a after S11).
 
-**The next implementation milestone I recommend (revised 2026-10-20): tag 0.1.0, then S7** (exceptions inbox), since S1 to S6 are implemented. **S9** is the first slice that carries the owner's lead-time idea and can run right behind it. **M3a** remains the next integration milestone and can be developed on its own branch at the same time.
+**The next implementation milestone I recommend (revised 2026-10-21): 0.1.0 is tagged; next is S7** (exceptions inbox), since S1 to S6 are implemented. **S9** is the first slice that carries the owner's lead-time idea and can run right behind it. **M3a** remains the next integration milestone and can be developed on its own branch at the same time.
 
 ---
 
@@ -854,12 +856,12 @@ Ordered by dependency and value. Each is a separate PR; the two lanes are indepe
 
 | # | Decision | Status / recommendation |
 | --- | --- | --- |
-| L1 | License: Apache-2.0 | **Retained as the intended license.** Legal and ownership review is **not complete**: the owner must confirm the right to publish the code and assets, and the dependency and asset review is still to be done, before any release |
+| L1 | License: Apache-2.0 | **Closed 2026-10-21.** Owner confirmed ownership of code and assets; `LICENSE` added; dependency and asset review recorded in `RELEASE_0.1.0.md` |
 | L2 | Split M3b into core and full (R1) | **Closed: accepted 2026-10-17** |
 | L3 | M6b and most of M7 unscheduled (R3/R4) | **Closed: accepted 2026-10-17** |
 | L4 | Hosted-demo target | **Closed 2026-10-17.** Use the existing static hosting as the initial publishing target. GitHub Pages for forks is optional and does not block 0.1.0 (it would need Vite `base` work) |
 | L5 | Independent MES source in the public demo | **Closed 2026-10-17.** The default public demo stays simulation-based. For 0.2.0, document how to run the MES-like fixture locally; no public UI source selector is required |
-| L6 | Fictional company name "Northstar Components" | **Open.** Kept provisionally; the trademark check is not done. No renaming and no fixture regeneration |
+| L6 | Fictional company name "Northstar Components" | **Open.** Kept provisionally. A web search (2026-10-21) found no exact match but real manufacturers named Northstar, one close in business (`RELEASE_0.1.0.md` §6); not a trademark clearance. Renaming would regenerate the dataset and both hashes |
 | L7 | Edit design doc and Rev3 per R1-R8 | **Closed: done 2026-10-17** |
 | L8 | Analytical definitions (`KPI_DEFINITIONS.md`) | **Closed 2026-10-17.** **S1a approved** with explicit dispatch terminology (`dueDate` is dispatch-by for the synthetic manufacturer only; On-Time In-Full Dispatch, Order-to-Final-Dispatch Lead Time, Past-Due Unshipped Orders). **S1b approved** after the corrections were incorporated and checked against the reducer's operation, inspection, rework and receipt transitions and the generator's event timing: eligibility-based `QUEUE_WAIT`/`POST_PRODUCTION`, and a partial reconciliation with the drawer's step `Wait`. No unresolved contradiction was found; limitations are documented there (rounding, a possible rework-request gap, `POST_PRODUCTION` expected to be zero-length on simulated data). All metrics remain **Proposed / Not implemented** |
 | L9 | Legacy reducer | **Closed 2026-10-17.** Retained through M4 as a differential-testing oracle, not a second supported reducer; removed before the 0.2.0 tag only after the evidence in Revision 3 Amendment A2 is recorded |

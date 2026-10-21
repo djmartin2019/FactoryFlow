@@ -153,4 +153,5 @@ KPI definitions (numerator, denominator, period, edge cases): `docs/KPI_DEFINITI
 | Layout / 3D objects | `tests/factoryLayout.test.ts`, `tests/factoryObject.test.ts` |
 | Data on disk + determinism | `npm run validate:data` |
 
-Not covered by automated tests: DOM components and the Three.js scene at runtime (verified manually).
+Not covered by automated tests: DOM components and the Three.js scene at runtime (verified manually; for 0.1.0 the
+Explorer ↔ 3D links were exercised by a scripted browser run, recorded in `RELEASE_0.1.0.md`).

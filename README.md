@@ -9,10 +9,13 @@ factory fit together in one understandable, tested codebase.
 > production-certified MES, ERP, scheduling or manufacturing-control system, and nothing here has been
 > validated against a real plant.
 
-<!-- Confirm the hosted demo is live before publishing this link. -->
 **Live demo:** <https://factoryflow.djm-apps.com/> (static, no login, no backend)
 
 ![FactoryFlow overview: a 3D factory with KPI cards, playback controls and a workstation table](docs/images/overview.jpg)
+
+| Work Centers: queues and the bottleneck explanation | Dispatch: a past-due customer order | Work order: exact elapsed-time breakdown |
+| --- | --- | --- |
+| [![Work Centers tab with the bottleneck candidate and its contributing conditions](docs/images/work-centers.jpg)](docs/images/work-centers.jpg) | [![Dispatch tab with on-time in-full figures and a past-due customer order open](docs/images/dispatch.jpg)](docs/images/dispatch.jpg) | [![Work-order drawer with the elapsed-time breakdown by category](docs/images/work-order.jpg)](docs/images/work-order.jpg) |
 
 ## What you can do with it
 
@@ -35,6 +38,8 @@ definition in [`docs/KPI_DEFINITIONS.md`](docs/KPI_DEFINITIONS.md).
   - **Production Analytics, Bill of Materials and Inventory.**
 - **Links between views:** customer order to work order and back, "Show in factory" from the Explorer to the
   3D plant, and shareable URLs such as `#/explorer/orders/WO-0001` or `#/explorer/dispatch/CO-0042`.
+- **Not in this release:** external-source integration. The app runs only on the built-in synthetic
+  simulation; reading another system's data is planned for 0.2.0.
 - **Dispatch, not delivery:** the model records when goods leave, not when a customer receives them, so
   the metrics are named and labelled on a dispatch basis. The due date is treated as dispatch-by for this
   synthetic manufacturer.
@@ -68,6 +73,20 @@ npm run generate:data -- --seed=abc --days=45 --customerOrders=120
 npm run validate:data                       # re-validate on disk and prove determinism
 ```
 
+## Two-minute walkthrough
+
+1. Open the [live demo](https://factoryflow.djm-apps.com/) (or `npm run dev`). Pick **Since start** as the KPI period and drag
+   the timeline to about Tue 2026-09-29.
+2. **Operations Explorer → Dispatch.** The *Past-Due Unshipped Orders* table lists late orders. Open one to read its due
+   date, how far past due it is, and the work orders *planned* for it (a planning link, not traced unit flow).
+3. Click a planned work order. The drawer splits its whole elapsed time into exclusive categories (blocked by material,
+   waiting in or off shift, processing, …) that sum exactly to the total, then lists contributing conditions that may overlap.
+4. Press **Show in factory** (shown when the order is at a station or rack): the Factory Overview opens with that place selected in 3D. Its **Open WO-… detail** button
+   goes back.
+5. **Operations Explorer → Work Centers.** On shift, the bottleneck candidate is flagged and the panel below shows the
+   observations around it (queue load, stations down, equipment, changeovers, material). Switch **Colour by** in the
+   Factory Overview to *Queue* or *Material shortage* to see the same numbers on the plant.
+
 ## What works today, and what is planned
 
 [`docs/STATUS.md`](docs/STATUS.md) is the single source of truth for what exists. In short:
@@ -77,7 +96,8 @@ npm run validate:data                       # re-validate on disk and prove dete
 | **Works** | The deterministic simulation and domain model (22 event types, schema 1.3.0), the reducer with its business rules, the dashboard, the Operations Explorer tabs above, the 3D plant with overlays, contract and determinism tests, CI. |
 | **Built, not yet used by the app** | The source-integration boundary in `src/sources/`: contracts, canonical JSON, identity, runtime validation, and the simulation expressed as an independent source (wire format, emitter, adapter) with an exact round trip. The app still loads its domain JSON directly. |
 | **Planned** | Routing the app through that boundary, deterministic finite-batch ingestion with provenance and quarantine, and an independently authored MES-like second source (release 0.2.0); an optional Databricks reference integration (0.3.0). |
-| **Not planned for now** | Unit-level traceability, workforce and scheduling, forecasts, a backend or database, anything commercial. See [`docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md`](docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md), section I. |
+| **Next (0.1.x, proposed)** | An exceptions inbox, part delivery lead time, and a first work-order ETA that is always labelled as a forecast. |
+| **Not planned for now** | Workforce and scheduling, predicted delivery risk, a backend or database, anything commercial; unit-level traceability comes after 0.2.0. See [`docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md`](docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md), section I. |
 
 What each release does and does not establish:
 
@@ -183,14 +203,16 @@ src/
 tests/                       Vitest suites, committed fixtures, shared helpers
 scripts/                     generate.ts, validate.ts, bench-load.ts
 docs/                        See below
-deploy/                      Static-hosting notes and scripts
+deploy/                      Static-hosting template, release script, smoke tests (placeholder host names)
 public/                      Static assets; public/data is a symlink to data/generated/
 ```
 
 | Document | What it is |
 | --- | --- |
 | [`docs/PLANT_MANAGER_GUIDE.md`](docs/PLANT_MANAGER_GUIDE.md) | How the plant works step by step, what each screen is for, and how every number and event is calculated, written for plant managers and manufacturer reviewers |
+| [`docs/README.md`](docs/README.md) | Index of all documentation, current versus planned versus archived |
 | [`docs/STATUS.md`](docs/STATUS.md) | What is implemented, partial or proposed today |
+| [`docs/RELEASE_0.1.0.md`](docs/RELEASE_0.1.0.md) | Release record: checks, license and asset review, browser smoke test |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | The data path, layers, IDs, events and where each number comes from |
 | [`docs/KPI_DEFINITIONS.md`](docs/KPI_DEFINITIONS.md) | Definition of every metric, with limitations |
 | [`docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md`](docs/OPEN_SOURCE_DEVELOPMENT_PLAN.md) | Release scope and roadmap (0.1.0, 0.2.0, 0.3.0) |
@@ -230,7 +252,10 @@ browser tests yet.
 - Everything is synthetic. The numbers demonstrate the definitions; they are not operational data.
 - Dispatch metrics use dispatch time because the model has no customer-receipt data, and the link from a
   customer order to its work orders is a planning link (finished goods are allocated from stock), not
-  traced unit flow.
+  traced unit flow. The synthetic planner nets each work order against every open order line for that
+  product, so one customer order can list many planned work orders (a median of 4 lines per work order,
+  up to about 50 during the demand surge).
+- No source-independent ingestion yet: `src/sources/` is built and tested but the app does not use it.
 - Work Centers utilization is N/A when the reporting period contains no scheduled shift time (for example the
   last 24 hours early on a Monday); choose a longer period.
 - There is no forecast, capacity plan, workforce or scheduling model, and no unit-level traceability.
@@ -238,9 +263,24 @@ browser tests yet.
 - The scene and Explorer are tuned for desktop widths; narrow screens are lightly tested.
 - The production bundle is large (Three.js is loaded eagerly) and the page requests the Inter font from Google Fonts.
 - The dataset is a fixed 30-day run; the progress bar ends at the last event.
-- Automated UI tests do not exist yet.
+- Automated UI tests do not exist yet; the Explorer-to-3D links were checked with a scripted browser run for this
+  release (see [`docs/RELEASE_0.1.0.md`](docs/RELEASE_0.1.0.md)).
+- The fictional company name "Northstar Components" has not had a trademark check.
+
+## Hosting your own copy
+
+`npm run build` produces a fully static site in `dist/` (HTML, JS, CSS and the JSON dataset). Serve it from any
+static host at the site root; there is no backend and no client-side routing (deep links use the `#` fragment).
+`deploy/` holds an Apache template, a release script with atomic switch and rollback, and a smoke-test list, with
+placeholder host names. Hosting under a sub-path (for example GitHub Pages for a fork) needs Vite's `base` option
+and is not set up.
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md): run the five CI commands, define a metric before showing it, and keep
+synthetic, observed and forecast data distinguishable.
 
 ## License
 
-Apache License 2.0 is the intended license. The `LICENSE` file will be added once the ownership,
-dependency and asset review is complete; until then, treat the repository as all rights reserved.
+[Apache License 2.0](LICENSE). Runtime dependencies (`three`, `zod`) are MIT licensed; the dependency and asset
+review is recorded in [`docs/RELEASE_0.1.0.md`](docs/RELEASE_0.1.0.md).
