@@ -71,7 +71,16 @@ export class Dashboard {
 
     const header = el("header", "topbar");
     const title = el("div", "title");
-    title.append(el("h1", undefined, "FactoryFlow"), el("span", "demo-badge", "Demo Mode — Synthetic Manufacturing Data"));
+    const brand = el("div", "brand");
+    const mark = el("span", "brand-mark");
+    const logo = el("img");
+    logo.src = "/favicon.svg";
+    logo.alt = "";
+    mark.appendChild(logo);
+    const brandText = el("div", "brand-text");
+    brandText.append(el("h1", undefined, "FactoryFlow"), el("span", "brand-sub", "Manufacturing Intelligence"));
+    brand.append(mark, brandText);
+    title.append(brand, el("span", "demo-badge", "Demo Mode — Synthetic Manufacturing Data"));
     const periodWrap = el("label", "period", "KPI period ");
     periodWrap.appendChild(this.kpis.periodSelect);
     const nav = el("nav", "app-nav");

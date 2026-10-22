@@ -6,120 +6,137 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
     <title>FactoryFlow Roadmap</title>
     <meta name="description" content="Where FactoryFlow is today and the planned releases: investigation tools, part lead times, shipping tracking and source independence." />
     <style>
       :root {
-        --bg: #050b16;
-        --panel: rgba(12, 24, 44, 0.72);
-        --border: rgba(120, 190, 255, 0.14);
-        --text: #e6f2ff;
-        --muted: #7d98b8;
-        --done: #2ee6a6;
-        --progress: #2ee6ff;
-        --planned: #7d98b8;
-        --glow: 0 0 18px rgba(46, 230, 255, 0.18);
-        --radius: 16px;
+        --bg: #0b0c0f;
+        --panel: #111317;
+        --border: rgba(255, 255, 255, 0.07);
+        --border-strong: rgba(255, 255, 255, 0.12);
+        --text: #ececf1;
+        --text-2: #b6bac3;
+        --muted: #858a94;
+        --accent: #3fd4ff;
+        --done: #3ecf8e;
+        --progress: #56c8e3;
+        --planned: #858a94;
+        --radius: 12px;
         --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+        --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
       }
       :root[data-theme="light"] {
-        --bg: #f4f8fd;
+        --bg: #f6f7f9;
         --panel: #ffffff;
-        --border: #d3deec;
-        --text: #0a1a30;
-        --muted: #46607f;
-        --done: #0f9f72;
-        --progress: #0a7fb5;
-        --planned: #5b7a9d;
-        --glow: none;
+        --border: rgba(0, 0, 0, 0.08);
+        --border-strong: rgba(0, 0, 0, 0.14);
+        --text: #16181d;
+        --text-2: #3d424c;
+        --muted: #6b707a;
+        --accent: #0e8aa8;
+        --done: #12965f;
+        --progress: #0e8aa8;
+        --planned: #8a8f99;
       }
       @media (prefers-color-scheme: light) {
         :root:not([data-theme="dark"]) {
-          --bg: #f4f8fd;
+          --bg: #f6f7f9;
           --panel: #ffffff;
-          --border: #d3deec;
-          --text: #0a1a30;
-          --muted: #46607f;
-          --done: #0f9f72;
-          --progress: #0a7fb5;
-          --planned: #5b7a9d;
-          --glow: none;
+          --border: rgba(0, 0, 0, 0.08);
+          --border-strong: rgba(0, 0, 0, 0.14);
+          --text: #16181d;
+          --text-2: #3d424c;
+          --muted: #6b707a;
+          --accent: #0e8aa8;
+          --done: #12965f;
+          --progress: #0e8aa8;
+          --planned: #8a8f99;
         }
       }
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        background:
-          radial-gradient(900px 500px at 15% -10%, rgba(30, 110, 255, 0.18), transparent 60%),
-          radial-gradient(700px 420px at 100% 0%, rgba(46, 230, 255, 0.1), transparent 60%),
-          var(--bg);
-        background-attachment: fixed;
+        background: var(--bg);
         color: var(--text);
         font: 16px/1.55 var(--font);
         -webkit-font-smoothing: antialiased;
       }
-      :root[data-theme="light"] body { background: var(--bg); }
-      @media (prefers-color-scheme: light) {
-        :root:not([data-theme="dark"]) body { background: var(--bg); }
-      }
       .wrap { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
       header { margin-bottom: 28px; }
-      .back { color: var(--progress); text-decoration: none; font-size: 14px; }
-      .back:hover { text-decoration: underline; }
-      h1 { margin: 12px 0 6px; font-size: 30px; font-weight: 650; letter-spacing: -0.02em; }
-      .lede { margin: 0; color: var(--muted); }
+      .crumbs { display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; color: var(--muted); }
+      .back { color: var(--muted); text-decoration: none; }
+      .back:hover { color: var(--text); }
+      .crumbs .here { color: var(--text); }
+      h1 { margin: 20px 0 6px; font-size: 28px; font-weight: 600; letter-spacing: -0.01em; }
+      .lede { margin: 0; color: var(--text-2); }
       .note {
         margin: 20px 0 28px;
-        padding: 12px 14px;
+        padding: 12px 16px;
         border: 1px solid var(--border);
         border-radius: var(--radius);
         background: var(--panel);
-        backdrop-filter: blur(14px) saturate(150%);
-        color: var(--muted);
+        color: var(--text-2);
         font-size: 14px;
       }
+      .note strong { color: var(--text); }
       ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
       li {
         background: var(--panel);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 18px 20px;
-        backdrop-filter: blur(14px) saturate(150%);
-        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 4px 14px rgba(0, 0, 0, 0.25);
+        padding: 20px 22px;
       }
       li[data-status="done"] { --c: var(--done); }
       li[data-status="progress"] { --c: var(--progress); }
+      li[data-status="planned"] { --c: var(--planned); }
       .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
-      .id { font-weight: 700; color: var(--c); font-variant-numeric: tabular-nums; }
-      h2 { margin: 0; font-size: 18px; }
+      .id { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+      h2 { margin: 0; font-size: 17px; font-weight: 600; }
       .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
         margin-left: auto;
         padding: 2px 10px;
         border-radius: 999px;
-        border: 1px solid var(--c);
-        color: var(--c);
+        border: 1px solid var(--border-strong);
+        color: var(--text-2);
         font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
+        font-weight: 500;
       }
-      p { margin: 8px 0 0; }
+      .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+      p { margin: 8px 0 0; color: var(--text-2); }
       .exit { color: var(--muted); font-size: 14px; }
       .exit strong { color: var(--text); font-weight: 600; }
-      .summary { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 20px; font-size: 14px; color: var(--muted); }
-      .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--c); box-shadow: 0 0 8px var(--c); }
-      .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 4px 24px; margin-top: 10px; }
-      h3 { margin: 10px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-      ul { margin: 0; padding-left: 18px; font-size: 14px; }
-      ul li { background: none; border: 0; border-radius: 0; padding: 2px 0; backdrop-filter: none; box-shadow: none; }
-      footer { margin-top: 32px; color: var(--muted); font-size: 13px; }
+      .summary { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 20px; font-size: 14px; color: var(--text-2); }
+      .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; background: var(--c); }
+      .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 4px 24px; margin-top: 12px; }
+      h3 { margin: 10px 0 4px; font-size: 13px; font-weight: 500; color: var(--muted); }
+      ul { margin: 0; padding-left: 18px; font-size: 14px; color: var(--text-2); }
+      ul li { background: none; border: 0; border-radius: 0; padding: 2px 0; }
+      /* Neon trim: cyan hairlines on structure */
+      ol > li { position: relative; transition: border-color 0.15s ease; }
+      ol > li::before {
+        content: ""; position: absolute; top: -1px; left: 16px; right: 16px; height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--accent) 70%, transparent);
+        opacity: 0.55; pointer-events: none;
+      }
+      ol > li:hover { border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+      ol > li[data-status="done"] .id { color: var(--accent); }
+      h1::after {
+        content: ""; display: block; width: 40px; height: 2px; margin-top: 12px; border-radius: 2px;
+        background: var(--accent); box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 60%, transparent);
+      }
+      .note { border-left: 2px solid var(--accent); }
+      footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
     </style>
   </head>
   <body>
     <div class="wrap">
       <header>
-        <a class="back" href="/">&larr; Back to FactoryFlow</a>
-        <h1>FactoryFlow roadmap</h1>
+        <nav class="crumbs"><a class="back" href="/">FactoryFlow</a><span>/</span><span class="here">Roadmap</span></nav>
+        <h1>Roadmap</h1>
         <p class="lede">
           A manufacturing intelligence tool for investigating what is actually happening in a plant, why, and what it means for customer dates.
         </p>

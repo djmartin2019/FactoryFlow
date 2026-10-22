@@ -51,7 +51,7 @@ export class SceneManager {
     this.simulation = simulation;
     this.scene = new THREE.Scene();
 
-    this.scene.background = new THREE.Color("#070e1c");
+    this.scene.background = new THREE.Color("#0d0f13");
 
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,

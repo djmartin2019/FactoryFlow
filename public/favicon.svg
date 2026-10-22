@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
   <!-- FactoryFlow mark: three process stations joined by a flow line. Original artwork, Apache-2.0 with the repository. -->
-  <rect width="48" height="48" rx="11" fill="#04070f"/>
-  <path d="M9 31h30" stroke="#1e3a5f" stroke-width="3" stroke-linecap="round"/>
+  <rect width="48" height="48" rx="11" fill="#111317"/>
+  <path d="M9 31h30" stroke="#2a2e36" stroke-width="3" stroke-linecap="round"/>
   <rect x="7" y="22" width="9" height="9" rx="2" fill="#22d3ee"/>
   <rect x="19.5" y="16" width="9" height="15" rx="2" fill="#38bdf8"/>
   <rect x="32" y="10" width="9" height="21" rx="2" fill="#f59e0b"/>
